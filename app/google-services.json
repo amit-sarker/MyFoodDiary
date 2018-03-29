@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1013934199615",
+    "firebase_url": "https://caloriecountergeb.firebaseio.com",
+    "project_id": "caloriecountergeb",
+    "storage_bucket": "caloriecountergeb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013934199615:android:90ce9c9216c255e1",
+        "android_client_info": {
+          "package_name": "com.example.moumita.caloriecountergeb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013934199615-nehpeivvrh41ehi3uf7uc61oup1cv9l9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.moumita.caloriecountergeb",
+            "certificate_hash": "2780f565e2f2691f01ce2a0b7eb68602b7162259"
+          }
+        },
+        {
+          "client_id": "1013934199615-6bmb0g237bm6i0jcjmvv2bbd50v1pgib.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQMfpabaFYejC-LvBGVTR-L3PpiD1RL1o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013934199615-6bmb0g237bm6i0jcjmvv2bbd50v1pgib.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
