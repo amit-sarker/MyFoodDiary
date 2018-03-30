@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CalorieCounterGEB</string>
+    <string name="female_male_option">Please enter your gender. It is important for Calorie Budget</string>
+
 </resources>
