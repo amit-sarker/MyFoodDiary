@@ -1,5 +1,6 @@
 package com.example.moumita.caloriecountergeb;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import GeneralPersonActivities.BMICalculationActivity;
 import GeneralPersonDatabase.Person;
 import GeneralPersonDatabase.PersonOperations;
 
@@ -67,8 +69,10 @@ public class GeneralUserActivity extends AppCompatActivity {
                 Toast t = Toast.makeText(GeneralUserActivity.this, "Person "+ newPerson.getPersonID() + "has been added successfully !", Toast.LENGTH_SHORT);
                 t.show();
 
-                Person test = personData.getPerson(2);
-                System.out.println(test.toString());
+                //Person test = personData.getPerson(2);
+                //System.out.println(test.toString());
+                Intent intent = new Intent(GeneralUserActivity.this, BMICalculationActivity.class);
+                startActivity(intent);
 
             }
         });
