@@ -23,7 +23,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="142dp"
-        app:srcCompat="@drawable/female_male_icon" />
+         />
 
     <Button
         android:id="@+id/Next_btn"

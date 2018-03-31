@@ -16,6 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".UserGenderInfo" />
         <activity android:name=".GeneralUserActivity" />
         <activity android:name="generalpersonactivities.BMICalculationActivity" />
     </application>
