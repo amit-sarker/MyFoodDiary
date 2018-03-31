@@ -18,7 +18,6 @@
         </activity>
         <activity android:name=".GeneralUserActivity" />
         <activity android:name="GeneralPersonActivities.BMICalculationActivity" />
-        <activity android:name=".NewTestActivity"></activity>
     </application>
 
 </manifest>
