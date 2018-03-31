@@ -19,6 +19,7 @@
         <activity android:name=".UserGenderInfo" />
         <activity android:name=".GeneralUserActivity" />
         <activity android:name="generalpersonactivities.BMICalculationActivity" />
+        <activity android:name=".UserHeightInfo"></activity>
     </application>
 
 </manifest>
