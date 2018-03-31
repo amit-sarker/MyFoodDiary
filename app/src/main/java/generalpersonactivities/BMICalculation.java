@@ -1,4 +1,4 @@
-package GeneralPersonActivities;
+package generalpersonactivities;
 
 public class BMICalculation {
     public BMICalculation() {}

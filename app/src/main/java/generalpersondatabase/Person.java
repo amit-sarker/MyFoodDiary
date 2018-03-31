@@ -1,4 +1,4 @@
-package GeneralPersonDatabase;
+package generalpersondatabase;
 
 public class Person {
     private String age, gender, weight, height;

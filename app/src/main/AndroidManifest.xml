@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".GeneralUserActivity" />
-        <activity android:name="GeneralPersonActivities.BMICalculationActivity" />
+        <activity android:name="generalpersonactivities.BMICalculationActivity" />
     </application>
 
 </manifest>

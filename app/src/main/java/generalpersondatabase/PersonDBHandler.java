@@ -1,4 +1,4 @@
-package GeneralPersonDatabase;
+package generalpersondatabase;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

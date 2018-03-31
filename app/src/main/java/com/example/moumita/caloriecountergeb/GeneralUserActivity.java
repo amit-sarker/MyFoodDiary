@@ -10,9 +10,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import GeneralPersonActivities.BMICalculationActivity;
-import GeneralPersonDatabase.Person;
-import GeneralPersonDatabase.PersonOperations;
+import generalpersonactivities.BMICalculationActivity;
+import generalpersondatabase.Person;
+import generalpersondatabase.PersonOperations;
 
 public class GeneralUserActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package GeneralPersonDatabase;
+package generalpersondatabase;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,9 +9,6 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import GeneralPersonDatabase.Person;
-import GeneralPersonDatabase.PersonDBHandler;
 
 public class PersonOperations {
     public static final String LOGTAG = "PERSON_MNG_SYS";

@@ -1,4 +1,4 @@
-package GeneralPersonActivities;
+package generalpersonactivities;
 
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -7,9 +7,8 @@ import android.widget.TextView;
 
 import com.example.moumita.caloriecountergeb.R;
 
-import GeneralPersonActivities.BMICalculation;
-import GeneralPersonDatabase.Person;
-import GeneralPersonDatabase.PersonOperations;
+import generalpersondatabase.Person;
+import generalpersondatabase.PersonOperations;
 
 import static java.lang.Math.abs;
 
