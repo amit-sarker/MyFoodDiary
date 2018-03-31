@@ -41,6 +41,7 @@ public class BMICalculationActivity extends AppCompatActivity {
         Double currentPersonWeight = Double.parseDouble(personWeight);
         currentPersonWeight = BMICalculation.Round(currentPersonWeight, 2);
 
+
         String personBMIState = bmi.BMIState(calculatedBMI);
         mCalculatedBMI.setText(Double.toString(calculatedBMI));
         mCalculatedBMI.setTextColor(Color.parseColor("#795548"));
