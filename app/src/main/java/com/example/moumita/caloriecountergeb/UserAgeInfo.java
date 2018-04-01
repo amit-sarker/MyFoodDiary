@@ -1,5 +1,6 @@
 package com.example.moumita.caloriecountergeb;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -40,29 +41,55 @@ public class UserAgeInfo extends AppCompatActivity {
                 String year = "Year = " + (simpleDatePicker.getYear());
 
                 final int dd = simpleDatePicker.getDayOfMonth();
-                final int mm = simpleDatePicker.getMonth();
+                final int mm = simpleDatePicker.getMonth() + 1;
                 final int yy = simpleDatePicker.getYear();
 
-               // int age = getAge(yy,mm,dd);
+
 
                 // display the values by using a toast
-                Toast.makeText(getApplicationContext(), day + "\n" + month + "\n" + year, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), dd + "\n" + mm + "\n" + yy, Toast.LENGTH_SHORT).show();
 
-                //String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-               // Toast.makeText(getApplicationContext(), age, Toast.LENGTH_LONG).show();
+                String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+                final int age = getAge(yy,mm,dd,date);
+                Toast.makeText(getApplicationContext(),age + " hhh", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(UserAgeInfo.this, UserHeightInfo.class);
+                //intent.putExtra("fromGender", (Serializable) User);
+                startActivity(intent);
+
             }
         });
     }
-    public int getAge(int DOByear, int DOBmonth, int DOBday) {
+    public int getAge(int DOByear, int DOBmonth, int DOBday, String todaydate) {
+
+        System.out.println("mmmmmmmmmmmmmmmm  " + DOBday + " " + DOBmonth + " " + DOByear);
+        int todayDay=0, currentMonth=0, currentYear=0;
+        for(int i=0;i<4;i++)
+        {
+            if(i>0) currentYear *= 10;
+            currentYear += todaydate.charAt(i) - '0';
+        }
+        for(int i=5;i<7;i++)
+        {
+            if(i==6) currentMonth *= 10;
+            currentMonth += todaydate.charAt(i) - '0';
+        }
+        for(int i=8;i<10;i++)
+        {
+            if(i==9) todayDay *= 10;
+            todayDay += todaydate.charAt(i) - '0';
+        }
 
         int age;
 
-        final Calendar calenderToday = Calendar.getInstance();
-        int currentYear = calenderToday.get(Calendar.YEAR);
-        int currentMonth = 1 + calenderToday.get(Calendar.MONTH);
-        int todayDay = calenderToday.get(Calendar.DAY_OF_MONTH);
+        //final Calendar calenderToday = Calendar.getInstance();
+        //int currentYear = calenderToday.get(Calendar.YEAR);
+        //int currentMonth = 1 + calenderToday.get(Calendar.MONTH);
+        //int todayDay = calenderToday.get(Calendar.DAY_OF_MONTH);
+
 
         age = currentYear - DOByear;
+        System.out.println("priiiiiiiiiiiiiiiiiiiiiiiint "+ currentMonth + " " + currentYear + " " + todayDay + " mmmmmmmmmmmmmmmm  " + DOBday + " " + DOBmonth + " " + DOByear + " " + age);
 
         if(DOBmonth > currentMonth){
             --age;

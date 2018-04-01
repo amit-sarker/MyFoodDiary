@@ -20,7 +20,9 @@
         <activity android:name=".GeneralUserActivity" />
         <activity android:name="generalpersonactivities.BMICalculationActivity" />
         <activity android:name=".UserHeightInfo" />
-        <activity android:name=".UserAgeInfo"></activity>
+        <activity android:name=".UserAgeInfo" />
+        <activity android:name=".UserWeightInfo" />
+        <activity android:name=".UserSignInActivity"></activity>
     </application>
 
 </manifest>
