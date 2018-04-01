@@ -22,7 +22,8 @@
         <activity android:name="userinfo.UserAgeInfoActivity" />
         <activity android:name="userinfo.UserWeightInfoActivity" />
         <activity android:name=".UserSignInActivity" />
-        <activity android:name=".AfterSignInActivity"></activity>
+        <activity android:name=".AfterSignInActivity" />
+        <activity android:name=".RegisteredPersonData"></activity>
     </application>
 
 </manifest>

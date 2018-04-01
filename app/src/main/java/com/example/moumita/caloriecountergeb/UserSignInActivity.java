@@ -52,7 +52,7 @@ public class UserSignInActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if(firebaseAuth.getCurrentUser()!=null){
-                    startActivity(new Intent(UserSignInActivity.this, AfterSignInActivity.class));
+                    startActivity(new Intent(UserSignInActivity.this, RegisteredPersonData.class));
                     finish();
                 }
             }
@@ -114,7 +114,7 @@ public class UserSignInActivity extends AppCompatActivity {
     }
 
     void setUpUI(){
-        mSignInButton=(SignInButton)findViewById(R.id.sign_in_layout_sign_in_button);
+        mSignInButton= findViewById(R.id.sign_in_layout_sign_in_button);
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

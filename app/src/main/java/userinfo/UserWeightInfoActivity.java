@@ -15,6 +15,7 @@ import android.widget.ToggleButton;
 import com.example.moumita.caloriecountergeb.R;
 import com.example.moumita.caloriecountergeb.UserSignInActivity;
 
+import generalpersonactivities.BMICalculation;
 import generalpersondatabase.Person;
 import generalpersondatabase.PersonOperations;
 
@@ -81,12 +82,15 @@ public class UserWeightInfoActivity extends AppCompatActivity {
                     weight *= 0.454;
                 }
 
+                height = BMICalculation.Round(height, 2);
+                weight = BMICalculation.Round(weight, 2);
                 newPerson.setAge(String.valueOf(age));
                 if (isFemale) newPerson.setGender("female");
                 else newPerson.setGender("male");
                 newPerson.setHeight(String.valueOf(height));
                 newPerson.setWeight(String.valueOf(weight));
                 personData.addPerson(newPerson);
+                //System.out.println(personData.getPerson(1));
                 Toast t = Toast.makeText(UserWeightInfoActivity.this, "Person " + newPerson.getPersonID() + "has been added successfully !", Toast.LENGTH_SHORT);
                 t.show();
                 Intent intent = new Intent(UserWeightInfoActivity.this, UserSignInActivity.class);

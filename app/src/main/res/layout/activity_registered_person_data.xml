@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisteredPersonData">
+
+    <TextView
+        android:id="@+id/user_info_headline_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:fontFamily="cursive"
+        android:text="@string/user_info"
+        android:textColor="#263238"
+        android:textSize="35sp"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:id="@+id/info_text"
+        android:layout_width="265dp"
+        android:layout_height="274dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="121dp"
+        android:fontFamily="cursive"
+        android:text="TextView"
+        android:textColor="#263238"
+        android:textSize="25sp"
+        android:textStyle="normal|bold"/>
+
+</RelativeLayout>
