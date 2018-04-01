@@ -8,25 +8,18 @@
 
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="193dp"
+        android:id="@+id/gender_info_text"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="75dp"
         android:text="@string/female_male_option" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="165dp"
-        android:layout_height="189dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="142dp"
-         />
+
 
     <Button
-        android:id="@+id/Next_btn"
+        android:id="@+id/next_page_btn"
         style="@android:style/Widget.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,7 +29,7 @@
         android:text="Next" />
 
     <Button
-        android:id="@+id/Female_btn"
+        android:id="@+id/female_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -49,10 +42,20 @@
         android:id="@+id/male_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/Female_btn"
+        android:layout_alignBottom="@id/female_btn"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="76dp"
         android:text="Male" />
+
+    <ImageView
+        android:id="@+id/gender_info_img"
+        android:layout_width="174dp"
+        android:layout_height="192dp"
+        android:layout_below="@id/gender_info_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp"
+        android:src="@drawable/ic_launcher_background"
+        />
 
 
 </RelativeLayout>
