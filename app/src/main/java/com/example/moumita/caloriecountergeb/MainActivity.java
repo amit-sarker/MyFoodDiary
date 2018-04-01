@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Person User = new Person();
-        Intent intent = new Intent(MainActivity.this, UserAgeInfo.class);
+        Intent intent = new Intent(MainActivity.this, UserGenderInfo.class);
         //intent.putExtra("sampleObject", (Serializable) User);
         startActivity(intent);
 

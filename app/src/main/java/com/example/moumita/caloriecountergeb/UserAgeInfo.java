@@ -16,6 +16,10 @@ import java.util.Locale;
 
 public class UserAgeInfo extends AppCompatActivity {
 
+    private boolean isFemale, isfeet=true;
+    private double height;
+
+
     private DatePicker simpleDatePicker;
     private Button submit;
 
@@ -28,6 +32,11 @@ public class UserAgeInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_age_info);
+
+        Bundle bundle = getIntent().getExtras();
+        isFemale = bundle.getBoolean("isfemale");
+        //isfeet = bundle.getBoolean("isfeet");
+        height = bundle.getDouble("height");
 
         simpleDatePicker = (DatePicker) findViewById(R.id.simpleDatePicker);
         submit = (Button) findViewById(R.id.submitButton);
@@ -53,7 +62,13 @@ public class UserAgeInfo extends AppCompatActivity {
                 final int age = getAge(yy,mm,dd,date);
                 Toast.makeText(getApplicationContext(),age + " hhh", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(UserAgeInfo.this, UserHeightInfo.class);
+                Intent intent = new Intent(UserAgeInfo.this, UserWeightInfo.class);
+                intent.putExtra("isfemale", isFemale);
+                //intent.putExtra("isfeet", isfeet);
+                intent.putExtra("height", height);
+                intent.putExtra("age", age);
+
+                System.out.println("Innnnnnnnnnnnnn  " + isFemale + " " + isfeet + " " + height + " " + age);
                 //intent.putExtra("fromGender", (Serializable) User);
                 startActivity(intent);
 

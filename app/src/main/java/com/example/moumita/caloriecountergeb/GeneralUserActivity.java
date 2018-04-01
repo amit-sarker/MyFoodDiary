@@ -16,6 +16,10 @@ import generalpersondatabase.PersonOperations;
 
 public class GeneralUserActivity extends AppCompatActivity {
 
+    private boolean isFemale;
+    private double height, weight;
+    private int age;
+
     private static final String EXTRA_EMP_ID = "com.androidtutorialpoint.empId";
     private static final String EXTRA_ADD_UPDATE = "com.androidtutorialpoint.add_update";
     private static final String DIALOG_DATE = "DialogDate";
@@ -41,6 +45,15 @@ public class GeneralUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general_user);
 
+        //Getting Values from the previous activity
+        Bundle bundle = getIntent().getExtras();
+        isFemale = bundle.getBoolean("isfemale");
+        //isfeet = bundle.getBoolean("isfeet");
+        height = bundle.getDouble("height");
+        age = bundle.getInt("age");
+        //iskg = bundle.getBoolean("iskg");
+        weight = bundle.getDouble("weight");
+
         newPerson = new Person();
         oldPerson = new Person();
         mGeneralUserAgeText = findViewById(R.id.age_text_general);
@@ -59,10 +72,11 @@ public class GeneralUserActivity extends AppCompatActivity {
                 final String generalUserHeight = mGeneralUserHeightText.getText().toString();
                 final String generalUserWeight = mGeneralUserWeightText.getText().toString();
 
-                newPerson.setAge(generalUserAge);
-                newPerson.setGender(generalUserGender);
-                newPerson.setHeight(generalUserHeight);
-                newPerson.setWeight(generalUserWeight);
+                newPerson.setAge(String.valueOf(age));
+                if(isFemale) newPerson.setGender("female");
+                else newPerson.setGender("male");
+                newPerson.setHeight(String.valueOf(height));
+                newPerson.setWeight(String.valueOf(weight));
 
                 personData.addPerson(newPerson);
 

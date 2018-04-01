@@ -3,6 +3,7 @@ package com.example.moumita.caloriecountergeb;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -17,6 +18,9 @@ import generalpersondatabase.Person;
 
 public class UserHeightInfo extends AppCompatActivity {
 
+    private boolean isFemale, isfeet=true;
+    private double height;
+
     private String [] feetValues = new String[10];
     private String [] inchValues = new String[12];
     NumberPicker mFeetPicker,mInchPicker;
@@ -28,6 +32,10 @@ public class UserHeightInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_height_info);
+
+        Bundle bundle = getIntent().getExtras();
+        isFemale = bundle.getBoolean("isfemale");
+
 
         //Intent intent = getIntent();
         //Person User = (Person) intent.getSerializableExtra("fromGender");
@@ -64,12 +72,42 @@ public class UserHeightInfo extends AppCompatActivity {
                 if (isChecked) {
                     mFeetText.setText("Feet");
                     mInchText.setText("Inches");
+                    isfeet = true;
                 } else {
                     mFeetText.setText("Meter");
                     mInchText.setText("Cm");
+                    isfeet = false;
 
                     // The toggle is disabled
                 }
+            }
+        });
+
+        mNextPageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(isfeet)
+                {
+                    height = mFeetPicker.getValue() * 12;
+                    height += mInchPicker.getValue();
+
+                }
+                else
+                {
+                    height = mFeetPicker.getValue() * 100;
+                    height += mInchPicker.getValue();
+                    height *= 0.393701;
+                }
+
+                Intent intent = new Intent(UserHeightInfo.this, UserAgeInfo.class);
+                intent.putExtra("isfemale", isFemale);
+                //intent.putExtra("isfeet", isfeet);
+                intent.putExtra("height", height);
+
+                System.out.println("Innnnnnnnnnnnnn  " + isFemale + " " + isfeet + " " + height);
+                //intent.putExtra("fromGender", (Serializable) User);
+                startActivity(intent);
             }
         });
 

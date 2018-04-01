@@ -11,8 +11,11 @@ import android.widget.TextView;
 import java.io.Serializable;
 
 import generalpersondatabase.Person;
+import generalpersondatabase.PersonHelper;
 
 public class UserGenderInfo extends AppCompatActivity {
+
+    private boolean isFemale;
     private TextView mGenderInfoText;
     private ImageView mGenderInfoImg;
     private Button mFemaleOptionBtn, mMaleOptionBtn,mNextPageBtn;
@@ -22,6 +25,7 @@ public class UserGenderInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_gender_info);
 
+        PersonHelper userHelper = new PersonHelper();
         //Intent intent = getIntent();
         //final Person User = (Person) intent.getSerializableExtra("sampleObject");
 
@@ -34,6 +38,7 @@ public class UserGenderInfo extends AppCompatActivity {
         mFemaleOptionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               isFemale = true;
                // User.setGender("female");
 
             }
@@ -41,7 +46,8 @@ public class UserGenderInfo extends AppCompatActivity {
         mMaleOptionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // User.setGender("male");
+               isFemale = false;
+                // User.setGender("male");
 
             }
         });
@@ -51,6 +57,7 @@ public class UserGenderInfo extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(UserGenderInfo.this, UserHeightInfo.class);
+                intent.putExtra("isfemale", isFemale);
                 //intent.putExtra("fromGender", (Serializable) User);
                 startActivity(intent);
             }
