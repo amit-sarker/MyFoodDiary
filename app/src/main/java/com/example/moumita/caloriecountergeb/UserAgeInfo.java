@@ -9,20 +9,15 @@ import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class UserAgeInfo extends AppCompatActivity {
 
     private DatePicker simpleDatePicker;
     private Button submit;
 
-    String dateStr = "04/05/2010";
-
-    SimpleDateFormat curFormater = new SimpleDateFormat("dd/MM/yyyy");
-    Date dateObj = curFormater.parse(dateStr);
-    SimpleDateFormat postFormater = new SimpleDateFormat("MMMM dd, yyyy");
-
-    String newDateStr = postFormater.format(dateObj);
 
     public UserAgeInfo() throws ParseException {
     }
@@ -48,10 +43,36 @@ public class UserAgeInfo extends AppCompatActivity {
                 final int mm = simpleDatePicker.getMonth();
                 final int yy = simpleDatePicker.getYear();
 
+               // int age = getAge(yy,mm,dd);
 
                 // display the values by using a toast
                 Toast.makeText(getApplicationContext(), day + "\n" + month + "\n" + year, Toast.LENGTH_LONG).show();
+
+                //String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+               // Toast.makeText(getApplicationContext(), age, Toast.LENGTH_LONG).show();
             }
         });
     }
+    public int getAge(int DOByear, int DOBmonth, int DOBday) {
+
+        int age;
+
+        final Calendar calenderToday = Calendar.getInstance();
+        int currentYear = calenderToday.get(Calendar.YEAR);
+        int currentMonth = 1 + calenderToday.get(Calendar.MONTH);
+        int todayDay = calenderToday.get(Calendar.DAY_OF_MONTH);
+
+        age = currentYear - DOByear;
+
+        if(DOBmonth > currentMonth){
+            --age;
+        }
+        else if(DOBmonth == currentMonth){
+            if(DOBday > todayDay){
+                --age;
+            }
+        }
+        return age;
+    }
+
 }
