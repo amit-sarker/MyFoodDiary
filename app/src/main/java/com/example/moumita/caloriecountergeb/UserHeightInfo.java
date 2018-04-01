@@ -1,5 +1,6 @@
 package com.example.moumita.caloriecountergeb;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -7,9 +8,12 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import org.w3c.dom.Text;
+
+import generalpersondatabase.Person;
 
 public class UserHeightInfo extends AppCompatActivity {
 
@@ -25,6 +29,9 @@ public class UserHeightInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_height_info);
 
+        //Intent intent = getIntent();
+        //Person User = (Person) intent.getSerializableExtra("fromGender");
+        //Toast.makeText(this.getApplicationContext(), (String)User.gender, Toast.LENGTH_LONG).show();
 
         for(int i=0;i<10;i++)
         {
