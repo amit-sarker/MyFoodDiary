@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package userinfo;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,14 +9,11 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import org.w3c.dom.Text;
+import com.example.moumita.caloriecountergeb.R;
 
-import generalpersondatabase.Person;
-
-public class UserHeightInfo extends AppCompatActivity {
+public class UserHeightInfoActivity extends AppCompatActivity {
 
     private boolean isFemale, isfeet=true;
     private double height;
@@ -100,7 +97,7 @@ public class UserHeightInfo extends AppCompatActivity {
                     height *= 0.393701;
                 }
 
-                Intent intent = new Intent(UserHeightInfo.this, UserAgeInfo.class);
+                Intent intent = new Intent(UserHeightInfoActivity.this, UserAgeInfoActivity.class);
                 intent.putExtra("isfemale", isFemale);
                 //intent.putExtra("isfeet", isfeet);
                 intent.putExtra("height", height);

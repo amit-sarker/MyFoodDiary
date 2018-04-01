@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1013934199615-sq0nb75acg4dcq5p8pkd927p6lt3meqq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.moumita.caloriecountergeb",
+            "certificate_hash": "aa43b369b643267c79f9c78eff5b81f61848935a"
+          }
+        },
+        {
           "client_id": "1013934199615-k36djvq426ql2p1rddh59jqdrmhv5ss9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

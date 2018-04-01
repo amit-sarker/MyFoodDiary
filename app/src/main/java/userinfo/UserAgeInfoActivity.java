@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package userinfo;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,13 +8,14 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
+import com.example.moumita.caloriecountergeb.R;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class UserAgeInfo extends AppCompatActivity {
+public class UserAgeInfoActivity extends AppCompatActivity {
 
     private boolean isFemale, isfeet=true;
     private double height;
@@ -24,7 +25,7 @@ public class UserAgeInfo extends AppCompatActivity {
     private Button submit;
 
 
-    public UserAgeInfo() throws ParseException {
+    public UserAgeInfoActivity() throws ParseException {
     }
 
 
@@ -62,7 +63,7 @@ public class UserAgeInfo extends AppCompatActivity {
                 final int age = getAge(yy,mm,dd,date);
                 Toast.makeText(getApplicationContext(),age + " hhh", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(UserAgeInfo.this, UserWeightInfo.class);
+                Intent intent = new Intent(UserAgeInfoActivity.this, UserWeightInfoActivity.class);
                 intent.putExtra("isfemale", isFemale);
                 //intent.putExtra("isfeet", isfeet);
                 intent.putExtra("height", height);

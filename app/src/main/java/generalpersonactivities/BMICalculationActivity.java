@@ -1,11 +1,15 @@
 package generalpersonactivities;
 
+import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.moumita.caloriecountergeb.R;
+import com.example.moumita.caloriecountergeb.UserSignInActivity;
 
 import generalpersondatabase.Person;
 import generalpersondatabase.PersonOperations;
@@ -18,6 +22,8 @@ public class BMICalculationActivity extends AppCompatActivity {
     private Person currentPerson;
     private TextView mBMIText, mCalculatedBMI, mBMIState;
     private double neededWeight, calculatedBMI;
+    private Button mNextButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,8 @@ public class BMICalculationActivity extends AppCompatActivity {
         mBMIText = findViewById(R.id.bmitext);
         mCalculatedBMI = findViewById(R.id.calculatedbmitext);
         mBMIState = findViewById(R.id.bmitextstate);
+        mNextButton = findViewById(R.id.next_page_btn);
+
         currentPerson = new Person();
         personData = new PersonOperations(this);
         personData.open();
@@ -61,6 +69,16 @@ public class BMICalculationActivity extends AppCompatActivity {
             mBMIState.setText("You are Obese, you have to lose " + abs(neededWeight) + "kg immediately");
             mBMIState.setTextColor(Color.parseColor("#D50000"));
         }
+
+
+        mNextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(BMICalculationActivity.this, UserSignInActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 }

@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package userinfo;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,15 +9,24 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
-public class UserWeightInfo extends AppCompatActivity {
-    private boolean isFemale, isfeet=true, iskg = true;
+import com.example.moumita.caloriecountergeb.R;
+import com.example.moumita.caloriecountergeb.UserSignInActivity;
+
+import generalpersondatabase.Person;
+import generalpersondatabase.PersonOperations;
+
+public class UserWeightInfoActivity extends AppCompatActivity {
+    private boolean isFemale, isfeet = true, iskg = true;
     private double height, weight;
     private int age;
+    private Person newPerson;
+    private PersonOperations personData;
 
     EditText mWeightInputText;
-    TextView mWeightText,mKgText;
+    TextView mWeightText, mKgText;
     ImageView mWeightImg;
     Button mNextPageBtn;
     ToggleButton mlbsvsKg;
@@ -34,12 +43,14 @@ public class UserWeightInfo extends AppCompatActivity {
         age = bundle.getInt("age");
 
 
-        mWeightInputText = (EditText) findViewById(R.id.weight_editText_id);
-        mWeightText = (TextView) findViewById(R.id.weight_info_text);
-        mKgText = (TextView) findViewById(R.id.kg_text);
-        mWeightImg = (ImageView) findViewById(R.id.weight_info_img);
-        mNextPageBtn = (Button) findViewById(R.id.next_page_btn);
-
+        mWeightInputText = findViewById(R.id.weight_editText_id);
+        mWeightText = findViewById(R.id.weight_info_text);
+        mKgText = findViewById(R.id.kg_text);
+        mWeightImg = findViewById(R.id.weight_info_img);
+        mNextPageBtn = findViewById(R.id.next_page_btn);
+        newPerson = new Person();
+        personData = new PersonOperations(this);
+        personData.open();
 
 
         mlbsvsKg = findViewById(R.id.lbs_vs_kg);
@@ -65,25 +76,20 @@ public class UserWeightInfo extends AppCompatActivity {
                 final String weightstr = mWeightInputText.getText().toString();
                 weight = Double.parseDouble(weightstr);
 
-                if(iskg)
-                {
-
-                }
-                else
-                {
+                if (iskg) {
+                } else {
                     weight *= 0.454;
                 }
 
-                Intent intent = new Intent(UserWeightInfo.this, GeneralUserActivity.class);
-                intent.putExtra("isfemale", isFemale);
-                //intent.putExtra("isfeet", isfeet);
-                intent.putExtra("height", height);
-                intent.putExtra("age", age);
-                //intent.putExtra("iskg",iskg);
-                intent.putExtra("weight", weight);
-
-                System.out.println("Innnnnnnnnnnnnn  " + isFemale + " " + isfeet + " " + height + " " + age + " " + iskg + " " + weight);
-                //intent.putExtra("fromGender", (Serializable) User);
+                newPerson.setAge(String.valueOf(age));
+                if (isFemale) newPerson.setGender("female");
+                else newPerson.setGender("male");
+                newPerson.setHeight(String.valueOf(height));
+                newPerson.setWeight(String.valueOf(weight));
+                personData.addPerson(newPerson);
+                Toast t = Toast.makeText(UserWeightInfoActivity.this, "Person " + newPerson.getPersonID() + "has been added successfully !", Toast.LENGTH_SHORT);
+                t.show();
+                Intent intent = new Intent(UserWeightInfoActivity.this, UserSignInActivity.class);
                 startActivity(intent);
             }
         });

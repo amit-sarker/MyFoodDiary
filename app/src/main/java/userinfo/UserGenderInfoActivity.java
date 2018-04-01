@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package userinfo;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,12 +8,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.Serializable;
+import com.example.moumita.caloriecountergeb.R;
 
-import generalpersondatabase.Person;
 import generalpersondatabase.PersonHelper;
 
-public class UserGenderInfo extends AppCompatActivity {
+public class UserGenderInfoActivity extends AppCompatActivity {
 
     private boolean isFemale;
     private TextView mGenderInfoText;
@@ -56,7 +55,7 @@ public class UserGenderInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(UserGenderInfo.this, UserHeightInfo.class);
+                Intent intent = new Intent(UserGenderInfoActivity.this, UserHeightInfoActivity.class);
                 intent.putExtra("isfemale", isFemale);
                 //intent.putExtra("fromGender", (Serializable) User);
                 startActivity(intent);

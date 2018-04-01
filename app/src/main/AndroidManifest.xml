@@ -16,13 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UserGenderInfo" />
-        <activity android:name=".GeneralUserActivity" />
+        <activity android:name="userinfo.UserGenderInfoActivity" />
         <activity android:name="generalpersonactivities.BMICalculationActivity" />
-        <activity android:name=".UserHeightInfo" />
-        <activity android:name=".UserAgeInfo" />
-        <activity android:name=".UserWeightInfo" />
-        <activity android:name=".UserSignInActivity"></activity>
+        <activity android:name="userinfo.UserHeightInfoActivity" />
+        <activity android:name="userinfo.UserAgeInfoActivity" />
+        <activity android:name="userinfo.UserWeightInfoActivity" />
+        <activity android:name=".UserSignInActivity" />
+        <activity android:name=".AfterSignInActivity"></activity>
     </application>
 
 </manifest>

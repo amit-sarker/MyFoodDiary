@@ -6,9 +6,7 @@ import android.os.Bundle;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.io.Serializable;
-
-import generalpersondatabase.Person;
+import userinfo.UserGenderInfoActivity;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -19,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Person User = new Person();
-        Intent intent = new Intent(MainActivity.this, UserGenderInfo.class);
+        Intent intent = new Intent(MainActivity.this, UserGenderInfoActivity.class);
         //intent.putExtra("sampleObject", (Serializable) User);
         startActivity(intent);
 
