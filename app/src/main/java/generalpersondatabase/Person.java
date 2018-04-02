@@ -2,8 +2,8 @@ package generalpersondatabase;
 
 
 public class Person {
-    public  String age, gender, weight, height;
-    public  long personID;
+    private  String age, gender, weight, height;
+    private  long personID;
     public Person() {}
 
     public Person(long personID, String age, String gender, String height, String weight) {
