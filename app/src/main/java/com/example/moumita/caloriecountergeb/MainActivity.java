@@ -1,5 +1,6 @@
 package com.example.moumita.caloriecountergeb;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -13,6 +14,9 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 import okhttp3.OkHttpClient;
+import userinfo.UserAgeInfoActivity;
+import userinfo.UserGenderInfoActivity;
+import userinfo.UserWeightInfoActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -28,7 +32,10 @@ public class MainActivity extends AppCompatActivity {
         new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor())
                 .build();
+        Intent intent = new Intent(MainActivity.this, UserGenderInfoActivity.class);
+        startActivity(intent);
 
+        /*
         //InputStream inputStream = getResources().openRawResource();
         String lineFromFile;
         File file = new File("res\\files\\foodlist.txt");
@@ -74,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println(eachAttribute);
 
             }
-        }
+        }*/
 
     }
 }
