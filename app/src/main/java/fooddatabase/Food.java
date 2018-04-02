@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package fooddatabase;
 
 public class Food {
     private long food_id, food_category_id;

@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -23,8 +24,10 @@ public class UserWeightInfoActivity extends AppCompatActivity {
     private boolean isFemale, isfeet = true, iskg = true;
     private double height, weight, targetweight;
     private int age;
+    private long intActivityLevel;
     private Person newPerson;
     private PersonOperations personData;
+    private double BMRWithActivity, BMRWithoutActivity;
 
     EditText mWeightInputText, mTargetWeightText;
     TextView mWeightText, mKgText, mKgText2;
@@ -77,6 +80,14 @@ public class UserWeightInfoActivity extends AppCompatActivity {
         mNextPageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Activity level
+                Spinner spinnerActivityLevel = findViewById(R.id.spinnerActivityLevel);
+                //  0: Little to no exercise
+                // 1: Light exercise (1–3 days per week)
+                // 2: Moderate exercise (3–5 days per week)
+                // 3: Heavy exercise (6–7 days per week)
+                // 4: Very heavy exercise (twice per day, extra heavy workouts)
+                intActivityLevel = spinnerActivityLevel.getSelectedItemPosition();
 
                 final String weightstr = mWeightInputText.getText().toString();
                 weight = Double.parseDouble(weightstr);
@@ -92,15 +103,32 @@ public class UserWeightInfoActivity extends AppCompatActivity {
 
                 height = BMICalculation.Round(height, 2);
                 weight = BMICalculation.Round(weight, 2);
+                targetweight = BMICalculation.Round(targetweight, 2);
+
+                String BMRHeight, BMRWeight, BMRAge, BMRGender = "";
+                BMRHeight = Double.toString(height * 2.54);
+                BMRWeight = Double.toString(targetweight);
+                BMRAge = Double.toString(age);
+                if (isFemale) BMRGender += "female";
+                else BMRGender += "male";
+                BMRWithoutActivity = BMICalculation.BMRWithoutActivity(BMRHeight, BMRWeight, BMRAge, BMRGender);
+                BMRWithActivity = BMICalculation.BMRWithActivity(BMRHeight, BMRWeight, BMRAge, BMRGender, intActivityLevel);
+                Toast t = Toast.makeText(UserWeightInfoActivity.this, "Without Activity " + BMRWithoutActivity + "   With Activity"+ " " + BMRWithActivity, Toast.LENGTH_LONG);
+                t.show();
+
+                //push targetweight and intActivityLevel into person table.
+                System.out.println("debuggggggggggggggggg  " + intActivityLevel);
                 newPerson.setAge(String.valueOf(age));
                 if (isFemale) newPerson.setGender("female");
                 else newPerson.setGender("male");
                 newPerson.setHeight(String.valueOf(height));
                 newPerson.setWeight(String.valueOf(weight));
+                newPerson.setActivityLevel(intActivityLevel);
+                newPerson.setTargetWeight(String.valueOf(targetweight));
                 personData.addPerson(newPerson);
                 //System.out.println(personData.getPerson(1));
-                Toast t = Toast.makeText(UserWeightInfoActivity.this, "Person " + newPerson.getPersonID() + "has been added successfully !", Toast.LENGTH_SHORT);
-                t.show();
+                /*Toast t = Toast.makeText(UserWeightInfoActivity.this, "Person " + newPerson.getPersonID() + "has been added successfully !"+ " " + intActivityLevel, Toast.LENGTH_LONG);
+                t.show();*/
                 Intent intent = new Intent(UserWeightInfoActivity.this, UserSignInActivity.class);
                 startActivity(intent);
             }

@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package fooddatabase;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,9 +9,6 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import generalpersondatabase.Person;
-import generalpersondatabase.PersonDBHandler;
 
 public class FoodOperations {
     public static final String LOGTAG = "FOOD_MNG_SYS";

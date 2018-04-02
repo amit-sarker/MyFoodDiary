@@ -19,7 +19,8 @@ public class RegisteredPersonData extends AppCompatActivity {
 
     private Person registeredPerson;
     private PersonOperations personData;
-    private String registeredPersonAge, registeredPersonGender, registeredPersonHeight, registeredPersonWeight;
+    private String registeredPersonAge, registeredPersonGender, registeredPersonHeight, registeredPersonWeight, registeredPersonTargetWeight;
+    private long registeredPersonActivityLevel;
     private FirebaseAuth mAuth;
     private DatabaseReference mUserRef;
     private TextView infoHeadingText, userInfoText;
@@ -36,10 +37,15 @@ public class RegisteredPersonData extends AppCompatActivity {
         personData.open();
 
         registeredPerson = personData.getPerson(1);
+
+        personData.close();
+
         registeredPersonAge = registeredPerson.getAge();
         registeredPersonGender = registeredPerson.getGender();
         registeredPersonHeight = registeredPerson.getHeight();
         registeredPersonWeight = registeredPerson.getWeight();
+        registeredPersonActivityLevel = registeredPerson.getActivityLevel();
+        registeredPersonTargetWeight = registeredPerson.getTargetWeight();
         mAuth = FirebaseAuth.getInstance();
         final String userID = mAuth.getCurrentUser().getUid().toString();
         mUserRef = FirebaseDatabase.getInstance().getReference().child("users").child(userID);
@@ -49,11 +55,15 @@ public class RegisteredPersonData extends AppCompatActivity {
         userInfo.put("gender", registeredPersonGender);
         userInfo.put("height", registeredPersonHeight);
         userInfo.put("weight", registeredPersonWeight);
+        userInfo.put("activitylevel", registeredPersonActivityLevel);
+        userInfo.put("targetweight", registeredPersonTargetWeight);
         mUserRef.setValue(userInfo);
 
 
         String infoTextUI = "Age: " + registeredPersonAge + "\n" + "Gender: " + registeredPersonGender
-                + "\n" + "Height: " + registeredPersonHeight + "\n" + "Weight: " + registeredPersonWeight;
+                + "\n" + "Height: " + registeredPersonHeight + "\n" + "Weight: " + registeredPersonWeight
+                + "\n" + "Activity Level: " + registeredPersonActivityLevel + "\n" + "Target Weight: " +
+                registeredPersonTargetWeight;
         userInfoText.setText(infoTextUI);
         userInfoText.setTextColor(Color.parseColor("#795548"));
     }

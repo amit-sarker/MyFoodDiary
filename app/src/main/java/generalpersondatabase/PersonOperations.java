@@ -21,7 +21,9 @@ public class PersonOperations {
             PersonDBHandler.COLUMN_AGE,
             PersonDBHandler.COLUMN_GENDER,
             PersonDBHandler.COLUMN_HEIGHT,
-            PersonDBHandler.COLUMN_WEIGHT
+            PersonDBHandler.COLUMN_WEIGHT,
+            PersonDBHandler.COLUMN_ACTIVITY_LEVEL,
+            PersonDBHandler.COLUMN_TARGET_WEIGHT
     };
 
     public PersonOperations(Context context){
@@ -44,6 +46,8 @@ public class PersonOperations {
         values.put(PersonDBHandler.COLUMN_GENDER, person.getGender());
         values.put(PersonDBHandler.COLUMN_HEIGHT, person.getHeight());
         values.put(PersonDBHandler.COLUMN_WEIGHT, person.getWeight());
+        values.put(PersonDBHandler.COLUMN_ACTIVITY_LEVEL, person.getActivityLevel());
+        values.put(PersonDBHandler.COLUMN_TARGET_WEIGHT, person.getTargetWeight());
         long insertid = database.insert(PersonDBHandler.TABLE_PERSON,null, values);
         person.setPersonID(insertid);
         return person;
@@ -51,12 +55,11 @@ public class PersonOperations {
 
     // Getting single Person
     public Person getPerson(long id) {
-
         Cursor cursor = database.query(PersonDBHandler.TABLE_PERSON, allColumns,PersonDBHandler.COLUMN_ID + "=?", new String[]{String.valueOf(id)},null,null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
-        Person e = new Person(Long.parseLong(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+        Person e = new Person(Long.parseLong(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), Long.parseLong(cursor.getString(5)), cursor.getString(6));
         // return person
         return e;
     }
@@ -74,6 +77,8 @@ public class PersonOperations {
                 person.setGender(cursor.getString(cursor.getColumnIndex(PersonDBHandler.COLUMN_GENDER)));
                 person.setHeight(cursor.getString(cursor.getColumnIndex(PersonDBHandler.COLUMN_HEIGHT)));
                 person.setWeight(cursor.getString(cursor.getColumnIndex(PersonDBHandler.COLUMN_WEIGHT)));
+                person.setActivityLevel(cursor.getLong(cursor.getColumnIndex(PersonDBHandler.COLUMN_ACTIVITY_LEVEL)));
+                person.setTargetWeight(cursor.getString(cursor.getColumnIndex(PersonDBHandler.COLUMN_TARGET_WEIGHT)));
                 personList.add(person);
             }
         }
@@ -89,6 +94,8 @@ public class PersonOperations {
         values.put(PersonDBHandler.COLUMN_GENDER, person.getGender());
         values.put(PersonDBHandler.COLUMN_HEIGHT, person.getHeight());
         values.put(PersonDBHandler.COLUMN_WEIGHT, person.getWeight());
+        values.put(PersonDBHandler.COLUMN_ACTIVITY_LEVEL, person.getActivityLevel());
+        values.put(PersonDBHandler.COLUMN_TARGET_WEIGHT, person.getTargetWeight());
 
         // updating row
         return database.update(PersonDBHandler.TABLE_PERSON, values,
@@ -97,7 +104,6 @@ public class PersonOperations {
 
     // Deleting Person
     public void removePerson(Person person) {
-
         database.delete(PersonDBHandler.TABLE_PERSON,PersonDBHandler.COLUMN_ID + "=" + person.getPersonID(),null);
     }
 }

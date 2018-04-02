@@ -5,11 +5,20 @@
     <string name="age_info">Calorie Budget and neutrient recommendations depend on your age. Please Enter your birthdate</string>
     <string name="weight_info">Calorie Budget and neutrient recommendations depend on your weight. Please Enter your weight</string>
     <string name="calculated_bmi">Your Calculated BMI is:</string>
-
+    <string name="activity_level">Activity level</string>
     <string name="kg">Kg</string>
     <string name="lbs">lbs</string>
     <string name="next">Next</string>
     <string name="lbsvskg">lbs Vs Kg</string>
+
+    <string-array name="array_activity_levels">
+        <item>Little to no exercise</item>
+        <item>Light exercise (1–3 days per week)</item>
+        <item>Moderate exercise (3–5 days per week)</item>
+        <item>Heavy exercise (6–7 days per week)</item>
+        <item>Very heavy exercise (twice per day, extra heavy workouts)</item>
+    </string-array>
+
 
     <string name="user_info">Your Informations</string>
 
