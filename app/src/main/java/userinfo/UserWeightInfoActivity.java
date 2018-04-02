@@ -21,13 +21,13 @@ import generalpersondatabase.PersonOperations;
 
 public class UserWeightInfoActivity extends AppCompatActivity {
     private boolean isFemale, isfeet = true, iskg = true;
-    private double height, weight;
+    private double height, weight, targetweight;
     private int age;
     private Person newPerson;
     private PersonOperations personData;
 
-    EditText mWeightInputText;
-    TextView mWeightText, mKgText;
+    EditText mWeightInputText, mTargetWeightText;
+    TextView mWeightText, mKgText, mKgText2;
     ImageView mWeightImg;
     Button mNextPageBtn;
     ToggleButton mlbsvsKg;
@@ -45,8 +45,10 @@ public class UserWeightInfoActivity extends AppCompatActivity {
 
 
         mWeightInputText = findViewById(R.id.weight_editText_id);
+        mTargetWeightText = findViewById(R.id.weight_editText_id2);
         mWeightText = findViewById(R.id.weight_info_text);
         mKgText = findViewById(R.id.kg_text);
+        mKgText2 = findViewById(R.id.kg_text2);
         mWeightImg = findViewById(R.id.weight_info_img);
         mNextPageBtn = findViewById(R.id.next_page_btn);
         newPerson = new Person();
@@ -60,10 +62,12 @@ public class UserWeightInfoActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     mKgText.setText("Kg");
+                    mKgText2.setText("Kg");
                     iskg = true;
 
                 } else {
                     mKgText.setText("lbs");
+                    mKgText2.setText("lbs");
                     iskg = false;
 
                 }
@@ -76,11 +80,15 @@ public class UserWeightInfoActivity extends AppCompatActivity {
 
                 final String weightstr = mWeightInputText.getText().toString();
                 weight = Double.parseDouble(weightstr);
+                final String targetweightstr = mTargetWeightText.getText().toString();
+                targetweight = Double.parseDouble(targetweightstr);
 
                 if (iskg) {
                 } else {
                     weight *= 0.454;
+                    targetweight *= 0.454;
                 }
+
 
                 height = BMICalculation.Round(height, 2);
                 weight = BMICalculation.Round(weight, 2);

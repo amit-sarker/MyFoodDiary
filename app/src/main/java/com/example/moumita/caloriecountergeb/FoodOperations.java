@@ -37,6 +37,7 @@ public class FoodOperations {
             FoodDBHandler.COLUMN_FOOD_NOTES
     };
 
+
     public FoodOperations(Context context){
         dbhandler = new FoodDBHandler(context);
     }
