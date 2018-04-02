@@ -6,6 +6,11 @@
     <string name="weight_info">Calorie Budget and neutrient recommendations depend on your weight. Please Enter your weight</string>
     <string name="calculated_bmi">Your Calculated BMI is:</string>
 
+    <string name="kg">Kg</string>
+    <string name="lbs">lbs</string>
+    <string name="next">Next</string>
+    <string name="lbsvskg">lbs Vs Kg</string>
+
     <string name="user_info">Your Informations</string>
 
 </resources>
