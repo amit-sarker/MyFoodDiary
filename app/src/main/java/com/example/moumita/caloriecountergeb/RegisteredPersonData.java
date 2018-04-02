@@ -50,7 +50,7 @@ public class RegisteredPersonData extends AppCompatActivity {
         final String userID = mAuth.getCurrentUser().getUid().toString();
         mUserRef = FirebaseDatabase.getInstance().getReference().child("users").child(userID);
 
-        Map<String, String> userInfo = new HashMap<>();
+        Map userInfo = new HashMap();
         userInfo.put("age", registeredPersonAge);
         userInfo.put("gender", registeredPersonGender);
         userInfo.put("height", registeredPersonHeight);
