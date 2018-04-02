@@ -15,6 +15,8 @@ public class PersonDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_GENDER = "gender";
     public static final String COLUMN_HEIGHT = "height";
     public static final String COLUMN_WEIGHT = "weight";
+    public static final String COLUMN_ACTIVITY_LEVEL = "activitylevel";
+    public static final String COLUMN_TARGET_WEIGHT = "targetweight";
 
     private static final String TABLE_CREATE =
             "CREATE TABLE " + TABLE_PERSON + " (" +
@@ -22,7 +24,9 @@ public class PersonDBHandler extends SQLiteOpenHelper {
                     COLUMN_AGE + " TEXT, " +
                     COLUMN_GENDER + " TEXT, " +
                     COLUMN_HEIGHT + " TEXT, " +
-                    COLUMN_WEIGHT + " TEXT " +
+                    COLUMN_WEIGHT + " TEXT, " +
+                    COLUMN_ACTIVITY_LEVEL + " INTEGER, " +
+                    COLUMN_TARGET_WEIGHT + " TEXT " +
                     ")";
 
     public PersonDBHandler(Context context){

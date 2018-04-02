@@ -1,0 +1,2 @@
+Roti,1,pcs,72,2.9,15.6,0.4,1111,2222,3333,4444,1,ruti.jpg,valo jinish
+Chira,100,gm,3560,0.065,0.792,0.011,5555,6666,7777,8888,2,chira.jpg,chira valo na

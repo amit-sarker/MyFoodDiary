@@ -2,16 +2,35 @@ package generalpersondatabase;
 
 
 public class Person {
-    private  String age, gender, weight, height;
+    private  String age, gender, weight, height, targetWeight;
+    private long activityLevel;
     private  long personID;
     public Person() {}
 
-    public Person(long personID, String age, String gender, String height, String weight) {
+    public Person(long personID, String age, String gender, String height, String weight, long activityLevel, String targetWeight) {
         this.personID = personID;
         this.age = age;
         this.gender = gender;
         this.height = height;
         this.weight = weight;
+        this.activityLevel = activityLevel;
+        this.targetWeight = targetWeight;
+    }
+
+    public String getTargetWeight() {
+        return targetWeight;
+    }
+
+    public void setTargetWeight(String targetWeight) {
+        this.targetWeight = targetWeight;
+    }
+
+    public long getActivityLevel() {
+        return activityLevel;
+    }
+
+    public void setActivityLevel(long activityLevel) {
+        this.activityLevel = activityLevel;
     }
 
     public long getPersonID() {
@@ -56,10 +75,14 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person id: " + getPersonID()+ "\n" +
-                "Age: " + getAge() + "\n" +
-                "Gender: " + getGender() + "\n" +
-                "Height: " + getHeight() + "\n" +
-                "Weight: " + getWeight();
+        return "Person{" +
+                "age='" + age + '\'' +
+                ", gender='" + gender + '\'' +
+                ", weight='" + weight + '\'' +
+                ", height='" + height + '\'' +
+                ", targetWeight='" + targetWeight + '\'' +
+                ", activityLevel=" + activityLevel +
+                ", personID=" + personID +
+                '}';
     }
 }
