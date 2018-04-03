@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
@@ -11,16 +12,20 @@ import com.facebook.stetho.okhttp3.StethoInterceptor;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import fooddatabase.Food;
 import fooddatabase.FoodOperations;
 import okhttp3.OkHttpClient;
 import userinfo.UserGenderInfoActivity;
+import userinfo.UserWeightInfoActivity;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private FoodOperations foodData;
+    private CategoryOperations categoryData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,23 +38,90 @@ public class MainActivity extends AppCompatActivity {
         new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor())
                 .build();
-        Intent intent = new Intent(MainActivity.this, UserGenderInfoActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(MainActivity.this, UserGenderInfoActivity.class);
+        //startActivity(intent);
 
         foodData = new FoodOperations(this);
         foodData.open();
 
 
         try {
-            readFromAssets(this,"foodlist.txt", foodData);
+            readFromAssetsFood(this,"foodlist.txt", foodData);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        //PrintFood(foodData);
+
         foodData.close();
+
+        categoryData = new CategoryOperations(this);
+        categoryData.open();
+
+        try {
+            readFromAssetsCategory(this, "category.txt", categoryData);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        PrintCategory(categoryData);
+
+        categoryData.close();
+
+        Intent intent = new Intent(MainActivity.this, HomepageActivity.class);
+        startActivity(intent);
     }
 
-    public static String readFromAssets(Context context, String filename, FoodOperations foodData) throws IOException {
+
+    public static String readFromAssetsCategory(Context context, String filename, CategoryOperations categoryData) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open(filename)));
+
+        // do reading, usually loop until end of file reading
+        StringBuilder sb = new StringBuilder();
+        String mLine = reader.readLine();
+        //System.out.println(mLine);
+        categoryToDatabase(mLine, categoryData);
+        while (mLine != null) {
+            sb.append(mLine); // process line
+            mLine = reader.readLine();
+            if(mLine != null) {
+                categoryToDatabase(mLine, categoryData);
+            }
+            //System.err.println(mLine);
+        }
+        reader.close();
+        return sb.toString();
+    }
+
+
+    public static void categoryToDatabase(String lineFromFile, CategoryOperations categoryData) {
+        //System.err.println(lineFromFile);
+        String categoryAttributes[]= lineFromFile.split(",");
+
+        FoodCategory foodCategory = new FoodCategory();
+        //System.err.println("CCCCCCCCCCCCCCCCCCCCCCCCCCC" + categoryAttributes[0]);
+        foodCategory.setCategoryID(Long.parseLong(categoryAttributes[0]));
+        foodCategory.setCategoryName(categoryAttributes[1]);
+        foodCategory.setFoodID(Long.parseLong(categoryAttributes[2]));
+        foodCategory.setFoodName(categoryAttributes[3]);
+        foodCategory.setFoodImage(categoryAttributes[4]);
+        foodCategory.setCategoryImage(categoryAttributes[5]);
+
+        for (String eachAttribute: categoryAttributes){
+            if(eachAttribute.equals("\0"))
+                eachAttribute = "null";
+
+            //System.out.println(eachAttribute);
+
+        }
+
+        categoryData.addCategory(foodCategory);
+
+    }
+
+
+
+    public static String readFromAssetsFood(Context context, String filename, FoodOperations foodData) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open(filename)));
 
         // do reading, usually loop until end of file reading
@@ -63,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
             if(mLine != null) {
                 foodToDatabase(mLine, foodData);
             }
-            System.err.println(mLine);
+            //System.err.println(mLine);
         }
         reader.close();
         return sb.toString();
@@ -93,11 +165,29 @@ public class MainActivity extends AppCompatActivity {
             if(eachAttribute.equals("\0"))
                 eachAttribute = "null";
 
-            System.out.println(eachAttribute);
+            //System.out.println(eachAttribute);
 
         }
 
         foodData.addFood(food);
 
+    }
+
+    public static void PrintFood(FoodOperations foodData) {
+        List<Food> foodList = new ArrayList<>();
+        foodList = foodData.getAllFood();
+        for(Food a: foodList) {
+            System.err.println(a);
+        }
+    }
+
+    public static void PrintCategory(CategoryOperations categoryData) {
+        List<FoodCategory> categoryList = new ArrayList<>();
+
+        System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+        categoryList = categoryData.getFoodCategory(2);
+        for(FoodCategory a: categoryList) {
+            System.err.println("AAAA" + a.toString());
+        }
     }
 }

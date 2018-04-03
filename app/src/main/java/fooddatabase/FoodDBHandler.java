@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class FoodDBHandler extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "food.db";
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 10;
 
     public static final String TABLE_FOOD = "food";
     public static final String COLUMN_FOOD_ID = "food_id";

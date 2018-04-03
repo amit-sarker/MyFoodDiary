@@ -23,7 +23,11 @@
         <activity android:name="userinfo.UserWeightInfoActivity" />
         <activity android:name=".UserSignInActivity" />
         <activity android:name=".AfterSignInActivity" />
-        <activity android:name=".RegisteredPersonData"></activity>
+        <activity android:name=".RegisteredPersonData" />
+        <activity android:name=".HomepageActivity" />
+        <activity android:name=".CategoryListActivity" />
+        <activity android:name=".FoodListActivity" />
+        <activity android:name=".FoodInfoActivity"></activity>
     </application>
 
 </manifest>
