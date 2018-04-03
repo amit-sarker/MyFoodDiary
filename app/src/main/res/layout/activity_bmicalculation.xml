@@ -7,16 +7,16 @@
     tools:context="generalpersonactivities.BMICalculationActivity">
 
     <TextView
+        android:id="@+id/bmitext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:fontFamily="cursive"
         android:text="@string/calculated_bmi"
         android:textColor="#263238"
         android:textSize="45sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/bmitext"
-        android:fontFamily="cursive"
-        android:textStyle="normal|bold"
-        android:layout_marginTop="48dp"
-        android:layout_centerHorizontal="true" />
+        android:textStyle="normal|bold" />
 
     <TextView
         android:id="@+id/calculatedbmitext"
@@ -27,7 +27,7 @@
         android:layout_marginTop="113dp"
         android:text=""
         android:textColor="#263238"
-        android:textSize="30sp"
+        android:textSize="25dp"
         android:fontFamily="cursive"
         android:textStyle="normal|bold" />
 

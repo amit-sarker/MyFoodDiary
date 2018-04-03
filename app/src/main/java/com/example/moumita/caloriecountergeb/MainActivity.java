@@ -2,6 +2,7 @@ package com.example.moumita.caloriecountergeb;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fooddatabase.Food;
+import fooddatabase.FoodDBHandler;
 import fooddatabase.FoodOperations;
 import okhttp3.OkHttpClient;
 import userinfo.UserGenderInfoActivity;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FoodOperations foodData;
     private CategoryOperations categoryData;
+    int oldVersion, newVersion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +41,18 @@ public class MainActivity extends AppCompatActivity {
         new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor())
                 .build();
-        //Intent intent = new Intent(MainActivity.this, UserGenderInfoActivity.class);
-        //startActivity(intent);
+
+
+        FoodDBHandler foodDBHandler = new FoodDBHandler(this);
+        SQLiteDatabase food_database = foodDBHandler.getWritableDatabase();
+        food_database.execSQL("DROP TABLE IF EXISTS " + FoodDBHandler.TABLE_FOOD);
+        food_database.execSQL(FoodDBHandler.TABLE_CREATE);
+
+        CategoryDBHandler categoryDBHandler = new CategoryDBHandler(this);
+        SQLiteDatabase cat_database = categoryDBHandler.getWritableDatabase();
+        cat_database.execSQL("DROP TABLE IF EXISTS " + categoryDBHandler.TABLE_CATEGORY);
+        cat_database.execSQL(CategoryDBHandler.TABLE_CREATE);
+
 
         foodData = new FoodOperations(this);
         foodData.open();
@@ -64,12 +77,13 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        PrintCategory(categoryData);
+        //PrintCategory(categoryData);
 
         categoryData.close();
 
         Intent intent = new Intent(MainActivity.this, HomepageActivity.class);
         startActivity(intent);
+        finish();
     }
 
 

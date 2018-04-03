@@ -30,7 +30,7 @@ public class CategoryListActivity extends AppCompatActivity {
 
         for(FoodCategory a: foodCategoryList) {
             categoryList.add(a.getCategoryName());
-            System.err.println(a.toString());
+            //System.err.println(a.toString());
         }
 
 

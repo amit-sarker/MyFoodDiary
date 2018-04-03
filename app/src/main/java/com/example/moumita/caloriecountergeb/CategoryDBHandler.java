@@ -17,7 +17,7 @@ public class CategoryDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_FOOD_IMAGE = "foodimage";
     public static final String COLUMN_CATEGORY_IMAGE = "categoryimage";
 
-    private static final String TABLE_CREATE =
+    public static final String TABLE_CREATE =
             "CREATE TABLE " + TABLE_CATEGORY + " (" +
                     COLUMN_CATEGORY_ID + " INTEGER, " +
                     COLUMN_CATEGORY_NAME + " TEXT, " +

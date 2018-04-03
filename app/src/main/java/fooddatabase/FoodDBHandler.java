@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class FoodDBHandler extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "food.db";
-    private static final int DATABASE_VERSION = 10;
+    private static final int DATABASE_VERSION = 11;
 
     public static final String TABLE_FOOD = "food";
     public static final String COLUMN_FOOD_ID = "food_id";
@@ -27,7 +27,7 @@ public class FoodDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_FOOD_NOTES = "food_notes";
 
 
-    private static final String TABLE_CREATE =
+    public static final String TABLE_CREATE =
             "CREATE TABLE " + TABLE_FOOD + " (" +
                     COLUMN_FOOD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_FOOD_NAME + " TEXT, " +
@@ -46,6 +46,9 @@ public class FoodDBHandler extends SQLiteOpenHelper {
                     COLUMN_FOOD_NOTES + " TEXT " +
                     ")";
 
+    public FoodDBHandler(Context context, int version) {
+        super(context, DATABASE_NAME, null, version);
+    }
 
     public FoodDBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -53,11 +56,13 @@ public class FoodDBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_FOOD);
         sqLiteDatabase.execSQL(TABLE_CREATE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
+        //System.err.println("CAAAAAAAAAAAAAAAAAAAAAAAAAAAAALLLLLLLLLLLLLLLEDDDDDDDDDDDDDDDDDDD");
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_FOOD);
         sqLiteDatabase.execSQL(TABLE_CREATE);
     }

@@ -73,7 +73,22 @@ public class FoodOperations {
 
 
     public Food getFood(long id) {
+
         Cursor cursor = database.query(FoodDBHandler.TABLE_FOOD, allColumns,FoodDBHandler.COLUMN_FOOD_ID + "=?", new String[]{String.valueOf(id)},null,null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        Food e = new Food(Long.parseLong(cursor.getString(0)), cursor.getString(1), cursor.getDouble(2),
+                cursor.getString(3), cursor.getDouble(4), cursor.getDouble(5), cursor.getDouble(6),
+                cursor.getDouble(7), cursor.getDouble(8), cursor.getDouble(9), cursor.getDouble(10),
+                cursor.getDouble(11), Long.parseLong(cursor.getString(12)), cursor.getString(13),
+                cursor.getString(14));
+
+        return e;
+    }
+
+    public Food getFoodByName(String foodName) {
+        Cursor cursor = database.query(FoodDBHandler.TABLE_FOOD, allColumns,"food_name=?", new String[]{foodName},null,null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
@@ -84,7 +99,6 @@ public class FoodOperations {
                 cursor.getString(14));
         return e;
     }
-
 
     public List<Food> getAllFood() {
         Cursor cursor = database.query(FoodDBHandler.TABLE_FOOD, allColumns,null,null,null, null, null);

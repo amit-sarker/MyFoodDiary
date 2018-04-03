@@ -34,7 +34,7 @@ public class FoodListActivity extends AppCompatActivity {
 
         for(FoodCategory a: foodCategoryList) {
             categoryList.add(a.getFoodName());
-            System.err.println(a.toString());
+            //System.err.println(a.toString());
         }
 
 
