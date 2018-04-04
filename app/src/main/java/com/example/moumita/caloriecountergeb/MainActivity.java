@@ -16,6 +16,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import activities.TestTabActivity;
 import fooddatabase.Food;
 import fooddatabase.FoodDBHandler;
 import fooddatabase.FoodOperations;
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
         categoryData.close();
 
-        Intent intent = new Intent(MainActivity.this, HomepageActivity.class);
+        Intent intent = new Intent(MainActivity.this, UserGenderInfoActivity.class);
         startActivity(intent);
         finish();
     }

@@ -17,6 +17,9 @@ public class PersonDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_WEIGHT = "weight";
     public static final String COLUMN_ACTIVITY_LEVEL = "activitylevel";
     public static final String COLUMN_TARGET_WEIGHT = "targetweight";
+    public static final String COLUMN_BMR_WITHOUT_ACTIVITY = "bmrwithoutactivity";
+    public static final String COLUMN_BMR_WITH_ACTIVITY = "bmrwithactivity";
+
 
     private static final String TABLE_CREATE =
             "CREATE TABLE " + TABLE_PERSON + " (" +
@@ -26,7 +29,9 @@ public class PersonDBHandler extends SQLiteOpenHelper {
                     COLUMN_HEIGHT + " TEXT, " +
                     COLUMN_WEIGHT + " TEXT, " +
                     COLUMN_ACTIVITY_LEVEL + " INTEGER, " +
-                    COLUMN_TARGET_WEIGHT + " TEXT " +
+                    COLUMN_TARGET_WEIGHT + " TEXT, " +
+                    COLUMN_BMR_WITHOUT_ACTIVITY + " TEXT, " +
+                    COLUMN_BMR_WITH_ACTIVITY + " TEXT " +
                     ")";
 
     public PersonDBHandler(Context context){

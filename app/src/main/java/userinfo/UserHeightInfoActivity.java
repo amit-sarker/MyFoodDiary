@@ -46,18 +46,18 @@ public class UserHeightInfoActivity extends AppCompatActivity {
         {
             inchValues[i] = String.valueOf(i);
         }
-        mHeightText = (TextView) findViewById(R.id.height_info_text);
-        mFeetText = (TextView) findViewById(R.id.feet_text);
-        mInchText = (TextView) findViewById(R.id.inch_text);
-        mHeightImg = (ImageView) findViewById(R.id.height_info_img);
-        mNextPageBtn = (Button) findViewById(R.id.next_page_btn);
+        mHeightText = findViewById(R.id.height_info_text);
+        mFeetText = findViewById(R.id.feet_text);
+        mInchText = findViewById(R.id.inch_text);
+        mHeightImg = findViewById(R.id.height_info_img);
+        mNextPageBtn = findViewById(R.id.next_page_btn);
 
-        mFeetPicker = (NumberPicker) findViewById(R.id.num_picker_feet);
+        mFeetPicker = findViewById(R.id.num_picker_feet);
         mFeetPicker.setMinValue(0);
         mFeetPicker.setMaxValue(7);
         mFeetPicker.setDisplayedValues(feetValues);
 
-        mInchPicker = (NumberPicker) findViewById(R.id.num_picker_inch);
+        mInchPicker = findViewById(R.id.num_picker_inch);
         mInchPicker.setMinValue(0);
         mInchPicker.setMaxValue(11);
         mInchPicker.setDisplayedValues(inchValues);

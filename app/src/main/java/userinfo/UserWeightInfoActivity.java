@@ -14,6 +14,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.moumita.caloriecountergeb.R;
+import com.example.moumita.caloriecountergeb.ShowBMRActivity;
 import com.example.moumita.caloriecountergeb.UserSignInActivity;
 
 import generalpersonactivities.BMICalculation;
@@ -125,11 +126,19 @@ public class UserWeightInfoActivity extends AppCompatActivity {
                 newPerson.setWeight(String.valueOf(weight));
                 newPerson.setActivityLevel(intActivityLevel);
                 newPerson.setTargetWeight(String.valueOf(targetweight));
+                newPerson.setBMRWithoutActivity(String.valueOf(BMRWithoutActivity));
+                newPerson.setBMRWithActivity(String.valueOf(BMRWithActivity));
                 personData.addPerson(newPerson);
+
+                personData.close();
                 //System.out.println(personData.getPerson(1));
                 /*Toast t = Toast.makeText(UserWeightInfoActivity.this, "Person " + newPerson.getPersonID() + "has been added successfully !"+ " " + intActivityLevel, Toast.LENGTH_LONG);
                 t.show();*/
-                Intent intent = new Intent(UserWeightInfoActivity.this, UserSignInActivity.class);
+                Intent intent = new Intent(UserWeightInfoActivity.this, ShowBMRActivity.class);
+                intent.putExtra("withoutactivity", BMRWithoutActivity);
+                //intent.putExtra("isfeet", isfeet);
+                intent.putExtra("withactivity", BMRWithActivity);
+
                 startActivity(intent);
             }
         });

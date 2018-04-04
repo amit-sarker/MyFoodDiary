@@ -16,6 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="activities.TestTabActivity" />
         <activity android:name="userinfo.UserGenderInfoActivity" />
         <activity android:name="generalpersonactivities.BMICalculationActivity" />
         <activity android:name="userinfo.UserHeightInfoActivity" />
@@ -23,11 +24,12 @@
         <activity android:name="userinfo.UserWeightInfoActivity" />
         <activity android:name=".UserSignInActivity" />
         <activity android:name=".AfterSignInActivity" />
-        <activity android:name=".RegisteredPersonData" />
+        <activity android:name=".RegisteredPersonDataActivity" />
         <activity android:name=".HomepageActivity" />
         <activity android:name=".CategoryListActivity" />
         <activity android:name=".FoodListActivity" />
-        <activity android:name=".FoodInfoActivity"></activity>
+        <activity android:name=".FoodInfoActivity" />
+        <activity android:name=".ShowBMRActivity"></activity>
     </application>
 
 </manifest>

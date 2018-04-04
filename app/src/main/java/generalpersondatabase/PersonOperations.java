@@ -23,7 +23,9 @@ public class PersonOperations {
             PersonDBHandler.COLUMN_HEIGHT,
             PersonDBHandler.COLUMN_WEIGHT,
             PersonDBHandler.COLUMN_ACTIVITY_LEVEL,
-            PersonDBHandler.COLUMN_TARGET_WEIGHT
+            PersonDBHandler.COLUMN_TARGET_WEIGHT,
+            PersonDBHandler.COLUMN_BMR_WITHOUT_ACTIVITY,
+            PersonDBHandler.COLUMN_BMR_WITH_ACTIVITY
     };
 
     public PersonOperations(Context context){
@@ -48,6 +50,8 @@ public class PersonOperations {
         values.put(PersonDBHandler.COLUMN_WEIGHT, person.getWeight());
         values.put(PersonDBHandler.COLUMN_ACTIVITY_LEVEL, person.getActivityLevel());
         values.put(PersonDBHandler.COLUMN_TARGET_WEIGHT, person.getTargetWeight());
+        values.put(PersonDBHandler.COLUMN_BMR_WITHOUT_ACTIVITY, person.getBMRWithoutActivity());
+        values.put(PersonDBHandler.COLUMN_BMR_WITH_ACTIVITY, person.getBMRWithActivity());
         long insertid = database.insert(PersonDBHandler.TABLE_PERSON,null, values);
         person.setPersonID(insertid);
         return person;
@@ -59,7 +63,8 @@ public class PersonOperations {
         if (cursor != null)
             cursor.moveToFirst();
 
-        Person e = new Person(Long.parseLong(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), Long.parseLong(cursor.getString(5)), cursor.getString(6));
+        Person e = new Person(Long.parseLong(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                Long.parseLong(cursor.getString(5)), cursor.getString(6), cursor.getString(7), cursor.getString(8));
         // return person
         return e;
     }
@@ -79,6 +84,8 @@ public class PersonOperations {
                 person.setWeight(cursor.getString(cursor.getColumnIndex(PersonDBHandler.COLUMN_WEIGHT)));
                 person.setActivityLevel(cursor.getLong(cursor.getColumnIndex(PersonDBHandler.COLUMN_ACTIVITY_LEVEL)));
                 person.setTargetWeight(cursor.getString(cursor.getColumnIndex(PersonDBHandler.COLUMN_TARGET_WEIGHT)));
+                person.setBMRWithoutActivity(cursor.getString(cursor.getColumnIndex(PersonDBHandler.COLUMN_BMR_WITHOUT_ACTIVITY)));
+                person.setBMRWithActivity(cursor.getString(cursor.getColumnIndex(PersonDBHandler.COLUMN_BMR_WITH_ACTIVITY)));
                 personList.add(person);
             }
         }
@@ -96,6 +103,8 @@ public class PersonOperations {
         values.put(PersonDBHandler.COLUMN_WEIGHT, person.getWeight());
         values.put(PersonDBHandler.COLUMN_ACTIVITY_LEVEL, person.getActivityLevel());
         values.put(PersonDBHandler.COLUMN_TARGET_WEIGHT, person.getTargetWeight());
+        values.put(PersonDBHandler.COLUMN_BMR_WITHOUT_ACTIVITY, person.getBMRWithoutActivity());
+        values.put(PersonDBHandler.COLUMN_BMR_WITH_ACTIVITY, person.getBMRWithActivity());
 
         // updating row
         return database.update(PersonDBHandler.TABLE_PERSON, values,

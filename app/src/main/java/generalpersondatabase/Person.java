@@ -2,12 +2,13 @@ package generalpersondatabase;
 
 
 public class Person {
-    private  String age, gender, weight, height, targetWeight;
+    private  String age, gender, weight, height, targetWeight, BMRWithActivity, BMRWithoutActivity;
     private long activityLevel;
     private  long personID;
     public Person() {}
 
-    public Person(long personID, String age, String gender, String height, String weight, long activityLevel, String targetWeight) {
+    public Person(long personID, String age, String gender, String height, String weight, long activityLevel, String targetWeight,
+                  String BMRWithoutActivity, String BMRWithActivity) {
         this.personID = personID;
         this.age = age;
         this.gender = gender;
@@ -15,6 +16,24 @@ public class Person {
         this.weight = weight;
         this.activityLevel = activityLevel;
         this.targetWeight = targetWeight;
+        this.BMRWithoutActivity = BMRWithoutActivity;
+        this.BMRWithActivity = BMRWithActivity;
+    }
+
+    public String getBMRWithActivity() {
+        return BMRWithActivity;
+    }
+
+    public void setBMRWithActivity(String BMRWithActivity) {
+        this.BMRWithActivity = BMRWithActivity;
+    }
+
+    public String getBMRWithoutActivity() {
+        return BMRWithoutActivity;
+    }
+
+    public void setBMRWithoutActivity(String BMRWithoutActivity) {
+        this.BMRWithoutActivity = BMRWithoutActivity;
     }
 
     public String getTargetWeight() {
@@ -81,6 +100,8 @@ public class Person {
                 ", weight='" + weight + '\'' +
                 ", height='" + height + '\'' +
                 ", targetWeight='" + targetWeight + '\'' +
+                ", BMRWithActivity='" + BMRWithActivity + '\'' +
+                ", BMRWithoutActivity='" + BMRWithoutActivity + '\'' +
                 ", activityLevel=" + activityLevel +
                 ", personID=" + personID +
                 '}';
