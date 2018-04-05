@@ -12,6 +12,9 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import categorydatabase.CategoryOperations;
+import categorydatabase.FoodCategory;
+
 public class FoodListActivity extends AppCompatActivity {
     private String categoryName;
     private CategoryOperations categoryData;

@@ -30,8 +30,6 @@
         <activity android:name=".FoodListActivity" />
         <activity android:name=".FoodInfoActivity" />
         <activity android:name=".ShowBMRActivity" />
-        <activity android:name=".DeleteActivity" />
-        <activity android:name=".Delete2Activity"></activity>
     </application>
 
 </manifest>

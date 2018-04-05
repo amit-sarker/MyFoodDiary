@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
@@ -16,13 +15,14 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import activities.TestTabActivity;
+import categorydatabase.CategoryDBHandler;
+import categorydatabase.CategoryOperations;
+import categorydatabase.FoodCategory;
 import fooddatabase.Food;
 import fooddatabase.FoodDBHandler;
 import fooddatabase.FoodOperations;
 import okhttp3.OkHttpClient;
 import userinfo.UserGenderInfoActivity;
-import userinfo.UserWeightInfoActivity;
 
 
 public class MainActivity extends AppCompatActivity {
