@@ -122,7 +122,9 @@ public class FoodOperations {
                 food.setFood_category_id(cursor.getLong(cursor.getColumnIndex(FoodDBHandler.COLUMN_FOOD_CATEGORY_ID)));
                 food.setFood_image(cursor.getString(cursor.getColumnIndex(FoodDBHandler.COLUMN_FOOD_IMAGE)));
                 food.setFood_notes(cursor.getString(cursor.getColumnIndex(FoodDBHandler.COLUMN_FOOD_NOTES)));
+                foodList.add(food);
             }
+
 
         }
         return foodList;
@@ -153,4 +155,6 @@ public class FoodOperations {
         database.delete(FoodDBHandler.TABLE_FOOD,FoodDBHandler.COLUMN_FOOD_ID + "=" + food.getFood_id(),null);
 
     }
+
+    
 }

@@ -24,12 +24,9 @@
 
 
     <!--tab name-->
-    <string name="tab1">Movies</string>
-    <string name="tab2">Sports</string>
-    <string name="tab3">Games</string>
-    <string name="tab4">PhotoGraphy</string>
-    <string name="tab5">Wild Animals</string>
-    <string name="tab6">Travel Places</string>
+    <string name="tab1">Home</string>
+    <string name="tab2">Food Suggestions</string>
+    <string name="tab3">Analysis</string>
 
     <!--Tab 1-->
     <string name="cd_main_image">main image</string>
@@ -110,5 +107,25 @@
     <string name="message">Do you want to exit?</string>
     <string name="positive_button">Yes</string>
     <string name="negative_button">No</string>
+    <string name="menu_item_breakfast">Breakfast</string>
+    <string name="menu_item_lunch">Lunch</string>
+    <string name="menu_item_dinner">Dinner</string>
+    <string name="auto_complete_foods">Search</string>
+    <string name="auto_complete_hint">Search Food</string>
+    <string name="categories_text">Categories</string>
+    <string name="category_text">Search food by category</string>
+    <string name="recent">Recent</string>
+    <string name="recent_text">Search by your recent foods</string>
+    <string name="favorites">Favorites</string>
+    <string name="favorites_text">Search by your favorite food</string>
+    <string name="frequent">Frequent</string>
+    <string name="frequent_text">Search by food you eat the most</string>
+    <string name="simple_calories">Add simple Calories</string>
+    <string name="simple_calories_text">Imput calories manually</string>
+    <string name="female_btn_text">I am a female</string>
+    <string name="male_btn">I am a male</string>
+    <string name="current_weight">Current Weight</string>
+    <string name="target_weight">Target Weight</string>
+    <string name="weight_input_unit">Weight Unit</string>
 
 </resources>

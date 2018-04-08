@@ -28,6 +28,7 @@ public class FoodInfoActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         foodName = bundle.getString("foodname");
+        System.out.println("SSSSSSSSSSSSSSS  " + foodName);
 
         foodData.open();
         //System.err.println("NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN    " + foodName);

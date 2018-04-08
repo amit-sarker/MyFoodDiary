@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import activities.TestTabActivity;
+
 public class ShowBMRActivity extends AppCompatActivity {
 
     private  double BMRWithoutActivity, BMRWithActivity;
@@ -37,7 +39,7 @@ public class ShowBMRActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ShowBMRActivity.this, UserSignInActivity.class);
+                Intent intent = new Intent(ShowBMRActivity.this, TestTabActivity.class);
                 startActivity(intent);
             }
         });

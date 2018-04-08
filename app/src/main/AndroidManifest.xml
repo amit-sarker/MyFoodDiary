@@ -30,8 +30,10 @@
         <activity android:name=".FoodListActivity" />
         <activity android:name=".FoodInfoActivity" />
         <activity android:name=".ShowBMRActivity" />
-        <activity android:name=".DeleteActivity" />
-        <activity android:name=".Delete2Activity"></activity>
+        <activity android:name=".AddFoodActivity" />
+        <activity android:name=".RecentListActivity" />
+        <activity android:name=".FrequentListActivity" />
+        <activity android:name=".AddSimpleCaloriesActivity"></activity>
     </application>
 
 </manifest>

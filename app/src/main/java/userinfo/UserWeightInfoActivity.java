@@ -3,6 +3,7 @@ package userinfo;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -41,6 +42,11 @@ public class UserWeightInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_weight_info);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
+
         Bundle bundle = getIntent().getExtras();
         isFemale = bundle.getBoolean("isfemale");
         isfeet = bundle.getBoolean("isfeet");
@@ -53,7 +59,7 @@ public class UserWeightInfoActivity extends AppCompatActivity {
         mWeightText = findViewById(R.id.weight_info_text);
         mKgText = findViewById(R.id.kg_text);
         mKgText2 = findViewById(R.id.kg_text2);
-        mWeightImg = findViewById(R.id.weight_info_img);
+       // mWeightImg = findViewById(R.id.weight_info_img);
         mNextPageBtn = findViewById(R.id.next_page_btn);
         newPerson = new Person();
         personData = new PersonOperations(this);
@@ -131,12 +137,9 @@ public class UserWeightInfoActivity extends AppCompatActivity {
                 personData.addPerson(newPerson);
 
                 personData.close();
-                //System.out.println(personData.getPerson(1));
-                /*Toast t = Toast.makeText(UserWeightInfoActivity.this, "Person " + newPerson.getPersonID() + "has been added successfully !"+ " " + intActivityLevel, Toast.LENGTH_LONG);
-                t.show();*/
+
                 Intent intent = new Intent(UserWeightInfoActivity.this, ShowBMRActivity.class);
                 intent.putExtra("withoutactivity", BMRWithoutActivity);
-                //intent.putExtra("isfeet", isfeet);
                 intent.putExtra("withactivity", BMRWithActivity);
 
                 startActivity(intent);

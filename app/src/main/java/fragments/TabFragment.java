@@ -18,7 +18,7 @@ public class TabFragment extends Fragment {
 
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
-    public static int int_items = 6 ;
+    public static int int_items = 3 ;
 
     @Nullable
     @Override
@@ -51,12 +51,10 @@ public class TabFragment extends Fragment {
         public Fragment getItem(int position)
         {
             switch (position){
-                case 0 : return new MoviesFragment();
-                case 1 : return new SportsFragment();
-                case 2 : return new GamesFragment();
-                case 3 : return new PhotographyFragment();
-                case 4 : return new WildFragment();
-                case 5 : return new TravelFragment();
+                case 0 : return new HomeFragment();
+                case 1 : return new SuggestionsFragment();
+                case 2 : return new AnalysisFragment();
+
             }
             return null;
         }
@@ -78,12 +76,7 @@ public class TabFragment extends Fragment {
                     return getResources().getString(R.string.tab2);
                 case 2 :
                     return getResources().getString(R.string.tab3);
-                case 3 :
-                    return getResources().getString(R.string.tab4);
-                case 4 :
-                    return getResources().getString(R.string.tab5);
-                case 5 :
-                    return getResources().getString(R.string.tab6);
+
             }
             return null;
         }

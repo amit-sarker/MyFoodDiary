@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_breakfast"
+        android:icon="@drawable/ic_calender"
+        android:title="@string/menu_item_breakfast"
+        />
+    <item
+        android:id="@+id/action_lunch"
+        android:icon="@drawable/ic_home"
+        android:title="@string/menu_item_lunch"
+        />
+    <item
+        android:id="@+id/action_dinner"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/menu_item_dinner"
+        />
+</menu>

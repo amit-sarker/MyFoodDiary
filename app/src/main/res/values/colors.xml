@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#4CAF50</color>
+    <color name="colorPrimaryDark">#388E3C</color>
+    <color name="colorAccent">#FFC400</color>
+    <color name="colorSecondary">#81C784</color>
     <color name="colorWhite">#FFFFFF</color>
+
     <color name="colorTransparentWhite">#cccccc</color>
 
     <color name="grey_100">#F5F5F5</color>
@@ -11,8 +13,8 @@
     <color name="grey_500">#9E9E9E</color>
 
     <!--tab color-->
-    <color name="tabIndicatorColor">#fbc500</color>
-    <color name="tabSelectedTextColor">#fbc500</color>
+    <color name="tabIndicatorColor">#CCFF90</color>
+    <color name="tabSelectedTextColor">#CCFF90</color>
     <color name="tabTextColor">#ffffff</color>
 
     <!--swipe down refresh animation color-->

@@ -3,11 +3,11 @@ package com.example.moumita.caloriecountergeb;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Delete2Activity extends AppCompatActivity {
+public class AddSimpleCaloriesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delete2);
+        setContentView(R.layout.activity_add_simple_calories);
     }
 }

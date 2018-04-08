@@ -3,6 +3,7 @@ package userinfo;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -19,7 +20,9 @@ public class UserHeightInfoActivity extends AppCompatActivity {
     private double height;
 
     private String [] feetValues = new String[10];
-    private String [] inchValues = new String[12];
+    private String [] inchValues = new String[100];
+    //private String [] meterValues = new String[10];
+    //private String [] cmValues = new String[100];
     NumberPicker mFeetPicker,mInchPicker;
     TextView mHeightText,mFeetText,mInchText;
     ImageView mHeightImg;
@@ -30,22 +33,24 @@ public class UserHeightInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_height_info);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
+
         Bundle bundle = getIntent().getExtras();
         isFemale = bundle.getBoolean("isfemale");
-
-
-        //Intent intent = getIntent();
-        //Person User = (Person) intent.getSerializableExtra("fromGender");
-        //Toast.makeText(this.getApplicationContext(), (String)User.gender, Toast.LENGTH_LONG).show();
 
         for(int i=0;i<10;i++)
         {
             feetValues[i] = String.valueOf(i);
         }
-        for(int i=0;i<12;i++)
+        for(int i=0;i<100;i++)
         {
             inchValues[i] = String.valueOf(i);
         }
+
+
         mHeightText = findViewById(R.id.height_info_text);
         mFeetText = findViewById(R.id.feet_text);
         mInchText = findViewById(R.id.inch_text);
@@ -69,10 +74,20 @@ public class UserHeightInfoActivity extends AppCompatActivity {
                 if (isChecked) {
                     mFeetText.setText("Feet");
                     mInchText.setText("Inches");
+                    mFeetPicker.setMinValue(0);
+                    mFeetPicker.setMaxValue(7);
+                    mInchPicker.setMinValue(0);
+                    mInchPicker.setMaxValue(11);
                     isfeet = true;
                 } else {
                     mFeetText.setText("Meter");
                     mInchText.setText("Cm");
+                    mFeetPicker.setMinValue(0);
+                    mFeetPicker.setMaxValue(7);
+                    //mFeetPicker.setDisplayedValues(meterValues);
+                    mInchPicker.setMinValue(0);
+                    mInchPicker.setMaxValue(99);
+                    //mInchPicker.setDisplayedValues(cmValues);
                     isfeet = false;
 
                     // The toggle is disabled
