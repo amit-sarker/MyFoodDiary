@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package categorydatabase;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,10 +9,6 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import fooddatabase.Food;
-import generalpersondatabase.Person;
-import generalpersondatabase.PersonDBHandler;
 
 public class CategoryOperations {
 

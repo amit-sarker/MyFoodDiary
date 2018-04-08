@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package categorydatabase;
 
 public class FoodCategory {
     private long categoryID;
