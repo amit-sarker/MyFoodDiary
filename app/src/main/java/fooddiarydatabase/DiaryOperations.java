@@ -10,9 +10,6 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import fooddiarydatabase.DiaryDBHandler;
-import fooddiarydatabase.FoodDiary;
-
 public class DiaryOperations {
     public static final String LOGTAG = "FOOD_MNG_SYS";
 
