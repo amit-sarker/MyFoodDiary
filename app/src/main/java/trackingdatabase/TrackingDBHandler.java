@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package trackingdatabase;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

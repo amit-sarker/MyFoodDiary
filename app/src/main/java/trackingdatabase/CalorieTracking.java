@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package trackingdatabase;
 
 public class CalorieTracking {
     private long calorie_tracking_id;
