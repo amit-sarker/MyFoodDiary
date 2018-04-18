@@ -1,19 +1,16 @@
-package com.example.moumita.caloriecountergeb;
+package fooddiarydatabase;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 public class FoodDiary {
     private long diary_id;
     private String food_name, food_serving_measurement, meal_type;
     //private String current_date = new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault()).format(new Date());
-    private Date date;
+    private String date;
 
     public FoodDiary() {}
 
-    public FoodDiary(long diary_id, String food_name, String food_serving_measurement, String meal_type, Date date) {
+    public FoodDiary(long diary_id, String food_name, String food_serving_measurement, String meal_type, String date) {
         this.diary_id = diary_id;
         this.food_name = food_name;
         this.food_serving_measurement = food_serving_measurement;
@@ -21,11 +18,11 @@ public class FoodDiary {
         this.date = date;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

@@ -46,10 +46,6 @@ public class FoodDBHandler extends SQLiteOpenHelper {
                     COLUMN_FOOD_NOTES + " TEXT " +
                     ")";
 
-    public FoodDBHandler(Context context, int version) {
-        super(context, DATABASE_NAME, null, version);
-    }
-
     public FoodDBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }

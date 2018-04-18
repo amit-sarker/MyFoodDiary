@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package fooddiarydatabase;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -20,7 +20,7 @@ public class DiaryDBHandler extends SQLiteOpenHelper {
     private static final String TABLE_CREATE =
             "CREATE TABLE " + TABLE_DIARY + " (" +
                     COLUMN_DIARY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    COLUMN_DATE + " DATE, " +
+                    COLUMN_DATE + " TEXT, " +
                     COLUMN_FOOD_NAME + " TEXT, " +
                     COLUMN_FOOD_SERVING_MEASUREMENT + " TEXT, " +
                     COLUMN_MEAL_TYPE + " TEXT " +
