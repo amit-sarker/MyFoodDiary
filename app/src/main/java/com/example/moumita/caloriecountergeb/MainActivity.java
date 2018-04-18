@@ -22,7 +22,7 @@ import fooddatabase.Food;
 import fooddatabase.FoodDBHandler;
 import fooddatabase.FoodOperations;
 import okhttp3.OkHttpClient;
-import userinfo.UserGenderInfoActivity;
+import piechart.PiePolylineChartActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
         categoryData.close();
 
-        Intent intent = new Intent(MainActivity.this, UserGenderInfoActivity.class);
+        Intent intent = new Intent(MainActivity.this, PiePolylineChartActivity.class);
         startActivity(intent);
         finish();
     }

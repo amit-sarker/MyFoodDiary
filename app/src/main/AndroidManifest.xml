@@ -33,8 +33,10 @@
         <activity android:name=".AddFoodActivity" />
         <activity android:name=".RecentListActivity" />
         <activity android:name=".FrequentListActivity" />
-        <activity android:name=".AddSimpleCaloriesActivity" />
-        <activity android:name=".AddFoodToDiaryActivity"></activity>
+        <activity android:name="piechart.PieChartActivity" />
+        <activity android:name=".AddFoodToDiaryActivity" />
+        <activity android:name="piechart.ChartTestActivity" />
+        <activity android:name="piechart.PiePolylineChartActivity"></activity>
     </application>
 
 </manifest>

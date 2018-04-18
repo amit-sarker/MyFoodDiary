@@ -9,17 +9,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.GridView;
-import android.widget.ListView;
-import android.widget.MultiAutoCompleteTextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import activities.TestTabActivity;
 import fooddatabase.Food;
 import fooddatabase.FoodOperations;
+import piechart.PieChartActivity;
 
 public class AddFoodActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -117,7 +114,7 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
                 break;
             case R.id.simple_calories_card:
-                intent = new Intent(this, AddSimpleCaloriesActivity.class);
+                intent = new Intent(this, PieChartActivity.class);
                 startActivity(intent);
                 break;
             default:break;
