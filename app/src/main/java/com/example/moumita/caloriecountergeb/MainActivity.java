@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import activities.TestTabActivity;
 import categorydatabase.CategoryDBHandler;
 import categorydatabase.CategoryOperations;
 import categorydatabase.FoodCategory;
@@ -23,6 +24,7 @@ import fooddatabase.FoodDBHandler;
 import fooddatabase.FoodOperations;
 import okhttp3.OkHttpClient;
 import piechart.PiePolylineChartActivity;
+import userinfo.UserGenderInfoActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
         categoryData.close();
 
-        Intent intent = new Intent(MainActivity.this, PiePolylineChartActivity.class);
+        Intent intent = new Intent(MainActivity.this, UserGenderInfoActivity.class);
         startActivity(intent);
         finish();
     }

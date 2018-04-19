@@ -29,11 +29,6 @@
     <string name="tab3">Analysis</string>
 
     <!--Tab 1-->
-    <string name="cd_main_image">main image</string>
-    <string name="material_icon_like">&#xeb03;</string>
-    <string name="material_icon_favorite">&#xe9b6;</string>
-    <string name="material_icon_share">&#xeac0;</string>
-    <string name="lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
 
     <!--navigation drawer menu name-->
     <string name="drawer_home">Home</string>
@@ -50,74 +45,25 @@
 
     <string name="drawer_visibility">@string/drawer_content_on</string>
     <string name="drawer_content_on">0</string>
-    <string name="drawer_content_off">2</string>
     <string name="app_email">dr.m.karthiik@gmail.com</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="of">of</string>
-    <string name="result">Result</string>
-    <string name="equals_to">=</string>
-    <string name="percent_text">%</string>
-    <string name="discount">Discount</string>
-    <string name="actual_price">Percentage</string>
-    <string name="percent">What is</string>
-    <string name="activity_done">Done</string>
-    <string name="btn_calculate">Calculate</string>
-
-
-    <string name="hint_actual_price">Enter Price</string>
-    <string name="hint_discount">Enter Discount</string>
-    <string name="final_price_is">Final Price is</string>
-    <string name="hint_password">Password</string>
-    <string name="btn_sign_up">Sign Up</string>
-    <string name="err_msg_name">Enter your full name</string>
-    <string name="err_msg_email">Enter valid email address</string>
-    <string name="err_msg_password">Enter the password</string>
-    <string name="hint_percentage">What is </string>
-    <string name="hint_percentage_is">Percent of </string>
-    <string name="equal_to">=</string>
 
     <!--EMI-->
 
-    <string name="hint_principal">Principal Amount</string>
-    <string name="hint_interest">Interest rate per Year</string>
-    <string name="hint_years">How Many Years</string>
-    <string name="hint_emi">EMI</string>
-    <string name="hint_interest_total">Total Interest for Loan</string>
-
     <!--Action Bar-->
-    <string name="action_profile">Profile</string>
-    <string name="action_share">Information</string>
-    <string name="action_rate">Rate App</string>
-    <string name="action_more">More Apps</string>
-
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
-    <string name="admob_interstiial_delay">5000</string>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_settings">Settings</string>
 
     <!--Exit Dialog-->
-    <string name="message">Do you want to exit?</string>
-    <string name="positive_button">Yes</string>
-    <string name="negative_button">No</string>
     <string name="menu_item_breakfast">Breakfast</string>
     <string name="menu_item_lunch">Lunch</string>
     <string name="menu_item_dinner">Dinner</string>
-    <string name="auto_complete_foods">Search</string>
     <string name="auto_complete_hint">Search Food</string>
     <string name="categories_text">Categories</string>
     <string name="category_text">Search food by category</string>
     <string name="recent">Recent</string>
     <string name="recent_text">Search by your recent foods</string>
-    <string name="favorites">Favorites</string>
-    <string name="favorites_text">Search by your favorite food</string>
     <string name="frequent">Frequent</string>
     <string name="frequent_text">Search by food you eat the most</string>
     <string name="simple_calories">Add simple Calories</string>
@@ -129,13 +75,11 @@
     <string name="weight_input_unit">Weight Unit</string>
     <string name="total_calories">Total Calories</string>
     <string name="zero_cal">0</string>
-    <string name="zero_gm">0.0 gm</string>
     <string name="protein">Protein</string>
     <string name="carb">Carbohydrates</string>
     <string name="fat">Fat</string>
     <string name="serving_measurement">Add Serving Measurement</string>
     <string name="serving_amount">Select Amount</string>
-    <string name="deaful_amt">1.0</string>
     <string name="default_amt">1.0</string>
 
 

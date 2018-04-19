@@ -1,21 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#ffffff"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+<RelativeLayout
+    android:orientation="vertical"
+    android:layout_width="350dp"
+    android:layout_height="540dp"
+    android:paddingLeft="20dp">
+
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="75dp"
+        android:text="Add Values" />
+
+
+    <com.txusballesteros.widgets.FitChart
+        android:id="@+id/fitChart"
+        style="@style/chart_style"
+        android:layout_width="117dp"
+        android:layout_height="117dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="151dp"
+        app:animationMode="overdraw"
+        app:strokeSize="5dp" />
 
     <io.github.yavski.fabspeeddial.FabSpeedDial
         android:id="@+id/fab_add_food"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:layout_gravity="bottom|end"
         app:fabGravity="bottom_end"
-        app:fabMenu="@menu/menu_fab"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        />
+        app:fabMenu="@menu/menu_fab" />
 
 </RelativeLayout>
+
+</ScrollView>
