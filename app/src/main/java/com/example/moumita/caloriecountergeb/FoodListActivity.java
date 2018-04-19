@@ -57,7 +57,7 @@ public class FoodListActivity extends AppCompatActivity {
                 final String foodName = obj.toString();
                 Log.d("MyLog", "Value is: " + foodName);
 
-                Intent intent = new Intent(FoodListActivity.this, FoodInfoActivity.class);
+                Intent intent = new Intent(FoodListActivity.this, AddFoodToDiaryActivity.class);
                 intent.putExtra("foodname", foodName);
                 startActivity(intent);
             }

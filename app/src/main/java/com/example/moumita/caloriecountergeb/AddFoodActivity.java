@@ -77,7 +77,7 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 foodName = adapter.getItem(position).toString();
-                Intent intent = new Intent(AddFoodActivity.this, FoodInfoActivity.class);
+                Intent intent = new Intent(AddFoodActivity.this, AddFoodToDiaryActivity.class);
                 intent.putExtra("foodname", foodName);
                 startActivity(intent);
                // System.err.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
