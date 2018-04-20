@@ -13,11 +13,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.moumita.caloriecountergeb.AddFoodActivity;
 import com.example.moumita.caloriecountergeb.InitialShowFood;
@@ -25,6 +28,8 @@ import com.example.moumita.caloriecountergeb.InitialShowFoodAdapter;
 import com.example.moumita.caloriecountergeb.R;
 import com.example.moumita.caloriecountergeb.ShowFood;
 import com.example.moumita.caloriecountergeb.ShowFoodAdapter;
+import com.example.moumita.caloriecountergeb.ShowWater;
+import com.example.moumita.caloriecountergeb.ShowWaterAdapter;
 import com.txusballesteros.widgets.FitChart;
 import com.txusballesteros.widgets.FitChartValue;
 
@@ -35,6 +40,7 @@ import generalpersondatabase.Person;
 import generalpersondatabase.PersonOperations;
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
+import it.sephiroth.android.library.widget.HListView;
 
 
 public class HomeFragment extends Fragment {
@@ -51,7 +57,11 @@ public class HomeFragment extends Fragment {
     private ListView breakfastListView, lunchListView, dinnerListView;
     private static ShowFoodAdapter showFoodAdapter;
     private static InitialShowFoodAdapter initialShowFoodAdapter;
-    private int listviewsize = 100;
+    private ImageButton waterAddBtn, waterMinusBtn;
+    private TextView waterCountText;
+    private int glassOfWater = 0;
+
+
 
 
     @Override
@@ -111,14 +121,31 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        waterAddBtn = view.findViewById(R.id.water_plus_btn);
+        waterMinusBtn = view.findViewById(R.id.water_minus_btn);
+        waterCountText = view.findViewById(R.id.water_count_text);
+
+        waterAddBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                glassOfWater++;
+                waterCountText.setText(glassOfWater + " glasses of water");
+            }
+        });
+        waterMinusBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                glassOfWater--;
+                waterCountText.setText(glassOfWater + " glasses of water");
+            }
+        });
+
 
         //Adding Listview
 
         breakfastListView=view.findViewById(R.id.show_breakfast_list);
         lunchListView=view.findViewById(R.id.show_lunch_list);
         dinnerListView=view.findViewById(R.id.show_dinner_list);
-
-
 
 
         showBreakfastModels= new ArrayList<>();
@@ -220,6 +247,8 @@ public class HomeFragment extends Fragment {
                 }
             });
         }
+
+
 
         setListViewHeightBasedOnItems(breakfastListView);
         setListViewHeightBasedOnItems(lunchListView);
