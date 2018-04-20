@@ -1,12 +1,6 @@
-1,Bread,23,ভাত,ggg,hhh
-1,Bread,24,aaa,ggg,hhh
-1,Bread,25,mmm,ggg,hhh
-1,Bread,26,mmm,ggg,hhh
-1,Bread,2328,mmm,ggg,hhh
-1,Bread,30,mmm,ggg,hhh
-2,Rice,44,Chira,ggg,hhh
-2,Rice,45,aaa,ggg,hhh
-2,Rice,46,mmm,ggg,hhh
-2,Rice,47,mmm,ggg,hhh
-2,Rice,48,mmm,ggg,hhh
-2,Rice,49,mmm,ggg,hhh
+1,Rice,1,Rice,rice.png,rice_cat.png
+2,Egg,2,Egg Chicken,egg_chicken.png,egg_cat.png
+3,Fruits,3,Apple,apple.png,fruits_cat.png
+4,Meat,4,Chicken Breast,chicken_breast.png,meat_cat.png
+4,Meat,5,Chicken Thigh,chicken_thigh.png,meat_cat.png
+5,Fish,6,Ilish,ilish.png,fish_cat.png

@@ -1,3 +1,6 @@
-ভাত,1,pcs,72,2.9,15.6,0.4,1111,2222,3333,4444,1,ruti.jpg,valo jinish
-Chira,100,gm,3560,0.065,0.792,0.011,5555,6666,7777,8888,2,chira.jpg,chira valo na
-Chira,10000000000,gmmmmmm,3560000000000,0.0658888888888,0.79277777777777777,0.011111,5555555,66665555,77775555,88885555,255555,chiraaaaaa.jpg,chiraaaaaaa valo na
+Rice,100,Gram,112,2.4,23.2,0.7,1111,2222,3333,4444,1,rice.png,valo jinish
+Egg Chicken,100,Gram,139,14.5,0.6,9,5555,6666,7777,8888,2,egg_chicken.png,dim dim dim
+Apple,100,Gram,62,0.3,13.5,0.2,9999,1111,2222,3333,4444,3,apple.png,Appleeeeeeeeeeeee
+Chicken Breast,100,Gram,106,22.3,0,1.8,5555,6666,7777,8888,4,chicken_breast.png,Chicken good for health
+Chicken Thigh,100,Gram,128,19.2,0,5.7,9999,1111,2222,3333,4,chicken_thigh.png,Chicken good for health
+Ilish,100,Gram,223,18,0,16.8,4444,5555,6666,7777,5,ilish.png,Ilishhhhhhhhhhh
