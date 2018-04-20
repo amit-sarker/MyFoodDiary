@@ -83,8 +83,13 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
             imageList.add(ImageID(a.getServing_image_id()));
         }
 
-
         servingData.close();
+
+        System.out.println("RRRRRRRRRRRRRRRRRRRRRRRRRRR      " + foodName);
+
+        for(int i = 0; i < servingList.size(); i++) {
+            System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT    " + servingList.get(i));
+        }
 
 
         foodData.open();

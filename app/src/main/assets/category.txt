@@ -1,4 +1,4 @@
-1,Rice,1,Rice,rice.png,rice_cat.png
+1,Rice,1,Rice Cooked,rice.png,rice_cat.png
 2,Egg,2,Egg Chicken,egg_chicken.png,egg_cat.png
 3,Fruits,3,Apple,apple.png,fruits_cat.png
 4,Meat,4,Chicken Breast,chicken_breast.png,meat_cat.png
