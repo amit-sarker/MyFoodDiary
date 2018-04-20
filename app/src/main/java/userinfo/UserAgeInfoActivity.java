@@ -79,6 +79,7 @@ public class UserAgeInfoActivity extends AppCompatActivity {
                 System.out.println("Innnnnnnnnnnnnn  " + isFemale + " " + isfeet + " " + height + " " + age);
                 //intent.putExtra("fromGender", (Serializable) User);
                 startActivity(intent);
+                finish();
 
             }
         });

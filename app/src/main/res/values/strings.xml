@@ -81,6 +81,7 @@
     <string name="serving_measurement">Add Serving Measurement</string>
     <string name="serving_amount">Select Amount</string>
     <string name="default_amt">1.0</string>
+    <string name="show_breakfast">Breakfast</string>
 
 
 </resources>

@@ -114,12 +114,10 @@ public class UserHeightInfoActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(UserHeightInfoActivity.this, UserAgeInfoActivity.class);
                 intent.putExtra("isfemale", isFemale);
-                //intent.putExtra("isfeet", isfeet);
                 intent.putExtra("height", height);
-
                 System.out.println("Innnnnnnnnnnnnn  " + isFemale + " " + isfeet + " " + height);
-                //intent.putExtra("fromGender", (Serializable) User);
                 startActivity(intent);
+                finish();
             }
         });
 

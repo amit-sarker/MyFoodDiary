@@ -55,6 +55,7 @@ public class UserGenderInfoActivity extends AppCompatActivity {
                     Intent intent = new Intent(UserGenderInfoActivity.this, UserHeightInfoActivity.class);
                     intent.putExtra("isfemale", isFemale);
                     startActivity(intent);
+                    finish();
                 }
             }
         });

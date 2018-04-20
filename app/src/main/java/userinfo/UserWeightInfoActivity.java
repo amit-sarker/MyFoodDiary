@@ -143,6 +143,7 @@ public class UserWeightInfoActivity extends AppCompatActivity {
                 intent.putExtra("withactivity", BMRWithActivity);
 
                 startActivity(intent);
+                finish();
             }
         });
     }

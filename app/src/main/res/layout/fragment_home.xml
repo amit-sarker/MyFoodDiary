@@ -13,8 +13,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="20dp">
+            android:layout_height="match_parent">
 
 
         <Button
@@ -39,51 +38,41 @@
             android:layout_marginTop="151dp"
             app:animationMode="overdraw"
             app:strokeSize="5dp" />
-            <TextView
+
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="hiiiiiiiiiiiisadgjsgdjsdugyfyjsdgfysfgsydgfyusdgfsyudgfyusgfyusdgfyusgfsydgfysgf"
-                android:textColor="@color/title_text_color"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="hiiiiiiiiiiiisadgjsgdjsdugyfyjsdgfysfgsydgfyusdgfsyudgfyusgfyusdgfyusgfsydgfysgf"
-                android:textColor="@color/title_text_color"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="hiiiiiiiiiiiisadgjsgdjsdugyfyjsdgfysfgsydgfyusdgfsyudgfyusgfyusdgfyusgfsydgfysgf"
-                android:textColor="@color/title_text_color"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="hiiiiiiiiiiiisadgjsgdjsdugyfyjsdgfysfgsydgfyusdgfsyudgfyusgfyusdgfyusgfsydgfysgf"
-                android:textColor="@color/title_text_color"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="hiiiiiiiiiiiisadgjsgdjsdugyfyjsdgfysfgsydgfyusdgfsyudgfyusgfyusdgfyusgfsydgfysgf"
-                android:textColor="@color/title_text_color"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="hiiiiiiiiiiiisadgjsgdjsdugyfyjsdgfysfgsydgfyusdgfsyudgfyusgfyusdgfyusgfsydgfysgf"
-                android:textColor="@color/title_text_color"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="hiiiiiiiiiiiisadgjsgdjsdugyfyjsdgfysfgsydgfyusdgfsyudgfyusgfyusdgfyusgfsydgfysgf"
-                android:textColor="@color/title_text_color"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="hiiiiiiiiiiiisadgjsgdjsdugyfyjsdgfysfgsydgfyusdgfsyudgfyusgfyusdgfyusgfsydgfysgf"
-                android:textColor="@color/title_text_color"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="hiiiiiiiiiiiisadgjsgdjsdugyfyjsdgfysfgsydgfyusdgfsyudgfyusgfyusdgfyusgfsydgfysgf"
-                android:textColor="@color/title_text_color"/>
+                android:layout_margin="@dimen/card_margin">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/breakfast_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:background="@color/colorPrimaryLight"
+                        android:gravity="center"
+                        android:text="@string/show_breakfast"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:textColor="@color/title_text_color" />
+
+
+                    <ListView
+                        android:id="@+id/show_food_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/breakfast_text">
+
+                    </ListView>
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+
+
         </LinearLayout>
 
 

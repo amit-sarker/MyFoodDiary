@@ -3,17 +3,8 @@
 
 package fragments;
 
-import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
-import android.animation.IntEvaluator;
-import android.animation.ObjectAnimator;
-import android.animation.PropertyValuesHolder;
-import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.design.internal.NavigationMenu;
 import android.support.v4.app.Fragment;
@@ -21,23 +12,24 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
 
 import com.example.moumita.caloriecountergeb.AddFoodActivity;
+import com.example.moumita.caloriecountergeb.InitialShowFood;
+import com.example.moumita.caloriecountergeb.InitialShowFoodAdapter;
 import com.example.moumita.caloriecountergeb.R;
-import com.github.lzyzsd.circleprogress.DonutProgress;
+import com.example.moumita.caloriecountergeb.ShowFood;
+import com.example.moumita.caloriecountergeb.ShowFoodAdapter;
 import com.txusballesteros.widgets.FitChart;
 import com.txusballesteros.widgets.FitChartValue;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import generalpersondatabase.Person;
-import generalpersondatabase.PersonDBHandler;
 import generalpersondatabase.PersonOperations;
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
@@ -52,6 +44,11 @@ public class HomeFragment extends Fragment {
     private FitChart fitChart;
     private Button addButton;
     private PersonOperations personData;
+    private ArrayList<ShowFood> showFoodModels;
+    private ArrayList<InitialShowFood> initialShowFoodModels;
+    private ListView listView;
+    private static ShowFoodAdapter showFoodAdapter;
+    private static InitialShowFoodAdapter initialShowFoodAdapter;
 
 
     @Override
@@ -59,16 +56,6 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        /*FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.add_food_fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Click action
-                //Intent intent = new Intent(HomeFragment.this, NewMessageActivity.class);
-                //startActivity(intent);
-            }
-        });
-        */
 
         personData = new PersonOperations(getContext());
         personData.open();
@@ -120,9 +107,56 @@ public class HomeFragment extends Fragment {
                 return false;
             }
         });
-        // Inflate the layout for this fragment
+
+
+        //Adding Listview
+
+        listView=view.findViewById(R.id.show_food_list);
+
+
+        showFoodModels= new ArrayList<>();
+        initialShowFoodModels = new ArrayList<>();
+
+        //showFoodModels.add(new ShowFood(R.drawable.ic_favorite, "Apple", "1200 kcal", "5 cup (400gm)"));
+
+
+        initialShowFoodModels.add(new InitialShowFood(R.drawable.breakfast,"Eat breakfast, Start Healthy Life"));
+        if(showFoodModels.isEmpty()==true)
+        {
+            initialShowFoodAdapter= new InitialShowFoodAdapter(initialShowFoodModels,getContext());
+
+            listView.setAdapter(initialShowFoodAdapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    InitialShowFood initialShowFood= initialShowFoodModels.get(position);
+
+                }
+            });
+
+        }
+        else
+        {
+            showFoodAdapter= new ShowFoodAdapter(showFoodModels,getContext());
+
+            listView.setAdapter(showFoodAdapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    ShowFood showFoodModel= showFoodModels.get(position);
+
+                }
+            });
+        }
+
+
+
         return view;
+
     }
 
 
 }
+
+
+

@@ -41,6 +41,7 @@ public class ShowBMRActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ShowBMRActivity.this, TestTabActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
