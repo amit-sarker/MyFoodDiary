@@ -8,5 +8,7 @@
 3,Apple,Large (3-1/4" dia),223,food4
 4,Chicken Breast,Cup,140,food5
 4,Chicken Breast,Gram,1,food4
-5,Ilish,Fillet,91,food5
-5,Ilish,Gram,1,food2
+5,Chicken Thigh,Cup,140,food5
+5,Chicken Thigh,Gram,1,food4
+6,Ilish,Fillet,91,food5
+6,Ilish,Gram,1,food2

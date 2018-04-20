@@ -23,13 +23,6 @@ import servingdatabase.ServingOperations;
 
 public class AddFoodToDiaryActivity extends AppCompatActivity {
 
-
-    //String[] textArray = {"1 plate", "1 cup", "1 table spoon", "1 pinch"};
-    private String[] textArray;
-    String ppp = "food5";
-    private Integer[] imageArray;
-
-
     private String foodName, servingAmountString;
     private FoodOperations foodData;
     private ServingOperations servingData;
@@ -54,13 +47,6 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
         foodServingList = new ArrayList<>();
         List<String> servingList = new ArrayList<>();
         List<Integer> imageList = new ArrayList<>();
-        //textArray = new String[];
-        //imageArray = new Integer[];
-
-
-        //int x = R.drawable.food5;
-        //Integer[] imageArray = {resID, R.drawable.food2,
-                //R.drawable.food3, R.drawable.food4};
 
         foodNeutrientsText = new TextView[4];
         foodNeutrients = new double[4];
@@ -84,13 +70,6 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
         }
 
         servingData.close();
-
-        System.out.println("RRRRRRRRRRRRRRRRRRRRRRRRRRR      " + foodName);
-
-        for(int i = 0; i < servingList.size(); i++) {
-            System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT    " + servingList.get(i));
-        }
-
 
         foodData.open();
         selectedFood = foodData.getFoodByName(foodName);
@@ -220,7 +199,7 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
     }
 
     public int ImageID(String image_name) {
-        int resID = this.getResources().getIdentifier(ppp , "drawable", getPackageName());
+        int resID = this.getResources().getIdentifier(image_name , "drawable", getPackageName());
         return resID;
     }
 }
