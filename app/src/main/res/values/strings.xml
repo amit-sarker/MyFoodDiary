@@ -82,6 +82,9 @@
     <string name="serving_amount">Select Amount</string>
     <string name="default_amt">1.0</string>
     <string name="show_breakfast">Breakfast</string>
+    <string name="show_lunch_text">Lunch</string>
+    <string name="show_lunch">Lunch</string>
+    <string name="show_dinner">Dinner</string>
 
 
 </resources>
