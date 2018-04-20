@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
         trackingData.close();
 
-        Intent intent = new Intent(MainActivity.this, TestTabActivity.class);
+        Intent intent = new Intent(MainActivity.this, UserGenderInfoActivity.class);
         startActivity(intent);
         finish();
     }

@@ -8,14 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.github.lzyzsd.circleprogress.DonutProgress;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import generalpersondatabase.Person;
-import generalpersondatabase.PersonDBHandler;
-
 import static trackingdatabase.TrackingDBHandler.TABLE_TRACKING;
 
 public class TrackingOperations {

@@ -56,7 +56,7 @@ public class ShowBMRActivity extends AppCompatActivity {
         calorieTrackingData.setDate(current_date_str);
 
         calorieTrackingData.setCal_needed(BMRWithActivity);
-        calorieTrackingData.setCal_consumed(8880.0);
+        calorieTrackingData.setCal_consumed(0.0);
         calorieTrackingData.setCal_remaining(BMRWithActivity);
 
         calorieTrackingData.setProtein_needed(Math.round(proteinsWithActivity / 4.0));
