@@ -18,7 +18,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import activities.TestTabActivity;
 import categorydatabase.CategoryDBHandler;
 import categorydatabase.CategoryOperations;
 import categorydatabase.FoodCategory;
@@ -28,7 +27,9 @@ import fooddatabase.FoodOperations;
 import generalpersondatabase.Person;
 import generalpersondatabase.PersonOperations;
 import okhttp3.OkHttpClient;
-import piechart.PiePolylineChartActivity;
+import servingdatabase.FoodServing;
+import servingdatabase.ServingDBHandler;
+import servingdatabase.ServingOperations;
 import trackingdatabase.CalorieTracking;
 import trackingdatabase.TrackingOperations;
 import userinfo.UserGenderInfoActivity;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FoodOperations foodData;
     private CategoryOperations categoryData;
+    private ServingOperations servingData;
     private TrackingOperations trackingData;
     private CalorieTracking cc;
     private PersonOperations personData;
@@ -65,6 +67,12 @@ public class MainActivity extends AppCompatActivity {
         cat_database.execSQL("DROP TABLE IF EXISTS " + categoryDBHandler.TABLE_CATEGORY);
         cat_database.execSQL(CategoryDBHandler.TABLE_CREATE);
 
+        ServingDBHandler servingDBHandler = new ServingDBHandler(this);
+        SQLiteDatabase serv_database = servingDBHandler.getWritableDatabase();
+        serv_database.execSQL("DROP TABLE IF EXISTS " + servingDBHandler.TABLE_SERVING);
+        serv_database.execSQL(ServingDBHandler.TABLE_CREATE);
+
+
 
         foodData = new FoodOperations(this);
         foodData.open();
@@ -78,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
         foodData.close();
 
+
+
         categoryData = new CategoryOperations(this);
         categoryData.open();
 
@@ -88,6 +98,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         categoryData.close();
+
+
+        servingData = new ServingOperations(this);
+        servingData.open();
+
+        try {
+            readFromAssetsServing(this, "serving.txt", servingData);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        servingData.close();
+
 
         personData = new PersonOperations(this);
         trackingData = new TrackingOperations(this);
@@ -182,6 +205,39 @@ public class MainActivity extends AppCompatActivity {
                 eachAttribute = "null";
         }
         foodData.addFood(food);
+    }
+
+    public static String readFromAssetsServing(Context context, String filename, ServingOperations servingData) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open(filename)));
+
+        StringBuilder sb = new StringBuilder();
+        String mLine = reader.readLine();
+        servingToDatabase(mLine, servingData);
+        while (mLine != null) {
+            sb.append(mLine);
+            mLine = reader.readLine();
+            if(mLine != null) {
+                servingToDatabase(mLine, servingData);
+            }
+        }
+        reader.close();
+        return sb.toString();
+    }
+
+    public static void servingToDatabase(String lineFromFile, ServingOperations servingData) {
+        String servingAttributes[]= lineFromFile.split(",");
+
+        FoodServing foodServing = new FoodServing();
+        foodServing.setServing_id(Long.parseLong(servingAttributes[0]));
+        foodServing.setFood_name(servingAttributes[1]);
+        foodServing.setFood_serving_measurement(servingAttributes[2]);
+        foodServing.setServing_size_to_grams(servingAttributes[3]);
+
+        for (String eachAttribute: servingAttributes){
+            if(eachAttribute.equals("\0"))
+                eachAttribute = "null";
+        }
+        servingData.addServing(foodServing);
     }
 
     public static void PrintFood(FoodOperations foodData) {

@@ -25,7 +25,7 @@ public class DiaryOperations {
             DiaryDBHandler.COLUMN_MEAL_TYPE
     };
 
-    public DiaryOperations(Context context){
+    public DiaryOperations(Context context) {
         dbhandler = new DiaryDBHandler(context);
     }
 
@@ -56,7 +56,8 @@ public class DiaryOperations {
 
     public FoodDiary getFoodDiary(long id) {
 
-        Cursor cursor = database.query(DiaryDBHandler.TABLE_DIARY, allColumns,DiaryDBHandler.COLUMN_DIARY_ID + "=?", new String[]{String.valueOf(id)},null,null, null, null);
+        Cursor cursor = database.query(DiaryDBHandler.TABLE_DIARY, allColumns,DiaryDBHandler.COLUMN_DIARY_ID + "=?",
+                new String[]{String.valueOf(id)},null,null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }

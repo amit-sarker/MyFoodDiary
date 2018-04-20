@@ -1,0 +1,12 @@
+1,Rice Cooked,Cup,158
+1,Rice Cooked,Gram,1
+2,Egg,Small,38
+2,Egg,Medium,44
+2,Egg,Large,50
+3,Apple,Small (2-3/4" dia),149
+3,Apple,Medium (3" dia),182
+3,Apple,Large (3-1/4" dia),223
+4,Chicken,Cup,140
+4,Chicken,Gram,1
+5,Fish,Fillet,91
+5,Fish,Gram,1
