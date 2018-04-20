@@ -23,7 +23,8 @@ public class ServingOperations {
             ServingDBHandler.COLUMN_SERVING_ID,
             ServingDBHandler.COLUMN_FOOD_NAME,
             ServingDBHandler.COLUMN_FOOD_SERVING_MEASUREMENT,
-            ServingDBHandler.COLUMN_SERVING_SIZE_TO_GRAMS
+            ServingDBHandler.COLUMN_SERVING_SIZE_TO_GRAMS,
+            ServingDBHandler.COLUMN_SERVING_IMAGE_ID
     };
 
     public ServingOperations(Context context){
@@ -46,6 +47,7 @@ public class ServingOperations {
         values.put(ServingDBHandler.COLUMN_FOOD_NAME, foodServing.getFood_name());
         values.put(ServingDBHandler.COLUMN_FOOD_SERVING_MEASUREMENT, foodServing.getFood_serving_measurement());
         values.put(ServingDBHandler.COLUMN_SERVING_SIZE_TO_GRAMS, foodServing.getServing_size_to_grams());
+        values.put(ServingDBHandler.COLUMN_SERVING_IMAGE_ID, foodServing.getServing_image_id());
 
         database.insert(TABLE_SERVING,null, values);
         return foodServing;
@@ -65,6 +67,7 @@ public class ServingOperations {
                     foodServing.setFood_name(cursor.getString(cursor.getColumnIndex(ServingDBHandler.COLUMN_FOOD_NAME)));
                     foodServing.setFood_serving_measurement(cursor.getString(cursor.getColumnIndex(ServingDBHandler.COLUMN_FOOD_SERVING_MEASUREMENT)));
                     foodServing.setServing_size_to_grams(cursor.getString(cursor.getColumnIndex(ServingDBHandler.COLUMN_SERVING_SIZE_TO_GRAMS)));
+                    foodServing.setServing_image_id(cursor.getString(cursor.getColumnIndex(ServingDBHandler.COLUMN_SERVING_IMAGE_ID)));
 
                     foodServingList.add(foodServing);
                 }
@@ -88,6 +91,7 @@ public class ServingOperations {
                     foodServing.setFood_name(cursor.getString(cursor.getColumnIndex(ServingDBHandler.COLUMN_FOOD_NAME)));
                     foodServing.setFood_serving_measurement(cursor.getString(cursor.getColumnIndex(ServingDBHandler.COLUMN_FOOD_SERVING_MEASUREMENT)));
                     foodServing.setServing_size_to_grams(cursor.getString(cursor.getColumnIndex(ServingDBHandler.COLUMN_SERVING_SIZE_TO_GRAMS)));
+                    foodServing.setServing_image_id(cursor.getString(cursor.getColumnIndex(ServingDBHandler.COLUMN_SERVING_IMAGE_ID)));
 
                     foodServingList.add(foodServing);
                 }
@@ -109,6 +113,7 @@ public class ServingOperations {
         values.put(ServingDBHandler.COLUMN_FOOD_NAME, foodServing.getFood_name());
         values.put(ServingDBHandler.COLUMN_FOOD_SERVING_MEASUREMENT, foodServing.getFood_serving_measurement());
         values.put(ServingDBHandler.COLUMN_SERVING_SIZE_TO_GRAMS, foodServing.getServing_size_to_grams());
+        values.put(ServingDBHandler.COLUMN_SERVING_IMAGE_ID, foodServing.getServing_image_id());
 
         // updating row
         return database.update(ServingDBHandler.TABLE_SERVING, values,

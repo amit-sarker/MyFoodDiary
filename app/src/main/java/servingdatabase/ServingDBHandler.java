@@ -14,13 +14,15 @@ public class ServingDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_FOOD_NAME = "foodname";
     public static final String COLUMN_FOOD_SERVING_MEASUREMENT = "servingMeasurement";
     public static final String COLUMN_SERVING_SIZE_TO_GRAMS = "servingSizeToGrams";
+    public static final String COLUMN_SERVING_IMAGE_ID = "servingImageID";
 
     public static final String TABLE_CREATE =
             "CREATE TABLE " + TABLE_SERVING + " (" +
                     COLUMN_SERVING_ID + " INTEGER, " +
                     COLUMN_FOOD_NAME + " TEXT, " +
                     COLUMN_FOOD_SERVING_MEASUREMENT + " TEXT, " +
-                    COLUMN_SERVING_SIZE_TO_GRAMS + " TEXT " +
+                    COLUMN_SERVING_SIZE_TO_GRAMS + " TEXT, " +
+                    COLUMN_SERVING_IMAGE_ID + " TEXT " +
                     ")";
 
     public ServingDBHandler(Context context){

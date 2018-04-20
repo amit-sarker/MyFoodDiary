@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import activities.TestTabActivity;
 import categorydatabase.CategoryDBHandler;
 import categorydatabase.CategoryOperations;
 import categorydatabase.FoodCategory;
@@ -122,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
         trackingData.close();
 
-        Intent intent = new Intent(MainActivity.this, UserGenderInfoActivity.class);
+        Intent intent = new Intent(MainActivity.this, TestTabActivity.class);
         startActivity(intent);
         finish();
     }
@@ -232,6 +233,7 @@ public class MainActivity extends AppCompatActivity {
         foodServing.setFood_name(servingAttributes[1]);
         foodServing.setFood_serving_measurement(servingAttributes[2]);
         foodServing.setServing_size_to_grams(servingAttributes[3]);
+        foodServing.setServing_image_id(servingAttributes[4]);
 
         for (String eachAttribute: servingAttributes){
             if(eachAttribute.equals("\0"))

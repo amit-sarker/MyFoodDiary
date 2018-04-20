@@ -3,14 +3,16 @@ package servingdatabase;
 public class FoodServing {
     long serving_id;
     String food_name, food_serving_measurement, serving_size_to_grams;
+    String serving_image_id;
 
     public FoodServing() {}
 
-    public FoodServing(long serving_id, String food_name, String food_serving_measurement, String serving_size_to_grams) {
+    public FoodServing(long serving_id, String food_name, String food_serving_measurement, String serving_size_to_grams, String serving_image_id) {
         this.serving_id = serving_id;
         this.food_name = food_name;
         this.food_serving_measurement = food_serving_measurement;
         this.serving_size_to_grams = serving_size_to_grams;
+        this.serving_image_id = serving_image_id;
     }
 
     public long getServing_id() {
@@ -45,6 +47,14 @@ public class FoodServing {
         this.serving_size_to_grams = serving_size_to_grams;
     }
 
+    public String getServing_image_id() {
+        return serving_image_id;
+    }
+
+    public void setServing_image_id(String serving_image_id) {
+        this.serving_image_id = serving_image_id;
+    }
+
     @Override
     public String toString() {
         return "FoodServing{" +
@@ -52,6 +62,7 @@ public class FoodServing {
                 ", food_name='" + food_name + '\'' +
                 ", food_serving_measurement='" + food_serving_measurement + '\'' +
                 ", serving_size_to_grams='" + serving_size_to_grams + '\'' +
+                ", serving_image_id=" + serving_image_id +
                 '}';
     }
 }

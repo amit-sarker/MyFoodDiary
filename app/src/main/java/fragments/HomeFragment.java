@@ -219,7 +219,7 @@ public class HomeFragment extends Fragment {
         }
 
 
-        initialShowDinnerModels.add(new InitialShowFood(R.drawable.dinner,"End of the day? Gift yourself a wonderful dinner"));
+        initialShowDinnerModels.add(new InitialShowFood(R.drawable.dinner_demo,"End of the day? Gift yourself a wonderful dinner"));
         if(showLunchModels.isEmpty()==true)
         {
             initialShowFoodAdapter= new InitialShowFoodAdapter(initialShowDinnerModels,getContext());

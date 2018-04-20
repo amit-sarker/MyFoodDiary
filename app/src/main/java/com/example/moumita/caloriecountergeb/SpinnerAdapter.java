@@ -7,20 +7,30 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
 
 
 public class SpinnerAdapter extends ArrayAdapter<String> {
 
     private Context ctx;
-    private String[] contentArray;
-    private Integer[] imageArray;
+    //private String[] contentArray;
+    //private Integer[] imageArray;
+    private List<String> contentList;
+    private List<Integer> imageList;
 
-    public SpinnerAdapter(Context context, int resource, String[] objects,
+    /*public SpinnerAdapter(Context context, int resource, String[] objects,
                           Integer[] imageArray) {
         super(context,  R.layout.spinner_value_layout, R.id.spinnerTextView, objects);
         this.ctx = context;
         this.contentArray = objects;
         this.imageArray = imageArray;
+    }*/
+
+    public SpinnerAdapter(Context context, int resource, List<String> objects, List<Integer> imageList) {
+        super(context,  R.layout.spinner_value_layout, R.id.spinnerTextView, objects);
+        this.ctx = context;
+        this.contentList = objects;
+        this.imageList = imageList;
     }
 
     @Override
@@ -38,10 +48,10 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
         View row = inflater.inflate(R.layout.spinner_value_layout, parent, false);
 
         TextView textView = (TextView) row.findViewById(R.id.spinnerTextView);
-        textView.setText(contentArray[position]);
+        textView.setText(contentList.get(position));
 
         ImageView imageView = (ImageView)row.findViewById(R.id.spinnerImages);
-        imageView.setImageResource(imageArray[position]);
+        imageView.setImageResource(imageList.get(position));
 
         return row;
     }
