@@ -23,6 +23,13 @@ import servingdatabase.ServingOperations;
 
 public class AddFoodToDiaryActivity extends AppCompatActivity {
 
+
+    //String[] textArray = {"1 plate", "1 cup", "1 table spoon", "1 pinch"};
+    private String[] textArray;
+    String ppp = "food5";
+    private Integer[] imageArray;
+
+
     private String foodName, servingAmountString;
     private FoodOperations foodData;
     private ServingOperations servingData;
@@ -47,6 +54,13 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
         foodServingList = new ArrayList<>();
         List<String> servingList = new ArrayList<>();
         List<Integer> imageList = new ArrayList<>();
+        //textArray = new String[];
+        //imageArray = new Integer[];
+
+
+        //int x = R.drawable.food5;
+        //Integer[] imageArray = {resID, R.drawable.food2,
+        //R.drawable.food3, R.drawable.food4};
 
         foodNeutrientsText = new TextView[4];
         foodNeutrients = new double[4];
@@ -70,6 +84,13 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
         }
 
         servingData.close();
+
+        System.out.println("RRRRRRRRRRRRRRRRRRRRRRRRRRR      " + foodName);
+
+        for(int i = 0; i < servingList.size(); i++) {
+            System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT    " + servingList.get(i));
+        }
+
 
         foodData.open();
         selectedFood = foodData.getFoodByName(foodName);
@@ -145,9 +166,23 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
 
 
         spinnerServingSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 intservingSize = position;
+                servingAmountString = servingAmountEditText.getText().toString();
+                if (servingAmountString.matches("")) {
+                    factor = 0.0;
+                    for (int i = 0; i < noOfElement; i++) {
+                        foodNeutrientsText[i].setText(String.valueOf(factor * foodNeutrients[i]));
+                    }
+                } else {
+                    servingAmount = Double.parseDouble(servingAmountString);
+                    factor = getFactor(intservingSize, servingAmount);
+                    for (int i = 0; i < noOfElement; i++) {
+                        foodNeutrientsText[i].setText(String.valueOf(factor * foodNeutrients[i]));
+                    }
+                }
                 servingAmountEditText.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -199,7 +234,7 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
     }
 
     public int ImageID(String image_name) {
-        int resID = this.getResources().getIdentifier(image_name , "drawable", getPackageName());
+        int resID = this.getResources().getIdentifier(ppp , "drawable", getPackageName());
         return resID;
     }
 }
