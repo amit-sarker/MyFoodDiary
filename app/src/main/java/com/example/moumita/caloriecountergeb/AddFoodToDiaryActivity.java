@@ -1,35 +1,27 @@
 package com.example.moumita.caloriecountergeb;
 
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView;
-import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
-
-import de.codecrafters.tableview.TableView;
-import de.codecrafters.tableview.model.TableColumnDpWidthModel;
-import de.codecrafters.tableview.model.TableColumnWeightModel;
-import de.codecrafters.tableview.toolkit.SimpleTableDataAdapter;
-import de.codecrafters.tableview.toolkit.SimpleTableHeaderAdapter;
 import fooddatabase.Food;
 import fooddatabase.FoodOperations;
+import io.github.yavski.fabspeeddial.FabSpeedDial;
 
 public class AddFoodToDiaryActivity extends AppCompatActivity {
 
 
-    String[] textArray = { "1 plate", "1 cup", "1 table spoon", "1 pinch" };
-    Integer[] imageArray = { R.drawable.food5, R.drawable.food2,
-            R.drawable.food3, R.drawable.food4 };
+    String[] textArray = {"1 plate", "1 cup", "1 table spoon", "1 pinch"};
+    Integer[] imageArray = {R.drawable.food5, R.drawable.food2,
+            R.drawable.food3, R.drawable.food4};
 
     private String foodName, servingAmountString;
     private FoodOperations foodData;
@@ -39,6 +31,7 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
     private double servingAmount, factor = 2.0;
     private int noOfElement = 4, intservingSize = 1;
     private EditText servingAmountEditText;
+    private FloatingActionButton addTrackButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +49,10 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
         foodNeutrientsText[2] = findViewById(R.id.carb_val);
         foodNeutrientsText[3] = findViewById(R.id.cholestorol_val);
         TextView text = (TextView) findViewById(R.id.spinnerTextView);
-        ImageView imageView =(ImageView)findViewById(R.id.spinnerImages);
+        ImageView imageView = (ImageView) findViewById(R.id.spinnerImages);
         final Spinner spinnerServingSize = (Spinner) findViewById(R.id.mySpinner);
         servingAmountEditText = findViewById(R.id.serving_amount_Edittext);
+        addTrackButton = findViewById(R.id.fab_add_tracking_btn);
 
 
         foodData.open();
@@ -69,28 +63,23 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
         foodNeutrients[3] = selectedFood.getFood_fat();
 
 
-
+        foodData.close();
 
         SpinnerAdapter adapter = new SpinnerAdapter(this, R.layout.spinner_value_layout, textArray, imageArray);
         spinnerServingSize.setAdapter(adapter);
         intservingSize = spinnerServingSize.getSelectedItemPosition();
         servingAmountString = servingAmountEditText.getText().toString();
 
-        if(servingAmountString.matches(""))
-        {
+        if (servingAmountString.matches("")) {
             factor = 0.0;
-            for(int i=0;i<noOfElement;i++)
-            {
-                foodNeutrientsText[i].setText(String.valueOf(factor*foodNeutrients[i]));
+            for (int i = 0; i < noOfElement; i++) {
+                foodNeutrientsText[i].setText(String.valueOf(factor * foodNeutrients[i]));
             }
-        }
-        else
-        {
+        } else {
             servingAmount = Double.parseDouble(servingAmountString);
             factor = getFactor(intservingSize, servingAmount);
-            for(int i=0;i<noOfElement;i++)
-            {
-                foodNeutrientsText[i].setText(String.valueOf(factor*foodNeutrients[i]));
+            for (int i = 0; i < noOfElement; i++) {
+                foodNeutrientsText[i].setText(String.valueOf(factor * foodNeutrients[i]));
             }
         }
 
@@ -114,21 +103,16 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         intservingSize = position;
                         servingAmountString = servingAmountEditText.getText().toString();
-                        if(servingAmountString.matches(""))
-                        {
+                        if (servingAmountString.matches("")) {
                             factor = 0.0;
-                            for(int i=0;i<noOfElement;i++)
-                            {
-                                foodNeutrientsText[i].setText(String.valueOf(factor*foodNeutrients[i]));
+                            for (int i = 0; i < noOfElement; i++) {
+                                foodNeutrientsText[i].setText(String.valueOf(factor * foodNeutrients[i]));
                             }
-                        }
-                        else
-                        {
+                        } else {
                             servingAmount = Double.parseDouble(servingAmountString);
                             factor = getFactor(intservingSize, servingAmount);
-                            for(int i=0;i<noOfElement;i++)
-                            {
-                                foodNeutrientsText[i].setText(String.valueOf(factor*foodNeutrients[i]));
+                            for (int i = 0; i < noOfElement; i++) {
+                                foodNeutrientsText[i].setText(String.valueOf(factor * foodNeutrients[i]));
                             }
                         }
                     }
@@ -140,10 +124,8 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
                 });
 
 
-
             }
         });
-
 
 
         spinnerServingSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -152,34 +134,25 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
                 intservingSize = position;
                 servingAmountEditText.addTextChangedListener(new TextWatcher() {
                     @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
                     @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                    }
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
                     @Override
                     public void afterTextChanged(Editable s) {
 
                         servingAmountString = servingAmountEditText.getText().toString();
-                        if(servingAmountString.matches(""))
-                        {
+                        if (servingAmountString.matches("")) {
                             factor = 0.0;
-                            for(int i=0;i<noOfElement;i++)
-                            {
-                                foodNeutrientsText[i].setText(String.valueOf(factor*foodNeutrients[i]));
+                            for (int i = 0; i < noOfElement; i++) {
+                                foodNeutrientsText[i].setText(String.valueOf(factor * foodNeutrients[i]));
                             }
-                        }
-                        else
-                        {
+                        } else {
                             servingAmount = Double.parseDouble(servingAmountString);
                             factor = getFactor(intservingSize, servingAmount);
-                            for(int i=0;i<noOfElement;i++)
-                            {
-                                foodNeutrientsText[i].setText(String.valueOf(factor*foodNeutrients[i]));
+                            for (int i = 0; i < noOfElement; i++) {
+                                foodNeutrientsText[i].setText(String.valueOf(factor * foodNeutrients[i]));
                             }
                         }
 
@@ -195,9 +168,6 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
         });
 
 
-
-
-
     }
 
     public double getFactor(int intservingSize, double servingAmount) {
@@ -205,8 +175,7 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
         //Ex - 1 cup = 2.5 gm. and serving amt = 3
         //return 2.5 * 3
         double factor = 1.0;
-        if(intservingSize==0)
-        {
+        if (intservingSize == 0) {
             factor = 85;
         }
 

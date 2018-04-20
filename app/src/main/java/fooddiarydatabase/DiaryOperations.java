@@ -20,7 +20,8 @@ public class DiaryOperations {
             DiaryDBHandler.COLUMN_DIARY_ID,
             DiaryDBHandler.COLUMN_DATE,
             DiaryDBHandler.COLUMN_FOOD_NAME,
-            DiaryDBHandler.COLUMN_FOOD_SERVING_MEASUREMENT,
+            DiaryDBHandler.COLUMN_FOOD_SERVING_MEASUREMENT,  //gram/unit/cup/spoon etc serving units
+            DiaryDBHandler.COLUMN_FOOD_SERVING_AMOUNT,  //amount of the selected serving unit
             DiaryDBHandler.COLUMN_MEAL_TYPE
     };
 
@@ -45,6 +46,7 @@ public class DiaryOperations {
         values.put(DiaryDBHandler.COLUMN_DATE, foodDiary.getDate());
         values.put(DiaryDBHandler.COLUMN_FOOD_NAME, foodDiary.getFood_name());
         values.put(DiaryDBHandler.COLUMN_FOOD_SERVING_MEASUREMENT, foodDiary.getFood_serving_measurement());
+        values.put(DiaryDBHandler.COLUMN_FOOD_SERVING_AMOUNT, foodDiary.getFood_serving_amount());
         values.put(DiaryDBHandler.COLUMN_MEAL_TYPE, foodDiary.getMeal_type());
 
         long insertid = database.insert(DiaryDBHandler.TABLE_DIARY,null, values);
@@ -59,7 +61,7 @@ public class DiaryOperations {
             cursor.moveToFirst();
         }
         FoodDiary e = new FoodDiary(Long.parseLong(cursor.getString(0)), cursor.getString(1), cursor.getString(2),
-                cursor.getString(3), cursor.getString(4));
+                cursor.getString(3), cursor.getString(4), cursor.getString(5));
 
         return e;
     }
@@ -75,6 +77,7 @@ public class DiaryOperations {
                 foodDiary.setDate(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_DATE)));
                 foodDiary.setFood_name(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_FOOD_NAME)));
                 foodDiary.setFood_serving_measurement(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_FOOD_SERVING_MEASUREMENT)));
+                foodDiary.setFood_serving_amount(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_FOOD_SERVING_AMOUNT)));
                 foodDiary.setMeal_type(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_MEAL_TYPE)));
 
                 foodDiaryList.add(foodDiary);
@@ -88,6 +91,7 @@ public class DiaryOperations {
         values.put(DiaryDBHandler.COLUMN_DATE, foodDiary.getDate());
         values.put(DiaryDBHandler.COLUMN_FOOD_NAME, foodDiary.getFood_name());
         values.put(DiaryDBHandler.COLUMN_FOOD_SERVING_MEASUREMENT, foodDiary.getFood_serving_measurement());
+        values.put(DiaryDBHandler.COLUMN_FOOD_SERVING_AMOUNT, foodDiary.getFood_serving_amount());
         values.put(DiaryDBHandler.COLUMN_MEAL_TYPE, foodDiary.getMeal_type());
 
         return database.update(DiaryDBHandler.TABLE_DIARY, values,

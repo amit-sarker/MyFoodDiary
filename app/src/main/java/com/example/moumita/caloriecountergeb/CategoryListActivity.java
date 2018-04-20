@@ -36,7 +36,6 @@ public class CategoryListActivity extends AppCompatActivity {
             //System.err.println(a.toString());
         }
 
-
         categoryData.close();
         mListView = findViewById(R.id.listview);
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.my_list, categoryList);

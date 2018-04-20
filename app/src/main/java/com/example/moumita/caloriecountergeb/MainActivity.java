@@ -12,8 +12,11 @@ import com.facebook.stetho.okhttp3.StethoInterceptor;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import activities.TestTabActivity;
 import categorydatabase.CategoryDBHandler;
@@ -22,8 +25,12 @@ import categorydatabase.FoodCategory;
 import fooddatabase.Food;
 import fooddatabase.FoodDBHandler;
 import fooddatabase.FoodOperations;
+import generalpersondatabase.Person;
+import generalpersondatabase.PersonOperations;
 import okhttp3.OkHttpClient;
 import piechart.PiePolylineChartActivity;
+import trackingdatabase.CalorieTracking;
+import trackingdatabase.TrackingOperations;
 import userinfo.UserGenderInfoActivity;
 
 
@@ -31,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
     private FoodOperations foodData;
     private CategoryOperations categoryData;
+    private TrackingOperations trackingData;
+    private CalorieTracking cc;
+    private PersonOperations personData;
     int oldVersion, newVersion;
 
     @Override
@@ -38,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /* Stetho */
         Stetho.initializeWithDefaults(this);
 
         new OkHttpClient.Builder()
@@ -67,8 +76,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        //PrintFood(foodData);
-
         foodData.close();
 
         categoryData = new CategoryOperations(this);
@@ -80,9 +87,17 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        //PrintCategory(categoryData);
-
         categoryData.close();
+
+        personData = new PersonOperations(this);
+        trackingData = new TrackingOperations(this);
+
+        trackingData.open();
+        if(trackingData.getRowCount() != 0) {
+            TrackDataCondition(trackingData, personData);
+        } else {}
+
+        trackingData.close();
 
         Intent intent = new Intent(MainActivity.this, UserGenderInfoActivity.class);
         startActivity(intent);
@@ -93,30 +108,24 @@ public class MainActivity extends AppCompatActivity {
     public static String readFromAssetsCategory(Context context, String filename, CategoryOperations categoryData) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open(filename)));
 
-        // do reading, usually loop until end of file reading
         StringBuilder sb = new StringBuilder();
         String mLine = reader.readLine();
-        //System.out.println(mLine);
         categoryToDatabase(mLine, categoryData);
         while (mLine != null) {
-            sb.append(mLine); // process line
+            sb.append(mLine);
             mLine = reader.readLine();
             if(mLine != null) {
                 categoryToDatabase(mLine, categoryData);
             }
-            //System.err.println(mLine);
         }
         reader.close();
         return sb.toString();
     }
 
-
     public static void categoryToDatabase(String lineFromFile, CategoryOperations categoryData) {
-        //System.err.println(lineFromFile);
         String categoryAttributes[]= lineFromFile.split(",");
 
         FoodCategory foodCategory = new FoodCategory();
-        //System.err.println("CCCCCCCCCCCCCCCCCCCCCCCCCCC" + categoryAttributes[0]);
         foodCategory.setCategoryID(Long.parseLong(categoryAttributes[0]));
         foodCategory.setCategoryName(categoryAttributes[1]);
         foodCategory.setFoodID(Long.parseLong(categoryAttributes[2]));
@@ -127,32 +136,22 @@ public class MainActivity extends AppCompatActivity {
         for (String eachAttribute: categoryAttributes){
             if(eachAttribute.equals("\0"))
                 eachAttribute = "null";
-
-            //System.out.println(eachAttribute);
-
         }
-
         categoryData.addCategory(foodCategory);
-
     }
-
-
 
     public static String readFromAssetsFood(Context context, String filename, FoodOperations foodData) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open(filename)));
 
-        // do reading, usually loop until end of file reading
         StringBuilder sb = new StringBuilder();
         String mLine = reader.readLine();
-        //System.out.println(mLine);
         foodToDatabase(mLine, foodData);
         while (mLine != null) {
-            sb.append(mLine); // process line
+            sb.append(mLine);
             mLine = reader.readLine();
             if(mLine != null) {
                 foodToDatabase(mLine, foodData);
             }
-            //System.err.println(mLine);
         }
         reader.close();
         return sb.toString();
@@ -181,13 +180,8 @@ public class MainActivity extends AppCompatActivity {
         for (String eachAttribute: foodAttributes){
             if(eachAttribute.equals("\0"))
                 eachAttribute = "null";
-
-            //System.out.println(eachAttribute);
-
         }
-
         foodData.addFood(food);
-
     }
 
     public static void PrintFood(FoodOperations foodData) {
@@ -199,12 +193,51 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void PrintCategory(CategoryOperations categoryData) {
-        List<FoodCategory> categoryList = new ArrayList<>();
-
-        System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+        List<FoodCategory> categoryList;
         categoryList = categoryData.getFoodCategory(2);
         for(FoodCategory a: categoryList) {
             System.err.println("AAAA" + a.toString());
+        }
+    }
+
+    public static void TrackDataCondition(TrackingOperations trackingData, PersonOperations personData) {
+
+        double proteinsWithActivity, fatWithActivity, carbsWithActivity;
+        long row_count = trackingData.getRowCount();
+        CalorieTracking trackingRow = trackingData.getTracking(row_count);
+        String current_date_str = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        String tracking_row_date = trackingRow.getDate();
+
+        personData.open();
+        Person person = personData.getPerson(1);
+        double BMRWithActivity = Double.parseDouble(person.getBMRWithActivity());
+        proteinsWithActivity = Math.round(BMRWithActivity * 0.25);
+        fatWithActivity = Math.round(BMRWithActivity * 0.25);
+        carbsWithActivity = Math.round(BMRWithActivity * 0.5);
+        personData.close();
+
+        if(current_date_str.equals(tracking_row_date)) {}
+        else {
+            CalorieTracking calorieTrackingData = new CalorieTracking();
+            calorieTrackingData.setDate(current_date_str);
+
+            calorieTrackingData.setCal_needed(BMRWithActivity);
+            calorieTrackingData.setCal_consumed(0.0);
+            calorieTrackingData.setCal_remaining(BMRWithActivity);
+
+            calorieTrackingData.setProtein_needed(Math.round(proteinsWithActivity / 4.0));
+            calorieTrackingData.setProtein_consumed(0.0);
+            calorieTrackingData.setProtein_remaining(Math.round(proteinsWithActivity / 4.0));
+
+            calorieTrackingData.setFat_needed(Math.round(fatWithActivity / 9.0));
+            calorieTrackingData.setFat_consumed(0.0);
+            calorieTrackingData.setFat_remaining(Math.round(fatWithActivity / 9.0));
+
+            calorieTrackingData.setCarbs_needed(Math.round(carbsWithActivity / 4.0));
+            calorieTrackingData.setCarbs_consumed(0.0);
+            calorieTrackingData.setCarbs_remaining(Math.round(carbsWithActivity / 4.0));
+
+            trackingData.addTrackingData(calorieTrackingData);
         }
     }
 }

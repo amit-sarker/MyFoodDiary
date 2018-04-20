@@ -4,25 +4,18 @@ import java.util.Date;
 
 public class FoodDiary {
     private long diary_id;
-    private String food_name, food_serving_measurement, meal_type;
+    private String food_name, food_serving_measurement, food_serving_amount, meal_type;
     //private String current_date = new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault()).format(new Date());
     private String date;
 
     public FoodDiary() {}
 
-    public FoodDiary(long diary_id, String food_name, String food_serving_measurement, String meal_type, String date) {
+    public FoodDiary(long diary_id, String food_name, String food_serving_measurement, String food_serving_amount, String meal_type, String date) {
         this.diary_id = diary_id;
         this.food_name = food_name;
-        this.food_serving_measurement = food_serving_measurement;
+        this.food_serving_measurement = food_serving_measurement;   //gram/unit/cup/spoon etc serving units
+        this.food_serving_amount = food_serving_amount;            //amount of the selected serving unit
         this.meal_type = meal_type;
-        this.date = date;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
         this.date = date;
     }
 
@@ -50,6 +43,14 @@ public class FoodDiary {
         this.food_serving_measurement = food_serving_measurement;
     }
 
+    public String getFood_serving_amount() {
+        return food_serving_amount;
+    }
+
+    public void setFood_serving_amount(String food_serving_amount) {
+        this.food_serving_amount = food_serving_amount;
+    }
+
     public String getMeal_type() {
         return meal_type;
     }
@@ -58,13 +59,23 @@ public class FoodDiary {
         this.meal_type = meal_type;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     @Override
     public String toString() {
         return "FoodDiary{" +
                 "diary_id=" + diary_id +
                 ", food_name='" + food_name + '\'' +
                 ", food_serving_measurement='" + food_serving_measurement + '\'' +
+                ", food_serving_amount='" + food_serving_amount + '\'' +
                 ", meal_type='" + meal_type + '\'' +
+                ", date='" + date + '\'' +
                 '}';
     }
 }

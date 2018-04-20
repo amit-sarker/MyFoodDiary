@@ -28,7 +28,7 @@ public class TrackingDBHandler extends SQLiteOpenHelper {
 
     public static final String TABLE_CREATE =
             "CREATE TABLE " + TABLE_TRACKING + " (" +
-                    COLUMN_TRACKING_ID + " INTEGER, " +
+                    COLUMN_TRACKING_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_TRACKING_DATE + " TEXT, " +
                     COLUMN_CAL_NEEDED + " DOUBLE, " +
                     COLUMN_CAL_CONSUMED + " DOUBLE, " +

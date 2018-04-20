@@ -3,12 +3,15 @@ package categorydatabase;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static categorydatabase.CategoryDBHandler.TABLE_CATEGORY;
 
 public class CategoryOperations {
 
@@ -55,15 +58,14 @@ public class CategoryOperations {
         values.put(CategoryDBHandler.COLUMN_FOOD_NAME, foodCategory.getFoodName());
         values.put(CategoryDBHandler.COLUMN_FOOD_IMAGE, foodCategory.getFoodImage());
         values.put(CategoryDBHandler.COLUMN_CATEGORY_IMAGE, foodCategory.getCategoryImage());
-        database.insert(CategoryDBHandler.TABLE_CATEGORY,null, values);
+        database.insert(TABLE_CATEGORY,null, values);
         return foodCategory;
     }
 
 
-
     public List<FoodCategory> getDistinctFoodCategory() {
 
-        Cursor cursor = database.query(true, CategoryDBHandler.TABLE_CATEGORY, distColumns, null, null, null, null, null, null);
+        Cursor cursor = database.query(true, TABLE_CATEGORY, distColumns, null, null, null, null, null, null);
 
         List<FoodCategory> foodCategoryList = new ArrayList<>();
 
@@ -76,8 +78,6 @@ public class CategoryOperations {
                     foodCategoryList.add(foodCategory);
             }
         }
-        System.err.println("FFFFFFFFFFFFFFFFFFFFFFF  " + foodCategoryList.size());
-        // return All Employees
         return foodCategoryList;
     }
 
@@ -85,7 +85,7 @@ public class CategoryOperations {
 
     public List<FoodCategory> getFoodCategoryByName(String categoryName) {
 
-        Cursor cursor = database.query(CategoryDBHandler.TABLE_CATEGORY, allColumns,null,null,null, null, null);
+        Cursor cursor = database.query(TABLE_CATEGORY, allColumns,null,null,null, null, null);
 
         List<FoodCategory> foodCategoryList = new ArrayList<>();
 
@@ -111,7 +111,7 @@ public class CategoryOperations {
 
     public List<FoodCategory> getFoodCategory(long id) {
 
-        Cursor cursor = database.query(CategoryDBHandler.TABLE_CATEGORY, allColumns,null,null,null, null, null);
+        Cursor cursor = database.query(TABLE_CATEGORY, allColumns,null,null,null, null, null);
 
         List<FoodCategory> foodCategoryList = new ArrayList<>();
 
@@ -134,6 +134,12 @@ public class CategoryOperations {
         return foodCategoryList;
     }
 
+    public long getRowCount() {
+        SQLiteDatabase db = dbhandler.getReadableDatabase();
+        long count = DatabaseUtils.queryNumEntries(db, TABLE_CATEGORY);
+        return count;
+    }
+
     // Updating Person
     /*public int updateFoodCategory(FoodCategory foodCategory) {
 
@@ -151,7 +157,7 @@ public class CategoryOperations {
 
     // Deleting Person
     public void removeCategory(FoodCategory foodCategory) {
-        database.delete(CategoryDBHandler.TABLE_CATEGORY,CategoryDBHandler.COLUMN_CATEGORY_ID + "=" + foodCategory.getCategoryID(),null);
+        database.delete(TABLE_CATEGORY,CategoryDBHandler.COLUMN_CATEGORY_ID + "=" + foodCategory.getCategoryID(),null);
     }
 
 }
