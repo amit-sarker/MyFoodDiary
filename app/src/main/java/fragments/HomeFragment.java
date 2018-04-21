@@ -83,6 +83,8 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         personData = new PersonOperations(getContext());
+        foodDiary = new DiaryOperations(getContext());
+        foodData = new FoodOperations(getContext());
         personData.open();
 
         Person person = new Person();
@@ -194,8 +196,6 @@ public class HomeFragment extends Fragment {
             showLunchModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), a.getFood_serving_amount() + ", " + a.getFood_serving_measurement()));
             foodData.close();
         }
-
-        foodDiary.close();
 
         foodDiaryList = foodDiary.getFoodListByMealType("Dinner");
         for (FoodDiary a : foodDiaryList) {
