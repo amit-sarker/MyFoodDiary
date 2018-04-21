@@ -90,6 +90,36 @@ public class DiaryOperations {
         return foodDiaryList;
     }
 
+    public List<FoodDiary> getFoodListByMealType(String meal_type) {
+        Cursor cursor = database.query(DiaryDBHandler.TABLE_DIARY, allColumns,null,null,null, null, null);
+        List<FoodDiary> foodDiaryList = new ArrayList<>();
+
+        if(cursor.getCount() > 0) {
+            while(cursor.moveToNext()) {
+                if(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_MEAL_TYPE)).equals(meal_type))
+                {
+                    FoodDiary foodDiary = new FoodDiary();
+                    foodDiary.setDiary_id(cursor.getLong(cursor.getColumnIndex(DiaryDBHandler.COLUMN_DIARY_ID)));
+                    foodDiary.setDate(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_DATE)));
+                    foodDiary.setFood_name(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_FOOD_NAME)));
+                    foodDiary.setFood_serving_measurement(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_FOOD_SERVING_MEASUREMENT)));
+                    foodDiary.setFood_serving_amount(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_FOOD_SERVING_AMOUNT)));
+                    foodDiary.setMeal_type(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_MEAL_TYPE)));
+                    foodDiary.setTotal_cal_selected_food(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_TOTAL_CAL_SELECTED_FOOD)));
+
+                    foodDiaryList.add(foodDiary);
+                }
+
+            }
+        }
+        return foodDiaryList;
+    }
+
+
+
+
+
+
     public int updateFoodDiary(FoodDiary foodDiary) {
         ContentValues values = new ContentValues();
         values.put(DiaryDBHandler.COLUMN_DATE, foodDiary.getDate());

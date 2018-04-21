@@ -35,12 +35,19 @@ import com.txusballesteros.widgets.FitChartValue;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
+import fooddatabase.Food;
+import fooddatabase.FoodOperations;
+import fooddiarydatabase.DiaryDBHandler;
+import fooddiarydatabase.DiaryOperations;
+import fooddiarydatabase.FoodDiary;
 import generalpersondatabase.Person;
 import generalpersondatabase.PersonOperations;
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
 import it.sephiroth.android.library.widget.HListView;
+import servingdatabase.FoodServing;
 
 
 public class HomeFragment extends Fragment {
@@ -48,6 +55,11 @@ public class HomeFragment extends Fragment {
     public HomeFragment() {
         // Required empty public constructor
     }
+
+    private DiaryOperations foodDiary;
+    private List<FoodDiary> foodDiaryList;
+
+    private FoodOperations foodData;
 
     private FitChart fitChart;
     private Button addButton;
@@ -155,8 +167,52 @@ public class HomeFragment extends Fragment {
         showDinnerModels = new ArrayList<>();
         initialShowDinnerModels = new ArrayList<>();
 
-        showBreakfastModels.add(new ShowFood(R.drawable.food5, "Apple", "1200 kcal", "5 cup (400gm)"));
-        showBreakfastModels.add(new ShowFood(R.drawable.food2, "Noodles", "450 kcal", "1 plate"));
+
+        foodDiary.open();
+
+        foodDiaryList = foodDiary.getFoodListByMealType("Breakfast");
+        for (FoodDiary a : foodDiaryList) {
+            String foodName = a.getFood_name();
+            foodData.open();
+            Food food = foodData.getFoodByName(foodName);
+            int imgId = ImageID(food.getFood_image());
+            showBreakfastModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), a.getFood_serving_amount() + ", " + a.getFood_serving_measurement()));
+            foodData.close();
+        }
+
+        foodDiary.close();
+
+
+        foodDiary.open();
+
+        foodDiaryList = foodDiary.getFoodListByMealType("Lunch");
+        for (FoodDiary a : foodDiaryList) {
+            String foodName = a.getFood_name();
+            foodData.open();
+            Food food = foodData.getFoodByName(foodName);
+            int imgId = ImageID(food.getFood_image());
+            showLunchModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), a.getFood_serving_amount() + ", " + a.getFood_serving_measurement()));
+            foodData.close();
+        }
+
+        foodDiary.close();
+
+        foodDiaryList = foodDiary.getFoodListByMealType("Dinner");
+        for (FoodDiary a : foodDiaryList) {
+            String foodName = a.getFood_name();
+            foodData.open();
+            Food food = foodData.getFoodByName(foodName);
+            int imgId = ImageID(food.getFood_image());
+            showDinnerModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), a.getFood_serving_amount() + ", " + a.getFood_serving_measurement()));
+            foodData.close();
+        }
+
+        foodDiary.close();
+
+
+
+      //  showBreakfastModels.add(new ShowFood(R.drawable.food5, "Apple", "1200 kcal", "5 cup (400gm)"));
+      //  showBreakfastModels.add(new ShowFood(R.drawable.food2, "Noodles", "450 kcal", "1 plate"));
 
 
         initialShowBreakfastModels.add(new InitialShowFood(R.drawable.breakfast,"Eat breakfast, Start Healthy Life"));
@@ -291,6 +347,10 @@ public class HomeFragment extends Fragment {
             return false;
         }
 
+    }
+    public int ImageID(String image_name) {
+        int resID = this.getResources().getIdentifier(image_name, "drawable", "com.example.moumita.caloriecountergeb");
+        return resID;
     }
 
 
