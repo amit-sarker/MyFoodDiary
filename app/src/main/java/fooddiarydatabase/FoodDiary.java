@@ -4,18 +4,19 @@ import java.util.Date;
 
 public class FoodDiary {
     private long diary_id;
-    private String food_name, food_serving_measurement, food_serving_amount, meal_type;
+    private String food_name, food_serving_measurement, food_serving_amount, meal_type, total_cal_selected_food;
     //private String current_date = new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault()).format(new Date());
     private String date;
 
     public FoodDiary() {}
 
-    public FoodDiary(long diary_id, String food_name, String food_serving_measurement, String food_serving_amount, String meal_type, String date) {
+    public FoodDiary(long diary_id, String food_name, String food_serving_measurement, String food_serving_amount, String meal_type, String total_cal_selected_food, String date) {
         this.diary_id = diary_id;
         this.food_name = food_name;
-        this.food_serving_measurement = food_serving_measurement;   //gram/unit/cup/spoon etc serving units
-        this.food_serving_amount = food_serving_amount;            //amount of the selected serving unit
+        this.food_serving_measurement = food_serving_measurement;
+        this.food_serving_amount = food_serving_amount;
         this.meal_type = meal_type;
+        this.total_cal_selected_food = total_cal_selected_food;
         this.date = date;
     }
 
@@ -67,6 +68,14 @@ public class FoodDiary {
         this.date = date;
     }
 
+    public String getTotal_cal_selected_food() {
+        return total_cal_selected_food;
+    }
+
+    public void setTotal_cal_selected_food(String total_cal_selected_food) {
+        this.total_cal_selected_food = total_cal_selected_food;
+    }
+
     @Override
     public String toString() {
         return "FoodDiary{" +
@@ -75,6 +84,7 @@ public class FoodDiary {
                 ", food_serving_measurement='" + food_serving_measurement + '\'' +
                 ", food_serving_amount='" + food_serving_amount + '\'' +
                 ", meal_type='" + meal_type + '\'' +
+                ", total_cal_selected_food='" + total_cal_selected_food + '\'' +
                 ", date='" + date + '\'' +
                 '}';
     }

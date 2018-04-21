@@ -16,6 +16,7 @@ public class DiaryDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_FOOD_SERVING_MEASUREMENT = "servingMeasurement";
     public static final String COLUMN_FOOD_SERVING_AMOUNT = "servingAmount";
     public static final String COLUMN_MEAL_TYPE = "mealType";
+    public static final String COLUMN_TOTAL_CAL_SELECTED_FOOD = "calSelectedFood";
 
 
     private static final String TABLE_CREATE =
@@ -25,7 +26,8 @@ public class DiaryDBHandler extends SQLiteOpenHelper {
                     COLUMN_FOOD_NAME + " TEXT, " +
                     COLUMN_FOOD_SERVING_MEASUREMENT + " TEXT, " +
                     COLUMN_FOOD_SERVING_AMOUNT + " TEXT, " +
-                    COLUMN_MEAL_TYPE + " TEXT " +
+                    COLUMN_MEAL_TYPE + " TEXT, " +
+                    COLUMN_TOTAL_CAL_SELECTED_FOOD + " TEXT " +
                     ")";
 
     public DiaryDBHandler(Context context){

@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,8 @@ import java.util.List;
 import activities.TestTabActivity;
 import fooddatabase.Food;
 import fooddatabase.FoodOperations;
+import fooddiarydatabase.DiaryOperations;
+import fooddiarydatabase.FoodDiary;
 import generalpersonactivities.BMICalculation;
 import servingdatabase.FoodServing;
 import servingdatabase.ServingOperations;
@@ -44,6 +47,7 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
     private List<Double> gramList;
     private List<String> servingList;
     private List<Integer> imageList;
+    private DiaryOperations diaryData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,7 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
         foodData = new FoodOperations(this);
         servingData = new ServingOperations(this);
         trackingData = new TrackingOperations(this);
+        diaryData = new DiaryOperations(this);
         foodServingList = new ArrayList<>();
         servingList = new ArrayList<>();
         imageList = new ArrayList<>();
@@ -234,7 +239,7 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
 
                 //String current_date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
                 //String tracking_row_date = trackingRow.getDate();
-                final CalorieTracking newTrackingData = new CalorieTracking();
+                CalorieTracking newTrackingData = new CalorieTracking();
                 newTrackingData.setCalorie_tracking_id(trackingRow.getCalorie_tracking_id());
                 newTrackingData.setDate(trackingRow.getDate());
                 newTrackingData.setCal_needed(trackingRow.getCal_needed());
@@ -252,12 +257,26 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
 
                 trackingData.updateTracking(newTrackingData);
                 trackingData.close();
+
+                diaryData.open();
+
+                FoodDiary newDiary = new FoodDiary();
+                newDiary.setFood_name(foodName);
+                newDiary.setFood_serving_measurement(servingList.get(intservingSize));
+                newDiary.setFood_serving_amount(servingAmountString);
+                newDiary.setMeal_type("Lunch"); //Should be editedddddddddddddddddddddddddddddddddddddd
+                newDiary.setDate(trackingRow.getDate());
+                newDiary.setTotal_cal_selected_food(String.valueOf(foodNeutrients[0]));
+                Toast.makeText(getApplicationContext(), "Diary Added", Toast.LENGTH_SHORT).show();
+
+                diaryData.addFoodDiary(newDiary);
+                diaryData.close();
+
                 Intent intent = new Intent(AddFoodToDiaryActivity.this, TestTabActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
-
     }
 
     public double getCalculatedNutrients(double servingAmount, double grams, double in_100_grams) {

@@ -58,7 +58,6 @@ public class FoodDBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        //System.err.println("CAAAAAAAAAAAAAAAAAAAAAAAAAAAAALLLLLLLLLLLLLLLEDDDDDDDDDDDDDDDDDDD");
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_FOOD);
         sqLiteDatabase.execSQL(TABLE_CREATE);
     }
