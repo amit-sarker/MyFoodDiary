@@ -30,4 +30,14 @@ public class ShowFood {
     public void setFoodImage(int foodImage) {
         this.foodImage = foodImage;
     }
+
+    @Override
+    public String toString() {
+        return "ShowFood{" +
+                "foodName='" + foodName + '\'' +
+                ", foodCalorie='" + foodCalorie + '\'' +
+                ", foodServingSize='" + foodServingSize + '\'' +
+                ", foodImage=" + foodImage +
+                '}';
+    }
 }

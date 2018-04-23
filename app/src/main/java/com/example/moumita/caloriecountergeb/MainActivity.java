@@ -192,13 +192,14 @@ public class MainActivity extends AppCompatActivity {
         food.setFood_proteins(Double.parseDouble(foodAttributes[4]));
         food.setFood_carbohydrates(Double.parseDouble(foodAttributes[5]));
         food.setFood_fat(Double.parseDouble(foodAttributes[6]));
-        food.setFood_energy_calculated(Double.parseDouble(foodAttributes[7]));
-        food.setFood_proteins_calculated(Double.parseDouble(foodAttributes[8]));
-        food.setFood_carbohydrates_calculated(Double.parseDouble(foodAttributes[9]));
-        food.setFood_fat_calculated(Double.parseDouble(foodAttributes[10]));
-        food.setFood_category_id(Long.parseLong(foodAttributes[11]));
-        food.setFood_image(foodAttributes[12]);
-        food.setFood_notes(foodAttributes[13]);
+        food.setFood_water(Double.parseDouble(foodAttributes[7]));
+        food.setFood_fiber(Double.parseDouble(foodAttributes[8]));
+        food.setFood_vit_a(Double.parseDouble(foodAttributes[9]));
+        food.setFood_vit_c(Double.parseDouble(foodAttributes[10]));
+        food.setFood_vit_e(Double.parseDouble(foodAttributes[11]));
+        food.setFood_category_id(Long.parseLong(foodAttributes[12]));
+        food.setFood_image(foodAttributes[13]);
+        food.setFood_notes(foodAttributes[14]);
 
         for (String eachAttribute: foodAttributes){
             if(eachAttribute.equals("\0"))

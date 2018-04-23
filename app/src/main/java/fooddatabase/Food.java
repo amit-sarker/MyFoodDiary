@@ -1,20 +1,22 @@
 package fooddatabase;
 
 public class Food {
-    private long food_id, food_category_id;
-    private String food_name, food_serving_mesurment, food_image, food_notes;
-    private double food_serving_size, food_energy, food_proteins, food_carbohydrates,
-            food_fat, food_energy_calculated, food_carbohydrates_calculated, food_proteins_calculated,
-            food_fat_calculated;
+    private long food_id;
+    private String food_name;
+    private double food_serving_size;
+    private String food_serving_mesurment;
+    private double  food_energy, food_proteins, food_carbohydrates, food_fat, food_water, food_fiber,
+    food_vit_a, food_vit_c, food_vit_e;
+    private long food_category_id;
+    private String food_image, food_notes;
 
     public Food() {
     }
 
-    public Food(long food_id, String food_name, double food_serving_size, String food_serving_mesurment,
-                double food_energy, double food_proteins, double food_carbohydrates, double food_fat,
-                double food_energy_calculated, double food_proteins_calculated, double food_carbohydrates_calculated,
-                double food_fat_calculated, long food_category_id, String food_image, String food_notes) {
-
+    public Food(long food_id, String food_name, double food_serving_size, String food_serving_mesurment, double food_energy,
+                double food_proteins, double food_carbohydrates, double food_fat, double food_water, double food_fiber,
+                double food_vit_a, double food_vit_c, double food_vit_e, long food_category_id, String food_image,
+                String food_notes) {
         this.food_id = food_id;
         this.food_name = food_name;
         this.food_serving_size = food_serving_size;
@@ -23,10 +25,11 @@ public class Food {
         this.food_proteins = food_proteins;
         this.food_carbohydrates = food_carbohydrates;
         this.food_fat = food_fat;
-        this.food_energy_calculated = food_energy_calculated;
-        this.food_proteins_calculated = food_proteins_calculated;
-        this.food_carbohydrates_calculated = food_carbohydrates_calculated;
-        this.food_fat_calculated = food_fat_calculated;
+        this.food_water = food_water;
+        this.food_fiber = food_fiber;
+        this.food_vit_a = food_vit_a;
+        this.food_vit_c = food_vit_c;
+        this.food_vit_e = food_vit_e;
         this.food_category_id = food_category_id;
         this.food_image = food_image;
         this.food_notes = food_notes;
@@ -120,36 +123,44 @@ public class Food {
         this.food_fat = food_fat;
     }
 
-    public double getFood_energy_calculated() {
-        return food_energy_calculated;
+    public double getFood_water() {
+        return food_water;
     }
 
-    public void setFood_energy_calculated(double food_energy_calculated) {
-        this.food_energy_calculated = food_energy_calculated;
+    public void setFood_water(double food_water) {
+        this.food_water = food_water;
     }
 
-    public double getFood_carbohydrates_calculated() {
-        return food_carbohydrates_calculated;
+    public double getFood_fiber() {
+        return food_fiber;
     }
 
-    public void setFood_carbohydrates_calculated(double food_carbohydrates_calculated) {
-        this.food_carbohydrates_calculated = food_carbohydrates_calculated;
+    public void setFood_fiber(double food_fiber) {
+        this.food_fiber = food_fiber;
     }
 
-    public double getFood_proteins_calculated() {
-        return food_proteins_calculated;
+    public double getFood_vit_a() {
+        return food_vit_a;
     }
 
-    public void setFood_proteins_calculated(double food_proteins_calculated) {
-        this.food_proteins_calculated = food_proteins_calculated;
+    public void setFood_vit_a(double food_vit_a) {
+        this.food_vit_a = food_vit_a;
     }
 
-    public double getFood_fat_calculated() {
-        return food_fat_calculated;
+    public double getFood_vit_e() {
+        return food_vit_e;
     }
 
-    public void setFood_fat_calculated(double food_fat_calculated) {
-        this.food_fat_calculated = food_fat_calculated;
+    public void setFood_vit_e(double food_vit_e) {
+        this.food_vit_e = food_vit_e;
+    }
+
+    public double getFood_vit_c() {
+        return food_vit_c;
+    }
+
+    public void setFood_vit_c(double food_vit_c) {
+        this.food_vit_c = food_vit_c;
     }
 
     @Override
@@ -166,10 +177,11 @@ public class Food {
                 ", food_proteins=" + food_proteins +
                 ", food_carbohydrates=" + food_carbohydrates +
                 ", food_fat=" + food_fat +
-                ", food_energy_calculated=" + food_energy_calculated +
-                ", food_carbohydrates_calculated=" + food_carbohydrates_calculated +
-                ", food_proteins_calculated=" + food_proteins_calculated +
-                ", food_fat_calculated=" + food_fat_calculated +
+                ", food_water=" + food_water +
+                ", food_fiber=" + food_fiber +
+                ", food_vit_a=" + food_vit_a +
+                ", food_vit_e=" + food_vit_e +
+                ", food_vit_c=" + food_vit_c +
                 '}';
     }
 }

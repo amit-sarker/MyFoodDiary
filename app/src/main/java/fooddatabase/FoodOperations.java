@@ -25,10 +25,11 @@ public class FoodOperations {
             FoodDBHandler.COLUMN_FOOD_PROTEINS,
             FoodDBHandler.COLUMN_FOOD_CARBOHYDRATES,
             FoodDBHandler.COLUMN_FOOD_FAT,
-            FoodDBHandler.COLUMN_FOOD_ENERGY_CALCULATED,
-            FoodDBHandler.COLUMN_FOOD_PROTEINS_CALCULATED,
-            FoodDBHandler.COLUMN_FOOD_CARBOHYDRATES_CALCULATED,
-            FoodDBHandler.COLUMN_FOOD_FAT_CALCULATED,
+            FoodDBHandler.COLUMN_FOOD_WATER,
+            FoodDBHandler.COLUMN_FOOD_FIBER,
+            FoodDBHandler.COLUMN_FOOD_VIT_A,
+            FoodDBHandler.COLUMN_FOOD_VIT_C,
+            FoodDBHandler.COLUMN_FOOD_VIT_E,
             FoodDBHandler.COLUMN_FOOD_CATEGORY_ID,
             FoodDBHandler.COLUMN_FOOD_IMAGE,
             FoodDBHandler.COLUMN_FOOD_NOTES
@@ -58,10 +59,11 @@ public class FoodOperations {
         values.put(FoodDBHandler.COLUMN_FOOD_PROTEINS, food.getFood_proteins());
         values.put(FoodDBHandler.COLUMN_FOOD_CARBOHYDRATES, food.getFood_carbohydrates());
         values.put(FoodDBHandler.COLUMN_FOOD_FAT, food.getFood_fat());
-        values.put(FoodDBHandler.COLUMN_FOOD_ENERGY_CALCULATED, food.getFood_energy_calculated());
-        values.put(FoodDBHandler.COLUMN_FOOD_PROTEINS_CALCULATED, food.getFood_proteins_calculated());
-        values.put(FoodDBHandler.COLUMN_FOOD_CARBOHYDRATES_CALCULATED, food.getFood_carbohydrates_calculated());
-        values.put(FoodDBHandler.COLUMN_FOOD_FAT_CALCULATED, food.getFood_fat_calculated());
+        values.put(FoodDBHandler.COLUMN_FOOD_WATER, food.getFood_water());
+        values.put(FoodDBHandler.COLUMN_FOOD_FIBER, food.getFood_fiber());
+        values.put(FoodDBHandler.COLUMN_FOOD_VIT_A, food.getFood_vit_a());
+        values.put(FoodDBHandler.COLUMN_FOOD_VIT_C, food.getFood_vit_c());
+        values.put(FoodDBHandler.COLUMN_FOOD_VIT_E, food.getFood_vit_e());
         values.put(FoodDBHandler.COLUMN_FOOD_CATEGORY_ID, food.getFood_category_id());
         values.put(FoodDBHandler.COLUMN_FOOD_IMAGE, food.getFood_image());
         values.put(FoodDBHandler.COLUMN_FOOD_NOTES, food.getFood_notes());
@@ -81,8 +83,8 @@ public class FoodOperations {
         Food e = new Food(Long.parseLong(cursor.getString(0)), cursor.getString(1), cursor.getDouble(2),
                 cursor.getString(3), cursor.getDouble(4), cursor.getDouble(5), cursor.getDouble(6),
                 cursor.getDouble(7), cursor.getDouble(8), cursor.getDouble(9), cursor.getDouble(10),
-                cursor.getDouble(11), Long.parseLong(cursor.getString(12)), cursor.getString(13),
-                cursor.getString(14));
+                cursor.getDouble(11), cursor.getDouble(12), Long.parseLong(cursor.getString(13)), cursor.getString(14),
+                cursor.getString(15));
 
         return e;
     }
@@ -95,8 +97,8 @@ public class FoodOperations {
         Food e = new Food(Long.parseLong(cursor.getString(0)), cursor.getString(1), cursor.getDouble(2),
                 cursor.getString(3), cursor.getDouble(4), cursor.getDouble(5), cursor.getDouble(6),
                 cursor.getDouble(7), cursor.getDouble(8), cursor.getDouble(9), cursor.getDouble(10),
-                cursor.getDouble(11), Long.parseLong(cursor.getString(12)), cursor.getString(13),
-                cursor.getString(14));
+                cursor.getDouble(11), cursor.getDouble(12), Long.parseLong(cursor.getString(13)), cursor.getString(14),
+                cursor.getString(15));
         return e;
     }
 
@@ -115,10 +117,11 @@ public class FoodOperations {
                 food.setFood_proteins(cursor.getDouble(cursor.getColumnIndex(FoodDBHandler.COLUMN_FOOD_PROTEINS)));
                 food.setFood_carbohydrates(cursor.getDouble(cursor.getColumnIndex(FoodDBHandler.COLUMN_FOOD_CARBOHYDRATES)));
                 food.setFood_fat(cursor.getDouble(cursor.getColumnIndex(FoodDBHandler.COLUMN_FOOD_FAT)));
-                food.setFood_energy_calculated(cursor.getDouble(cursor.getColumnIndex(FoodDBHandler.COLUMN_FOOD_ENERGY_CALCULATED)));
-                food.setFood_proteins_calculated(cursor.getDouble(cursor.getColumnIndex(FoodDBHandler.COLUMN_FOOD_PROTEINS_CALCULATED)));
-                food.setFood_carbohydrates_calculated(cursor.getDouble(cursor.getColumnIndex(FoodDBHandler.COLUMN_FOOD_CARBOHYDRATES_CALCULATED)));
-                food.setFood_fat_calculated(cursor.getDouble(cursor.getColumnIndex(FoodDBHandler.COLUMN_FOOD_FAT_CALCULATED)));
+                food.setFood_water(cursor.getDouble(cursor.getColumnIndex(FoodDBHandler.COLUMN_FOOD_WATER)));
+                food.setFood_fiber(cursor.getDouble(cursor.getColumnIndex(FoodDBHandler.COLUMN_FOOD_FIBER)));
+                food.setFood_vit_a(cursor.getDouble(cursor.getColumnIndex(FoodDBHandler.COLUMN_FOOD_VIT_A)));
+                food.setFood_vit_c(cursor.getDouble(cursor.getColumnIndex(FoodDBHandler.COLUMN_FOOD_VIT_C)));
+                food.setFood_vit_e(cursor.getDouble(cursor.getColumnIndex(FoodDBHandler.COLUMN_FOOD_VIT_E)));
                 food.setFood_category_id(cursor.getLong(cursor.getColumnIndex(FoodDBHandler.COLUMN_FOOD_CATEGORY_ID)));
                 food.setFood_image(cursor.getString(cursor.getColumnIndex(FoodDBHandler.COLUMN_FOOD_IMAGE)));
                 food.setFood_notes(cursor.getString(cursor.getColumnIndex(FoodDBHandler.COLUMN_FOOD_NOTES)));
@@ -139,10 +142,11 @@ public class FoodOperations {
         values.put(FoodDBHandler.COLUMN_FOOD_PROTEINS, food.getFood_proteins());
         values.put(FoodDBHandler.COLUMN_FOOD_CARBOHYDRATES, food.getFood_carbohydrates());
         values.put(FoodDBHandler.COLUMN_FOOD_FAT, food.getFood_fat());
-        values.put(FoodDBHandler.COLUMN_FOOD_ENERGY_CALCULATED, food.getFood_energy_calculated());
-        values.put(FoodDBHandler.COLUMN_FOOD_PROTEINS_CALCULATED, food.getFood_proteins_calculated());
-        values.put(FoodDBHandler.COLUMN_FOOD_CARBOHYDRATES_CALCULATED, food.getFood_carbohydrates_calculated());
-        values.put(FoodDBHandler.COLUMN_FOOD_FAT_CALCULATED, food.getFood_fat_calculated());
+        values.put(FoodDBHandler.COLUMN_FOOD_WATER, food.getFood_water());
+        values.put(FoodDBHandler.COLUMN_FOOD_FIBER, food.getFood_fiber());
+        values.put(FoodDBHandler.COLUMN_FOOD_VIT_A, food.getFood_vit_a());
+        values.put(FoodDBHandler.COLUMN_FOOD_VIT_C, food.getFood_vit_c());
+        values.put(FoodDBHandler.COLUMN_FOOD_VIT_E, food.getFood_vit_e());
         values.put(FoodDBHandler.COLUMN_FOOD_CATEGORY_ID, food.getFood_category_id());
         values.put(FoodDBHandler.COLUMN_FOOD_IMAGE, food.getFood_image());
         values.put(FoodDBHandler.COLUMN_FOOD_NOTES, food.getFood_notes());

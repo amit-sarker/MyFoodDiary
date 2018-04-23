@@ -18,14 +18,14 @@ public class FoodDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_FOOD_PROTEINS = "food_proteins";
     public static final String COLUMN_FOOD_CARBOHYDRATES = "food_carbohydrates";
     public static final String COLUMN_FOOD_FAT = "food_fat";
-    public static final String COLUMN_FOOD_ENERGY_CALCULATED = "food_energy_calculated";
-    public static final String COLUMN_FOOD_PROTEINS_CALCULATED = "food_proteins_calculated";
-    public static final String COLUMN_FOOD_CARBOHYDRATES_CALCULATED = "food_carbohydrates_calculated";
-    public static final String COLUMN_FOOD_FAT_CALCULATED = "food_fat_calculated";
     public static final String COLUMN_FOOD_CATEGORY_ID = "food_category_id";
     public static final String COLUMN_FOOD_IMAGE = "food_image";
     public static final String COLUMN_FOOD_NOTES = "food_notes";
-
+    public static final String COLUMN_FOOD_WATER = "food_water";
+    public static final String COLUMN_FOOD_FIBER = "food_fiber";
+    public static final String COLUMN_FOOD_VIT_A = "food_vit_a";
+    public static final String COLUMN_FOOD_VIT_C = "food_vit_c";
+    public static final String COLUMN_FOOD_VIT_E = "food_vit_e";
 
     public static final String TABLE_CREATE =
             "CREATE TABLE " + TABLE_FOOD + " (" +
@@ -37,10 +37,11 @@ public class FoodDBHandler extends SQLiteOpenHelper {
                     COLUMN_FOOD_PROTEINS + " DOUBLE, " +
                     COLUMN_FOOD_CARBOHYDRATES + " DOUBLE, " +
                     COLUMN_FOOD_FAT + " DOUBLE, " +
-                    COLUMN_FOOD_ENERGY_CALCULATED + " DOUBLE, " +
-                    COLUMN_FOOD_PROTEINS_CALCULATED + " DOUBLE, " +
-                    COLUMN_FOOD_CARBOHYDRATES_CALCULATED + " DOUBLE, " +
-                    COLUMN_FOOD_FAT_CALCULATED + " DOUBLE, " +
+                    COLUMN_FOOD_WATER + " DOUBLE, " +
+                    COLUMN_FOOD_FIBER + " DOUBLE, " +
+                    COLUMN_FOOD_VIT_A + " DOUBLE, " +
+                    COLUMN_FOOD_VIT_C + " DOUBLE, " +
+                    COLUMN_FOOD_VIT_E + " DOUBLE, " +
                     COLUMN_FOOD_CATEGORY_ID + " INTEGER, " +
                     COLUMN_FOOD_IMAGE + " TEXT, " +
                     COLUMN_FOOD_NOTES + " TEXT " +

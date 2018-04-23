@@ -1,6 +1,6 @@
-Rice Cooked,100,Gram,112,2.4,23.2,0.7,1111,2222,3333,4444,1,rice.png,valo jinish
-Egg Chicken,100,Gram,139,14.5,0.6,9,5555,6666,7777,8888,2,egg_chicken.png,dim dim dim
-Apple,100,Gram,62,0.3,13.5,0.2,9999,1111,2222,3333,4444,3,apple.png,Appleeeeeeeeeeeee
-Chicken Breast,100,Gram,106,22.3,0,1.8,5555,6666,7777,8888,4,chicken_breast.png,Chicken good for health
-Chicken Thigh,100,Gram,128,19.2,0,5.7,9999,1111,2222,3333,4,chicken_thigh.png,Chicken good for health
-Ilish,100,Gram,223,18,0,16.8,4444,5555,6666,7777,5,ilish.png,Ilishhhhhhhhhhh
+Rice Cooked,100,Gram,112,2.4,23.2,0.7,1111,2222,3333,4444,5555,1,rice,valo jinish
+Egg Chicken,100,Gram,139,14.5,0.6,9,5555,6666,7777,8888,6666,2,egg,dim dim dim
+Apple,100,Gram,62,0.3,13.5,0.2,9999,1111,2222,3333,7777,3,apple,Appleeeeeeeeeeeee
+Chicken Breast,100,Gram,106,22.3,0,1.8,5555,6666,7777,8888,9999,4,chicken,Chicken good for health
+Chicken Thigh,100,Gram,128,19.2,0,5.7,9999,1111,2222,3333,1111,4,chicken,Chicken good for health
+Ilish,100,Gram,223,18,0,16.8,4444,5555,6666,7777,2222,5,fish,Ilishhhhhhhhhhh

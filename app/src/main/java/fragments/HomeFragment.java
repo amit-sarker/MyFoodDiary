@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.moumita.caloriecountergeb.AddFoodActivity;
+import com.example.moumita.caloriecountergeb.AddFoodToDiaryActivity;
 import com.example.moumita.caloriecountergeb.InitialShowFood;
 import com.example.moumita.caloriecountergeb.InitialShowFoodAdapter;
 import com.example.moumita.caloriecountergeb.R;
@@ -33,9 +34,12 @@ import com.example.moumita.caloriecountergeb.ShowWaterAdapter;
 import com.txusballesteros.widgets.FitChart;
 import com.txusballesteros.widgets.FitChartValue;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import fooddatabase.Food;
 import fooddatabase.FoodOperations;
@@ -72,6 +76,7 @@ public class HomeFragment extends Fragment {
     private ImageButton waterAddBtn, waterMinusBtn;
     private TextView waterCountText;
     private int glassOfWater = 0;
+    public static String myMealType;
 
 
 
@@ -129,10 +134,34 @@ public class HomeFragment extends Fragment {
             public boolean onMenuItemSelected(MenuItem menuItem) {
 
                 //TODO: Start some activity
-                Intent intent = new Intent(getContext(), AddFoodActivity.class);
-                startActivity(intent);
+                switch (menuItem.getItemId()) {
+                    case R.id.action_breakfast: {
+                        myMealType = "Breakfast";
+                        Intent intent = new Intent(getContext(), AddFoodActivity.class);
+                        intent.putExtra("meal_type", "Breakfast");
+                        startActivity(intent);
+                        break;
+                    }
+                    case R.id.action_lunch: {
+                        myMealType = "Lunch";
+                        Intent intent = new Intent(getContext(), AddFoodActivity.class);
+                        intent.putExtra("meal_type", "Lunch");
+                        startActivity(intent);
+                        break;
+                    }
+                    case R.id.action_dinner: {
+                        myMealType = "Dinner";
+                        Intent intent = new Intent(getContext(), AddFoodActivity.class);
+                        intent.putExtra("meal_type", "Dinner");
+                        startActivity(intent);
+                        break;
+                    }
+
+
+                }
                 return false;
             }
+
         });
 
         waterAddBtn = view.findViewById(R.id.water_plus_btn);
@@ -171,23 +200,29 @@ public class HomeFragment extends Fragment {
 
 
         foodDiary.open();
+        String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
-        foodDiaryList = foodDiary.getFoodListByMealType("Breakfast");
+        foodDiaryList = foodDiary.getFoodListByMealType(currentDate,"Breakfast");
         for (FoodDiary a : foodDiaryList) {
             String foodName = a.getFood_name();
             foodData.open();
             Food food = foodData.getFoodByName(foodName);
             int imgId = ImageID(food.getFood_image());
+            System.out.println("ImageIIIIIIIIIDDDDDD    " + food.getFood_image());
             showBreakfastModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), a.getFood_serving_amount() + ", " + a.getFood_serving_measurement()));
             foodData.close();
         }
 
-        foodDiary.close();
+        System.out.println("HHHHHHHHHHHHHHHHHHH:   " + foodDiaryList.size() + "     " + showBreakfastModels.size());
 
+        for(int i = 0; i < foodDiaryList.size(); i++) {
+            System.err.println("Diary List:       " + foodDiaryList.get(i).toString());
+        }
+        for(int i = 0; i < showBreakfastModels.size(); i++) {
+            System.err.println("show Breakfast      " + showBreakfastModels.get(i).toString());
+        }
 
-        foodDiary.open();
-
-        foodDiaryList = foodDiary.getFoodListByMealType("Lunch");
+        foodDiaryList = foodDiary.getFoodListByMealType(currentDate,"Lunch");
         for (FoodDiary a : foodDiaryList) {
             String foodName = a.getFood_name();
             foodData.open();
@@ -197,12 +232,13 @@ public class HomeFragment extends Fragment {
             foodData.close();
         }
 
-        foodDiaryList = foodDiary.getFoodListByMealType("Dinner");
+        foodDiaryList = foodDiary.getFoodListByMealType(currentDate,"Dinner");
         for (FoodDiary a : foodDiaryList) {
             String foodName = a.getFood_name();
             foodData.open();
             Food food = foodData.getFoodByName(foodName);
             int imgId = ImageID(food.getFood_image());
+
             showDinnerModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), a.getFood_serving_amount() + ", " + a.getFood_serving_measurement()));
             foodData.close();
         }
@@ -276,7 +312,7 @@ public class HomeFragment extends Fragment {
 
 
         initialShowDinnerModels.add(new InitialShowFood(R.drawable.dinner_demo,"End of the day? Gift yourself a wonderful dinner"));
-        if(showLunchModels.isEmpty()==true)
+        if(showDinnerModels.isEmpty()==true)
         {
             initialShowFoodAdapter= new InitialShowFoodAdapter(initialShowDinnerModels,getContext());
 
@@ -349,7 +385,7 @@ public class HomeFragment extends Fragment {
 
     }
     public int ImageID(String image_name) {
-        int resID = this.getResources().getIdentifier(image_name, "drawable", "com.example.moumita.caloriecountergeb");
+        int resID = this.getResources().getIdentifier(image_name, "drawable", getActivity().getPackageName());
         return resID;
     }
 

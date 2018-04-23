@@ -40,7 +40,9 @@ public class ShowFoodAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = null;
+        System.err.println("SHOWWWWWWWWWWWWWWWW    " + mShowFood.size());
         ShowFood showFood = mShowFood.get(position);
+        System.err.println("MMMMMMMMSSSSSSSSSSS     " + showFood.toString());
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater)
                     context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

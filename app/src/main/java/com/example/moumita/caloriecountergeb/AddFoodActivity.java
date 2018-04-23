@@ -26,7 +26,7 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
     private FoodOperations foodData;
     private List<String> foodList = new ArrayList<>();
     private CardView CategoriesCard, RecentCard, FrequentCard, SimpleCaloriesCard;
-
+    String mealType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +35,10 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
+
+        Bundle bundle = getIntent().getExtras();
+        mealType = bundle.getString("meal_type");
+
 
         CategoriesCard = findViewById(R.id.categories_card);
         FrequentCard = findViewById(R.id.frequent_card);
@@ -79,6 +83,7 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
                 foodName = adapter.getItem(position).toString();
                 Intent intent = new Intent(AddFoodActivity.this, AddFoodToDiaryActivity.class);
                 intent.putExtra("foodname", foodName);
+                intent.putExtra("meal_type", mealType);
                 startActivity(intent);
                // System.err.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                // Toast.makeText(getApplicationContext(), "AAAAAAAAAAAAAAAA", Toast.LENGTH_SHORT).show();
@@ -103,18 +108,22 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
         {
             case R.id.categories_card:
                 intent = new Intent(this, CategoryListActivity.class);
+                intent.putExtra("meal_type", mealType);
                 startActivity(intent);
                  break;
             case R.id.recent_card:
                 intent = new Intent(this, RecentListActivity.class);
+                intent.putExtra("meal_type", mealType);
                 startActivity(intent);
                 break;
             case R.id.frequent_card:
                 intent = new Intent(this, FrequentListActivity.class);
+                intent.putExtra("meal_type", mealType);
                 startActivity(intent);
                 break;
             case R.id.simple_calories_card:
                 intent = new Intent(this, PieChartActivity.class);
+                intent.putExtra("meal_type", mealType);
                 startActivity(intent);
                 break;
             default:break;

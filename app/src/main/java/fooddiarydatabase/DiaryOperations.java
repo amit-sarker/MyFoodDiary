@@ -90,13 +90,13 @@ public class DiaryOperations {
         return foodDiaryList;
     }
 
-    public List<FoodDiary> getFoodListByMealType(String meal_type) {
+    public List<FoodDiary> getFoodListByMealType(String current_date, String meal_type) {
         Cursor cursor = database.query(DiaryDBHandler.TABLE_DIARY, allColumns,null,null,null, null, null);
         List<FoodDiary> foodDiaryList = new ArrayList<>();
 
         if(cursor.getCount() > 0) {
             while(cursor.moveToNext()) {
-                if(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_MEAL_TYPE)).equals(meal_type))
+                if(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_MEAL_TYPE)).equals(meal_type) && cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_DATE)).equals(current_date))
                 {
                     FoodDiary foodDiary = new FoodDiary();
                     foodDiary.setDiary_id(cursor.getLong(cursor.getColumnIndex(DiaryDBHandler.COLUMN_DIARY_ID)));
@@ -112,6 +112,7 @@ public class DiaryOperations {
 
             }
         }
+        System.out.println("LLLLLLLLLLLLLLLLLLLLLLLEEEE    " + foodDiaryList.size());
         return foodDiaryList;
     }
 

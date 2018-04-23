@@ -22,6 +22,7 @@ import fooddatabase.Food;
 import fooddatabase.FoodOperations;
 import fooddiarydatabase.DiaryOperations;
 import fooddiarydatabase.FoodDiary;
+import fragments.HomeFragment;
 import generalpersonactivities.BMICalculation;
 import servingdatabase.FoodServing;
 import servingdatabase.ServingOperations;
@@ -48,6 +49,8 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
     private List<String> servingList;
     private List<Integer> imageList;
     private DiaryOperations diaryData;
+    private String mealType,myMealType;
+    HomeFragment homeFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,11 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         foodName = bundle.getString("foodname");
+        mealType = bundle.getString("meal_type");
+        System.err.println("MEALMEALLLLLLLLLLLLLLLL      " + mealType);
+        homeFragment = new HomeFragment();
+
+
         foodData = new FoodOperations(this);
         servingData = new ServingOperations(this);
         trackingData = new TrackingOperations(this);
@@ -87,9 +95,13 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
         for (FoodServing a : foodServingList) {
             servingList.add(a.getFood_serving_measurement());
             imageList.add(ImageID(a.getServing_image_id()));
+            System.out.println("IMAGENAMEEEEEEEE:            " + a.getServing_image_id());
             gramList.add(Double.valueOf(a.getServing_size_to_grams()));
         }
 
+        for(int i = 0; i < imageList.size(); i++) {
+            System.out.println("IIIIIIIIIIIIIIIIIIIIIII    " + imageList.get(i));
+        }
         servingData.close();
 
         foodData.open();
@@ -264,7 +276,7 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
                 newDiary.setFood_name(foodName);
                 newDiary.setFood_serving_measurement(servingList.get(intservingSize));
                 newDiary.setFood_serving_amount(servingAmountString);
-                newDiary.setMeal_type("Lunch"); //Should be editedddddddddddddddddddddddddddddddddddddd
+                newDiary.setMeal_type(mealType); //Should be editedddddddddddddddddddddddddddddddddddddd
                 newDiary.setDate(trackingRow.getDate());
                 newDiary.setTotal_cal_selected_food(String.valueOf(foodNeutrients[0]));
                 Toast.makeText(getApplicationContext(), "Diary Added", Toast.LENGTH_SHORT).show();

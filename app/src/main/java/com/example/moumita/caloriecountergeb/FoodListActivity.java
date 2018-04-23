@@ -20,7 +20,7 @@ public class FoodListActivity extends AppCompatActivity {
     private CategoryOperations categoryData;
     private ListView mListView;
     private List<String> categoryList = new ArrayList<>();
-
+    private String mealType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,7 @@ public class FoodListActivity extends AppCompatActivity {
 
         categoryData = new CategoryOperations(this);
         Bundle bundle = getIntent().getExtras();
+        mealType = bundle.getString("meal_type");
         categoryName = bundle.getString("categoryname");
 
         categoryData.open();
@@ -59,6 +60,7 @@ public class FoodListActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(FoodListActivity.this, AddFoodToDiaryActivity.class);
                 intent.putExtra("foodname", foodName);
+                intent.putExtra("meal_type", mealType);
                 startActivity(intent);
             }
         });

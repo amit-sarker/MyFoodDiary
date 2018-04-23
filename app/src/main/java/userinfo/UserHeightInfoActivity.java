@@ -38,8 +38,7 @@ public class UserHeightInfoActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
         }
 
-        Bundle bundle = getIntent().getExtras();
-        isFemale = bundle.getBoolean("isfemale");
+
 
         for(int i=0;i<10;i++)
         {
