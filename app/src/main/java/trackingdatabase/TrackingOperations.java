@@ -67,7 +67,7 @@ public class TrackingOperations {
 
         if(cursor.getCount() > 0) {
             while(cursor.moveToNext()){
-                if(cursor.getLong(cursor.getColumnIndex(TrackingDBHandler.COLUMN_TRACKING_ID)) >= day) {
+                if(cursor.getLong(cursor.getColumnIndex(TrackingDBHandler.COLUMN_TRACKING_ID)) > day) {
                     CalorieTracking calorieTracking = new CalorieTracking();
                     calorieTracking.setCalorie_tracking_id(cursor.getLong(cursor.getColumnIndex(TrackingDBHandler.COLUMN_TRACKING_ID)));
                     calorieTracking.setDate(cursor.getString(cursor.getColumnIndex(TrackingDBHandler.COLUMN_TRACKING_DATE)));

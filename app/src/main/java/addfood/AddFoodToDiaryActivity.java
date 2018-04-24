@@ -302,7 +302,7 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
                 newTrackingData.setCarbs_consumed(Math.round(trackingRow.getCarbs_consumed() + foodNeutrients[2]));
                 newTrackingData.setCarbs_remaining(Math.round(trackingRow.getCarbs_remaining() - foodNeutrients[2]));
 
-                trackingData.updateTracking(newTrackingData);
+                trackingData.addTrackingData(newTrackingData);
                 trackingData.close();
 
                 diaryData.open();

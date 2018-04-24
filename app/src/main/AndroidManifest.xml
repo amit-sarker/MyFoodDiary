@@ -37,6 +37,7 @@
         <activity android:name="piechart.ChartTestActivity" />
         <activity android:name="piechart.PiePolylineChartActivity" />
         <activity android:name=".ListViewBarChartActivity" />
+        <activity android:name=".GroupBarChart"></activity>
         <activity android:name=".ChatHeadNotificationActivity" />
         <activity android:name=".TestActivity"></activity>
     </application>

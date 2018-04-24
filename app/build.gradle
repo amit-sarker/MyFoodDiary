@@ -49,6 +49,7 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:27.1.0'
     implementation 'it.sephiroth.android.library.horizontallistview:hlistview:1.2.2'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'com.numetriclabz.numandroidcharts:numandroidcharts:1.0.3'
     implementation 'com.txusballesteros:bubbles:1.2.1'
     implementation 'com.nex3z:notification-badge:1.0.0'
 

@@ -18,6 +18,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
@@ -57,10 +58,12 @@ public class ListViewBarChartActivity extends DemoBase {
 
         ArrayList<BarData> list = new ArrayList<BarData>();
 
-        // 20 items
-        for (int i = 0; i < 4; i++) {
-            list.add(generateDataCalorie(i + 1, lastSevenDayList));
-        }
+        list.add(generateDataCalorie(1, lastSevenDayList));
+        list.add(generateDataProtein(1, lastSevenDayList));
+        list.add(generateDataCarbs(1, lastSevenDayList));
+        list.add(generateDataFat(1, lastSevenDayList));
+
+
 
         ChartDataAdapter cda = new ChartDataAdapter(getApplicationContext(), list);
         lv.setAdapter(cda);
@@ -103,6 +106,7 @@ public class ListViewBarChartActivity extends DemoBase {
             xAxis.setPosition(XAxisPosition.BOTTOM);
             xAxis.setTypeface(mTfLight);
             xAxis.setDrawGridLines(false);
+            xAxis.setGranularity(1f);
 
             YAxis leftAxis = holder.chart.getAxisLeft();
             leftAxis.setTypeface(mTfLight);
@@ -140,11 +144,11 @@ public class ListViewBarChartActivity extends DemoBase {
 
         ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
 
-        for (int i = 0; i < min(12,lastSevenDayList.size()); i++) {
+        for (int i = 0; i < min(7,lastSevenDayList.size()); i++) {
             entries.add(new BarEntry(i, (float) (lastSevenDayList.get(i).getCal_consumed())));
         }
 
-        BarDataSet d = new BarDataSet(entries, "New DataSet " + cnt);
+        BarDataSet d = new BarDataSet(entries, "Calories consumed (last 7 days)");
         d.setColors(ColorTemplate.VORDIPLOM_COLORS);
         d.setBarShadowColor(Color.rgb(203, 203, 203));
 
@@ -164,7 +168,7 @@ public class ListViewBarChartActivity extends DemoBase {
             entries.add(new BarEntry(i, (float) (lastSevenDayList.get(i).getProtein_consumed())));
         }
 
-        BarDataSet d = new BarDataSet(entries, "New DataSet " + cnt);
+        BarDataSet d = new BarDataSet(entries, "Proteins consumed (last 7 days)");
         d.setColors(ColorTemplate.VORDIPLOM_COLORS);
         d.setBarShadowColor(Color.rgb(203, 203, 203));
 
@@ -184,7 +188,7 @@ public class ListViewBarChartActivity extends DemoBase {
             entries.add(new BarEntry(i, (float) (lastSevenDayList.get(i).getFat_consumed())));
         }
 
-        BarDataSet d = new BarDataSet(entries, "New DataSet " + cnt);
+        BarDataSet d = new BarDataSet(entries, "Fat consumed (last 7 days)");
         d.setColors(ColorTemplate.VORDIPLOM_COLORS);
         d.setBarShadowColor(Color.rgb(203, 203, 203));
 
@@ -204,7 +208,7 @@ public class ListViewBarChartActivity extends DemoBase {
             entries.add(new BarEntry(i, (float) (lastSevenDayList.get(i).getCarbs_consumed())));
         }
 
-        BarDataSet d = new BarDataSet(entries, "New DataSet " + cnt);
+        BarDataSet d = new BarDataSet(entries, "Carbohydrate consumed (last 7 days)");
         d.setColors(ColorTemplate.VORDIPLOM_COLORS);
         d.setBarShadowColor(Color.rgb(203, 203, 203));
 
