@@ -8,6 +8,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import categorydatabase.CategoryDBHandler;
+import categorydatabase.FoodCategory;
+import fooddatabase.Food;
+import fooddatabase.FoodDBHandler;
+
 import static trackingdatabase.TrackingDBHandler.TABLE_TRACKING;
 
 public class TrackingOperations {
@@ -51,6 +59,39 @@ public class TrackingOperations {
         SQLiteDatabase db = dbhandler.getReadableDatabase();
         long count = DatabaseUtils.queryNumEntries(db, TABLE_TRACKING);
         return count;
+    }
+
+    public List<CalorieTracking> getTrackingData(long day) {
+        Cursor cursor = database.query(TrackingDBHandler.TABLE_TRACKING, allColumns,null,null,null, null, null);
+        List<CalorieTracking> trackingList = new ArrayList<>();
+
+        if(cursor.getCount() > 0) {
+            while(cursor.moveToNext()){
+                if(cursor.getLong(cursor.getColumnIndex(TrackingDBHandler.COLUMN_TRACKING_ID)) >= day) {
+                    CalorieTracking calorieTracking = new CalorieTracking();
+                    calorieTracking.setCalorie_tracking_id(cursor.getLong(cursor.getColumnIndex(TrackingDBHandler.COLUMN_TRACKING_ID)));
+                    calorieTracking.setDate(cursor.getString(cursor.getColumnIndex(TrackingDBHandler.COLUMN_TRACKING_DATE)));
+                    calorieTracking.setCal_needed(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_CAL_NEEDED)));
+                    calorieTracking.setCal_consumed(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_CAL_CONSUMED)));
+                    calorieTracking.setCal_remaining(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_CAL_REMAINING)));
+
+                    calorieTracking.setProtein_needed(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_PROTEIN_NEEDED)));
+                    calorieTracking.setProtein_consumed(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_PROTEIN_CONSUMED)));
+                    calorieTracking.setProtein_remaining(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_PROTEIN_REMAINING)));
+
+                    calorieTracking.setFat_needed(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_FAT_NEEDED)));
+                    calorieTracking.setFat_consumed(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_FAT_CONSUMED)));
+                    calorieTracking.setFat_remaining(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_FAT_REMAINING)));
+
+                    calorieTracking.setCarbs_needed(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_CARBS_NEEDED)));
+                    calorieTracking.setCarbs_consumed(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_CARBS_CONSUMED)));
+                    calorieTracking.setCarbs_remaining(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_CARBS_REMAINING)));
+
+                    trackingList.add(calorieTracking);
+                }
+            }
+        }
+        return trackingList;
     }
 
     public CalorieTracking addTrackingData(CalorieTracking trackingData){

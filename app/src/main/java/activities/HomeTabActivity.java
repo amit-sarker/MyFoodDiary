@@ -37,7 +37,7 @@ public class HomeTabActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        setContentView(R.layout.activity_test_tab);
+        setContentView(R.layout.activity_home_tab);
 
         preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 

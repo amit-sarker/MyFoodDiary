@@ -33,7 +33,8 @@
         <activity android:name="piechart.PieChartActivity" />
         <activity android:name="addfood.AddFoodToDiaryActivity" />
         <activity android:name="piechart.ChartTestActivity" />
-        <activity android:name="piechart.PiePolylineChartActivity"></activity>
+        <activity android:name="piechart.PiePolylineChartActivity" />
+        <activity android:name=".ListViewBarChartActivity"></activity>
     </application>
 
 </manifest>
