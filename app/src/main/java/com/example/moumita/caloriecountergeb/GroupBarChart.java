@@ -123,7 +123,7 @@ public class GroupBarChart extends AppCompatActivity {
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(true);
-        l.setYOffset(30f);
+        l.setYOffset(10f);
         l.setXOffset(0f);
         l.setYEntrySpace(0f);
         l.setTextSize(8f);
@@ -144,6 +144,7 @@ public class GroupBarChart extends AppCompatActivity {
         leftAxis.setDrawGridLines(true);
         leftAxis.setSpaceTop(25f);
         leftAxis.setAxisMinimum(0f);
+        chartCalorie.animateY(700);
     }
 
 
@@ -211,7 +212,7 @@ public class GroupBarChart extends AppCompatActivity {
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(true);
-        l.setYOffset(50f);
+        l.setYOffset(10f);
         l.setXOffset(0f);
         l.setYEntrySpace(0f);
         l.setTextSize(8f);
@@ -232,6 +233,8 @@ public class GroupBarChart extends AppCompatActivity {
         leftAxis.setDrawGridLines(true);
         leftAxis.setSpaceTop(25f);
         leftAxis.setAxisMinimum(0f);
+        chartCalorie.animateY(700);
+
     }
 
 
@@ -299,7 +302,7 @@ public class GroupBarChart extends AppCompatActivity {
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(true);
-        l.setYOffset(50f);
+        l.setYOffset(10f);
         l.setXOffset(0f);
         l.setYEntrySpace(0f);
         l.setTextSize(8f);
@@ -320,6 +323,8 @@ public class GroupBarChart extends AppCompatActivity {
         leftAxis.setDrawGridLines(true);
         leftAxis.setSpaceTop(25f);
         leftAxis.setAxisMinimum(0f);
+        chartCalorie.animateY(700);
+
     }
 
 
@@ -387,7 +392,7 @@ public class GroupBarChart extends AppCompatActivity {
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(true);
-        l.setYOffset(50f);
+        l.setYOffset(10f);
         l.setXOffset(0f);
         l.setYEntrySpace(0f);
         l.setTextSize(8f);
@@ -401,13 +406,14 @@ public class GroupBarChart extends AppCompatActivity {
         xAxis.setAxisMaximum(7);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setValueFormatter(new IndexAxisValueFormatter(xVals));
-//Y-axis
         chartCalorie.getAxisRight().setEnabled(false);
         YAxis leftAxis = chartCalorie.getAxisLeft();
         leftAxis.setValueFormatter(new LargeValueFormatter());
         leftAxis.setDrawGridLines(true);
         leftAxis.setSpaceTop(25f);
         leftAxis.setAxisMinimum(0f);
+        chartCalorie.animateY(700);
+
     }
 
     public String getMonth(String month) {

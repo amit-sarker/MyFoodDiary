@@ -6,12 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="horizontal" >
 
-    <TextView
-        android:layout_width="match_parent"
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="This is Another Tab"
-        android:layout_gravity="center|center_horizontal"
-        android:gravity="center_horizontal"
-        android:textSize="25sp"/>
+        android:id="@+id/analysis_btn"
+        android:text="Tap to see analysis of last seven days"/>
 </LinearLayout>

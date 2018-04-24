@@ -27,6 +27,7 @@ import fooddatabase.FoodDBHandler;
 import fooddatabase.FoodOperations;
 import generalpersondatabase.Person;
 import generalpersondatabase.PersonOperations;
+import notifications.TestActivity;
 import okhttp3.OkHttpClient;
 import servingdatabase.FoodServing;
 import servingdatabase.ServingDBHandler;
@@ -127,11 +128,11 @@ public class MainActivity extends AppCompatActivity {
         long personRowCount = personData.getRowCount();
         personData.close();
 
-        Intent intent = new Intent(MainActivity.this, GroupBarChart.class);
+        /*Intent intent = new Intent(MainActivity.this, TestActivity.class);
         startActivity(intent);
-        finish();
+        finish();*/
 
-        /*if(personRowCount > 0) {
+        if(personRowCount > 0) {
             Intent intent = new Intent(MainActivity.this, HomeTabActivity.class);
             startActivity(intent);
             finish();
@@ -139,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, UserGenderInfoActivity.class);
             startActivity(intent);
             finish();
-        }*/
+        }
     }
 
 
