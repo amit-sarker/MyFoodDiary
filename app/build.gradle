@@ -48,6 +48,7 @@ dependencies {
     implementation 'de.codecrafters.tableview:tableview:2.8.0'
     implementation 'com.android.support:recyclerview-v7:27.1.0'
     implementation 'it.sephiroth.android.library.horizontallistview:hlistview:1.2.2'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 
 
 }

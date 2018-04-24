@@ -247,10 +247,6 @@ public class HomeFragment extends Fragment {
 
 
 
-      //  showBreakfastModels.add(new ShowFood(R.drawable.food5, "Apple", "1200 kcal", "5 cup (400gm)"));
-      //  showBreakfastModels.add(new ShowFood(R.drawable.food2, "Noodles", "450 kcal", "1 plate"));
-
-
         initialShowBreakfastModels.add(new InitialShowFood(R.drawable.breakfast,"Eat breakfast, Start Healthy Life"));
         if(showBreakfastModels.isEmpty()==true)
         {

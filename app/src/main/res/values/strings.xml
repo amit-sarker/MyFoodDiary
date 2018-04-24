@@ -88,6 +88,11 @@
     <string name="show_water">Water</string>
     <string name="water_value">7</string>
     <string name="water_taken">0 glasses today</string>
+    <string name="vit_e">Vitamin E</string>
+    <string name="vit_c">Vitamin C</string>
+    <string name="vit_a">Vitamin A</string>
+    <string name="water">Water</string>
+    <string name="dietry_fiber">Dietry Fiber</string>
 
 
 </resources>

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import activities.TestTabActivity;
+import de.hdodenhof.circleimageview.CircleImageView;
 import fooddatabase.Food;
 import fooddatabase.FoodOperations;
 import fooddiarydatabase.DiaryOperations;
@@ -49,8 +50,11 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
     private List<String> servingList;
     private List<Integer> imageList;
     private DiaryOperations diaryData;
-    private String mealType,myMealType;
+    private String mealType;
     HomeFragment homeFragment;
+    private TextView foodNameText;
+    private CircleImageView foodImage;
+    private String foodImageId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +64,6 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         foodName = bundle.getString("foodname");
         mealType = bundle.getString("meal_type");
-        System.err.println("MEALMEALLLLLLLLLLLLLLLL      " + mealType);
         homeFragment = new HomeFragment();
 
 
@@ -73,20 +76,28 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
         imageList = new ArrayList<>();
         gramList = new ArrayList<>();
         trackingRow = new CalorieTracking();
-        noOfElement = 4;
+        noOfElement = 9;
 
-        foodNeutrientsText = new TextView[4];
-        foodNeutrients = new double[4];
-        selected_food = new double[4];
+        foodNeutrientsText = new TextView[9];
+        foodNeutrients = new double[9];
+        selected_food = new double[9];
         foodNeutrientsText[0] = findViewById(R.id.calorie_val);
         foodNeutrientsText[1] = findViewById(R.id.protein_val);
         foodNeutrientsText[2] = findViewById(R.id.carb_val);
         foodNeutrientsText[3] = findViewById(R.id.cholestorol_val);
+        foodNeutrientsText[4] = findViewById(R.id.dietry_fiber_val);
+        foodNeutrientsText[5] = findViewById(R.id.food_water_val);
+        foodNeutrientsText[6] = findViewById(R.id.vit_a_val);
+        foodNeutrientsText[7] = findViewById(R.id.vit_c_val);
+        foodNeutrientsText[8] = findViewById(R.id.vit_e_val);
+
         TextView text = findViewById(R.id.spinnerTextView);
         ImageView imageView = findViewById(R.id.spinnerImages);
         final Spinner spinnerServingSize = findViewById(R.id.mySpinner);
         servingAmountEditText = findViewById(R.id.serving_amount_Edittext);
         addTrackButton = findViewById(R.id.fab_add_tracking_btn);
+        foodNameText = findViewById(R.id.food_name_text);
+        foodImage = findViewById(R.id.food_circleimage);
 
 
         servingData.open();
@@ -95,13 +106,10 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
         for (FoodServing a : foodServingList) {
             servingList.add(a.getFood_serving_measurement());
             imageList.add(ImageID(a.getServing_image_id()));
-            System.out.println("IMAGENAMEEEEEEEE:            " + a.getServing_image_id());
             gramList.add(Double.valueOf(a.getServing_size_to_grams()));
         }
 
-        for(int i = 0; i < imageList.size(); i++) {
-            System.out.println("IIIIIIIIIIIIIIIIIIIIIII    " + imageList.get(i));
-        }
+
         servingData.close();
 
         foodData.open();
@@ -110,8 +118,17 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
         selected_food[1] = selectedFood.getFood_proteins();
         selected_food[2] = selectedFood.getFood_carbohydrates();
         selected_food[3] = selectedFood.getFood_fat();
+        selected_food[4] = selectedFood.getFood_fiber();
+        selected_food[5] = selectedFood.getFood_water();
+        selected_food[6] = selectedFood.getFood_vit_a();
+        selected_food[7] = selectedFood.getFood_vit_c();
+        selected_food[8] = selectedFood.getFood_vit_e();
+        foodImageId = selectedFood.getFood_image();
 
         foodData.close();
+
+        foodNameText.setText(foodName);
+        foodImage.setImageResource(ImageID(foodImageId));
 
         SpinnerAdapter adapter = new SpinnerAdapter(this, R.layout.spinner_value_layout, servingList, imageList);
         spinnerServingSize.setAdapter(adapter);
@@ -249,8 +266,7 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
                 long last_row = trackingData.getRowCount();
                 trackingRow = trackingData.getTracking(last_row);
 
-                //String current_date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-                //String tracking_row_date = trackingRow.getDate();
+
                 CalorieTracking newTrackingData = new CalorieTracking();
                 newTrackingData.setCalorie_tracking_id(trackingRow.getCalorie_tracking_id());
                 newTrackingData.setDate(trackingRow.getDate());
