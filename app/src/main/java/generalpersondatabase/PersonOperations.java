@@ -3,12 +3,16 @@ package generalpersondatabase;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static categorydatabase.CategoryDBHandler.TABLE_CATEGORY;
+import static generalpersondatabase.PersonDBHandler.TABLE_PERSON;
 
 public class PersonOperations {
     public static final String LOGTAG = "PERSON_MNG_SYS";
@@ -42,6 +46,12 @@ public class PersonOperations {
         dbhandler.close();
     }
 
+    public long getRowCount() {
+        SQLiteDatabase db = dbhandler.getReadableDatabase();
+        long count = DatabaseUtils.queryNumEntries(db, TABLE_PERSON);
+        return count;
+    }
+
     public Person addPerson(Person person){
         ContentValues values  = new ContentValues();
         values.put(PersonDBHandler.COLUMN_AGE, person.getAge());
@@ -52,14 +62,14 @@ public class PersonOperations {
         values.put(PersonDBHandler.COLUMN_TARGET_WEIGHT, person.getTargetWeight());
         values.put(PersonDBHandler.COLUMN_BMR_WITHOUT_ACTIVITY, person.getBMRWithoutActivity());
         values.put(PersonDBHandler.COLUMN_BMR_WITH_ACTIVITY, person.getBMRWithActivity());
-        long insertid = database.insert(PersonDBHandler.TABLE_PERSON,null, values);
+        long insertid = database.insert(TABLE_PERSON,null, values);
         person.setPersonID(insertid);
         return person;
     }
 
     // Getting single Person
     public Person getPerson(long id) {
-        Cursor cursor = database.query(PersonDBHandler.TABLE_PERSON, allColumns,PersonDBHandler.COLUMN_ID + "=?", new String[]{String.valueOf(id)},null,null, null, null);
+        Cursor cursor = database.query(TABLE_PERSON, allColumns,PersonDBHandler.COLUMN_ID + "=?", new String[]{String.valueOf(id)},null,null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
@@ -71,7 +81,7 @@ public class PersonOperations {
 
     public List<Person> getAllPersons() {
 
-        Cursor cursor = database.query(PersonDBHandler.TABLE_PERSON, allColumns,null,null,null, null, null);
+        Cursor cursor = database.query(TABLE_PERSON, allColumns,null,null,null, null, null);
 
         List<Person> personList = new ArrayList<>();
         if(cursor.getCount() > 0){
@@ -107,12 +117,12 @@ public class PersonOperations {
         values.put(PersonDBHandler.COLUMN_BMR_WITH_ACTIVITY, person.getBMRWithActivity());
 
         // updating row
-        return database.update(PersonDBHandler.TABLE_PERSON, values,
+        return database.update(TABLE_PERSON, values,
                 PersonDBHandler.COLUMN_ID + "=?", new String[] { String.valueOf(person.getPersonID())});
     }
 
     // Deleting Person
     public void removePerson(Person person) {
-        database.delete(PersonDBHandler.TABLE_PERSON,PersonDBHandler.COLUMN_ID + "=" + person.getPersonID(),null);
+        database.delete(TABLE_PERSON,PersonDBHandler.COLUMN_ID + "=" + person.getPersonID(),null);
     }
 }

@@ -50,7 +50,6 @@ dependencies {
     implementation 'it.sephiroth.android.library.horizontallistview:hlistview:1.2.2'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
 
-
 }
 
 apply plugin: 'com.google.gms.google-services'

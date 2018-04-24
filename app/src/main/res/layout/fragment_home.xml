@@ -19,23 +19,66 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Add Values" />
+                <TextView
+                    android:id="@+id/cal_consumed_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="36dp"
+                    android:gravity="center"
+                    android:text="water"
+                    android:fontFamily="cursive"
+                    android:textStyle="normal"
+                    android:textSize="20sp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@color/title_text_color" />
+
+                <TextView
+                    android:id="@+id/cal_remain_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:fontFamily="cursive"
+                    android:textStyle="normal"
+                    android:textSize="20sp"
+                    android:text="@string/show_water"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@color/title_text_color" />
+
+                <TextView
+                    android:id="@+id/cal_burn_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="39dp"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:fontFamily="cursive"
+                    android:textStyle="normal"
+                    android:text="@string/show_water"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@color/title_text_color" />
 
 
-            <com.txusballesteros.widgets.FitChart
-                android:id="@+id/fitChart"
-                style="@style/chart_style"
-                android:layout_width="117dp"
-                android:layout_height="117dp"
-                android:layout_gravity="center"
-                app:animationMode="overdraw"
-                app:strokeSize="10dp" />
+                <com.txusballesteros.widgets.FitChart
+                    android:id="@+id/fitChart"
+                    style="@style/chart_style"
+                    android:layout_width="117dp"
+                    android:layout_height="117dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    app:animationMode="overdraw"
+                    app:strokeSize="5dp" />
+
+            </RelativeLayout>
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"

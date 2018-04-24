@@ -52,6 +52,8 @@ import io.github.yavski.fabspeeddial.FabSpeedDial;
 import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
 import it.sephiroth.android.library.widget.HListView;
 import servingdatabase.FoodServing;
+import trackingdatabase.CalorieTracking;
+import trackingdatabase.TrackingOperations;
 
 
 public class HomeFragment extends Fragment {
@@ -77,6 +79,10 @@ public class HomeFragment extends Fragment {
     private TextView waterCountText;
     private int glassOfWater;
     public static String myMealType;
+    private TrackingOperations trackingData;
+    private CalorieTracking lastTrackingRow;
+    private double calConsumed, calRemain, calNeed;
+    private TextView calConsumedText, calRemainText, calBurnText;
 
 
 
@@ -90,6 +96,11 @@ public class HomeFragment extends Fragment {
         personData = new PersonOperations(getContext());
         foodDiary = new DiaryOperations(getContext());
         foodData = new FoodOperations(getContext());
+        trackingData = new TrackingOperations(getContext());
+        lastTrackingRow = new CalorieTracking();
+        calConsumedText = view.findViewById(R.id.cal_consumed_text);
+        calRemainText = view.findViewById(R.id.cal_remain_text);
+        calBurnText = view.findViewById(R.id.cal_burn_text);
         personData.open();
 
         Person person = new Person();
@@ -100,23 +111,26 @@ public class HomeFragment extends Fragment {
 
         fitChart = view.findViewById(R.id.fitChart);
 
+        trackingData.open();
+        long totalRow = trackingData.getRowCount();
+        lastTrackingRow = trackingData.getTracking(totalRow);
+        trackingData.close();
+
+        calConsumed = lastTrackingRow.getCal_consumed();
+        calRemain = lastTrackingRow.getCal_remaining();
+        calNeed = lastTrackingRow.getCal_needed();
         fitChart.setMinValue(0f);
-        fitChart.setMaxValue(Float.parseFloat(cal_needed));
+        fitChart.setMaxValue((float) calNeed);
 
+        Resources resources = getResources();
+        Collection<FitChartValue> values = new ArrayList<>();
+        values.add(new FitChartValue((float) calConsumed, resources.getColor(R.color.chart_value_1)));
+        //FitChartValue chartValue = new FitChartValue((float) calConsumed, resources.getColor(R.color.chart_value_1));
+        fitChart.setValues(values);
 
-        addButton = view.findViewById(R.id.add);
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Resources resources = getResources();
-                Collection<FitChartValue> values = new ArrayList<>();
-                values.add(new FitChartValue(30f, resources.getColor(R.color.chart_value_1)));
-                values.add(new FitChartValue(20f, resources.getColor(R.color.chart_value_2)));
-                values.add(new FitChartValue(15f, resources.getColor(R.color.chart_value_3)));
-                values.add(new FitChartValue(10f, resources.getColor(R.color.chart_value_4)));
-                fitChart.setValues(values);
-            }
-        });
+        calConsumedText.setText(String.valueOf(calConsumed) + "\n" + "Eaten");
+        calRemainText.setText(String.valueOf(calRemain) + "\n" + "CAL Left");
+        calBurnText.setText("0" + "\n" + "Burned");
 
 
 

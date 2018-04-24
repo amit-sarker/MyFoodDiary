@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import activities.TestTabActivity;
 import categorydatabase.CategoryDBHandler;
 import categorydatabase.CategoryOperations;
 import categorydatabase.FoodCategory;
@@ -122,9 +123,19 @@ public class MainActivity extends AppCompatActivity {
 
         trackingData.close();
 
-        Intent intent = new Intent(MainActivity.this, UserGenderInfoActivity.class);
-        startActivity(intent);
-        finish();
+        personData.open();
+        long personRowCount = personData.getRowCount();
+        personData.close();
+
+        if(personRowCount > 0) {
+            Intent intent = new Intent(MainActivity.this, TestTabActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Intent intent = new Intent(MainActivity.this, UserGenderInfoActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
 
