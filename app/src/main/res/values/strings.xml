@@ -93,6 +93,8 @@
     <string name="vit_a">Vitamin A</string>
     <string name="water">Water</string>
     <string name="dietry_fiber">Dietry Fiber</string>
+    <string name="category_list">Choose a category</string>
+    <string name="food_list">Choose a food</string>
 
 
 </resources>

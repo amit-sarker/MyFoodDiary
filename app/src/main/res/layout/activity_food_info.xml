@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".FoodInfoActivity">
 
+
     <TextView
         android:id="@+id/food_text"
         android:layout_width="139dp"

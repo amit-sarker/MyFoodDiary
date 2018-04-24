@@ -3,11 +3,13 @@ package com.example.moumita.caloriecountergeb;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,35 +18,68 @@ import categorydatabase.CategoryOperations;
 import categorydatabase.FoodCategory;
 
 public class FoodListActivity extends AppCompatActivity {
+    private Toolbar toolbar;
     private String categoryName;
     private CategoryOperations categoryData;
     private ListView mListView;
-    private List<String> categoryList = new ArrayList<>();
+    //private List<String> categoryList = new ArrayList<>();
     private String mealType;
+
+    private ListView categoryListView;
+    private FoodListAdapter foodListAdapter;
+    private List<FoodListHelper> categoryList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_list);
 
+        toolbar = findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
+
         categoryData = new CategoryOperations(this);
         Bundle bundle = getIntent().getExtras();
         mealType = bundle.getString("meal_type");
         categoryName = bundle.getString("categoryname");
 
+        categoryListView = findViewById(R.id.food_list_view);
+
         categoryData.open();
 
-        List<FoodCategory> foodCategoryList = categoryData.getFoodCategoryByName(categoryName);
+        final List<FoodCategory> foodCategoryList = categoryData.getFoodCategoryByName(categoryName);
 
         for(FoodCategory a: foodCategoryList) {
-            categoryList.add(a.getFoodName());
+            String categoryName = a.getFoodName();
+            String categoryImage = a.getFoodImage();
+            categoryList.add(new FoodListHelper(categoryName,ImageID(categoryImage)));
             //System.err.println(a.toString());
         }
 
-
         categoryData.close();
 
-        mListView = findViewById(R.id.food_list);
+
+        foodListAdapter= new FoodListAdapter(categoryList,this);
+
+        categoryListView.setAdapter(foodListAdapter);
+        categoryListView.setClickable(true);
+
+        categoryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int itemNumber, long l) {
+                Object obj = categoryListView.getAdapter().getItem(itemNumber);
+                final String foodName = foodCategoryList.get(itemNumber).getFoodName();
+                Intent intent = new Intent(FoodListActivity.this, AddFoodToDiaryActivity.class);
+                intent.putExtra("foodname", foodName);
+                intent.putExtra("meal_type", mealType);
+                startActivity(intent);
+            }
+        });
+
+
+
+        /*mListView = findViewById(R.id.food_list);
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.my_list, categoryList);
         mListView.setAdapter(arrayAdapter);
 
@@ -64,6 +99,12 @@ public class FoodListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        */
 
+    }
+
+    public int ImageID(String image_name) {
+        int resID = this.getResources().getIdentifier(image_name, "drawable", getPackageName());
+        return resID;
     }
 }

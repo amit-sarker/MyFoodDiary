@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,13 +33,14 @@ import trackingdatabase.TrackingOperations;
 
 public class AddFoodToDiaryActivity extends AppCompatActivity {
 
+    private Toolbar toolbar;
     private String foodName, servingAmountString;
     private FoodOperations foodData;
     private ServingOperations servingData;
     private TrackingOperations trackingData;
     private CalorieTracking trackingRow;
     private Food selectedFood;
-    TextView[] foodNeutrientsText;
+    private TextView[] foodNeutrientsText;
     private double[] foodNeutrients;
     private double[] selected_food;
     private double servingAmount, factor;
@@ -61,11 +63,15 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_food_to_diary);
 
+        toolbar = findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
+
         Bundle bundle = getIntent().getExtras();
         foodName = bundle.getString("foodname");
         mealType = bundle.getString("meal_type");
         homeFragment = new HomeFragment();
-
 
         foodData = new FoodOperations(this);
         servingData = new ServingOperations(this);

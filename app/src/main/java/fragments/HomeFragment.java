@@ -75,7 +75,7 @@ public class HomeFragment extends Fragment {
     private static InitialShowFoodAdapter initialShowFoodAdapter;
     private ImageButton waterAddBtn, waterMinusBtn;
     private TextView waterCountText;
-    private int glassOfWater = 0;
+    private int glassOfWater;
     public static String myMealType;
 
 
@@ -164,6 +164,7 @@ public class HomeFragment extends Fragment {
 
         });
 
+        glassOfWater = 0;
         waterAddBtn = view.findViewById(R.id.water_plus_btn);
         waterMinusBtn = view.findViewById(R.id.water_minus_btn);
         waterCountText = view.findViewById(R.id.water_count_text);
@@ -208,12 +209,12 @@ public class HomeFragment extends Fragment {
             foodData.open();
             Food food = foodData.getFoodByName(foodName);
             int imgId = ImageID(food.getFood_image());
-            System.out.println("ImageIIIIIIIIIDDDDDD    " + food.getFood_image());
+
             showBreakfastModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), a.getFood_serving_amount() + ", " + a.getFood_serving_measurement()));
             foodData.close();
         }
 
-        System.out.println("HHHHHHHHHHHHHHHHHHH:   " + foodDiaryList.size() + "     " + showBreakfastModels.size());
+
 
         for(int i = 0; i < foodDiaryList.size(); i++) {
             System.err.println("Diary List:       " + foodDiaryList.get(i).toString());
@@ -384,6 +385,7 @@ public class HomeFragment extends Fragment {
         int resID = this.getResources().getIdentifier(image_name, "drawable", getActivity().getPackageName());
         return resID;
     }
+
 
 
 }

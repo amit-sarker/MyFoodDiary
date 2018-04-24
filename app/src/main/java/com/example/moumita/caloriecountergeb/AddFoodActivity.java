@@ -21,8 +21,8 @@ import piechart.PieChartActivity;
 public class AddFoodActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String foodName;
-    Toolbar toolbar;
-    AutoCompleteTextView text;
+    private Toolbar toolbar;
+    private AutoCompleteTextView text;
     private FoodOperations foodData;
     private List<String> foodList = new ArrayList<>();
     private CardView CategoriesCard, RecentCard, FrequentCard, SimpleCaloriesCard;

@@ -1,6 +1,5 @@
-1,Rice,1,Rice Cooked,rice.png,rice_cat.png
-2,Egg,2,Egg Chicken,egg_chicken.png,egg_cat.png
-3,Fruits,3,Apple,apple.png,fruits_cat.png
-4,Meat,4,Chicken Breast,chicken_breast.png,meat_cat.png
-4,Meat,5,Chicken Thigh,chicken_thigh.png,meat_cat.png
-5,Fish,6,Ilish,ilish.png,fish_cat.png
+1,Rice,1,Rice Cooked,rice,food2
+2,Egg,2,Egg Chicken,egg,food3
+3,Fruits,3,Apple,apple,food4
+4,Meat,4,Chicken Breast,chicken,food5
+5,Fish,6,Ilish,fish,food2

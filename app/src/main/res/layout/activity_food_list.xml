@@ -7,26 +7,28 @@
     tools:context=".FoodListActivity"
     android:orientation="vertical">
 
+    <include
+        layout="@layout/toolbar" />
+
     <TextView
         android:layout_width="158dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:fontFamily="cursive"
-        android:text="Select a food"
-        android:textSize="25sp"
-        android:textStyle="normal|bold" />
+        android:layout_marginTop="61dp"
+        android:text="@string/food_list"
+        android:textAlignment="center"
+        style="@style/HeaderText"/>
 
 
     <ListView
-        android:id="@+id/food_list"
+        android:id="@+id/food_list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="0dp"
-        android:layout_alignParentTop="true"
+        android:layout_height="462dp"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="64dp"
-        >
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="105dp"
+        android:paddingTop="0dp">
 
     </ListView>
 
