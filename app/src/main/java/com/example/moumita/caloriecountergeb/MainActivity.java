@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         long personRowCount = personData.getRowCount();
         personData.close();
 
-        Intent intent = new Intent(MainActivity.this, ListViewBarChartActivity.class);
+        Intent intent = new Intent(MainActivity.this, ChatHeadNotificationActivity.class);
         startActivity(intent);
         finish();
 
