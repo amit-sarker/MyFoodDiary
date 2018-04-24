@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package notifications;
 
 import android.app.Service;
 import android.content.Intent;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.example.moumita.caloriecountergeb.R;
+
 public class ChatHeadService extends Service {
 
     private WindowManager mWindowManager;
@@ -18,6 +20,7 @@ public class ChatHeadService extends Service {
 
     public ChatHeadService() {
     }
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -36,10 +39,11 @@ public class ChatHeadService extends Service {
                 WindowManager.LayoutParams.TYPE_PHONE,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSLUCENT);
-//Specify the chat head position
+
+        //Specify the chat head position
         params.gravity = Gravity.TOP | Gravity.LEFT;        //Initially view will be added to top-left corner
-        params.x = 0;
-        params.y = 100;
+        params.x = 60;
+        params.y = 80;
 
         //Add the view to the window
         mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
@@ -79,14 +83,13 @@ public class ChatHeadService extends Service {
 
                         lastAction = event.getAction();
                         return true;
-
                     case MotionEvent.ACTION_UP:
                         //As we implemented on touch listener with ACTION_MOVE,
                         //we have to check if the previous action was ACTION_DOWN
                         //to identify if the user clicked the view or not.
                         if (lastAction == MotionEvent.ACTION_DOWN) {
                             //Open the chat conversation click.
-                            Intent intent = new Intent(ChatHeadService.this, MainActivity.class);
+                            Intent intent = new Intent(ChatHeadService.this, ChatActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
 

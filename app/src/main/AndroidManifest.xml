@@ -38,8 +38,8 @@
         <activity android:name="piechart.PiePolylineChartActivity" />
         <activity android:name=".ListViewBarChartActivity" />
         <activity android:name=".GroupBarChart"></activity>
-        <activity android:name=".ChatHeadNotificationActivity" />
-        <activity android:name=".TestActivity"></activity>
+        <activity android:name="notifications.TestActivity" />
+        <activity android:name="notifications.ChatActivity"></activity>
     </application>
 
 </manifest>
