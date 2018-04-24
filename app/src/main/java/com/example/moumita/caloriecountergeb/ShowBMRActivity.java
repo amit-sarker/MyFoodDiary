@@ -71,8 +71,6 @@ public class ShowBMRActivity extends AppCompatActivity {
         calorieTrackingData.setCarbs_consumed(0.0);
         calorieTrackingData.setCarbs_remaining(Math.round(carbsWithActivity / 4.0));
 
-        System.err.println("AAAAAAAAAAAAAAAAAA    " + calorieTrackingData.toString());
-
         trackingData.open();
         trackingData.addTrackingData(calorieTrackingData);
         trackingData.close();

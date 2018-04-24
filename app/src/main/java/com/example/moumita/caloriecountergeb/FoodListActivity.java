@@ -54,7 +54,6 @@ public class FoodListActivity extends AppCompatActivity {
             String categoryName = a.getFoodName();
             String categoryImage = a.getFoodImage();
             categoryList.add(new FoodListHelper(categoryName,ImageID(categoryImage)));
-            //System.err.println(a.toString());
         }
 
         categoryData.close();
@@ -76,30 +75,6 @@ public class FoodListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
-        /*mListView = findViewById(R.id.food_list);
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.my_list, categoryList);
-        mListView.setAdapter(arrayAdapter);
-
-        mListView.setClickable(true);
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int itemNumber, long l) {
-
-                Object obj = mListView.getAdapter().getItem(itemNumber);
-                final String foodName = obj.toString();
-                Log.d("MyLog", "Value is: " + foodName);
-
-                Intent intent = new Intent(FoodListActivity.this, AddFoodToDiaryActivity.class);
-                intent.putExtra("foodname", foodName);
-                intent.putExtra("meal_type", mealType);
-                startActivity(intent);
-            }
-        });
-        */
 
     }
 

@@ -5,7 +5,6 @@ import java.util.Date;
 public class FoodDiary {
     private long diary_id;
     private String food_name, food_serving_measurement, food_serving_amount, meal_type, total_cal_selected_food;
-    //private String current_date = new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault()).format(new Date());
     private String date;
 
     public FoodDiary() {}

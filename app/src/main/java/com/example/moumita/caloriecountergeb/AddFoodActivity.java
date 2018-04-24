@@ -85,8 +85,6 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
                 intent.putExtra("foodname", foodName);
                 intent.putExtra("meal_type", mealType);
                 startActivity(intent);
-               // System.err.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-               // Toast.makeText(getApplicationContext(), "AAAAAAAAAAAAAAAA", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -94,8 +92,6 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
         RecentCard.setOnClickListener(this);
         FrequentCard.setOnClickListener(this);
         SimpleCaloriesCard.setOnClickListener(this);
-
-
 
     }
 

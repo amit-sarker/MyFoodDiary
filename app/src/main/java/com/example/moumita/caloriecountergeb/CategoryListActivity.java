@@ -62,8 +62,6 @@ public class CategoryListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int itemNumber, long l) {
                 Object obj = categoryListView.getAdapter().getItem(itemNumber);
                 final String categoryName = foodCategoryList.get(itemNumber).getCategoryName();
-                Log.d("MyLog", "Value is: " + categoryName);
-
                 Intent intent = new Intent(CategoryListActivity.this, FoodListActivity.class);
                 intent.putExtra("meal_type", mealType);
                 intent.putExtra("categoryname", categoryName);
@@ -71,29 +69,6 @@ public class CategoryListActivity extends AppCompatActivity {
             }
         });
 
-
-       /* mListView = findViewById(R.id.listview);
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.spinner_value_layout, categoryList);
-        mListView.setAdapter(arrayAdapter);
-
-        mListView.setClickable(true);
-
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int itemNumber, long l) {
-
-                Object obj = mListView.getAdapter().getItem(itemNumber);
-                final String categoryName = obj.toString();
-                Log.d("MyLog", "Value is: " + categoryName);
-
-                Intent intent = new Intent(CategoryListActivity.this, FoodListActivity.class);
-                intent.putExtra("meal_type", mealType);
-                intent.putExtra("categoryname", categoryName);
-                startActivity(intent);
-            }
-        });
-        */
     }
 
     public int ImageID(String image_name) {

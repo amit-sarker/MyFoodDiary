@@ -21,8 +21,7 @@ public class UserHeightInfoActivity extends AppCompatActivity {
 
     private String [] feetValues = new String[10];
     private String [] inchValues = new String[100];
-    //private String [] meterValues = new String[10];
-    //private String [] cmValues = new String[100];
+
     NumberPicker mFeetPicker,mInchPicker;
     TextView mHeightText,mFeetText,mInchText;
     ImageView mHeightImg;
@@ -83,13 +82,11 @@ public class UserHeightInfoActivity extends AppCompatActivity {
                     mInchText.setText("Cm");
                     mFeetPicker.setMinValue(0);
                     mFeetPicker.setMaxValue(7);
-                    //mFeetPicker.setDisplayedValues(meterValues);
                     mInchPicker.setMinValue(0);
                     mInchPicker.setMaxValue(99);
-                    //mInchPicker.setDisplayedValues(cmValues);
+
                     isfeet = false;
 
-                    // The toggle is disabled
                 }
             }
         });
@@ -114,7 +111,7 @@ public class UserHeightInfoActivity extends AppCompatActivity {
                 Intent intent = new Intent(UserHeightInfoActivity.this, UserAgeInfoActivity.class);
                 intent.putExtra("isfemale", isFemale);
                 intent.putExtra("height", height);
-                System.out.println("Innnnnnnnnnnnnn  " + isFemale + " " + isfeet + " " + height);
+
                 startActivity(intent);
                 finish();
             }

@@ -41,8 +41,7 @@ public class DiaryOperations {
     }
 
     public FoodDiary addFoodDiary(FoodDiary foodDiary) {
-        /*String current_date_str = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        Date current_date = new SimpleDateFormat("yyyy-MM-dd").parse(current_date_str);*/
+
         ContentValues values = new ContentValues();
         values.put(DiaryDBHandler.COLUMN_DATE, foodDiary.getDate());
         values.put(DiaryDBHandler.COLUMN_FOOD_NAME, foodDiary.getFood_name());
@@ -112,7 +111,7 @@ public class DiaryOperations {
 
             }
         }
-        System.out.println("LLLLLLLLLLLLLLLLLLLLLLLEEEE    " + foodDiaryList.size());
+
         return foodDiaryList;
     }
 

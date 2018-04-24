@@ -13,18 +13,8 @@ import java.util.List;
 public class SpinnerAdapter extends ArrayAdapter<String> {
 
     private Context ctx;
-    //private String[] contentArray;
-    //private Integer[] imageArray;
     private List<String> contentList;
     private List<Integer> imageList;
-
-    /*public SpinnerAdapter(Context context, int resource, String[] objects,
-                          Integer[] imageArray) {
-        super(context,  R.layout.spinner_value_layout, R.id.spinnerTextView, objects);
-        this.ctx = context;
-        this.contentArray = objects;
-        this.imageArray = imageArray;
-    }*/
 
     public SpinnerAdapter(Context context, int resource, List<String> objects, List<Integer> imageList) {
         super(context,  R.layout.spinner_value_layout, R.id.spinnerTextView, objects);

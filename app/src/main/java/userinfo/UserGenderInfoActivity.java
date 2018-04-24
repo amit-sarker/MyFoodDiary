@@ -31,8 +31,7 @@ public class UserGenderInfoActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
         }
         PersonHelper userHelper = new PersonHelper();
-        //Intent intent = getIntent();
-        //final Person User = (Person) intent.getSerializableExtra("sampleObject");
+
 
         mGenderInfoText = findViewById(R.id.gender_info_text);
         mGenderInfoImg = (ImageView) findViewById(R.id.gender_info_img);
@@ -60,23 +59,7 @@ public class UserGenderInfoActivity extends AppCompatActivity {
             }
         });
 
-
-        /*mNextPageBtn.setOnClickListener(new View.OnClickListener()
-
-            {
-                @Override
-                public void onClick (View v){
-
-                Intent intent = new Intent(UserGenderInfoActivity.this, UserHeightInfoActivity.class);
-                intent.putExtra("isfemale", isFemale);
-                //intent.putExtra("fromGender", (Serializable) User);
-                startActivity(intent);
-            }
-            });
-            */
-
-            // mGenderInfoImg.setImageResource(R.drawable.female_male_icon);
-        }
+    }
 
 
 }

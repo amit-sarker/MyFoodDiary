@@ -72,12 +72,8 @@ public class UserAgeInfoActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(UserAgeInfoActivity.this, UserWeightInfoActivity.class);
                 intent.putExtra("isfemale", isFemale);
-                //intent.putExtra("isfeet", isfeet);
                 intent.putExtra("height", height);
                 intent.putExtra("age", age);
-
-                System.out.println("Innnnnnnnnnnnnn  " + isFemale + " " + isfeet + " " + height + " " + age);
-                //intent.putExtra("fromGender", (Serializable) User);
                 startActivity(intent);
                 finish();
 
@@ -86,7 +82,6 @@ public class UserAgeInfoActivity extends AppCompatActivity {
     }
     public int getAge(int DOByear, int DOBmonth, int DOBday, String todaydate) {
 
-        System.out.println("mmmmmmmmmmmmmmmm  " + DOBday + " " + DOBmonth + " " + DOByear);
         int todayDay=0, currentMonth=0, currentYear=0;
         for(int i=0;i<4;i++)
         {
@@ -105,15 +100,7 @@ public class UserAgeInfoActivity extends AppCompatActivity {
         }
 
         int age;
-
-        //final Calendar calenderToday = Calendar.getInstance();
-        //int currentYear = calenderToday.get(Calendar.YEAR);
-        //int currentMonth = 1 + calenderToday.get(Calendar.MONTH);
-        //int todayDay = calenderToday.get(Calendar.DAY_OF_MONTH);
-
-
         age = currentYear - DOByear;
-        System.out.println("priiiiiiiiiiiiiiiiiiiiiiiint "+ currentMonth + " " + currentYear + " " + todayDay + " mmmmmmmmmmmmmmmm  " + DOBday + " " + DOBmonth + " " + DOByear + " " + age);
 
         if(DOBmonth > currentMonth){
             --age;
