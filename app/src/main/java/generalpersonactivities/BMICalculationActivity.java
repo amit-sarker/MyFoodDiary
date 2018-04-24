@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.moumita.caloriecountergeb.R;
-import com.example.moumita.caloriecountergeb.UserSignInActivity;
+import userinfo.UserSignInActivity;
 
 import generalpersondatabase.Person;
 import generalpersondatabase.PersonOperations;

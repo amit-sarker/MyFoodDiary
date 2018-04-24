@@ -1,6 +1,8 @@
-package com.example.moumita.caloriecountergeb;
+package addfood;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -15,10 +17,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
+import com.example.moumita.caloriecountergeb.R;
+import adapter.SpinnerAdapter;
+import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import activities.TestTabActivity;
+import activities.HomeTabActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
 import fooddatabase.Food;
 import fooddatabase.FoodOperations;
@@ -132,6 +143,8 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
         foodImageId = selectedFood.getFood_image();
 
         foodData.close();
+
+        displayPieChart(selected_food[1], selected_food[2], selected_food[3]);
 
         foodNameText.setText(foodName);
         foodImage.setImageResource(ImageID(foodImageId));
@@ -298,7 +311,7 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
                 newDiary.setFood_name(foodName);
                 newDiary.setFood_serving_measurement(servingList.get(intservingSize));
                 newDiary.setFood_serving_amount(servingAmountString);
-                newDiary.setMeal_type(mealType); //Should be editedddddddddddddddddddddddddddddddddddddd
+                newDiary.setMeal_type(mealType);
                 newDiary.setDate(trackingRow.getDate());
                 newDiary.setTotal_cal_selected_food(String.valueOf(foodNeutrients[0]));
                 Toast.makeText(getApplicationContext(), "Diary Added", Toast.LENGTH_SHORT).show();
@@ -306,11 +319,64 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
                 diaryData.addFoodDiary(newDiary);
                 diaryData.close();
 
-                Intent intent = new Intent(AddFoodToDiaryActivity.this, TestTabActivity.class);
+                Intent intent = new Intent(AddFoodToDiaryActivity.this, HomeTabActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
+    }
+
+    public void displayPieChart(double protein, double carbs, double fat) {
+        PieChart pieChart;
+        Typeface mTfLight, mTfRegular;
+
+        mTfRegular = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
+        mTfLight = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
+
+        pieChart = findViewById(R.id.pie_chart1);
+
+        pieChart.setUsePercentValues(true);
+        pieChart.getDescription().setEnabled(false);
+        pieChart.setExtraOffsets(5, 10, 5, 5);
+        pieChart.setDragDecelerationFrictionCoef(0.95f);
+        pieChart.setDrawCenterText(true);
+        pieChart.setCenterText("Nutrients");
+        pieChart.setCenterTextSize(20);
+        pieChart.setCenterTextTypeface(mTfLight);
+        pieChart.setDrawHoleEnabled(true);
+        pieChart.setHoleColor(Color.WHITE);
+        pieChart.setHoleRadius(50f);
+        pieChart.setTransparentCircleRadius(61f);
+        pieChart.setTransparentCircleColor(Color.WHITE);
+        pieChart.setTransparentCircleAlpha(110);
+        pieChart.setRotationAngle(0);
+        pieChart.setRotationEnabled(true);
+        pieChart.setHighlightPerTapEnabled(true);
+
+        pieChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
+        pieChart.setEntryLabelColor(Color.WHITE);
+        pieChart.setEntryLabelTypeface(mTfRegular);
+        pieChart.setEntryLabelTextSize(12f);
+
+        ArrayList<PieEntry> yValues = new ArrayList<>();
+
+        yValues.add(new PieEntry((float) protein, "Proteins"));
+        yValues.add(new PieEntry((float) carbs, "Carbohydrate"));
+        yValues.add(new PieEntry((float) fat, "Fat"));
+
+        PieDataSet dataSet = new PieDataSet(yValues, "Nutrients");
+        dataSet.setSliceSpace(3f);
+        dataSet.setSelectionShift(5f);
+
+        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+
+        PieData data = new PieData(dataSet);
+        data.setValueTextSize(10f);
+        data.setValueTextColor(Color.BLACK);
+
+
+        pieChart.setData(data);
+
     }
 
     public double getCalculatedNutrients(double servingAmount, double grams, double in_100_grams) {

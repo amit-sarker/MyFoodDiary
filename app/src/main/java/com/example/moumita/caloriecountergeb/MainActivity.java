@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import activities.TestTabActivity;
+import activities.HomeTabActivity;
 import categorydatabase.CategoryDBHandler;
 import categorydatabase.CategoryOperations;
 import categorydatabase.FoodCategory;
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         personData.close();
 
         if(personRowCount > 0) {
-            Intent intent = new Intent(MainActivity.this, TestTabActivity.class);
+            Intent intent = new Intent(MainActivity.this, HomeTabActivity.class);
             startActivity(intent);
             finish();
         } else {
@@ -251,22 +251,6 @@ public class MainActivity extends AppCompatActivity {
                 eachAttribute = "null";
         }
         servingData.addServing(foodServing);
-    }
-
-    public static void PrintFood(FoodOperations foodData) {
-        List<Food> foodList = new ArrayList<>();
-        foodList = foodData.getAllFood();
-        for(Food a: foodList) {
-            System.err.println(a);
-        }
-    }
-
-    public static void PrintCategory(CategoryOperations categoryData) {
-        List<FoodCategory> categoryList;
-        categoryList = categoryData.getFoodCategory(2);
-        for(FoodCategory a: categoryList) {
-            System.err.println("AAAA" + a.toString());
-        }
     }
 
     public static void TrackDataCondition(TrackingOperations trackingData, PersonOperations personData) {

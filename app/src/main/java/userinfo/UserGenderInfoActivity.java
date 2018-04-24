@@ -34,7 +34,7 @@ public class UserGenderInfoActivity extends AppCompatActivity {
 
 
         mGenderInfoText = findViewById(R.id.gender_info_text);
-        mGenderInfoImg = (ImageView) findViewById(R.id.gender_info_img);
+        mGenderInfoImg = findViewById(R.id.gender_info_img);
         mNextPageBtn = findViewById(R.id.next_page_btn);
 
 
@@ -60,6 +60,4 @@ public class UserGenderInfoActivity extends AppCompatActivity {
         });
 
     }
-
-
 }

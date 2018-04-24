@@ -103,8 +103,6 @@ public class CategoryOperations {
                 }
             }
         }
-        System.err.println("ggggggggggggggggggggggggggggggggg  " + foodCategoryList.size());
-        // return All Employees
         return foodCategoryList;
     }
 
@@ -129,8 +127,6 @@ public class CategoryOperations {
                 }
             }
         }
-        //System.err.println("FFFFFFFFFFFFFFFFFFFFFFF  " + foodCategoryList.size());
-        // return All Employees
         return foodCategoryList;
     }
 
@@ -140,8 +136,7 @@ public class CategoryOperations {
         return count;
     }
 
-    // Updating Person
-    /*public int updateFoodCategory(FoodCategory foodCategory) {
+    public int updateFoodCategory(FoodCategory foodCategory) {
 
         ContentValues values = new ContentValues();
         values.put(CategoryDBHandler.COLUMN_CATEGORY_NAME, foodCategory.getCategoryName());
@@ -150,12 +145,10 @@ public class CategoryOperations {
         values.put(CategoryDBHandler.COLUMN_FOOD_IMAGE, foodCategory.getFoodImage());
         values.put(CategoryDBHandler.COLUMN_CATEGORY_IMAGE, foodCategory.getCategoryImage());
 
-        // updating row
         return database.update(CategoryDBHandler.TABLE_CATEGORY, values,
                 CategoryDBHandler.COLUMN_CATEGORY_ID + "=?", new String[] { String.valueOf(foodCategory.getCategoryID())});
-    }*/
+    }
 
-    // Deleting Person
     public void removeCategory(FoodCategory foodCategory) {
         database.delete(TABLE_CATEGORY,CategoryDBHandler.COLUMN_CATEGORY_ID + "=" + foodCategory.getCategoryID(),null);
     }

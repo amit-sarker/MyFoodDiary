@@ -73,7 +73,6 @@ public class ServingOperations {
                 }
             }
         }
-        System.err.println("ggggggggggggggggggggggggggggggggg  " + foodServingList.size());
         return foodServingList;
     }
 
@@ -97,7 +96,6 @@ public class ServingOperations {
                 }
             }
         }
-        System.err.println("FFFFFFFFFFFFFFFFFFFFFFF  " + foodServingList.size());
         return foodServingList;
     }
 

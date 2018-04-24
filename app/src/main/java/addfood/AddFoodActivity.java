@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package addfood;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
+
+import com.example.moumita.caloriecountergeb.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,30 +41,23 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
         Bundle bundle = getIntent().getExtras();
         mealType = bundle.getString("meal_type");
 
-
         CategoriesCard = findViewById(R.id.categories_card);
         FrequentCard = findViewById(R.id.frequent_card);
         RecentCard = findViewById(R.id.recent_card);
         SimpleCaloriesCard = findViewById(R.id.simple_calories_card);
-
-
-
 
         foodData = new FoodOperations(this);
 
         foodData.open();
 
         List<Food> getfoodList = foodData.getAllFood();
-        //System.err.println("Ekhaneeeeeeeeeeeeeeeeeeeeeeeeee " + getfoodList.size());
         for(Food food: getfoodList) {
             foodList.add(food.getFood_name());
-            System.err.println("Print Name : " + food.getFood_name());
         }
-
 
         foodData.close();
 
-        text = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView1);
+        text = findViewById(R.id.autoCompleteTextView1);
 
         final ArrayAdapter adapter = new
                 ArrayAdapter(this, android.R.layout.simple_list_item_1, foodList);
@@ -125,7 +120,5 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
             default:break;
 
         }
-
-
     }
 }

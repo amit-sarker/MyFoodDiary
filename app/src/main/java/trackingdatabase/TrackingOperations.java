@@ -92,41 +92,6 @@ public class TrackingOperations {
         return e;
     }
 
-    /*public List<CalorieTracking> getTrackingData(long id) {
-
-        Cursor cursor = database.query(TABLE_TRACKING, allColumns,null,null,null, null, null);
-
-        List<CalorieTracking> trackingDataList = new ArrayList<>();
-
-        if(cursor.getCount() > 0){
-            while(cursor.moveToNext()){
-                if(cursor.getLong(cursor.getColumnIndex(TrackingDBHandler.COLUMN_TRACKING_ID)) == id) {
-                    CalorieTracking trackingData = new CalorieTracking();
-                    trackingData.setCalorie_tracking_id(cursor.getLong(cursor.getColumnIndex(TrackingDBHandler.COLUMN_TRACKING_ID)));
-                    trackingData.setDate(cursor.getString(cursor.getColumnIndex(TrackingDBHandler.COLUMN_TRACKING_DATE)));
-                    trackingData.setCal_needed(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_CAL_NEEDED)));
-                    trackingData.setCal_consumed(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_CAL_CONSUMED)));
-                    trackingData.setCal_remaining(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_CAL_REMAINING)));
-
-                    trackingData.setProtein_needed(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_PROTEIN_NEEDED)));
-                    trackingData.setProtein_consumed(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_PROTEIN_CONSUMED)));
-                    trackingData.setProtein_remaining(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_PROTEIN_REMAINING)));
-
-                    trackingData.setFat_needed(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_FAT_NEEDED)));
-                    trackingData.setFat_consumed(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_FAT_CONSUMED)));
-                    trackingData.setFat_remaining(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_FAT_REMAINING)));
-
-                    trackingData.setCarbs_needed(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_CARBS_NEEDED)));
-                    trackingData.setCarbs_consumed(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_CARBS_CONSUMED)));
-                    trackingData.setCarbs_remaining(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_CARBS_REMAINING)));
-
-                    trackingDataList.add(trackingData);
-                }
-            }
-        }
-        //System.err.println("FFFFFFFFFFFFFFFFFFFFFFF  " + trackingDataList.size());
-        return trackingDataList;
-    }*/
 
     public int updateTracking(CalorieTracking newTrackingData) {
 

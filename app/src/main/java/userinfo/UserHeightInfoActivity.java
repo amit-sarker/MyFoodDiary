@@ -16,17 +16,18 @@ import com.example.moumita.caloriecountergeb.R;
 
 public class UserHeightInfoActivity extends AppCompatActivity {
 
-    private boolean isFemale, isfeet=true;
+    private boolean isFemale, isfeet = true;
     private double height;
 
-    private String [] feetValues = new String[10];
-    private String [] inchValues = new String[100];
+    private String[] feetValues = new String[10];
+    private String[] inchValues = new String[100];
 
-    NumberPicker mFeetPicker,mInchPicker;
-    TextView mHeightText,mFeetText,mInchText;
+    NumberPicker mFeetPicker, mInchPicker;
+    TextView mHeightText, mFeetText, mInchText;
     ImageView mHeightImg;
     Button mNextPageBtn;
     ToggleButton mFeetvsInch;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,16 +39,12 @@ public class UserHeightInfoActivity extends AppCompatActivity {
         }
 
 
-
-        for(int i=0;i<10;i++)
-        {
+        for (int i = 0; i < 10; i++) {
             feetValues[i] = String.valueOf(i);
         }
-        for(int i=0;i<100;i++)
-        {
+        for (int i = 0; i < 100; i++) {
             inchValues[i] = String.valueOf(i);
         }
-
 
         mHeightText = findViewById(R.id.height_info_text);
         mFeetText = findViewById(R.id.feet_text);
@@ -95,14 +92,11 @@ public class UserHeightInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(isfeet)
-                {
+                if (isfeet) {
                     height = mFeetPicker.getValue() * 12;
                     height += mInchPicker.getValue();
 
-                }
-                else
-                {
+                } else {
                     height = mFeetPicker.getValue() * 100;
                     height += mInchPicker.getValue();
                     height *= 0.393701;
@@ -116,7 +110,5 @@ public class UserHeightInfoActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
     }
 }

@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package generalpersonactivities;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,12 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.text.ParseException;
+import com.example.moumita.caloriecountergeb.R;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import activities.TestTabActivity;
+import activities.HomeTabActivity;
 import trackingdatabase.CalorieTracking;
 import trackingdatabase.TrackingOperations;
 
@@ -79,7 +80,7 @@ public class ShowBMRActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ShowBMRActivity.this, TestTabActivity.class);
+                Intent intent = new Intent(ShowBMRActivity.this, HomeTabActivity.class);
                 startActivity(intent);
                 finish();
             }

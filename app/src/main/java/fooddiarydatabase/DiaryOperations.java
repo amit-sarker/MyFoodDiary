@@ -116,10 +116,6 @@ public class DiaryOperations {
     }
 
 
-
-
-
-
     public int updateFoodDiary(FoodDiary foodDiary) {
         ContentValues values = new ContentValues();
         values.put(DiaryDBHandler.COLUMN_DATE, foodDiary.getDate());

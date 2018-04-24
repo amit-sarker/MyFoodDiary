@@ -159,6 +159,5 @@ public class FoodOperations {
         database.delete(FoodDBHandler.TABLE_FOOD,FoodDBHandler.COLUMN_FOOD_ID + "=" + food.getFood_id(),null);
 
     }
-
     
 }

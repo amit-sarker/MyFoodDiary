@@ -15,8 +15,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.moumita.caloriecountergeb.R;
-import com.example.moumita.caloriecountergeb.ShowBMRActivity;
-import com.example.moumita.caloriecountergeb.UserSignInActivity;
+import generalpersonactivities.ShowBMRActivity;
 
 import generalpersonactivities.BMICalculation;
 import generalpersondatabase.Person;
@@ -59,12 +58,10 @@ public class UserWeightInfoActivity extends AppCompatActivity {
         mWeightText = findViewById(R.id.weight_info_text);
         mKgText = findViewById(R.id.kg_text);
         mKgText2 = findViewById(R.id.kg_text2);
-       // mWeightImg = findViewById(R.id.weight_info_img);
         mNextPageBtn = findViewById(R.id.next_page_btn);
         newPerson = new Person();
         personData = new PersonOperations(this);
         personData.open();
-
 
         mlbsvsKg = findViewById(R.id.lbs_vs_kg);
 
@@ -124,7 +121,6 @@ public class UserWeightInfoActivity extends AppCompatActivity {
                 t.show();
 
                 //push targetweight and intActivityLevel into person table.
-                System.out.println("debuggggggggggggggggg  " + intActivityLevel);
                 newPerson.setAge(String.valueOf(age));
                 if (isFemale) newPerson.setGender("female");
                 else newPerson.setGender("male");

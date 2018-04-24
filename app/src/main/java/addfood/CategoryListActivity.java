@@ -1,14 +1,16 @@
-package com.example.moumita.caloriecountergeb;
+package addfood;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import adapter.FoodListAdapter;
+import helper.FoodListHelper;
+import com.example.moumita.caloriecountergeb.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +49,6 @@ public class CategoryListActivity extends AppCompatActivity {
             String categoryName = a.getCategoryName();
             String categoryImage = a.getCategoryImage();
             categoryList.add(new FoodListHelper(categoryName,ImageID(categoryImage)));
-            //System.err.println(a.toString());
         }
 
         categoryData.close();

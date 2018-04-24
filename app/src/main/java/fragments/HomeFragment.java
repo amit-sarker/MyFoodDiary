@@ -13,24 +13,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.moumita.caloriecountergeb.AddFoodActivity;
-import com.example.moumita.caloriecountergeb.AddFoodToDiaryActivity;
-import com.example.moumita.caloriecountergeb.InitialShowFood;
-import com.example.moumita.caloriecountergeb.InitialShowFoodAdapter;
+import addfood.AddFoodActivity;
+
+import helper.InitialShowFood;
+import adapter.InitialShowFoodAdapter;
 import com.example.moumita.caloriecountergeb.R;
-import com.example.moumita.caloriecountergeb.ShowFood;
-import com.example.moumita.caloriecountergeb.ShowFoodAdapter;
-import com.example.moumita.caloriecountergeb.ShowWater;
-import com.example.moumita.caloriecountergeb.ShowWaterAdapter;
+import helper.ShowFood;
+import adapter.ShowFoodAdapter;
 import com.txusballesteros.widgets.FitChart;
 import com.txusballesteros.widgets.FitChartValue;
 
@@ -43,15 +37,12 @@ import java.util.Locale;
 
 import fooddatabase.Food;
 import fooddatabase.FoodOperations;
-import fooddiarydatabase.DiaryDBHandler;
 import fooddiarydatabase.DiaryOperations;
 import fooddiarydatabase.FoodDiary;
 import generalpersondatabase.Person;
 import generalpersondatabase.PersonOperations;
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
-import it.sephiroth.android.library.widget.HListView;
-import servingdatabase.FoodServing;
 import trackingdatabase.CalorieTracking;
 import trackingdatabase.TrackingOperations;
 
@@ -68,7 +59,6 @@ public class HomeFragment extends Fragment {
     private FoodOperations foodData;
 
     private FitChart fitChart;
-    private Button addButton;
     private PersonOperations personData;
     private ArrayList<ShowFood> showBreakfastModels, showLunchModels, showDinnerModels;
     private ArrayList<InitialShowFood> initialShowBreakfastModels, initialShowLunchModels, initialShowDinnerModels;
@@ -83,9 +73,6 @@ public class HomeFragment extends Fragment {
     private CalorieTracking lastTrackingRow;
     private double calConsumed, calRemain, calNeed;
     private TextView calConsumedText, calRemainText, calBurnText;
-
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -125,7 +112,6 @@ public class HomeFragment extends Fragment {
         Resources resources = getResources();
         Collection<FitChartValue> values = new ArrayList<>();
         values.add(new FitChartValue((float) calConsumed, resources.getColor(R.color.chart_value_1)));
-        //FitChartValue chartValue = new FitChartValue((float) calConsumed, resources.getColor(R.color.chart_value_1));
         fitChart.setValues(values);
 
         calConsumedText.setText(String.valueOf(calConsumed) + "\n" + "Eaten");
@@ -138,8 +124,6 @@ public class HomeFragment extends Fragment {
         fabAddFood.setMenuListener(new SimpleMenuListenerAdapter() {
             @Override
             public boolean onPrepareMenu(NavigationMenu navigationMenu) {
-
-                // TODO: Do something with yout menu items, or return false if you don't want to show them
                 return true;
             }
         });
@@ -147,7 +131,6 @@ public class HomeFragment extends Fragment {
             @Override
             public boolean onMenuItemSelected(MenuItem menuItem) {
 
-                //TODO: Start some activity
                 switch (menuItem.getItemId()) {
                     case R.id.action_breakfast: {
                         myMealType = "Breakfast";
@@ -198,9 +181,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
         //Adding Listview
-
         breakfastListView=view.findViewById(R.id.show_breakfast_list);
         lunchListView=view.findViewById(R.id.show_lunch_list);
         dinnerListView=view.findViewById(R.id.show_dinner_list);
@@ -228,15 +209,6 @@ public class HomeFragment extends Fragment {
             foodData.close();
         }
 
-
-
-        for(int i = 0; i < foodDiaryList.size(); i++) {
-            System.err.println("Diary List:       " + foodDiaryList.get(i).toString());
-        }
-        for(int i = 0; i < showBreakfastModels.size(); i++) {
-            System.err.println("show Breakfast      " + showBreakfastModels.get(i).toString());
-        }
-
         foodDiaryList = foodDiary.getFoodListByMealType(currentDate,"Lunch");
         for (FoodDiary a : foodDiaryList) {
             String foodName = a.getFood_name();
@@ -260,8 +232,6 @@ public class HomeFragment extends Fragment {
 
         foodDiary.close();
 
-
-
         initialShowBreakfastModels.add(new InitialShowFood(R.drawable.breakfast,"Eat breakfast, Start Healthy Life"));
         if(showBreakfastModels.isEmpty()==true)
         {
@@ -272,6 +242,9 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     InitialShowFood initialShowFood= initialShowBreakfastModels.get(position);
+                    Intent intent = new Intent(getContext(), AddFoodActivity.class);
+                    intent.putExtra("meal_type", "Breakfast");
+                    startActivity(intent);
 
                 }
             });
@@ -302,6 +275,10 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     InitialShowFood initialShowFood= initialShowLunchModels.get(position);
+                    Intent intent = new Intent(getContext(), AddFoodActivity.class);
+                    intent.putExtra("meal_type", "Lunch");
+                    startActivity(intent);
+
 
                 }
             });
@@ -332,6 +309,9 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     InitialShowFood initialShowFood= initialShowDinnerModels.get(position);
+                    Intent intent = new Intent(getContext(), AddFoodActivity.class);
+                    intent.putExtra("meal_type", "Dinner");
+                    startActivity(intent);
 
                 }
             });
@@ -350,8 +330,6 @@ public class HomeFragment extends Fragment {
                 }
             });
         }
-
-
 
         setListViewHeightBasedOnItems(breakfastListView);
         setListViewHeightBasedOnItems(lunchListView);
@@ -399,9 +377,6 @@ public class HomeFragment extends Fragment {
         int resID = this.getResources().getIdentifier(image_name, "drawable", getActivity().getPackageName());
         return resID;
     }
-
-
-
 }
 
 

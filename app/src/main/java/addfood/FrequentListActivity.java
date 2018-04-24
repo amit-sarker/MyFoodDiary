@@ -1,13 +1,15 @@
-package com.example.moumita.caloriecountergeb;
+package addfood;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class AfterSignInActivity extends AppCompatActivity {
+import com.example.moumita.caloriecountergeb.R;
+
+public class FrequentListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_after_sign_in);
+        setContentView(R.layout.activity_frequent_list);
     }
 }

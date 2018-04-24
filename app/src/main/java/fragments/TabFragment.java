@@ -63,7 +63,6 @@ public class TabFragment extends Fragment {
         public int getCount() {
 
             return int_items;
-
         }
 
         @Override

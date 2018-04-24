@@ -23,14 +23,13 @@ import com.example.moumita.caloriecountergeb.R;
 import fragments.TabFragment;
 
 
-public class TestTabActivity extends AppCompatActivity {
+public class HomeTabActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     DrawerLayout mDrawerLayout;
     NavigationView mNavigationView;
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
-
 
     SharedPreferences preferences;
     @Override
@@ -66,7 +65,6 @@ public class TestTabActivity extends AppCompatActivity {
 
                 menuItem.setChecked(true);
                 mDrawerLayout.closeDrawers();
-                //setTitle(menuItem.getTitle());
 
                 if (menuItem.getItemId() == R.id.drawer_home) {
                     FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
@@ -74,41 +72,41 @@ public class TestTabActivity extends AppCompatActivity {
                 }
 
                 if (menuItem.getItemId() == R.id.drawer_facebook){
-                    Toast.makeText(TestTabActivity.this,
+                    Toast.makeText(HomeTabActivity.this,
                             "Replace with your own function", Toast.LENGTH_LONG).show();
                 }
 
                 if (menuItem.getItemId() == R.id.drawer_gPlus){
-                    Toast.makeText(TestTabActivity.this,
+                    Toast.makeText(HomeTabActivity.this,
                             "Replace with your own function", Toast.LENGTH_LONG).show();
                 }
 
                 if (menuItem.getItemId() == R.id.drawer_rate) {
-                    Toast.makeText(TestTabActivity.this,
+                    Toast.makeText(HomeTabActivity.this,
                             "Replace with your own function", Toast.LENGTH_LONG).show();
                 }
 
                 if (menuItem.getItemId() == R.id.drawer_more) {
-                    Toast.makeText(TestTabActivity.this,
+                    Toast.makeText(HomeTabActivity.this,
                             "Replace with your own function", Toast.LENGTH_LONG).show();
                 }
 
                 if (menuItem.getItemId() == R.id.drawer_profile) {
-                    Toast.makeText(TestTabActivity.this,
+                    Toast.makeText(HomeTabActivity.this,
                             "Replace with your own function", Toast.LENGTH_LONG).show();
                 }
 
                 if (menuItem.getItemId() == R.id.drawer_share) {
-                    Toast.makeText(TestTabActivity.this,
+                    Toast.makeText(HomeTabActivity.this,
                             "Replace with your own function", Toast.LENGTH_LONG).show();
                 }
                 if (menuItem.getItemId() == R.id.drawer_youtube) {
-                    Toast.makeText(TestTabActivity.this,
+                    Toast.makeText(HomeTabActivity.this,
                             "Replace with your own function", Toast.LENGTH_LONG).show();
                 }
 
                 if (menuItem.getItemId() == R.id.drawer_exit) {
-                    Toast.makeText(TestTabActivity.this,
+                    Toast.makeText(HomeTabActivity.this,
                             "Replace with your own function", Toast.LENGTH_LONG).show();
                 }
 
@@ -169,6 +167,5 @@ public class TestTabActivity extends AppCompatActivity {
         super.onStart();
 
     }
-
 
 }

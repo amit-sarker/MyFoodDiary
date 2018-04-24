@@ -1,7 +1,9 @@
-package com.example.moumita.caloriecountergeb;
+package addfood;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.moumita.caloriecountergeb.R;
 
 public class RecentListActivity extends AppCompatActivity {
 

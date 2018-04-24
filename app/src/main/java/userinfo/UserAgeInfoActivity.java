@@ -43,7 +43,6 @@ public class UserAgeInfoActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         isFemale = bundle.getBoolean("isfemale");
-        //isfeet = bundle.getBoolean("isfeet");
         height = bundle.getDouble("height");
 
         simpleDatePicker = (DatePicker) findViewById(R.id.simpleDatePicker);
@@ -60,8 +59,6 @@ public class UserAgeInfoActivity extends AppCompatActivity {
                 final int dd = simpleDatePicker.getDayOfMonth();
                 final int mm = simpleDatePicker.getMonth() + 1;
                 final int yy = simpleDatePicker.getYear();
-
-
 
                 // display the values by using a toast
                 Toast.makeText(getApplicationContext(), dd + "\n" + mm + "\n" + yy, Toast.LENGTH_SHORT).show();

@@ -85,16 +85,12 @@ public class PiePolylineChartActivity extends DemoBase implements OnSeekBarChang
         mChart.setRotationEnabled(true);
         mChart.setHighlightPerTapEnabled(true);
 
-        // mChart.setUnit(" €");
-        // mChart.setDrawUnitsInChart(true);
-
         // add a selection listener
         mChart.setOnChartValueSelectedListener(this);
 
         setData(4, 100);
 
         mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
-        // mChart.spin(2000, 0, 360);
 
         Legend l = mChart.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
@@ -120,7 +116,6 @@ public class PiePolylineChartActivity extends DemoBase implements OnSeekBarChang
         float mult = range;
 
         ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
-
         // NOTE: The order of the entries when being added to the entries array determines their position around the center of
         // the chart.
         for (int i = 0; i < count; i++) {

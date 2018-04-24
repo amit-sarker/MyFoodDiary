@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,7 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import helper.FoodListHelper;
+import com.example.moumita.caloriecountergeb.R;
+
 import java.util.List;
 
 public class FoodListAdapter extends BaseAdapter {

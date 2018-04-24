@@ -16,25 +16,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="activities.TestTabActivity" />
+        <activity android:name="activities.HomeTabActivity" />
         <activity android:name="userinfo.UserGenderInfoActivity" />
         <activity android:name="generalpersonactivities.BMICalculationActivity" />
         <activity android:name="userinfo.UserHeightInfoActivity" />
         <activity android:name="userinfo.UserAgeInfoActivity" />
         <activity android:name="userinfo.UserWeightInfoActivity" />
-        <activity android:name=".UserSignInActivity" />
-        <activity android:name=".AfterSignInActivity" />
-        <activity android:name=".RegisteredPersonDataActivity" />
-        <activity android:name=".HomepageActivity" />
-        <activity android:name=".CategoryListActivity" />
-        <activity android:name=".FoodListActivity" />
-        <activity android:name=".FoodInfoActivity" />
-        <activity android:name=".ShowBMRActivity" />
-        <activity android:name=".AddFoodActivity" />
-        <activity android:name=".RecentListActivity" />
-        <activity android:name=".FrequentListActivity" />
+        <activity android:name="userinfo.UserSignInActivity" />
+        <activity android:name="userinfo.RegisteredPersonDataActivity" />
+        <activity android:name="addfood.CategoryListActivity" />
+        <activity android:name="addfood.FoodListActivity" />
+        <activity android:name="generalpersonactivities.ShowBMRActivity" />
+        <activity android:name="addfood.AddFoodActivity" />
+        <activity android:name="addfood.RecentListActivity" />
+        <activity android:name="addfood.FrequentListActivity" />
         <activity android:name="piechart.PieChartActivity" />
-        <activity android:name=".AddFoodToDiaryActivity" />
+        <activity android:name="addfood.AddFoodToDiaryActivity" />
         <activity android:name="piechart.ChartTestActivity" />
         <activity android:name="piechart.PiePolylineChartActivity"></activity>
     </application>

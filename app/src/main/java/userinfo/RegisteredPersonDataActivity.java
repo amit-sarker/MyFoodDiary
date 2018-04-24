@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package userinfo;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.moumita.caloriecountergeb.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -15,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
+import activities.HomeTabActivity;
 import generalpersondatabase.Person;
 import generalpersondatabase.PersonOperations;
 
@@ -82,7 +84,7 @@ public class RegisteredPersonDataActivity extends AppCompatActivity {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegisteredPersonDataActivity.this, HomepageActivity.class);
+                Intent intent = new Intent(RegisteredPersonDataActivity.this, HomeTabActivity.class);
                 startActivity(intent);
             }
         });
