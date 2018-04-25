@@ -29,8 +29,8 @@
         android:textSize="18sp" />
 
     <ImageView
-        android:layout_width="96dp"
-        android:layout_height="96dp"
+        android:layout_width="101dp"
+        android:layout_height="101dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="147dp"
@@ -61,11 +61,12 @@
 
             <TextView
                 android:id="@+id/activity_level_text"
-                android:layout_width="wrap_content"
+                android:layout_width="145dp"
                 android:layout_height="41dp"
                 android:text="@string/activity_level"
                 android:textColor="@color/title_text_color"
-                android:textSize="22dp" />
+                android:textSize="22dp"
+                android:textAlignment="center"/>
 
 
             <Spinner
@@ -91,7 +92,8 @@
                 android:layout_height="41dp"
                 android:text="@string/current_weight"
                 android:textColor="@color/title_text_color"
-                android:textSize="22dp" />
+                android:textSize="22dp"
+                android:textAlignment="center"/>
 
             <EditText
                 android:id="@+id/weight_editText_id"
@@ -106,7 +108,7 @@
                 android:id="@+id/kg_text"
                 android:layout_width="wrap_content"
                 android:layout_height="41dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="13dp"
                 android:text="@string/kg"
                 android:textColor="@color/title_text_color"
                 android:textSize="22dp" />
@@ -120,17 +122,18 @@
 
             <TextView
                 android:id="@+id/target_weight_text"
-                android:layout_width="wrap_content"
+                android:layout_width="148dp"
                 android:layout_height="41dp"
                 android:text="@string/target_weight"
                 android:textColor="@color/title_text_color"
-                android:textSize="22dp" />
+                android:textSize="22dp"
+                android:textAlignment="center"/>
 
             <EditText
                 android:id="@+id/weight_editText_id2"
                 android:layout_width="150dp"
                 android:layout_height="41dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="18dp"
                 android:ems="10"
                 android:inputType="number"
                 android:textColor="@color/title_text_color" />
@@ -153,9 +156,10 @@
 
             <TextView
                 android:id="@+id/kg_vs_lbs_text"
-                android:layout_width="wrap_content"
+                android:layout_width="148dp"
                 android:layout_height="41dp"
                 android:text="@string/weight_input_unit"
+                android:textAlignment="center"
                 android:textColor="@color/title_text_color"
                 android:textSize="22dp" />
 
@@ -163,7 +167,7 @@
                 android:id="@+id/lbs_vs_kg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
+                android:layout_marginStart="50dp"
                 android:checked="true"
                 android:text="@string/lbsvskg"
                 android:textOff="@string/lbs"
@@ -173,42 +177,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
-
-<!--
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="154dp">
-
-        <TableRow>
-
-
-        </TableRow>
-
-        <TableRow>
-
-
-
-        </TableRow>
-        <TableRow>
-
-
-
-
-        </TableRow>
-        <TableRow>
-
-        </TableRow>
-
-
-
-
-
-    </TableLayout>
-    -->
 
 </RelativeLayout>

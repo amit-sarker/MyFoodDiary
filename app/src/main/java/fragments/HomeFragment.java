@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -73,6 +74,7 @@ public class HomeFragment extends Fragment {
     private CalorieTracking lastTrackingRow;
     private double calConsumed, calRemain, calNeed;
     private TextView calConsumedText, calRemainText, calBurnText;
+    private Button addBreakdfastBtn, addLunchBtn, addDinnerBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -165,6 +167,10 @@ public class HomeFragment extends Fragment {
         waterAddBtn = view.findViewById(R.id.water_plus_btn);
         waterMinusBtn = view.findViewById(R.id.water_minus_btn);
         waterCountText = view.findViewById(R.id.water_count_text);
+        addBreakdfastBtn = view.findViewById(R.id.add_breakfast_btn);
+        addLunchBtn = view.findViewById(R.id.add_lunch_btn);
+        addDinnerBtn = view.findViewById(R.id.add_dinner_btn);
+
 
         waterAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,6 +184,33 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 glassOfWater--;
                 waterCountText.setText(glassOfWater + " glasses of water");
+            }
+        });
+
+        addBreakdfastBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AddFoodActivity.class);
+                intent.putExtra("meal_type", "Breakfast");
+                startActivity(intent);
+            }
+        });
+
+        addLunchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AddFoodActivity.class);
+                intent.putExtra("meal_type", "Lunch");
+                startActivity(intent);
+            }
+        });
+
+        addDinnerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AddFoodActivity.class);
+                intent.putExtra("meal_type", "Dinner");
+                startActivity(intent);
             }
         });
 
