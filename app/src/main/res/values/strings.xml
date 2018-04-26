@@ -95,6 +95,8 @@
     <string name="dietry_fiber">Dietry Fiber</string>
     <string name="category_list">Choose a category</string>
     <string name="food_list">Choose a food</string>
+    <string name="chart_select_text">Choose a category</string>
+    <string name="chart_type">Select Chart Type</string>
 
 
 </resources>

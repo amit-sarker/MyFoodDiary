@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         long personRowCount = personData.getRowCount();
         personData.close();
 
-        Intent intent = new Intent(MainActivity.this, BarChartActivityMultiDataset.class);
+        Intent intent = new Intent(MainActivity.this, AnalysisActivity.class);
         startActivity(intent);
         finish();
 

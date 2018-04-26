@@ -40,7 +40,8 @@
         <activity android:name=".GroupBarChart" />
         <activity android:name="notifications.TestActivity" />
         <activity android:name="notifications.ChatActivity" />
-        <activity android:name=".BarChartActivityMultiDataset"></activity>
+        <activity android:name=".BarChartActivityMultiDataset" />
+        <activity android:name=".AnalysisActivity" />
     </application>
 
 </manifest>
