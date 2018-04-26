@@ -61,10 +61,11 @@ public class GroupBarChart extends AppCompatActivity {
 
     public void drawChartCalorie(List<CalorieTracking> lastSevenDayList, BarChart chartCalorie) {
         chartCalorie.setDescription(null);
-        chartCalorie.setPinchZoom(false);
+        chartCalorie.setPinchZoom(true);
         chartCalorie.setScaleEnabled(false);
         chartCalorie.setDrawBarShadow(false);
         chartCalorie.setDrawGridBackground(false);
+
         int groupCount = 7;
 
         ArrayList xVals = new ArrayList();
