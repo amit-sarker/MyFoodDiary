@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.moumita.caloriecountergeb.AnalysisActivity;
 import com.example.moumita.caloriecountergeb.GroupBarChart;
 import com.example.moumita.caloriecountergeb.R;
 
@@ -35,7 +36,7 @@ public class AnalysisFragment extends Fragment {
         analysisButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), GroupBarChart.class);
+                Intent intent = new Intent(getContext(), AnalysisActivity.class);
                 startActivity(intent);
             }
         });

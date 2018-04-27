@@ -97,6 +97,8 @@
     <string name="food_list">Choose a food</string>
     <string name="chart_select_text">Choose a category</string>
     <string name="chart_type">Select Chart Type</string>
+    <string name="chart_data_availability">Not Enough Data</string>
+    <string name="chart_data_available_day">Showing The Result For</string>
 
 
 </resources>

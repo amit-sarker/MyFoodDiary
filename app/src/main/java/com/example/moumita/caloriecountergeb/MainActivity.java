@@ -128,11 +128,11 @@ public class MainActivity extends AppCompatActivity {
         long personRowCount = personData.getRowCount();
         personData.close();
 
-        Intent intent = new Intent(MainActivity.this, AnalysisActivity.class);
+        /*Intent intent = new Intent(MainActivity.this, AnalysisActivity.class);
         startActivity(intent);
-        finish();
+        finish();*/
 
-        /*if(personRowCount > 0) {
+        if(personRowCount > 0) {
             Intent intent = new Intent(MainActivity.this, HomeTabActivity.class);
             startActivity(intent);
             finish();
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, UserGenderInfoActivity.class);
             startActivity(intent);
             finish();
-        }*/
+        }
     }
 
 
