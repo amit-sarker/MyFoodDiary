@@ -100,6 +100,10 @@
     <string name="chart_type">Select Chart Type</string>
     <string name="chart_data_availability">Not Enough Data</string>
     <string name="chart_data_available_day">Showing The Result For</string>
+    <string name="weight_motivation">Right on! Stay with it, you will reach your goal as planned!</string>
+    <string name="update_weight">Update your weight</string>
+    <string name="input_prefill"> </string>
+    <string name="input_hint">Enter your weight</string>
 
 
 </resources>

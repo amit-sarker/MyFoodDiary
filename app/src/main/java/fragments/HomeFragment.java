@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.internal.NavigationMenu;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +28,9 @@ import addfood.AddFoodActivity;
 
 import helper.InitialShowFood;
 import adapter.InitialShowFoodAdapter;
+
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.example.moumita.caloriecountergeb.DialogActivity;
 import com.example.moumita.caloriecountergeb.R;
 import helper.ShowFood;
 import adapter.ShowFoodAdapter;
@@ -48,6 +52,7 @@ import generalpersondatabase.Person;
 import generalpersondatabase.PersonOperations;
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
+import mehdi.sakout.fancybuttons.FancyButton;
 import trackingdatabase.CalorieTracking;
 import trackingdatabase.TrackingOperations;
 
@@ -80,6 +85,9 @@ public class HomeFragment extends Fragment {
             proteinNeed, fatConsumed, fatRemain, fatNeed;
     private TextView calConsumedText, calRemainText, calBurnText, calConsumeNum, calBurnNum, calRemainNum,
             carbsBarText, carbsRemainText, proteinBarText, proteinRemainText, fatBarText, fatRemainText;
+    private TextView goalWeightText, gainedWeightText, goalWeightNumText, currentWeightNumText, weightMotivationText;
+    private FancyButton updateWeightButton;
+    private ProgressBar weightProgressBar;
     private Button addBreakdfastBtn, addLunchBtn, addDinnerBtn;
     private Typeface mTfLight, mTfRegular, mtfBold;
     private ProgressBar carbsBar, proteinBar, fatBar;
@@ -103,6 +111,14 @@ public class HomeFragment extends Fragment {
         calConsumeNum = view.findViewById(R.id.cal_consumed_number);
         calRemainNum = view.findViewById(R.id.cal_remain_num);
         calBurnNum = view.findViewById(R.id.cal_burn_number);
+
+        goalWeightText = view.findViewById(R.id.goal_weight_text);
+        gainedWeightText = view.findViewById(R.id.gained_weight_text);
+        goalWeightNumText = view.findViewById(R.id.current_goal_weight_text);
+        currentWeightNumText = view.findViewById(R.id.current_weight_text);
+        weightMotivationText = view.findViewById(R.id.goal_weight_motivation_text);
+        updateWeightButton = view.findViewById(R.id.btn_update_weight);
+        weightProgressBar = view.findViewById(R.id.progress_weight);
 
 
         carbsBar = view.findViewById(R.id.progress_carbs);
@@ -159,6 +175,11 @@ public class HomeFragment extends Fragment {
 
         personData.close();
         String cal_needed = person.getBMRWithActivity();
+        String current_weight = person.getWeight();
+        String target_weight = person.getTargetWeight();
+
+        System.err.println("Currentttttttttttttttttttttttttttt:   " + current_weight);
+        System.err.println("Targetttttttttttttttttttttttttttt:    " + target_weight);
 
         fitChart = view.findViewById(R.id.fitChart);
 
@@ -223,6 +244,40 @@ public class HomeFragment extends Fragment {
         calBurnText.setText("KCAL BURNED");
         calBurnText.setTextSize(10);
 
+
+        goalWeightText.setTypeface(mTfRegular);
+        goalWeightText.setText("GOAL WEIGHT: " + target_weight + " KG");
+        goalWeightText.setTextSize(15);
+
+        gainedWeightText.setTypeface(mTfLight);
+        gainedWeightText.setText("You've gained 0 kg");
+        gainedWeightText.setTextSize(30);
+
+        weightProgressBar.setMax((int) (Double.parseDouble(target_weight) - Double.parseDouble(current_weight)));
+        weightProgressBar.setProgress(5);
+        //weightProgressBar.setScaleY(3f);
+
+
+        currentWeightNumText.setTypeface(mTfRegular);
+        currentWeightNumText.setText(current_weight + " kg");
+        currentWeightNumText.setTextSize(10);
+
+        goalWeightNumText.setTypeface(mTfRegular);
+        goalWeightNumText.setText(target_weight + " kg");
+        goalWeightNumText.setTextSize(10);
+
+
+        weightMotivationText.setTypeface(mTfLight);
+        weightMotivationText.setTextSize(15);
+
+
+        updateWeightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), DialogActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         FabSpeedDial fabAddFood = (FabSpeedDial) view.findViewById(R.id.fab_add_food);

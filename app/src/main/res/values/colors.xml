@@ -29,6 +29,8 @@
 
     <color name="divider_color">#81C784</color>
 
+    <color name="progress_bar_color">#3E2723</color>
+
 
     <!-- downloaded from internet-->
     <color name="primary">#4CAF50</color>
