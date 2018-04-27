@@ -5,7 +5,10 @@ package fragments;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.internal.NavigationMenu;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import addfood.AddFoodActivity;
@@ -67,15 +71,20 @@ public class HomeFragment extends Fragment {
     private static ShowFoodAdapter showFoodAdapter;
     private static InitialShowFoodAdapter initialShowFoodAdapter;
     private ImageButton waterAddBtn, waterMinusBtn;
-    private TextView waterCountText;
+    private TextView waterCountText, infoText;
     private int glassOfWater;
     public static String myMealType;
     private TrackingOperations trackingData;
     private CalorieTracking lastTrackingRow;
-    private double calConsumed, calRemain, calNeed;
-    private TextView calConsumedText, calRemainText, calBurnText;
+    private double calConsumed, calRemain, calNeed, carbsConsumed, carbsRemain, carbsNeed, proteinConsumed, proteinRemain,
+            proteinNeed, fatConsumed, fatRemain, fatNeed;
+    private TextView calConsumedText, calRemainText, calBurnText, calConsumeNum, calBurnNum, calRemainNum,
+            carbsBarText, carbsRemainText, proteinBarText, proteinRemainText, fatBarText, fatRemainText;
     private Button addBreakdfastBtn, addLunchBtn, addDinnerBtn;
+    private Typeface mTfLight, mTfRegular, mtfBold;
+    private ProgressBar carbsBar, proteinBar, fatBar;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -90,6 +99,59 @@ public class HomeFragment extends Fragment {
         calConsumedText = view.findViewById(R.id.cal_consumed_text);
         calRemainText = view.findViewById(R.id.cal_remain_text);
         calBurnText = view.findViewById(R.id.cal_burn_text);
+        infoText = view.findViewById(R.id.calorie_text);
+        calConsumeNum = view.findViewById(R.id.cal_consumed_number);
+        calRemainNum = view.findViewById(R.id.cal_remain_num);
+        calBurnNum = view.findViewById(R.id.cal_burn_number);
+
+
+        carbsBar = view.findViewById(R.id.progress_carbs);
+        carbsBarText = view.findViewById(R.id.carbs_bar_text);
+        carbsRemainText = view.findViewById(R.id.carbs_bar_remain_text);
+
+        proteinBar = view.findViewById(R.id.progress_protein);
+        proteinBarText = view.findViewById(R.id.protein_bar_text);
+        proteinRemainText = view.findViewById(R.id.protein_bar_remain_text);
+
+        fatBar = view.findViewById(R.id.progress_fat);
+        fatBarText = view.findViewById(R.id.fat_bar_text);
+        fatRemainText = view.findViewById(R.id.fat_bar_remain_text);
+
+
+        mTfRegular = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Regular.ttf");
+        mTfLight = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Light.ttf");
+        mtfBold = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Bold.ttf");
+
+        infoText.setTypeface(mTfRegular);
+        infoText.setTextSize(25);
+        calConsumeNum.setTypeface(mTfRegular);
+        calBurnNum.setTypeface(mTfRegular);
+        calConsumedText.setTypeface(mTfLight);
+        calBurnText.setTypeface(mTfLight);
+        calRemainText.setTypeface(mTfLight);
+        calRemainNum.setTypeface(mTfRegular);
+
+
+        carbsBarText.setTypeface(mTfRegular);
+        carbsBarText.setText("CARBS");
+        carbsBarText.setTextSize(15);
+        carbsRemainText.setTypeface(mTfLight);
+        carbsRemainText.setTextSize(12);
+
+        proteinBarText.setTypeface(mTfRegular);
+        proteinBarText.setText("PROTEIN");
+        proteinBarText.setTextSize(15);
+        proteinRemainText.setTypeface(mTfLight);
+        proteinRemainText.setTextSize(12);
+
+        fatBarText.setTypeface(mTfRegular);
+        fatBarText.setText("FAT");
+        fatBarText.setTextSize(15);
+        fatRemainText.setTypeface(mTfLight);
+        fatRemainText.setTextSize(12);
+
+
+
         personData.open();
 
         Person person = new Person();
@@ -108,6 +170,26 @@ public class HomeFragment extends Fragment {
         calConsumed = lastTrackingRow.getCal_consumed();
         calRemain = lastTrackingRow.getCal_remaining();
         calNeed = lastTrackingRow.getCal_needed();
+
+        carbsConsumed = lastTrackingRow.getCarbs_consumed();
+        carbsRemain = lastTrackingRow.getCarbs_remaining();
+        carbsNeed = lastTrackingRow.getCarbs_needed();
+
+        proteinConsumed = lastTrackingRow.getProtein_consumed();
+        proteinRemain = lastTrackingRow.getProtein_remaining();
+        proteinNeed = lastTrackingRow.getProtein_needed();
+
+        fatConsumed = lastTrackingRow.getFat_consumed();
+        fatRemain = lastTrackingRow.getFat_remaining();
+        fatNeed = lastTrackingRow.getFat_needed();
+
+        carbsRemainText.setText(Math.round(carbsRemain) + "g left");
+        proteinRemainText.setText(Math.round(proteinRemain) + "g left");
+        fatRemainText.setText(Math.round(fatRemain) + "g left");
+
+
+
+
         fitChart.setMinValue(0f);
         fitChart.setMaxValue((float) calNeed);
 
@@ -116,9 +198,30 @@ public class HomeFragment extends Fragment {
         values.add(new FitChartValue((float) calConsumed, resources.getColor(R.color.chart_value_1)));
         fitChart.setValues(values);
 
-        calConsumedText.setText(String.valueOf(calConsumed) + "\n" + "Eaten");
-        calRemainText.setText(String.valueOf(calRemain) + "\n" + "CAL Left");
-        calBurnText.setText("0" + "\n" + "Burned");
+
+        carbsBar.setMax((int) carbsNeed);
+        carbsBar.setProgress((int) carbsConsumed);
+
+        proteinBar.setMax((int) proteinNeed);
+        proteinBar.setProgress((int) proteinConsumed);
+
+        fatBar.setMax((int) fatNeed);
+        fatBar.setProgress((int) fatConsumed);
+
+
+        calConsumeNum.setText(String.valueOf(Math.round(calConsumed)));
+        calBurnNum.setText("0");
+        calRemainNum.setText(String.valueOf(Math.round(calRemain)));
+        calConsumeNum.setTextSize(25);
+        calBurnNum.setTextSize(25);
+        calRemainNum.setTextSize(35);
+
+        calConsumedText.setText("KCAL EATEN");
+        calConsumedText.setTextSize(10);
+        calRemainText.setText("KCAL LEFT");
+        calRemainText.setTextSize(15);
+        calBurnText.setText("KCAL BURNED");
+        calBurnText.setTextSize(10);
 
 
 

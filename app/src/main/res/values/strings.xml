@@ -86,6 +86,7 @@
     <string name="show_lunch">Lunch</string>
     <string name="show_dinner">Dinner</string>
     <string name="show_water">Water</string>
+    <string name="show_calories">Calorie Info</string>
     <string name="water_value">7</string>
     <string name="water_taken">0 glasses today</string>
     <string name="vit_e">Vitamin E</string>

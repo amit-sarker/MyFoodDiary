@@ -19,77 +19,266 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout
+
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="300dp"
+                android:layout_margin="@dimen/card_margin"
+                android:backgroundTint="@color/colorPrimary"
+
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
+                card_view:cardCornerRadius="12dp"
+                card_view:cardElevation="3dp"
+                card_view:contentPadding="4dp">
 
                 <TextView
-                    android:id="@+id/cal_consumed_text"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/calorie_text"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="36dp"
+
                     android:gravity="center"
-                    android:text="water"
-                    android:fontFamily="cursive"
-                    android:textStyle="normal"
-                    android:textSize="20sp"
+                    android:text="@string/show_calories"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textColor="@color/title_text_color" />
-
-                <TextView
-                    android:id="@+id/cal_remain_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:gravity="center"
-                    android:fontFamily="cursive"
-                    android:textStyle="normal"
-                    android:textSize="20sp"
-                    android:text="@string/show_water"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textColor="@color/title_text_color" />
-
-                <TextView
-                    android:id="@+id/cal_burn_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="39dp"
-                    android:gravity="center"
-                    android:textSize="20sp"
-                    android:fontFamily="cursive"
-                    android:textStyle="normal"
-                    android:text="@string/show_water"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textColor="@color/title_text_color" />
+                    android:textColor="@color/white" />
 
 
-                <com.txusballesteros.widgets.FitChart
-                    android:id="@+id/fitChart"
-                    style="@style/chart_style"
-                    android:layout_width="117dp"
-                    android:layout_height="117dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    app:animationMode="overdraw"
-                    app:strokeSize="5dp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="147dp"
+                    android:layout_marginTop="40dp">
 
-            </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/cal_consumed_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/cal_consumed_number"
+                        android:layout_below="@+id/cal_consumed_number"
+                        android:gravity="center"
+                        android:text="water"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/cal_consumed_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="51dp"
+                        android:gravity="center"
+                        android:text="water"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/cal_remain_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/cal_consumed_text"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:text="@string/show_water"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/cal_remain_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/cal_consumed_text"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:text="@string/show_water"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/cal_burn_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/cal_consumed_text"
+                        android:layout_alignStart="@+id/cal_burn_text"
+                        android:layout_marginTop="51dp"
+                        android:gravity="center"
+                        android:text="@string/show_water"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/cal_burn_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_below="@+id/cal_burn_number"
+                        android:layout_marginEnd="20dp"
+                        android:gravity="center"
+                        android:text="@string/show_water"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="normal" />
+
+
+                    <com.txusballesteros.widgets.FitChart
+                        android:id="@+id/fitChart"
+                        style="@style/chart_style"
+
+                        android:layout_width="88dp"
+                        android:layout_height="88dp"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        app:animationMode="overdraw"
+                        app:strokeSize="5dp" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="195dp">
+
+
+                    <TextView
+                        android:id="@+id/carbs_bar_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/progress_carbs"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignStart="@+id/progress_carbs"
+                        android:gravity="center"
+                        android:text="@string/show_water"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="normal" />
+
+
+                    <ProgressBar
+                        android:id="@+id/progress_carbs"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="88dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:max="100"
+                        android:progress="50"
+                        android:progressTint="@color/white" />
+
+
+                    <TextView
+                        android:id="@+id/carbs_bar_remain_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/carbs_bar_text"
+                        android:layout_below="@+id/progress_carbs"
+                        android:gravity="center"
+                        android:text="@string/show_water"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="normal" />
+
+
+                    <TextView
+                        android:id="@+id/protein_bar_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignTop="@+id/carbs_bar_text"
+                        android:layout_marginStart="133dp"
+                        android:gravity="center"
+                        android:text="@string/show_water"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="normal" />
+
+
+                    <ProgressBar
+                        android:id="@+id/progress_protein"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="88dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/protein_bar_text"
+                        android:layout_centerVertical="true"
+                        android:max="100"
+                        android:progress="50"
+                        android:progressTint="@color/white" />
+
+
+                    <TextView
+                        android:id="@+id/protein_bar_remain_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/protein_bar_text"
+                        android:layout_below="@+id/progress_protein"
+                        android:gravity="center"
+                        android:text="@string/show_water"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="normal" />
+
+
+                    <TextView
+                        android:id="@+id/fat_bar_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignTop="@+id/carbs_bar_text"
+                        android:layout_marginEnd="59dp"
+                        android:gravity="center"
+                        android:text="@string/show_water"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="normal" />
+
+
+                    <ProgressBar
+                        android:id="@+id/progress_fat"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="88dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/fat_bar_text"
+                        android:layout_centerVertical="true"
+                        android:max="100"
+                        android:progress="50"
+                        android:progressTint="@color/white" />
+
+
+                    <TextView
+                        android:id="@+id/fat_bar_remain_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/fat_bar_text"
+                        android:layout_below="@+id/progress_fat"
+                        android:gravity="center"
+                        android:text="@string/show_water"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="normal" />
+
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/card_margin"
 
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
                 card_view:cardCornerRadius="12dp"
                 card_view:cardElevation="3dp"
-                card_view:contentPadding="4dp"
-                android:foreground="?selectableItemBackground"
-                android:clickable="true">
+                card_view:contentPadding="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -161,17 +350,16 @@
             </android.support.v7.widget.CardView>
 
 
-
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/card_margin"
 
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
                 card_view:cardCornerRadius="12dp"
                 card_view:cardElevation="3dp"
-                card_view:contentPadding="4dp"
-                android:foreground="?selectableItemBackground"
-                android:clickable="true">
+                card_view:contentPadding="4dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -203,8 +391,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/show_breakfast_list"
-                        android:text="Add Food"
                         android:drawableLeft="@drawable/ic_add_black_24dp"
+                        android:text="Add Food"
                         android:textAlignment="textStart" />
 
                 </RelativeLayout>
@@ -216,11 +404,11 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/card_margin"
 
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
                 card_view:cardCornerRadius="12dp"
                 card_view:cardElevation="3dp"
-                card_view:contentPadding="4dp"
-                android:foreground="?selectableItemBackground"
-                android:clickable="true">
+                card_view:contentPadding="4dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -265,11 +453,11 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/card_margin"
 
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
                 card_view:cardCornerRadius="12dp"
                 card_view:cardElevation="3dp"
-                card_view:contentPadding="4dp"
-                android:foreground="?selectableItemBackground"
-                android:clickable="true">
+                card_view:contentPadding="4dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -296,15 +484,14 @@
                     </ListView>
 
                     <Button
-                        style="@style/Widget.AppCompat.Button.Borderless"
                         android:id="@+id/add_dinner_btn"
+                        style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Add Food"
                         android:layout_below="@id/show_dinner_list"
-                        android:textAlignment="textStart"
                         android:drawableLeft="@drawable/ic_add_black_24dp"
-                        />
+                        android:text="Add Food"
+                        android:textAlignment="textStart" />
 
                 </RelativeLayout>
             </android.support.v7.widget.CardView>

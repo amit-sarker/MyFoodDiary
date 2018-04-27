@@ -6,7 +6,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
 
 
-    <dimen name="chart_size">250dp</dimen>
+    <dimen name="chart_size">100dp</dimen>
     <dimen name="card_margin">5dp</dimen>
     <dimen name="picture_border">10dp</dimen>
     <dimen name="picture_height">50dp</dimen>
