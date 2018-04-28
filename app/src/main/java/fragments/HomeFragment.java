@@ -3,14 +3,17 @@
 
 package fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.annotation.RequiresApi;
 import android.support.design.internal.NavigationMenu;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -26,6 +29,7 @@ import android.widget.TextView;
 
 import addfood.AddFoodActivity;
 
+import generalpersonactivities.BMICalculation;
 import helper.InitialShowFood;
 import adapter.InitialShowFoodAdapter;
 
@@ -34,6 +38,8 @@ import com.example.moumita.caloriecountergeb.DialogActivity;
 import com.example.moumita.caloriecountergeb.R;
 import helper.ShowFood;
 import adapter.ShowFoodAdapter;
+
+import com.example.moumita.caloriecountergeb.UpdateGoalActivity;
 import com.txusballesteros.widgets.FitChart;
 import com.txusballesteros.widgets.FitChartValue;
 
@@ -67,7 +73,7 @@ public class HomeFragment extends Fragment {
     private List<FoodDiary> foodDiaryList;
 
     private FoodOperations foodData;
-
+    private CardView weightCard;
     private FitChart fitChart;
     private PersonOperations personData;
     private ArrayList<ShowFood> showBreakfastModels, showLunchModels, showDinnerModels;
@@ -91,6 +97,7 @@ public class HomeFragment extends Fragment {
     private Button addBreakdfastBtn, addLunchBtn, addDinnerBtn;
     private Typeface mTfLight, mTfRegular, mtfBold;
     private ProgressBar carbsBar, proteinBar, fatBar;
+    private Vibrator vibrator;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -104,6 +111,7 @@ public class HomeFragment extends Fragment {
         foodData = new FoodOperations(getContext());
         trackingData = new TrackingOperations(getContext());
         lastTrackingRow = new CalorieTracking();
+        weightCard = view.findViewById(R.id.weight_card_view);
         calConsumedText = view.findViewById(R.id.cal_consumed_text);
         calRemainText = view.findViewById(R.id.cal_remain_text);
         calBurnText = view.findViewById(R.id.cal_burn_text);
@@ -147,6 +155,7 @@ public class HomeFragment extends Fragment {
         calRemainText.setTypeface(mTfLight);
         calRemainNum.setTypeface(mTfRegular);
 
+        vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
         carbsBarText.setTypeface(mTfRegular);
         carbsBarText.setText("CARBS");
@@ -166,17 +175,15 @@ public class HomeFragment extends Fragment {
         fatRemainText.setTypeface(mTfLight);
         fatRemainText.setTextSize(12);
 
-
-
         personData.open();
 
-        Person person = new Person();
-        person = personData.getPerson(1);
+        long last_row_person = personData.getRowCount();
+        Person personLastRow = personData.getPerson(last_row_person);
 
         personData.close();
-        String cal_needed = person.getBMRWithActivity();
-        String current_weight = person.getWeight();
-        String target_weight = person.getTargetWeight();
+        String cal_needed = personLastRow.getBMRWithActivity();
+        String current_weight = personLastRow.getWeight();
+        String target_weight = personLastRow.getTargetWeight();
 
         System.err.println("Currentttttttttttttttttttttttttttt:   " + current_weight);
         System.err.println("Targetttttttttttttttttttttttttttt:    " + target_weight);
@@ -207,8 +214,6 @@ public class HomeFragment extends Fragment {
         carbsRemainText.setText(Math.round(carbsRemain) + "g left");
         proteinRemainText.setText(Math.round(proteinRemain) + "g left");
         fatRemainText.setText(Math.round(fatRemain) + "g left");
-
-
 
 
         fitChart.setMinValue(0f);
@@ -244,22 +249,36 @@ public class HomeFragment extends Fragment {
         calBurnText.setText("KCAL BURNED");
         calBurnText.setTextSize(10);
 
+        personData.open();
+        List<Double> updatedWeightAll = personData.getTotalUpdatedweight();
+        personData.close();
+
+        double total_updated_weight = 0.0;
+        for(int i = 0; i < updatedWeightAll.size(); i++) {
+            total_updated_weight += updatedWeightAll.get(i);
+        }
+
 
         goalWeightText.setTypeface(mTfRegular);
         goalWeightText.setText("GOAL WEIGHT: " + target_weight + " KG");
         goalWeightText.setTextSize(15);
 
         gainedWeightText.setTypeface(mTfLight);
-        gainedWeightText.setText("You've gained 0 kg");
+        gainedWeightText.setText("You've gained " + BMICalculation.Round(total_updated_weight, 1) + "Kg");
         gainedWeightText.setTextSize(30);
 
-        weightProgressBar.setMax((int) (Double.parseDouble(target_weight) - Double.parseDouble(current_weight)));
-        weightProgressBar.setProgress(5);
+
+        double initial_weight = Double.parseDouble(current_weight) - total_updated_weight;
+
+        weightProgressBar.setMax((int) (Double.parseDouble(target_weight) - initial_weight) * 1000);
+        double progress_amount = total_updated_weight;
+        weightProgressBar.setProgress((int) (progress_amount * 1000));
         //weightProgressBar.setScaleY(3f);
 
 
         currentWeightNumText.setTypeface(mTfRegular);
-        currentWeightNumText.setText(current_weight + " kg");
+
+        currentWeightNumText.setText(initial_weight + " kg");
         currentWeightNumText.setTextSize(10);
 
         goalWeightNumText.setTypeface(mTfRegular);
@@ -271,13 +290,29 @@ public class HomeFragment extends Fragment {
         weightMotivationText.setTextSize(15);
 
 
-        updateWeightButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), DialogActivity.class);
-                startActivity(intent);
-            }
-        });
+        if(Double.parseDouble(personLastRow.getWeight()) >= Double.parseDouble(personLastRow.getTargetWeight())) {
+            updateWeightButton.setText("Update Your Goal");
+            weightMotivationText.setText(R.string.congrates_goal_complete);
+            updateWeightButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    vibrator.vibrate(25);
+                    Intent intent = new Intent(getContext(), UpdateGoalActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
+            });
+        } else {
+            updateWeightButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    vibrator.vibrate(25);
+                    Intent intent = new Intent(getContext(), DialogActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
+            });
+        }
 
 
         FabSpeedDial fabAddFood = (FabSpeedDial) view.findViewById(R.id.fab_add_food);
@@ -290,6 +325,7 @@ public class HomeFragment extends Fragment {
         fabAddFood.setMenuListener(new SimpleMenuListenerAdapter() {
             @Override
             public boolean onMenuItemSelected(MenuItem menuItem) {
+                vibrator.vibrate(25);
 
                 switch (menuItem.getItemId()) {
                     case R.id.action_breakfast: {
@@ -333,6 +369,7 @@ public class HomeFragment extends Fragment {
         waterAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vibrator.vibrate(25);
                 glassOfWater++;
                 waterCountText.setText(glassOfWater + " glasses of water");
             }
@@ -340,6 +377,7 @@ public class HomeFragment extends Fragment {
         waterMinusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vibrator.vibrate(25);
                 glassOfWater--;
                 waterCountText.setText(glassOfWater + " glasses of water");
             }
@@ -348,6 +386,7 @@ public class HomeFragment extends Fragment {
         addBreakdfastBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vibrator.vibrate(25);
                 Intent intent = new Intent(getContext(), AddFoodActivity.class);
                 intent.putExtra("meal_type", "Breakfast");
                 startActivity(intent);
@@ -357,6 +396,7 @@ public class HomeFragment extends Fragment {
         addLunchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vibrator.vibrate(25);
                 Intent intent = new Intent(getContext(), AddFoodActivity.class);
                 intent.putExtra("meal_type", "Lunch");
                 startActivity(intent);
@@ -366,6 +406,7 @@ public class HomeFragment extends Fragment {
         addDinnerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vibrator.vibrate(25);
                 Intent intent = new Intent(getContext(), AddFoodActivity.class);
                 intent.putExtra("meal_type", "Dinner");
                 startActivity(intent);
@@ -432,6 +473,7 @@ public class HomeFragment extends Fragment {
             breakfastListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    vibrator.vibrate(25);
                     InitialShowFood initialShowFood= initialShowBreakfastModels.get(position);
                     Intent intent = new Intent(getContext(), AddFoodActivity.class);
                     intent.putExtra("meal_type", "Breakfast");
@@ -449,6 +491,7 @@ public class HomeFragment extends Fragment {
             breakfastListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    vibrator.vibrate(25);
                     ShowFood showFoodModel= showBreakfastModels.get(position);
 
                 }
@@ -465,6 +508,7 @@ public class HomeFragment extends Fragment {
             lunchListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    vibrator.vibrate(25);
                     InitialShowFood initialShowFood= initialShowLunchModels.get(position);
                     Intent intent = new Intent(getContext(), AddFoodActivity.class);
                     intent.putExtra("meal_type", "Lunch");
@@ -483,6 +527,7 @@ public class HomeFragment extends Fragment {
             lunchListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    vibrator.vibrate(25);
                     ShowFood showFoodModel= showLunchModels.get(position);
 
                 }
@@ -499,6 +544,7 @@ public class HomeFragment extends Fragment {
             dinnerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    vibrator.vibrate(25);
                     InitialShowFood initialShowFood= initialShowDinnerModels.get(position);
                     Intent intent = new Intent(getContext(), AddFoodActivity.class);
                     intent.putExtra("meal_type", "Dinner");
@@ -516,6 +562,7 @@ public class HomeFragment extends Fragment {
             dinnerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    vibrator.vibrate(25);
                     ShowFood showFoodModel= showDinnerModels.get(position);
 
                 }

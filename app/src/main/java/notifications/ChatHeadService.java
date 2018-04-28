@@ -103,7 +103,7 @@ public class ChatHeadService extends Service {
                         params.x = initialX + (int) (event.getRawX() - initialTouchX);
                         params.y = initialY + (int) (event.getRawY() - initialTouchY);
 
-                        //Update the layout with new X & Y coordinate
+                        //Update the layout with new_gif X & Y coordinate
                         mWindowManager.updateViewLayout(mChatHeadView, params);
                         lastAction = event.getAction();
                         return true;

@@ -24,7 +24,7 @@ public class FoodListActivity extends AppCompatActivity {
     private String categoryName;
     private CategoryOperations categoryData;
     private ListView mListView;
-    //private List<String> categoryList = new ArrayList<>();
+    //private List<String> categoryList = new_gif ArrayList<>();
     private String mealType;
 
     private ListView categoryListView;

@@ -130,6 +130,7 @@ public class UserWeightInfoActivity extends AppCompatActivity {
                 newPerson.setTargetWeight(String.valueOf(targetweight));
                 newPerson.setBMRWithoutActivity(String.valueOf(BMRWithoutActivity));
                 newPerson.setBMRWithActivity(String.valueOf(BMRWithActivity));
+                newPerson.setWeightUpdateAmount("0");
                 personData.addPerson(newPerson);
 
                 personData.close();

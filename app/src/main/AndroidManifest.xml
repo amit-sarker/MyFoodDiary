@@ -3,6 +3,7 @@
     package="com.example.moumita.caloriecountergeb">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW " />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -43,10 +44,11 @@
         <activity android:name=".BarChartActivityMultiDataset" />
         <activity android:name=".AnalysisActivity" />
         <activity android:name=".LineChartActivity2" />
-        <activity android:name=".DialogActivity"
-            android:theme="@style/Theme.AppCompat.Dialog"
-            android:excludeFromRecents="true"/>
-
+        <activity
+            android:name=".DialogActivity"
+            android:excludeFromRecents="true"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity android:name=".UpdateGoalActivity"></activity>
     </application>
 
 </manifest>

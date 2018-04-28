@@ -312,20 +312,20 @@ public class AnalysisActivity extends AppCompatActivity {
         }
 
 
-        /*yVals1.add(new Entry(0, (float) Math.round(needed.get(0))));
-        yVals2.add(new Entry(0, (float) Math.round(consumed.get(0))));
-        yVals1.add(new Entry(1, (float) Math.round(needed.get(1))));
-        yVals2.add(new Entry(1, (float) Math.round(consumed.get(1))));
-        yVals1.add(new Entry(2, (float) Math.round(needed.get(2))));
-        yVals2.add(new Entry(2, (float) Math.round(consumed.get(2))));
-        yVals1.add(new Entry(3, (float) Math.round(needed.get(3))));
-        yVals2.add(new Entry(3, (float) Math.round(consumed.get(3))));
-        yVals1.add(new Entry(4, (float) Math.round(needed.get(4))));
-        yVals2.add(new Entry(4, (float) Math.round(consumed.get(4))));
-        yVals1.add(new Entry(5, (float) Math.round(needed.get(5))));
-        yVals2.add(new Entry(5, (float) Math.round(consumed.get(5))));
-        yVals1.add(new Entry(6, (float) Math.round(needed.get(6))));
-        yVals2.add(new Entry(6, (float) Math.round(consumed.get(6))));*/
+        /*yVals1.add(new_gif Entry(0, (float) Math.round(needed.get(0))));
+        yVals2.add(new_gif Entry(0, (float) Math.round(consumed.get(0))));
+        yVals1.add(new_gif Entry(1, (float) Math.round(needed.get(1))));
+        yVals2.add(new_gif Entry(1, (float) Math.round(consumed.get(1))));
+        yVals1.add(new_gif Entry(2, (float) Math.round(needed.get(2))));
+        yVals2.add(new_gif Entry(2, (float) Math.round(consumed.get(2))));
+        yVals1.add(new_gif Entry(3, (float) Math.round(needed.get(3))));
+        yVals2.add(new_gif Entry(3, (float) Math.round(consumed.get(3))));
+        yVals1.add(new_gif Entry(4, (float) Math.round(needed.get(4))));
+        yVals2.add(new_gif Entry(4, (float) Math.round(consumed.get(4))));
+        yVals1.add(new_gif Entry(5, (float) Math.round(needed.get(5))));
+        yVals2.add(new_gif Entry(5, (float) Math.round(consumed.get(5))));
+        yVals1.add(new_gif Entry(6, (float) Math.round(needed.get(6))));
+        yVals2.add(new_gif Entry(6, (float) Math.round(consumed.get(6))));*/
 
 
         //if(yVals1.size() != 0 || yVals2.size() != 0) {
@@ -357,7 +357,7 @@ public class AnalysisActivity extends AppCompatActivity {
                 set1.setFillColor(ColorTemplate.getHoloBlue());
                 set1.setHighLightColor(Color.rgb(244, 117, 117));
                 set1.setDrawCircleHole(false);
-                //set1.setFillFormatter(new MyFillFormatter(0f));
+                //set1.setFillFormatter(new_gif MyFillFormatter(0f));
                 //set1.setDrawHorizontalHighlightIndicator(false);
                 //set1.setVisible(false);
                 //set1.setCircleHoleColor(Color.WHITE);
@@ -373,7 +373,7 @@ public class AnalysisActivity extends AppCompatActivity {
                 set2.setFillColor(Color.RED);
                 set2.setDrawCircleHole(false);
                 set2.setHighLightColor(Color.rgb(244, 117, 117));
-                //set2.setFillFormatter(new MyFillFormatter(900f));
+                //set2.setFillFormatter(new_gif MyFillFormatter(900f));
 
                 // create a data object with the datasets
                 LineData data = new LineData(set1, set2);
@@ -547,20 +547,20 @@ public class AnalysisActivity extends AppCompatActivity {
         }
 
 
-        /*yVals1.add(new BarEntry(1, (float) Math.round(needed.get(0))));
-        yVals2.add(new BarEntry(1, (float) Math.round(consumed.get(0))));
-        yVals1.add(new BarEntry(2, (float) Math.round(needed.get(1))));
-        yVals2.add(new BarEntry(2, (float) Math.round(consumed.get(1))));
-        yVals1.add(new BarEntry(3, (float) Math.round(needed.get(2))));
-        yVals2.add(new BarEntry(3, (float) Math.round(consumed.get(2))));
-        yVals1.add(new BarEntry(4, (float) Math.round(needed.get(3))));
-        yVals2.add(new BarEntry(4, (float) Math.round(consumed.get(3))));
-        yVals1.add(new BarEntry(5, (float) Math.round(needed.get(4))));
-        yVals2.add(new BarEntry(5, (float) Math.round(consumed.get(4))));
-        yVals1.add(new BarEntry(6, (float) Math.round(needed.get(5))));
-        yVals2.add(new BarEntry(6, (float) Math.round(consumed.get(5))));
-        yVals1.add(new BarEntry(7, (float) Math.round(needed.get(6))));
-        yVals2.add(new BarEntry(7, (float) Math.round(consumed.get(6))));*/
+        /*yVals1.add(new_gif BarEntry(1, (float) Math.round(needed.get(0))));
+        yVals2.add(new_gif BarEntry(1, (float) Math.round(consumed.get(0))));
+        yVals1.add(new_gif BarEntry(2, (float) Math.round(needed.get(1))));
+        yVals2.add(new_gif BarEntry(2, (float) Math.round(consumed.get(1))));
+        yVals1.add(new_gif BarEntry(3, (float) Math.round(needed.get(2))));
+        yVals2.add(new_gif BarEntry(3, (float) Math.round(consumed.get(2))));
+        yVals1.add(new_gif BarEntry(4, (float) Math.round(needed.get(3))));
+        yVals2.add(new_gif BarEntry(4, (float) Math.round(consumed.get(3))));
+        yVals1.add(new_gif BarEntry(5, (float) Math.round(needed.get(4))));
+        yVals2.add(new_gif BarEntry(5, (float) Math.round(consumed.get(4))));
+        yVals1.add(new_gif BarEntry(6, (float) Math.round(needed.get(5))));
+        yVals2.add(new_gif BarEntry(6, (float) Math.round(consumed.get(5))));
+        yVals1.add(new_gif BarEntry(7, (float) Math.round(needed.get(6))));
+        yVals2.add(new_gif BarEntry(7, (float) Math.round(consumed.get(6))));*/
 
         //if(yVals1.size() != 0 || yVals2.size() != 0) {
 
@@ -576,7 +576,7 @@ public class AnalysisActivity extends AppCompatActivity {
             set2.setColor(ColorTemplate.getHoloBlue());
             BarData data = new BarData(set1, set2);
             data.setValueFormatter(new DefaultValueFormatter(0));
-            //data.setValueFormatter(new LargeValueFormatter());
+            //data.setValueFormatter(new_gif LargeValueFormatter());
             mChart.setData(data);
             mChart.getBarData().setBarWidth(barWidth);
             mChart.getXAxis().setAxisMinimum(0);
@@ -622,7 +622,7 @@ public class AnalysisActivity extends AppCompatActivity {
             float val = (float) (Math.random() * mult) + 450;
             yVals2.add(new Entry(i, val));
 //            if(i == 10) {
-//                yVals2.add(new Entry(i, val + 50));
+//                yVals2.add(new_gif Entry(i, val + 50));
 //            }
         }
 
@@ -659,7 +659,7 @@ public class AnalysisActivity extends AppCompatActivity {
             set1.setFillColor(ColorTemplate.getHoloBlue());
             set1.setHighLightColor(Color.rgb(244, 117, 117));
             set1.setDrawCircleHole(false);
-            //set1.setFillFormatter(new MyFillFormatter(0f));
+            //set1.setFillFormatter(new_gif MyFillFormatter(0f));
             //set1.setDrawHorizontalHighlightIndicator(false);
             //set1.setVisible(false);
             //set1.setCircleHoleColor(Color.WHITE);
@@ -675,7 +675,7 @@ public class AnalysisActivity extends AppCompatActivity {
             set2.setFillColor(Color.RED);
             set2.setDrawCircleHole(false);
             set2.setHighLightColor(Color.rgb(244, 117, 117));
-            //set2.setFillFormatter(new MyFillFormatter(900f));
+            //set2.setFillFormatter(new_gif MyFillFormatter(900f));
 
             set3 = new LineDataSet(yVals3, "DataSet 3");
             set3.setAxisDependency(YAxis.AxisDependency.RIGHT);

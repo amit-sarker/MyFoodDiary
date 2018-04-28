@@ -4,11 +4,12 @@ package generalpersondatabase;
 public class Person {
     private  String age, gender, weight, height, targetWeight, BMRWithActivity, BMRWithoutActivity;
     private long activityLevel;
-    private  long personID;
+    private long personID;
+    private String weightUpdateAmount;
     public Person() {}
 
     public Person(long personID, String age, String gender, String height, String weight, long activityLevel, String targetWeight,
-                  String BMRWithoutActivity, String BMRWithActivity) {
+                  String BMRWithoutActivity, String BMRWithActivity, String weightUpdateAmount) {
         this.personID = personID;
         this.age = age;
         this.gender = gender;
@@ -18,6 +19,15 @@ public class Person {
         this.targetWeight = targetWeight;
         this.BMRWithoutActivity = BMRWithoutActivity;
         this.BMRWithActivity = BMRWithActivity;
+        this.weightUpdateAmount = weightUpdateAmount;
+    }
+
+    public String getWeightUpdateAmount() {
+        return weightUpdateAmount;
+    }
+
+    public void setWeightUpdateAmount(String weightUpdateAmount) {
+        this.weightUpdateAmount = weightUpdateAmount;
     }
 
     public String getBMRWithActivity() {

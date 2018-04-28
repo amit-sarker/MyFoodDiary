@@ -44,7 +44,7 @@
             android:clickable="true"
             android:src="@drawable/ic_remove_white_24dp"
             android:visibility="visible"
-            app:backgroundTint="@color/colorPrimaryDark"
+            app:backgroundTint="@color/colorPrimary"
             app:elevation="0dp"
             app:fabSize="mini" />
 

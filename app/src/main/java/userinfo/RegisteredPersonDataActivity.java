@@ -25,7 +25,7 @@ public class RegisteredPersonDataActivity extends AppCompatActivity {
     private Person registeredPerson;
     private PersonOperations personData;
     private String registeredPersonAge, registeredPersonGender, registeredPersonHeight, registeredPersonWeight,
-            registeredPersonTargetWeight, registeredPersonBMRWithoutActivity, registeredPersonBMRWithActivity;
+            registeredPersonTargetWeight, registeredPersonBMRWithoutActivity, registeredPersonBMRWithActivity, registeredPersonWeightUpdateAmount;
     private long registeredPersonActivityLevel;
     private FirebaseAuth mAuth;
     private DatabaseReference mUserRef;
@@ -44,7 +44,8 @@ public class RegisteredPersonDataActivity extends AppCompatActivity {
         homeButton = findViewById(R.id.home_btn);
         personData.open();
 
-        registeredPerson = personData.getPerson(1);
+        long last_row_person = personData.getRowCount();
+        registeredPerson = personData.getPerson(last_row_person);
 
         personData.close();
 
@@ -56,6 +57,7 @@ public class RegisteredPersonDataActivity extends AppCompatActivity {
         registeredPersonTargetWeight = registeredPerson.getTargetWeight();
         registeredPersonBMRWithoutActivity = registeredPerson.getBMRWithoutActivity();
         registeredPersonBMRWithActivity = registeredPerson.getBMRWithActivity();
+        registeredPersonWeightUpdateAmount = registeredPerson.getWeightUpdateAmount();
         mAuth = FirebaseAuth.getInstance();
         final String userID = mAuth.getCurrentUser().getUid().toString();
         mUserRef = FirebaseDatabase.getInstance().getReference().child("users").child(userID);
@@ -69,6 +71,7 @@ public class RegisteredPersonDataActivity extends AppCompatActivity {
         userInfo.put("targetweight", registeredPersonTargetWeight);
         userInfo.put("bmrwithoutactivity", registeredPersonBMRWithoutActivity);
         userInfo.put("bmrwithactivity", registeredPersonBMRWithActivity);
+        userInfo.put("weightupdateamount", registeredPersonWeightUpdateAmount);
 
         mUserRef.setValue(userInfo);
 
@@ -77,7 +80,7 @@ public class RegisteredPersonDataActivity extends AppCompatActivity {
                 + "\n" + "Height: " + registeredPersonHeight + "\n" + "Weight: " + registeredPersonWeight
                 + "\n" + "Activity Level: " + registeredPersonActivityLevel + "\n" + "Target Weight: " +
                 registeredPersonTargetWeight + "\n" + "BMR (Without Activity): " + registeredPersonBMRWithoutActivity + "\n" +
-                "BMR (With Activity): " + registeredPersonBMRWithActivity;
+                "BMR (With Activity): " + registeredPersonBMRWithActivity + "\n" + "Wight Update Amount" + registeredPersonWeightUpdateAmount;
         userInfoText.setText(infoTextUI);
         userInfoText.setTextColor(Color.parseColor("#795548"));
 

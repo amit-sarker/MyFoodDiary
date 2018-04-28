@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         long personRowCount = personData.getRowCount();
         personData.close();
 
-        /*Intent intent = new Intent(MainActivity.this, AnalysisActivity.class);
+        /*Intent intent = new_gif Intent(MainActivity.this, AnalysisActivity.class);
         startActivity(intent);
         finish();*/
 
@@ -267,7 +267,8 @@ public class MainActivity extends AppCompatActivity {
         String tracking_row_date = trackingRow.getDate();
 
         personData.open();
-        Person person = personData.getPerson(1);
+        long last_row = personData.getRowCount();
+        Person person = personData.getPerson(last_row);
         double BMRWithActivity = Double.parseDouble(person.getBMRWithActivity());
         proteinsWithActivity = Math.round(BMRWithActivity * 0.25);
         fatWithActivity = Math.round(BMRWithActivity * 0.25);

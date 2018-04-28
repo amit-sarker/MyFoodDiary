@@ -275,6 +275,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/card_margin"
 
+                android:id="@+id/weight_card_view"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?selectableItemBackground"
@@ -334,6 +335,13 @@
                             android:text="two" />
 
                     </RelativeLayout>
+
+                    <!--<pl.droidsonroids.gif.GifTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/new_gif"
+                        android:backgroundTint="@color/white"
+                        />-->
 
                     <TextView
                         android:id="@+id/goal_weight_motivation_text"

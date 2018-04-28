@@ -148,7 +148,7 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
         set2.setColor(Color.BLUE);
         BarData data = new BarData(set1, set2);
         data.setValueFormatter(new DefaultValueFormatter(0));
-        //data.setValueFormatter(new LargeValueFormatter());
+        //data.setValueFormatter(new_gif LargeValueFormatter());
         mChart.setData(data);
         mChart.getBarData().setBarWidth(barWidth);
         mChart.getXAxis().setAxisMinimum(0);

@@ -110,7 +110,7 @@ public class GroupBarChart extends AppCompatActivity {
         set2.setColor(Color.BLUE);
         BarData data = new BarData(set1, set2);
         data.setValueFormatter(new DefaultValueFormatter(0));
-        //data.setValueFormatter(new LargeValueFormatter());
+        //data.setValueFormatter(new_gif LargeValueFormatter());
         chartCalorie.setData(data);
         chartCalorie.getBarData().setBarWidth(barWidth);
         chartCalorie.getXAxis().setAxisMinimum(0);
@@ -199,7 +199,7 @@ public class GroupBarChart extends AppCompatActivity {
         set2.setColor(Color.BLUE);
         BarData data = new BarData(set1, set2);
         data.setValueFormatter(new DefaultValueFormatter(0));
-        //data.setValueFormatter(new LargeValueFormatter());
+        //data.setValueFormatter(new_gif LargeValueFormatter());
         chartCalorie.setData(data);
         chartCalorie.getBarData().setBarWidth(barWidth);
         chartCalorie.getXAxis().setAxisMinimum(0);
@@ -289,7 +289,7 @@ public class GroupBarChart extends AppCompatActivity {
         set2.setColor(Color.BLUE);
         BarData data = new BarData(set1, set2);
         data.setValueFormatter(new DefaultValueFormatter(0));
-        //data.setValueFormatter(new LargeValueFormatter());
+        //data.setValueFormatter(new_gif LargeValueFormatter());
         chartCalorie.setData(data);
         chartCalorie.getBarData().setBarWidth(barWidth);
         chartCalorie.getXAxis().setAxisMinimum(0);
@@ -379,7 +379,7 @@ public class GroupBarChart extends AppCompatActivity {
         set2.setColor(Color.BLUE);
         BarData data = new BarData(set1, set2);
         data.setValueFormatter(new DefaultValueFormatter(0));
-        //data.setValueFormatter(new LargeValueFormatter());
+        //data.setValueFormatter(new_gif LargeValueFormatter());
         chartCalorie.setData(data);
         chartCalorie.getBarData().setBarWidth(barWidth);
         chartCalorie.getXAxis().setAxisMinimum(0);

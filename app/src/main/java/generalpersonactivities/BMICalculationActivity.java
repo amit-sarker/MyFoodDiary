@@ -39,7 +39,8 @@ public class BMICalculationActivity extends AppCompatActivity {
         personData = new PersonOperations(this);
         personData.open();
 
-        currentPerson = personData.getPerson(1);
+        long last_row_person = personData.getRowCount();
+        currentPerson = personData.getPerson(last_row_person);
 
         BMICalculation bmi = new BMICalculation();
         calculatedBMI = bmi.BMI(currentPerson.getHeight(), currentPerson.getWeight());
