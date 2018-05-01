@@ -101,12 +101,18 @@
     <string name="chart_data_availability">Not Enough Data</string>
     <string name="chart_data_available_day">Showing The Result For</string>
     <string name="weight_motivation">Right on! Stay with it, you will reach your goal as planned!</string>
-    <string name="update_weight">Update your weight</string>
+    <string name="update_weight">Update your goal weight</string>
     <string name="input_prefill"> </string>
     <string name="input_hint">Enter your weight</string>
     <string name="congrates_goal_complete">Congrates!!! You\'ve achieved your goal. Now it\'s time to update your goal</string>
+    <string name="your_weight">My weight is</string>
+    <string name="weight_estimation">Estimate your goal weight for now. You can update this later</string>
     <string name="new_goal">Congrats, you\'ve set a new goal!</string>
     <string name="goal_cal_need">You need to maintain the following to reach your goal</string>
     <string name="get_started">GET STARTED</string>
+    <string name="update_current_weight">Update your current weight</string>
+    <string name="enter_current_weight">Enter current weight</string>
+    <string name="weight_estimation_current">Estimate your weight for now. You can update this later</string>
+    <string name="continue_text">CONTINUE</string>
 
 </resources>

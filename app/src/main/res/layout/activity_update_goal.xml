@@ -6,13 +6,18 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserProfileActivity">
+    tools:context=".UpdateGoalActivity"
+    android:background="@drawable/shattered">
+
+    <include layout="@layout/toolbar">
+    </include>
 
     <TextView
         android:id="@+id/goal_weight_text_view"
         style="@style/TextView"
-        android:layout_above="@+id/weight_card_view"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="102dp"
         android:paddingTop="0dp"
         android:text="@string/update_weight"
         android:textColor="@color/primary_text" />

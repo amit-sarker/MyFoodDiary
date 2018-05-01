@@ -32,6 +32,7 @@ import generalpersonactivities.BMICalculation;
 import helper.InitialShowFood;
 import adapter.InitialShowFoodAdapter;
 
+import com.example.moumita.caloriecountergeb.CurrentWeightUpdateGoal;
 import com.example.moumita.caloriecountergeb.DialogActivity;
 import com.example.moumita.caloriecountergeb.R;
 import helper.ShowFood;
@@ -175,6 +176,7 @@ public class HomeFragment extends Fragment {
         personData.open();
 
         long last_row_person = personData.getRowCount();
+        System.err.println("LLLLLLLLLLLLLLLLLLLLLLLLLL         " + last_row_person);
         Person personLastRow = personData.getPerson(last_row_person);
 
         personData.close();
@@ -294,7 +296,7 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     vibrator.vibrate(25);
-                    Intent intent = new Intent(getContext(), UpdateGoalActivity.class);
+                    Intent intent = new Intent(getContext(), CurrentWeightUpdateGoal.class);
                     startActivity(intent);
                     getActivity().finish();
                 }

@@ -48,6 +48,7 @@ public class BMICalculation {
     }
 
     public static double BMRWithActivity(String height, String targetWeight, String age, String gender, long activityLevel) {
+        System.out.println("AAAAAAAAAAAAA     " + height + "    " + targetWeight + "    " + age + "    " + gender + "   " + activityLevel);
         double BMR = 0.0;
         double doubleHeightCM, doubleTargetWeight, doubleAge;
         doubleHeightCM = Double.parseDouble(height);

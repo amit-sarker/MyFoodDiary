@@ -312,20 +312,20 @@ public class AnalysisActivity extends AppCompatActivity {
         }
 
 
-        /*yVals1.add(new_gif Entry(0, (float) Math.round(needed.get(0))));
-        yVals2.add(new_gif Entry(0, (float) Math.round(consumed.get(0))));
-        yVals1.add(new_gif Entry(1, (float) Math.round(needed.get(1))));
-        yVals2.add(new_gif Entry(1, (float) Math.round(consumed.get(1))));
-        yVals1.add(new_gif Entry(2, (float) Math.round(needed.get(2))));
-        yVals2.add(new_gif Entry(2, (float) Math.round(consumed.get(2))));
-        yVals1.add(new_gif Entry(3, (float) Math.round(needed.get(3))));
-        yVals2.add(new_gif Entry(3, (float) Math.round(consumed.get(3))));
-        yVals1.add(new_gif Entry(4, (float) Math.round(needed.get(4))));
-        yVals2.add(new_gif Entry(4, (float) Math.round(consumed.get(4))));
-        yVals1.add(new_gif Entry(5, (float) Math.round(needed.get(5))));
-        yVals2.add(new_gif Entry(5, (float) Math.round(consumed.get(5))));
-        yVals1.add(new_gif Entry(6, (float) Math.round(needed.get(6))));
-        yVals2.add(new_gif Entry(6, (float) Math.round(consumed.get(6))));*/
+        /*yVals1.add(new Entry(0, (float) Math.round(needed.get(0))));
+        yVals2.add(new Entry(0, (float) Math.round(consumed.get(0))));
+        yVals1.add(new Entry(1, (float) Math.round(needed.get(1))));
+        yVals2.add(new Entry(1, (float) Math.round(consumed.get(1))));
+        yVals1.add(new Entry(2, (float) Math.round(needed.get(2))));
+        yVals2.add(new Entry(2, (float) Math.round(consumed.get(2))));
+        yVals1.add(new Entry(3, (float) Math.round(needed.get(3))));
+        yVals2.add(new Entry(3, (float) Math.round(consumed.get(3))));
+        yVals1.add(new Entry(4, (float) Math.round(needed.get(4))));
+        yVals2.add(new Entry(4, (float) Math.round(consumed.get(4))));
+        yVals1.add(new Entry(5, (float) Math.round(needed.get(5))));
+        yVals2.add(new Entry(5, (float) Math.round(consumed.get(5))));
+        yVals1.add(new Entry(6, (float) Math.round(needed.get(6))));
+        yVals2.add(new Entry(6, (float) Math.round(consumed.get(6))));*/
 
 
         //if(yVals1.size() != 0 || yVals2.size() != 0) {
@@ -547,20 +547,20 @@ public class AnalysisActivity extends AppCompatActivity {
         }
 
 
-        /*yVals1.add(new_gif BarEntry(1, (float) Math.round(needed.get(0))));
-        yVals2.add(new_gif BarEntry(1, (float) Math.round(consumed.get(0))));
-        yVals1.add(new_gif BarEntry(2, (float) Math.round(needed.get(1))));
-        yVals2.add(new_gif BarEntry(2, (float) Math.round(consumed.get(1))));
-        yVals1.add(new_gif BarEntry(3, (float) Math.round(needed.get(2))));
-        yVals2.add(new_gif BarEntry(3, (float) Math.round(consumed.get(2))));
-        yVals1.add(new_gif BarEntry(4, (float) Math.round(needed.get(3))));
-        yVals2.add(new_gif BarEntry(4, (float) Math.round(consumed.get(3))));
-        yVals1.add(new_gif BarEntry(5, (float) Math.round(needed.get(4))));
-        yVals2.add(new_gif BarEntry(5, (float) Math.round(consumed.get(4))));
-        yVals1.add(new_gif BarEntry(6, (float) Math.round(needed.get(5))));
-        yVals2.add(new_gif BarEntry(6, (float) Math.round(consumed.get(5))));
-        yVals1.add(new_gif BarEntry(7, (float) Math.round(needed.get(6))));
-        yVals2.add(new_gif BarEntry(7, (float) Math.round(consumed.get(6))));*/
+        /*yVals1.add(new BarEntry(1, (float) Math.round(needed.get(0))));
+        yVals2.add(new BarEntry(1, (float) Math.round(consumed.get(0))));
+        yVals1.add(new BarEntry(2, (float) Math.round(needed.get(1))));
+        yVals2.add(new BarEntry(2, (float) Math.round(consumed.get(1))));
+        yVals1.add(new BarEntry(3, (float) Math.round(needed.get(2))));
+        yVals2.add(new BarEntry(3, (float) Math.round(consumed.get(2))));
+        yVals1.add(new BarEntry(4, (float) Math.round(needed.get(3))));
+        yVals2.add(new BarEntry(4, (float) Math.round(consumed.get(3))));
+        yVals1.add(new BarEntry(5, (float) Math.round(needed.get(4))));
+        yVals2.add(new BarEntry(5, (float) Math.round(consumed.get(4))));
+        yVals1.add(new BarEntry(6, (float) Math.round(needed.get(5))));
+        yVals2.add(new BarEntry(6, (float) Math.round(consumed.get(5))));
+        yVals1.add(new BarEntry(7, (float) Math.round(needed.get(6))));
+        yVals2.add(new BarEntry(7, (float) Math.round(consumed.get(6))));*/
 
         //if(yVals1.size() != 0 || yVals2.size() != 0) {
 

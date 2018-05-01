@@ -138,6 +138,10 @@ public class PersonOperations {
 
     public void deleteAllPersonData() {
         database.execSQL("delete from "+ TABLE_PERSON);
+        //database.delete(SQLITE_SEQUENCE, NAME, TABLE_PERSON);
+        database.execSQL("DELETE FROM sqlite_sequence WHERE name = '"+TABLE_PERSON+"' ");
+        /*delete from your_table;
+        delete from sqlite_sequence where name='your_table';*/
     }
 
     // Deleting Person

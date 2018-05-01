@@ -39,7 +39,7 @@ public class UserWeightInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.delete_this);
+        setContentView(R.layout.activity_user_weight_info);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
