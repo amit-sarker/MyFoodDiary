@@ -303,10 +303,10 @@ public class MainActivity extends AppCompatActivity {
         goal.setGoal_description(goalAttributes[1]);
         goal.setGoal_duration(Long.parseLong(goalAttributes[2]));
         goal.setMy_goal_streak(Long.parseLong(goalAttributes[3]));
-        goal.setGoal_status(goalAttributes[5]);
-        goal.setGoal_image(goalAttributes[6]);
-        goal.setGoal_completion(goalAttributes[7]);
-        goal.setGoal_point(Long.parseLong(goalAttributes[8]));
+        goal.setGoal_status(goalAttributes[4]);
+        goal.setGoal_image(goalAttributes[5]);
+        goal.setGoal_completion(goalAttributes[6]);
+        goal.setGoal_point(Long.parseLong(goalAttributes[7]));
 
         for (String eachAttribute: goalAttributes){
             if(eachAttribute.equals("\0"))

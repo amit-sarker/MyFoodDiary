@@ -227,6 +227,7 @@ public class HomeFragment extends Fragment {
         carbsBar.setMax((int) carbsNeed);
         carbsBar.setProgress((int) carbsConsumed);
 
+
         proteinBar.setMax((int) proteinNeed);
         proteinBar.setProgress((int) proteinConsumed);
 

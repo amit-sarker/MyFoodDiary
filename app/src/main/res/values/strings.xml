@@ -117,5 +117,11 @@
     <string name="recent_list">Recent Foods</string>
     <string name="unregistered_user">Unregistered User</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="count_goals">0/10 Goals achieved</string>
+    <string name="see_rank">Show My Rank</string>
+    <string name="action_settings">Settings</string>
+
 
 </resources>

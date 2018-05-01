@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.moumita.caloriecountergeb.GoalFragment;
 import com.example.moumita.caloriecountergeb.R;
 
 
@@ -18,7 +19,7 @@ public class TabFragment extends Fragment {
 
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
-    public static int int_items = 3 ;
+    public static int int_items = 4 ;
 
     @Nullable
     @Override
@@ -54,6 +55,7 @@ public class TabFragment extends Fragment {
                 case 0 : return new HomeFragment();
                 case 1 : return new SuggestionsFragment();
                 case 2 : return new AnalysisFragment();
+                case 3: return new GoalFragment();
 
             }
             return null;
@@ -75,6 +77,8 @@ public class TabFragment extends Fragment {
                     return getResources().getString(R.string.tab2);
                 case 2 :
                     return getResources().getString(R.string.tab3);
+                case 3:
+                    return "Goal";
 
             }
             return null;
