@@ -16,8 +16,11 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import activities.HomeTabActivity;
 import fragments.HomeFragment;
@@ -252,6 +255,7 @@ public class DialogActivity extends AppCompatActivity {
                 }
 
                 System.out.println("Updateddddddddddddddddddd      " + updatedWeightDouble);
+                String current_date_str = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
                 personData.open();
                 Person thisPerson = personData.getPerson(personData.getRowCount());
@@ -271,6 +275,7 @@ public class DialogActivity extends AppCompatActivity {
                 updatedPerson.setBMRWithoutActivity(thisPerson.getBMRWithoutActivity());
                 updatedPerson.setBMRWithActivity(thisPerson.getBMRWithActivity());
                 updatedPerson.setWeightUpdateAmount(String.valueOf(weightUpdate));
+                updatedPerson.setWeightUpdateDate(current_date_str);
 
                 personData.addPerson(updatedPerson);
                 personData.close();

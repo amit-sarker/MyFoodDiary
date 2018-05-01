@@ -17,7 +17,10 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.charts.PieChart;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import activities.HomeTabActivity;
 import generalpersonactivities.BMICalculation;
@@ -143,6 +146,7 @@ public class ShowGoalActivity extends AppCompatActivity {
         getStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String current_date_str = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
                 newPerson.setAge(person.getAge());
                 newPerson.setGender(person.getGender());
@@ -153,6 +157,7 @@ public class ShowGoalActivity extends AppCompatActivity {
                 newPerson.setBMRWithoutActivity(String.valueOf(newBMRWithoutActivity));
                 newPerson.setBMRWithActivity(String.valueOf(newBMRWithActivity));
                 newPerson.setWeightUpdateAmount("0");
+                newPerson.setWeightUpdateDate(current_date_str);
 
 
                 personData.open();

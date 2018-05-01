@@ -52,9 +52,9 @@ public class AnalysisActivity extends AppCompatActivity {
     private LineChart lineChart;
     private RelativeLayout analysisLayout;
     private Typeface mTfLight, mTfRegular;
-    float barWidth;
-    float barSpace;
-    float groupSpace;
+    private float barWidth;
+    private float barSpace;
+    private float groupSpace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

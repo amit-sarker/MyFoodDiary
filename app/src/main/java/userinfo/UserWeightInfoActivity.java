@@ -15,6 +15,11 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.moumita.caloriecountergeb.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import generalpersonactivities.ShowBMRActivity;
 
 import generalpersonactivities.BMICalculation;
@@ -120,6 +125,8 @@ public class UserWeightInfoActivity extends AppCompatActivity {
                 Toast t = Toast.makeText(UserWeightInfoActivity.this, "Without Activity " + BMRWithoutActivity + "   With Activity"+ " " + BMRWithActivity, Toast.LENGTH_LONG);
                 t.show();
 
+                String current_date_str = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
                 //push targetweight and intActivityLevel into person table.
                 newPerson.setAge(String.valueOf(age));
                 if (isFemale) newPerson.setGender("female");
@@ -131,6 +138,8 @@ public class UserWeightInfoActivity extends AppCompatActivity {
                 newPerson.setBMRWithoutActivity(String.valueOf(BMRWithoutActivity));
                 newPerson.setBMRWithActivity(String.valueOf(BMRWithActivity));
                 newPerson.setWeightUpdateAmount("0");
+                newPerson.setWeightUpdateDate(current_date_str);
+
                 personData.addPerson(newPerson);
 
                 personData.close();

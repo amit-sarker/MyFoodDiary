@@ -25,7 +25,8 @@ public class RegisteredPersonDataActivity extends AppCompatActivity {
     private Person registeredPerson;
     private PersonOperations personData;
     private String registeredPersonAge, registeredPersonGender, registeredPersonHeight, registeredPersonWeight,
-            registeredPersonTargetWeight, registeredPersonBMRWithoutActivity, registeredPersonBMRWithActivity, registeredPersonWeightUpdateAmount;
+            registeredPersonTargetWeight, registeredPersonBMRWithoutActivity, registeredPersonBMRWithActivity,
+            registeredPersonWeightUpdateAmount, registeredPersonWeightUpdateDate;
     private long registeredPersonActivityLevel;
     private FirebaseAuth mAuth;
     private DatabaseReference mUserRef;
@@ -58,6 +59,8 @@ public class RegisteredPersonDataActivity extends AppCompatActivity {
         registeredPersonBMRWithoutActivity = registeredPerson.getBMRWithoutActivity();
         registeredPersonBMRWithActivity = registeredPerson.getBMRWithActivity();
         registeredPersonWeightUpdateAmount = registeredPerson.getWeightUpdateAmount();
+        registeredPersonWeightUpdateDate = registeredPerson.getWeightUpdateDate();
+
         mAuth = FirebaseAuth.getInstance();
         final String userID = mAuth.getCurrentUser().getUid().toString();
         mUserRef = FirebaseDatabase.getInstance().getReference().child("users").child(userID);
@@ -72,6 +75,7 @@ public class RegisteredPersonDataActivity extends AppCompatActivity {
         userInfo.put("bmrwithoutactivity", registeredPersonBMRWithoutActivity);
         userInfo.put("bmrwithactivity", registeredPersonBMRWithActivity);
         userInfo.put("weightupdateamount", registeredPersonWeightUpdateAmount);
+        userInfo.put("weightupdatedate", registeredPersonWeightUpdateDate);
 
         mUserRef.setValue(userInfo);
 
@@ -80,7 +84,7 @@ public class RegisteredPersonDataActivity extends AppCompatActivity {
                 + "\n" + "Height: " + registeredPersonHeight + "\n" + "Weight: " + registeredPersonWeight
                 + "\n" + "Activity Level: " + registeredPersonActivityLevel + "\n" + "Target Weight: " +
                 registeredPersonTargetWeight + "\n" + "BMR (Without Activity): " + registeredPersonBMRWithoutActivity + "\n" +
-                "BMR (With Activity): " + registeredPersonBMRWithActivity + "\n" + "Wight Update Amount" + registeredPersonWeightUpdateAmount;
+                "BMR (With Activity): " + registeredPersonBMRWithActivity + "\n" + "Wight Update Amount" + registeredPersonWeightUpdateAmount + "\n" + "Wight Update Date" + registeredPersonWeightUpdateDate;
         userInfoText.setText(infoTextUI);
         userInfoText.setTextColor(Color.parseColor("#795548"));
 

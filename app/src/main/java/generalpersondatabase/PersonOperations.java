@@ -30,7 +30,8 @@ public class PersonOperations {
             PersonDBHandler.COLUMN_TARGET_WEIGHT,
             PersonDBHandler.COLUMN_BMR_WITHOUT_ACTIVITY,
             PersonDBHandler.COLUMN_BMR_WITH_ACTIVITY,
-            PersonDBHandler.COLUMN_WEIGHT_UPDATE_AMOUNT
+            PersonDBHandler.COLUMN_WEIGHT_UPDATE_AMOUNT,
+            PersonDBHandler.COLUMN_WEIGHT_UPDATE_DATE
     };
 
     public PersonOperations(Context context){
@@ -64,6 +65,8 @@ public class PersonOperations {
         values.put(PersonDBHandler.COLUMN_BMR_WITHOUT_ACTIVITY, person.getBMRWithoutActivity());
         values.put(PersonDBHandler.COLUMN_BMR_WITH_ACTIVITY, person.getBMRWithActivity());
         values.put(PersonDBHandler.COLUMN_WEIGHT_UPDATE_AMOUNT, person.getWeightUpdateAmount());
+        values.put(PersonDBHandler.COLUMN_WEIGHT_UPDATE_DATE, person.getWeightUpdateDate());
+
         long insertid = database.insert(TABLE_PERSON,null, values);
         person.setPersonID(insertid);
         return person;
@@ -76,7 +79,7 @@ public class PersonOperations {
             cursor.moveToFirst();
 
         Person e = new Person(Long.parseLong(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
-                Long.parseLong(cursor.getString(5)), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9));
+                Long.parseLong(cursor.getString(5)), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10));
         // return person
         return e;
     }
@@ -99,6 +102,8 @@ public class PersonOperations {
                 person.setBMRWithoutActivity(cursor.getString(cursor.getColumnIndex(PersonDBHandler.COLUMN_BMR_WITHOUT_ACTIVITY)));
                 person.setBMRWithActivity(cursor.getString(cursor.getColumnIndex(PersonDBHandler.COLUMN_BMR_WITH_ACTIVITY)));
                 person.setWeightUpdateAmount(cursor.getString(cursor.getColumnIndex(PersonDBHandler.COLUMN_WEIGHT_UPDATE_AMOUNT)));
+                person.setWeightUpdateDate(cursor.getString(cursor.getColumnIndex(PersonDBHandler.COLUMN_WEIGHT_UPDATE_DATE)));
+
                 personList.add(person);
             }
         }
@@ -130,6 +135,7 @@ public class PersonOperations {
         values.put(PersonDBHandler.COLUMN_BMR_WITHOUT_ACTIVITY, person.getBMRWithoutActivity());
         values.put(PersonDBHandler.COLUMN_BMR_WITH_ACTIVITY, person.getBMRWithActivity());
         values.put(PersonDBHandler.COLUMN_WEIGHT_UPDATE_AMOUNT, person.getWeightUpdateAmount());
+        values.put(PersonDBHandler.COLUMN_WEIGHT_UPDATE_DATE, person.getWeightUpdateDate());
 
         // updating row
         return database.update(TABLE_PERSON, values,

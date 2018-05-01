@@ -20,6 +20,7 @@ public class PersonDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_BMR_WITHOUT_ACTIVITY = "bmrwithoutactivity";
     public static final String COLUMN_BMR_WITH_ACTIVITY = "bmrwithactivity";
     public static final String COLUMN_WEIGHT_UPDATE_AMOUNT = "weightUpdateAmount";
+    public static final String COLUMN_WEIGHT_UPDATE_DATE = "weightUpdateDate";
 
 
     private static final String TABLE_CREATE =
@@ -33,7 +34,8 @@ public class PersonDBHandler extends SQLiteOpenHelper {
                     COLUMN_TARGET_WEIGHT + " TEXT, " +
                     COLUMN_BMR_WITHOUT_ACTIVITY + " TEXT, " +
                     COLUMN_BMR_WITH_ACTIVITY + " TEXT, " +
-                    COLUMN_WEIGHT_UPDATE_AMOUNT + " TEXT " +
+                    COLUMN_WEIGHT_UPDATE_AMOUNT + " TEXT, " +
+                    COLUMN_WEIGHT_UPDATE_DATE + " TEXT " +
                     ")";
 
     public PersonDBHandler(Context context){

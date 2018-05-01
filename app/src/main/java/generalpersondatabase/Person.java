@@ -6,10 +6,11 @@ public class Person {
     private long activityLevel;
     private long personID;
     private String weightUpdateAmount;
+    private String weightUpdateDate;
     public Person() {}
 
     public Person(long personID, String age, String gender, String height, String weight, long activityLevel, String targetWeight,
-                  String BMRWithoutActivity, String BMRWithActivity, String weightUpdateAmount) {
+                  String BMRWithoutActivity, String BMRWithActivity, String weightUpdateAmount, String weightUpdateDate) {
         this.personID = personID;
         this.age = age;
         this.gender = gender;
@@ -20,6 +21,7 @@ public class Person {
         this.BMRWithoutActivity = BMRWithoutActivity;
         this.BMRWithActivity = BMRWithActivity;
         this.weightUpdateAmount = weightUpdateAmount;
+        this.weightUpdateDate = weightUpdateDate;
     }
 
     public String getWeightUpdateAmount() {
@@ -102,6 +104,14 @@ public class Person {
         this.weight = weight;
     }
 
+    public String getWeightUpdateDate() {
+        return weightUpdateDate;
+    }
+
+    public void setWeightUpdateDate(String weightUpdateDate) {
+        this.weightUpdateDate = weightUpdateDate;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
@@ -114,6 +124,8 @@ public class Person {
                 ", BMRWithoutActivity='" + BMRWithoutActivity + '\'' +
                 ", activityLevel=" + activityLevel +
                 ", personID=" + personID +
+                ", weightUpdateAmount='" + weightUpdateAmount + '\'' +
+                ", weightUpdateDate='" + weightUpdateDate + '\'' +
                 '}';
     }
 }
