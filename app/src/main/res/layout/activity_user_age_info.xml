@@ -42,7 +42,7 @@
         android:layout_marginBottom="13dp"
         android:background="#150"
         android:text="SUBMIT"
-        android:textColor="#fff"
+        android:textColor="@color/light_primary_text"
         android:textSize="20sp"
         android:textStyle="bold" />
 

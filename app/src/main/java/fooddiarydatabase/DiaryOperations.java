@@ -8,7 +8,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import static fooddiarydatabase.DiaryDBHandler.TABLE_DIARY;
 
 public class DiaryOperations {
     public static final String LOGTAG = "FOOD_MNG_SYS";
@@ -50,14 +56,14 @@ public class DiaryOperations {
         values.put(DiaryDBHandler.COLUMN_MEAL_TYPE, foodDiary.getMeal_type());
         values.put(DiaryDBHandler.COLUMN_TOTAL_CAL_SELECTED_FOOD, foodDiary.getTotal_cal_selected_food());
 
-        long insertid = database.insert(DiaryDBHandler.TABLE_DIARY,null, values);
+        long insertid = database.insert(TABLE_DIARY,null, values);
         foodDiary.setDiary_id(insertid);
         return foodDiary;
     }
 
     public FoodDiary getFoodDiary(long id) {
 
-        Cursor cursor = database.query(DiaryDBHandler.TABLE_DIARY, allColumns,DiaryDBHandler.COLUMN_DIARY_ID + "=?",
+        Cursor cursor = database.query(TABLE_DIARY, allColumns,DiaryDBHandler.COLUMN_DIARY_ID + "=?",
                 new String[]{String.valueOf(id)},null,null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
@@ -68,21 +74,17 @@ public class DiaryOperations {
         return e;
     }
 
+    private static final String[] distColumns = {
+            DiaryDBHandler.COLUMN_FOOD_NAME
+    };
     public List<FoodDiary> getAllFoodDiary() {
-        Cursor cursor = database.query(DiaryDBHandler.TABLE_DIARY, allColumns,null,null,null, null, null);
+        Cursor cursor = database.query(true, TABLE_DIARY, distColumns, null, null, null, null, null, null);
         List<FoodDiary> foodDiaryList = new ArrayList<>();
 
         if(cursor.getCount() > 0) {
             while(cursor.moveToNext()) {
                 FoodDiary foodDiary = new FoodDiary();
-                foodDiary.setDiary_id(cursor.getLong(cursor.getColumnIndex(DiaryDBHandler.COLUMN_DIARY_ID)));
-                foodDiary.setDate(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_DATE)));
                 foodDiary.setFood_name(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_FOOD_NAME)));
-                foodDiary.setFood_serving_measurement(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_FOOD_SERVING_MEASUREMENT)));
-                foodDiary.setFood_serving_amount(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_FOOD_SERVING_AMOUNT)));
-                foodDiary.setMeal_type(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_MEAL_TYPE)));
-                foodDiary.setTotal_cal_selected_food(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_TOTAL_CAL_SELECTED_FOOD)));
-
                 foodDiaryList.add(foodDiary);
             }
         }
@@ -90,7 +92,7 @@ public class DiaryOperations {
     }
 
     public List<FoodDiary> getFoodListByMealType(String current_date, String meal_type) {
-        Cursor cursor = database.query(DiaryDBHandler.TABLE_DIARY, allColumns,null,null,null, null, null);
+        Cursor cursor = database.query(TABLE_DIARY, allColumns,null,null,null, null, null);
         List<FoodDiary> foodDiaryList = new ArrayList<>();
 
         if(cursor.getCount() > 0) {
@@ -125,11 +127,11 @@ public class DiaryOperations {
         values.put(DiaryDBHandler.COLUMN_MEAL_TYPE, foodDiary.getMeal_type());
         values.put(DiaryDBHandler.COLUMN_TOTAL_CAL_SELECTED_FOOD, foodDiary.getTotal_cal_selected_food());
 
-        return database.update(DiaryDBHandler.TABLE_DIARY, values,
+        return database.update(TABLE_DIARY, values,
                 DiaryDBHandler.COLUMN_DIARY_ID + "=?", new String[] { String.valueOf(foodDiary.getDiary_id())});
     }
 
     public void removeFoodDiary(FoodDiary foodDiary) {
-        database.delete(DiaryDBHandler.TABLE_DIARY,DiaryDBHandler.COLUMN_DIARY_ID + "=" + foodDiary.getDiary_id(),null);
+        database.delete(TABLE_DIARY,DiaryDBHandler.COLUMN_DIARY_ID + "=" + foodDiary.getDiary_id(),null);
     }
 }

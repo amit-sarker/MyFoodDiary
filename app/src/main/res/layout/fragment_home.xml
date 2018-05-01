@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
 
                     android:gravity="center"
-                    android:text="@string/show_calories"
+                    android:text="@string/total_calories"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
                     android:textColor="@color/white" />
 
@@ -588,7 +588,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:background="@color/primary"
+                        android:background="@color/colorPrimary"
                         android:gravity="center"
                         android:text="@string/show_dinner"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"

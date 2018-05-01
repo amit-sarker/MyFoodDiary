@@ -8,8 +8,6 @@
             android:icon="@drawable/androidmkab_logo"
             android:title="@string/drawer_share"
             app:showAsAction="always"/>
-
-
     </group>
 
 </menu>

@@ -114,5 +114,7 @@
     <string name="enter_current_weight">Enter current weight</string>
     <string name="weight_estimation_current">Estimate your weight for now. You can update this later</string>
     <string name="continue_text">CONTINUE</string>
+    <string name="recent_list">Recent Foods</string>
+
 
 </resources>

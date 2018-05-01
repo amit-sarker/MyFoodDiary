@@ -94,6 +94,7 @@ public class TrackingOperations {
         return trackingList;
     }
 
+
     public CalorieTracking addTrackingData(CalorieTracking trackingData){
         ContentValues values  = new ContentValues();
 
