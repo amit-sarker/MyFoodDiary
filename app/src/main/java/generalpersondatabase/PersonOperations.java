@@ -136,8 +136,12 @@ public class PersonOperations {
                 PersonDBHandler.COLUMN_ID + "=?", new String[] { String.valueOf(person.getPersonID())});
     }
 
+    public void deleteAllPersonData() {
+        database.execSQL("delete from "+ TABLE_PERSON);
+    }
+
     // Deleting Person
-    public void removePerson(Person person) {
-        database.delete(TABLE_PERSON,PersonDBHandler.COLUMN_ID + "=" + person.getPersonID(),null);
+    public void removePerson(long id) {
+        database.delete(TABLE_PERSON,PersonDBHandler.COLUMN_ID + "=" + id,null);
     }
 }

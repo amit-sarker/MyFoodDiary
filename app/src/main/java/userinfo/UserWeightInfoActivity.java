@@ -39,7 +39,7 @@ public class UserWeightInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_weight_info);
+        setContentView(R.layout.delete_this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
@@ -56,8 +56,8 @@ public class UserWeightInfoActivity extends AppCompatActivity {
         mWeightInputText = findViewById(R.id.weight_editText_id);
         mTargetWeightText = findViewById(R.id.weight_editText_id2);
         mWeightText = findViewById(R.id.weight_info_text);
-        mKgText = findViewById(R.id.kg_text);
-        mKgText2 = findViewById(R.id.kg_text2);
+        /*mKgText = findViewById(R.id.kg_text);
+        mKgText2 = findViewById(R.id.kg_text2);*/
         mNextPageBtn = findViewById(R.id.next_page_btn);
         newPerson = new Person();
         personData = new PersonOperations(this);
@@ -68,13 +68,13 @@ public class UserWeightInfoActivity extends AppCompatActivity {
         mlbsvsKg.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    mKgText.setText("Kg");
-                    mKgText2.setText("Kg");
+                    /*mKgText.setText("Kg");
+                    mKgText2.setText("Kg");*/
                     iskg = true;
 
                 } else {
-                    mKgText.setText("lbs");
-                    mKgText2.setText("lbs");
+                    /*mKgText.setText("lbs");
+                    mKgText2.setText("lbs");*/
                     iskg = false;
 
                 }

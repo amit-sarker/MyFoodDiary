@@ -14,7 +14,6 @@ import android.support.annotation.RequiresApi;
 import android.support.design.internal.NavigationMenu;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,13 +32,11 @@ import generalpersonactivities.BMICalculation;
 import helper.InitialShowFood;
 import adapter.InitialShowFoodAdapter;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.moumita.caloriecountergeb.DialogActivity;
 import com.example.moumita.caloriecountergeb.R;
 import helper.ShowFood;
 import adapter.ShowFoodAdapter;
 
-import com.example.moumita.caloriecountergeb.UpdateGoalActivity;
 import com.txusballesteros.widgets.FitChart;
 import com.txusballesteros.widgets.FitChartValue;
 

@@ -105,5 +105,8 @@
     <string name="input_prefill"> </string>
     <string name="input_hint">Enter your weight</string>
     <string name="congrates_goal_complete">Congrates!!! You\'ve achieved your goal. Now it\'s time to update your goal</string>
+    <string name="new_goal">Congrats, you\'ve set a new goal!</string>
+    <string name="goal_cal_need">You need to maintain the following to reach your goal</string>
+    <string name="get_started">GET STARTED</string>
 
 </resources>

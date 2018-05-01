@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/shattered">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+
+        <TextView
+            android:id="@+id/weight_info_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/weight_info"
+            android:textAlignment="center"
+            android:textColor="@color/title_text_color"
+            android:textSize="18sp" />
+
+        <ImageView android:src="@drawable/food2"
+            android:layout_width="wrap_content"
+            android:paddingTop="20dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/activity_level_text"
+                android:layout_width="145dp"
+                android:layout_height="41dp"
+                android:text="@string/activity_level"
+                android:textColor="@color/title_text_color"
+                android:textSize="22dp"
+                android:textAlignment="textStart"/>
+
+
+            <Spinner
+                android:id="@+id/spinnerActivityLevel"
+                android:layout_width="wrap_content"
+                android:layout_height="41dp"
+                android:layout_marginStart="20dp"
+                android:entries="@array/array_activity_levels"
+                android:textColor="@color/title_text_color"
+                android:textSize="22dp" />
+
+
+        </LinearLayout>
+
+
+        <!-- Email Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/weight_editText_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:hint="Enter Current Weight"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Password Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/weight_editText_id2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:hint="Enter Target Weight"/>
+        </android.support.design.widget.TextInputLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/kg_vs_lbs_text"
+                android:layout_width="148dp"
+                android:layout_height="41dp"
+                android:text="@string/weight_input_unit"
+                android:textAlignment="textStart"
+                android:textColor="@color/title_text_color"
+                android:textSize="22dp" />
+
+            <ToggleButton
+                android:id="@+id/lbs_vs_kg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:checked="true"
+                android:text="@string/lbsvskg"
+                android:textOff="@string/lbs"
+                android:textOn="@string/kg"
+                android:background="@color/secondary_text"/>
+
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/next_page_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="55dp"
+            android:layout_marginBottom="24dp"
+            android:padding="12dp"
+            android:text="@string/get_started"
+            android:background="@color/colorPrimary"/>
+
+    </LinearLayout>
+</ScrollView>

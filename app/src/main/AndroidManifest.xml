@@ -48,7 +48,7 @@
             android:name=".DialogActivity"
             android:excludeFromRecents="true"
             android:theme="@style/Theme.AppCompat.Dialog" />
-        <activity android:name=".UpdateGoalActivity"></activity>
+        <activity android:name=".UserProfileActivity"></activity>
     </application>
 
 </manifest>
