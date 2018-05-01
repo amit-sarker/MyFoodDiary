@@ -275,6 +275,9 @@ public class DialogActivity extends AppCompatActivity {
                 personData.addPerson(updatedPerson);
                 personData.close();
 
+
+                HomeTabActivity.homeTabActivity.finish();
+
                 Intent intent = new Intent(DialogActivity.this, HomeTabActivity.class);
                 startActivity(intent);
                 finish();

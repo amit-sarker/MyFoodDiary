@@ -298,7 +298,7 @@ public class HomeFragment extends Fragment {
                     vibrator.vibrate(25);
                     Intent intent = new Intent(getContext(), CurrentWeightUpdateGoal.class);
                     startActivity(intent);
-                    getActivity().finish();
+                    //getActivity().finish();
                 }
             });
         } else {
@@ -308,7 +308,7 @@ public class HomeFragment extends Fragment {
                     vibrator.vibrate(25);
                     Intent intent = new Intent(getContext(), DialogActivity.class);
                     startActivity(intent);
-                    getActivity().finish();
+                    //getActivity().finish();
                 }
             });
         }

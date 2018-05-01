@@ -59,8 +59,7 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
 
         text = findViewById(R.id.autoCompleteTextView1);
 
-        final ArrayAdapter adapter = new
-                ArrayAdapter(this, android.R.layout.simple_list_item_1, foodList);
+        final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, foodList);
 
         text.setAdapter(adapter);
         text.setThreshold(1);
@@ -101,7 +100,7 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
                 intent = new Intent(this, CategoryListActivity.class);
                 intent.putExtra("meal_type", mealType);
                 startActivity(intent);
-                 break;
+                break;
             case R.id.recent_card:
                 intent = new Intent(this, RecentListActivity.class);
                 intent.putExtra("meal_type", mealType);

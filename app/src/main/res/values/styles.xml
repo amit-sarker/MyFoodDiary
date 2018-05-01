@@ -79,4 +79,15 @@
 
 
 
+    <style name="YourAnimation.Activity" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/move_right_out_activity</item>
+        <item name="android:windowExitAnimation">@anim/move_left_in_activity</item>
+    </style>
+
+    <style name="TransitionTheme" parent="android:Theme.Translucent">
+        <item name="android:windowAnimationStyle">@style/YourAnimation.Activity</item>
+    </style>
+
+
+
 </resources>

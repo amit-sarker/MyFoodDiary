@@ -75,6 +75,7 @@ public class FoodListActivity extends AppCompatActivity {
                 intent.putExtra("foodname", foodName);
                 intent.putExtra("meal_type", mealType);
                 startActivity(intent);
+
             }
         });
 

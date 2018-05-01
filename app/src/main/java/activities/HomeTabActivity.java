@@ -1,5 +1,6 @@
 package activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ public class HomeTabActivity extends AppCompatActivity {
     NavigationView mNavigationView;
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
+    public static Activity homeTabActivity;
 
     SharedPreferences preferences;
     @Override
@@ -51,6 +53,7 @@ public class HomeTabActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
         }
 
+        homeTabActivity = this;
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mNavigationView = (NavigationView) findViewById(R.id.navigationView);
@@ -74,7 +77,7 @@ public class HomeTabActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
 
                     case R.id.signout:
-                        FirebaseAuth.getInstance().signOut();
+                        //FirebaseAuth.getInstance().signOut();
                         Intent intent = new Intent(HomeTabActivity.this, UserGenderInfoActivity.class);
                         startActivity(intent);
                         finish();
@@ -87,7 +90,6 @@ public class HomeTabActivity extends AppCompatActivity {
                         break;
                     case R.id.item_edit:
                         Intent intent2 = new Intent(HomeTabActivity.this, UpdateGoalActivity.class);
-                        intent2.putExtra("user", "Driver");
                         startActivity(intent2);
                         break;
                     case R.id.charts:
