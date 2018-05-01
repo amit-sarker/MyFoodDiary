@@ -1,21 +1,8 @@
 package com.example.moumita.caloriecountergeb;
 
-import android.util.Pair;
-
-import java.io.Console;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
-import java.lang.StringBuilder;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
-import fooddatabase.Food;
-import fooddatabase.FoodOperations;
 import helper.ShowFood;
 
 public class GeneticAlgoKnapsack {

@@ -20,7 +20,7 @@ public class GoalDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_GOAL_COMPLETION = "goalCompletion";
     public static final String COLUMN_GOAL_POINT = "goalPoint";
 
-    private static final String TABLE_CREATE =
+    public static final String TABLE_CREATE =
             "CREATE TABLE " + TABLE_GOAL + " (" +
                     COLUMN_GOAL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_GOAL_NAME + " TEXT, " +

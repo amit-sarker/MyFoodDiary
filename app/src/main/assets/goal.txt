@@ -1,0 +1,4 @@
+Never Miss Breakfast,Eat breakfast for 3 days,3,0,days,goal2,no,750
+Drink Water,Don't Medicate. Hydrate! Drink at least 8 glasses of water for 3 days,3,0,days,goal1,no,500
+Calorie Goal,Eat necessary calorie,1500,0,KCal,goal3,no,120
+This time for Protein,Proteins are important. Consume necessary protein for 3 days,56,0,grams,goal4,no,600

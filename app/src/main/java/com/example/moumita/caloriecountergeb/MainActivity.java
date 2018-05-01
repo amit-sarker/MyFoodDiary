@@ -27,6 +27,9 @@ import fooddatabase.FoodDBHandler;
 import fooddatabase.FoodOperations;
 import generalpersondatabase.Person;
 import generalpersondatabase.PersonOperations;
+import goaldatabase.Goal;
+import goaldatabase.GoalDBHandler;
+import goaldatabase.GoalOperations;
 import notifications.TestActivity;
 import okhttp3.OkHttpClient;
 import servingdatabase.FoodServing;
@@ -44,9 +47,8 @@ public class MainActivity extends AppCompatActivity {
     private CategoryOperations categoryData;
     private ServingOperations servingData;
     private TrackingOperations trackingData;
-    private CalorieTracking cc;
     private PersonOperations personData;
-    int oldVersion, newVersion;
+    private GoalOperations goalData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,11 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase serv_database = servingDBHandler.getWritableDatabase();
         serv_database.execSQL("DROP TABLE IF EXISTS " + servingDBHandler.TABLE_SERVING);
         serv_database.execSQL(ServingDBHandler.TABLE_CREATE);
+
+        GoalDBHandler goalDBHandler = new GoalDBHandler(this);
+        SQLiteDatabase goal_database = goalDBHandler.getWritableDatabase();
+        goal_database.execSQL("DROP TABLE IF EXISTS " + goalDBHandler.TABLE_GOAL);
+        goal_database.execSQL(GoalDBHandler.TABLE_CREATE);
 
 
 
@@ -113,6 +120,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
         servingData.close();
+
+
+        goalData = new GoalOperations(this);
+        goalData.open();
+
+        try {
+            readFromAssetsGoal(this, "goal.txt", goalData);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        goalData.close();
 
 
         personData = new PersonOperations(this);
@@ -257,6 +276,43 @@ public class MainActivity extends AppCompatActivity {
                 eachAttribute = "null";
         }
         servingData.addServing(foodServing);
+    }
+
+    public static String readFromAssetsGoal(Context context, String filename, GoalOperations goalData) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open(filename)));
+
+        StringBuilder sb = new StringBuilder();
+        String mLine = reader.readLine();
+        goalToDatabase(mLine, goalData);
+        while (mLine != null) {
+            sb.append(mLine);
+            mLine = reader.readLine();
+            if(mLine != null) {
+                goalToDatabase(mLine, goalData);
+            }
+        }
+        reader.close();
+        return sb.toString();
+    }
+
+    public static void goalToDatabase(String lineFromFile, GoalOperations goalData) {
+        String goalAttributes[]= lineFromFile.split(",");
+
+        Goal goal = new Goal();
+        goal.setGoal_name(goalAttributes[0]);
+        goal.setGoal_description(goalAttributes[1]);
+        goal.setGoal_duration(Long.parseLong(goalAttributes[2]));
+        goal.setMy_goal_streak(Long.parseLong(goalAttributes[3]));
+        goal.setGoal_status(goalAttributes[5]);
+        goal.setGoal_image(goalAttributes[6]);
+        goal.setGoal_completion(goalAttributes[7]);
+        goal.setGoal_point(Long.parseLong(goalAttributes[8]));
+
+        for (String eachAttribute: goalAttributes){
+            if(eachAttribute.equals("\0"))
+                eachAttribute = "null";
+        }
+        goalData.addGoal(goal);
     }
 
     public static void TrackDataCondition(TrackingOperations trackingData, PersonOperations personData) {
