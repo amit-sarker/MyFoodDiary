@@ -22,8 +22,6 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            android:minHeight="?attr/actionBarSize"
             android:background="@color/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
@@ -42,17 +40,12 @@
 
     <!--Navigation Drawer-->
     <android.support.design.widget.NavigationView
-        android:id="@+id/main_drawer"
-        android:layout_width="wrap_content"
+        android:id="@+id/navigationView"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:maxWidth="300dp"
-
-        app:headerLayout="@layout/drawer_header"
-        app:itemBackground="@color/background_color"
-        app:itemIconTint="@color/dark_active_icons"
-        app:itemTextColor="@color/dark_primary_text"
-        app:menu="@menu/menu_drawer">
-
-    </android.support.design.widget.NavigationView>
+        app:headerLayout="@layout/header_navigation_bar"
+        app:itemIconTint="#8C000000"
+        app:itemTextColor="#E6000000"
+        app:menu="@menu/menu_items_with_header"/>
 </android.support.v4.widget.DrawerLayout>

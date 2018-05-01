@@ -51,7 +51,8 @@
         <activity android:name=".UpdateGoalActivity" />
         <activity android:name=".ShowGoalActivity" />
         <activity android:name=".UserProfileActivity" />
-        <activity android:name=".CurrentWeightUpdateGoal"></activity>
+        <activity android:name=".CurrentWeightUpdateGoal" />
+        <activity android:name=".NavigationDrawerActivity"></activity>
     </application>
 
 </manifest>

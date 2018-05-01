@@ -1,5 +1,6 @@
 package activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -16,9 +17,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.moumita.caloriecountergeb.AnalysisActivity;
+import com.example.moumita.caloriecountergeb.NavigationDrawerActivity;
 import com.example.moumita.caloriecountergeb.R;
+import com.example.moumita.caloriecountergeb.UpdateGoalActivity;
+import com.example.moumita.caloriecountergeb.UserProfileActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 import fragments.TabFragment;
+import userinfo.UserGenderInfoActivity;
 
 
 public class HomeTabActivity extends AppCompatActivity {
@@ -46,12 +53,12 @@ public class HomeTabActivity extends AppCompatActivity {
 
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mNavigationView = (NavigationView) findViewById(R.id.main_drawer);
+        mNavigationView = (NavigationView) findViewById(R.id.navigationView);
 
-        int width = getResources().getDisplayMetrics().widthPixels/2;
+        /*int width = getResources().getDisplayMetrics().widthPixels/2;
         DrawerLayout.LayoutParams params = (android.support.v4.widget.DrawerLayout.LayoutParams) mNavigationView.getLayoutParams();
         params.width = width;
-        mNavigationView.setLayoutParams(params);
+        mNavigationView.setLayoutParams(params);*/
 
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
@@ -61,7 +68,44 @@ public class HomeTabActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
-                menuItem.setChecked(true);
+
+                String itemName = (String) menuItem.getTitle();
+                closeDrawer();
+                switch (menuItem.getItemId()) {
+
+                    case R.id.signout:
+                        FirebaseAuth.getInstance().signOut();
+                        Intent intent = new Intent(HomeTabActivity.this, UserGenderInfoActivity.class);
+                        startActivity(intent);
+                        finish();
+                        break;
+
+                    case R.id.friends:
+                        Intent intent1 = new Intent(HomeTabActivity.this, UserProfileActivity.class);
+                        startActivity(intent1);
+                        finish();
+                        break;
+                    case R.id.item_edit:
+                        Intent intent2 = new Intent(HomeTabActivity.this, UpdateGoalActivity.class);
+                        intent2.putExtra("user", "Driver");
+                        startActivity(intent2);
+                        break;
+                    case R.id.charts:
+                        Intent intent3 = new Intent(HomeTabActivity.this, AnalysisActivity.class);
+                        startActivity(intent3);
+                        break;
+
+                    case R.id.item_profile:
+                        Intent intent5 = new Intent(HomeTabActivity.this, UserProfileActivity.class);
+                        startActivity(intent5);
+                        break;
+                }
+
+                return true;
+
+
+
+                /*menuItem.setChecked(true);
                 mDrawerLayout.closeDrawers();
 
                 if (menuItem.getItemId() == R.id.drawer_home) {
@@ -108,7 +152,7 @@ public class HomeTabActivity extends AppCompatActivity {
                             "Replace with your own function", Toast.LENGTH_LONG).show();
                 }
 
-                return false;
+                return false;*/
             }
 
         });
@@ -123,6 +167,10 @@ public class HomeTabActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void closeDrawer() {
+        mDrawerLayout.closeDrawer(GravityCompat.START);
     }
 
 

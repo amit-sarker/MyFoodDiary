@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         long personRowCount = personData.getRowCount();
         personData.close();
 
-        /*Intent intent = new Intent(MainActivity.this, CurrentWeightUpdateGoal.class);
+        /*Intent intent = new Intent(MainActivity.this, HomeTabActivity.class);
         startActivity(intent);
         finish();*/
 
