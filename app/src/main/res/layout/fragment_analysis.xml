@@ -1,14 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/analysis_layout"
     android:layout_width="match_parent"
-    android:background="#ffffff"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    tools:context=".AnalysisActivity">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/analysis_btn"
-        android:text="Tap to see analysis of last seven days"/>
-</LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/chart_category_text"
+                style="@style/HeaderText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:paddingBottom="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="10dp"
+                android:text="@string/chart_select_text"
+                android:textAlignment="center" />
+
+            <Spinner
+                android:id="@+id/chart_category_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/chart_category_text"
+                />
+
+            <TextView
+                android:id="@+id/chart_type_text"
+                style="@style/HeaderText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:paddingBottom="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="10dp"
+                android:layout_below="@id/chart_category_spinner"
+                android:text="@string/chart_type"
+                android:textAlignment="center" />
+
+
+            <Spinner
+                android:id="@+id/chart_type_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+
+                android:layout_below="@id/chart_type_text" />
+
+            <TextView
+                android:id="@+id/chart_data_availability_text"
+                style="@style/NormalText"
+                android:layout_width="match_parent"
+                android:layout_height="79dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/chart_type_spinner"
+                android:paddingBottom="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="10dp"
+                android:text="@string/chart_data_availability"
+                android:textAlignment="center" />
+        </RelativeLayout>
+    </ScrollView>
+
+
+
+    <!--<com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/chart1"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="47dp" />-->
+
+</RelativeLayout>
