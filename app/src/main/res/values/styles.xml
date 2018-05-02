@@ -91,5 +91,19 @@
 
 
 
+    <style name="UserInfoText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/light_primary_text</item>
+
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">Roboto-Light</item>
+
+
+    </style>
+
+
+
+
 
 </resources>

@@ -1,37 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="userinfo.UserAgeInfoActivity">
+    tools:context="userinfo.UserAgeInfoActivity"
+    android:background="@drawable/green_bck_2">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <TextView
         android:id="@+id/age_info_text"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:text="@string/age_info"
-        android:textSize="18sp" />
+        style="@style/UserInfoText"
+        android:textAlignment="center"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="50dp"/>
+
+    <ImageView
+        android:id="@+id/height_info_img"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/age_info_text"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/age" />
 
 
-    <DatePicker
-        android:id="@+id/simpleDatePicker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
+    <NumberPicker
+        android:id="@+id/num_picker_month"
+        style="@style/UserInfoText"
+        android:layout_width="wrap_content"
+        android:layout_height="131dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_centerVertical="true" />
+        android:layout_marginBottom="102dp"
+        android:layout_marginStart="41dp">
+
+    </NumberPicker>
+
+    <NumberPicker
+        android:id="@+id/num_picker_date"
+        style="@style/UserInfoText"
+        android:layout_width="wrap_content"
+        android:layout_height="131dp"
+        android:layout_alignTop="@+id/num_picker_month"
+        android:layout_centerHorizontal="true">
+
+    </NumberPicker>
+
+    <NumberPicker
+        android:id="@+id/num_picker_year"
+        style="@style/UserInfoText"
+        android:layout_width="wrap_content"
+        android:layout_height="131dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/num_picker_month"
+        android:layout_marginEnd="42dp">
+
+    </NumberPicker>
 
     <Button
         android:id="@+id/submitButton"
@@ -39,12 +68,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="13dp"
-        android:background="#150"
+        android:layout_marginBottom="28dp"
         android:text="SUBMIT"
-        android:textColor="@color/light_primary_text"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:background="@drawable/button_style" />
 
 
 </RelativeLayout>

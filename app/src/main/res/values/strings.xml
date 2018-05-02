@@ -124,6 +124,10 @@
     <string name="action_settings">Settings</string>
     <string name="weight_progress">Weight Progress</string>
     <string name="daily_progress">Daily Progress</string>
+    <string name="congrats">Congratulations!\nYou are all set!</string>
+    <string name="welcome">You only need to maintain the routine.</string>
+    <string name="needed_cal">Your daily needed calorie is:</string>
+    <string name="welcome2">Don\'t worry! We will help you to achieve your goal</string>
 
 
 </resources>

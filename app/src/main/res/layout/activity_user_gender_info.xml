@@ -4,27 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="userinfo.UserGenderInfoActivity">
+    tools:context="userinfo.UserGenderInfoActivity"
+    android:background="@drawable/green_bck_2">
 
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
     <TextView
         android:id="@+id/gender_info_text"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        style="@style/UserInfoText"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="75dp"
-        android:textSize="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:textAlignment="center"
-        android:textColor="@color/title_text_color"
         android:text="@string/female_male_option" />
 
 
@@ -61,12 +53,13 @@
 
     <ImageView
         android:id="@+id/gender_info_img"
-        android:layout_width="174dp"
-        android:layout_height="192dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_below="@id/gender_info_text"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="29dp"
-        android:src="@drawable/female_male_icon" />
+        android:src="@drawable/gender"
+        />
 
     <RadioGroup
         android:id="@+id/RGroup"
@@ -76,23 +69,26 @@
         android:layout_alignParentStart="true"
         android:layout_marginBottom="91dp"
         android:layout_marginStart="77dp"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        >
 
         <RadioButton
 
             android:id="@+id/male_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/UserInfoText"
             android:text="@string/male_btn"
             android:layout_margin="10dp"
+            android:buttonTint="@color/colorWhite"
+
             />
 
         <RadioButton
             android:id="@+id/female_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/UserInfoText"
             android:layout_margin="10dp"
-            android:text="@string/female_btn_text" />
+            android:text="@string/female_btn_text"
+            android:buttonTint="@color/colorWhite"
+            />
     </RadioGroup>
 
 

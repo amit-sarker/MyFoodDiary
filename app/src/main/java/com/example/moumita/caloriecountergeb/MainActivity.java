@@ -50,7 +50,6 @@ import userinfo.UserWeightInfoActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static String alarmType;
     private FoodOperations foodData;
     private CategoryOperations categoryData;
     private ServingOperations servingData;

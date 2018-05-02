@@ -4,39 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="userinfo.UserHeightInfoActivity">
+    tools:context="userinfo.UserHeightInfoActivity"
+    android:background="@drawable/green_bck_2">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <TextView
         android:id="@+id/height_info_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="64dp"
         android:text="@string/height_info"
         android:textAlignment="center"
-        android:textColor="@color/title_text_color"
-        android:textSize="18dp" />
+        style="@style/UserInfoText"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="50dp"
+         />
 
 
     <ImageView
         android:id="@+id/height_info_img"
-        android:layout_width="wrap_content"
-        android:layout_height="166dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="159dp"
-        android:src="@drawable/height_icon_2" />
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/height_info_text"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/height" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,25 +35,27 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="85dp"
+        android:layout_centerHorizontal="true"
         android:orientation="horizontal">
 
         <NumberPicker
             android:id="@+id/num_picker_feet"
+            style="@style/UserInfoText"
             android:layout_width="wrap_content"
             android:layout_height="131dp"
-            android:layout_marginStart="30dp">
+            android:layout_marginStart="30dp"
+
+            >
 
         </NumberPicker>
 
         <TextView
             android:id="@+id/feet_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
             android:layout_marginStart="35dp"
             android:layout_marginTop="50dp"
             android:text="Feet"
-            android:textSize="20dp"
-            android:textColor="@color/title_text_color"/>
+            style="@style/UserInfoText"/>
 
         <NumberPicker
             android:id="@+id/num_picker_inch"
@@ -75,13 +68,10 @@
 
         <TextView
             android:id="@+id/inch_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            style="@style/UserInfoText"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="50dp"
-            android:text="Inches"
-            android:textSize="20dp"
-            android:textColor="@color/title_text_color"/>
+            android:text="Inches" />
     </LinearLayout>
 
 
@@ -90,14 +80,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
+
             android:layout_marginBottom="28dp"
             android:layout_marginStart="124dp"
             android:checked="true"
 
             android:text="FeetvsInch"
             android:textOff="Feet/Inch"
-            android:textOn="Meter/Cm" />
+            android:textOn="Meter/Cm"
+            android:background="@drawable/button_style"
+            android:layout_centerHorizontal="true"/>
 
 
 

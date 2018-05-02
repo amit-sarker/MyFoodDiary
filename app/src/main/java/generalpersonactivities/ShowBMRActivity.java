@@ -46,7 +46,7 @@ public class ShowBMRActivity extends AppCompatActivity {
         bmrText += "Without Activity: " + BMRWithoutActivity + "\n" + "With Activity: " +
                 BMRWithActivity;
         bmrDataview.setText(bmrText);
-        bmrDataview.setTextColor(Color.parseColor("#388E3C"));
+
 
         proteinsWithActivity = Math.round(BMRWithActivity * 0.25);
         fatWithActivity = Math.round(BMRWithActivity * 0.25);
