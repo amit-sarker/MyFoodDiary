@@ -52,7 +52,7 @@
                     android:layout_weight="0.11"
                     android:clickable="true"
                     android:src="@drawable/ic_done_white_24dp"
-                    app:backgroundTint="#FFD600" />
+                    app:backgroundTint="@color/colorButton" />
             </RelativeLayout>
 
                 <TableLayout

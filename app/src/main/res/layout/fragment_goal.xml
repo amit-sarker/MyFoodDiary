@@ -51,7 +51,7 @@
                         android:layout_centerInParent="true"
                         android:padding="12dp"
                         android:text="@string/see_rank"
-                        android:background="@color/colorAccent"/>
+                        android:background="@color/colorButton"/>
 
 
                 </RelativeLayout>

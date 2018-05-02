@@ -128,6 +128,10 @@
     <string name="welcome">You only need to maintain the routine.</string>
     <string name="needed_cal">Your daily needed calorie is:</string>
     <string name="welcome2">Don\'t worry! We will help you to achieve your goal</string>
+    <string name="goal_streak">Goal Streak</string>
+    <string name="goal_duration">Goal duration</string>
+    <string name="goal_description">Goal description</string>
+    <string name="goal_name">Goal Name</string>
 
 
 </resources>

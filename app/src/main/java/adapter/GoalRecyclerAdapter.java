@@ -55,6 +55,8 @@ public class GoalRecyclerAdapter extends RecyclerView.Adapter<GoalRecyclerAdapte
                             Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
 
+
+
                 }
             });
         }

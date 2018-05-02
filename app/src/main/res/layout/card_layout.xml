@@ -34,7 +34,7 @@
             android:layout_toRightOf="@id/goal_image"
             android:layout_alignParentTop="true"
             android:textSize="25sp"
-            android:text="Goal Name"
+            android:text="@string/goal_name"
             />
 
         <TextView
@@ -44,7 +44,7 @@
             android:layout_toRightOf="@id/goal_image"
             android:layout_below="@id/goal_name"
             android:layout_alignStart="@id/goal_name"
-            android:text="Goal description"
+            android:text="@string/goal_description"
             />
 
         <ProgressBar
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/goal_name"
             android:layout_below="@id/goal_progress_bar"
-            android:text="Goal Streak" />
+            android:text="@string/goal_streak" />
 
         <TextView
             android:id="@+id/goal_duration"
@@ -72,6 +72,6 @@
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/goal_progress_bar"
             android:layout_below="@id/goal_progress_bar"
-            android:text="Goal duration" />
+            android:text="@string/goal_duration" />
     </RelativeLayout>
 </android.support.v7.widget.CardView>

@@ -264,7 +264,8 @@ public class AnalysisFragment extends Fragment {
         LayoutInflater layoutInflater = (LayoutInflater)
                 getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.activity_linechart, null);
-        analysisLayout.addView(view, 5 );
+        //System.err.println("PPPPPPPPPPPPPPPPPPPPPPPPPP      " + analysisLayout.getChildCount());
+        analysisLayout.addView(view, analysisLayout.getChildCount());
 
         lineChart = view.findViewById(R.id.line_chart);
 
@@ -482,7 +483,7 @@ public class AnalysisFragment extends Fragment {
         LayoutInflater layoutInflater = (LayoutInflater)
                 getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.activity_barchart, null);
-        analysisLayout.addView(view, 0);
+        analysisLayout.addView(view, analysisLayout.getChildCount());
 
         mChart = view.findViewById(R.id.chart1);
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="userinfo.UserHeightInfoActivity"
-    android:background="@drawable/green_bck_2">
+    android:background="@mipmap/green_bck_2">
 
 
     <TextView
@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:background="#cdd3f4"
+        android:background="@color/colorButton"
         android:text="Next" />
 
 </RelativeLayout>

@@ -635,6 +635,9 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_gravity="bottom|end"
+            app:miniFabTitleBackgroundTint="@color/colorButton"
+            app:miniFabBackgroundTint="@color/colorButton"
+            app:fabBackgroundTint="@color/colorButton"
             app:fabGravity="bottom_end"
             app:fabMenu="@menu/menu_fab" />
 

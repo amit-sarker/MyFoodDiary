@@ -11,7 +11,7 @@
             android:id="@+id/spinnerImages"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:contentDescription="@string/app_name"/>"
+            android:contentDescription="@string/app_name"/>
 
         <TextView
             android:id="@+id/spinnerTextView"

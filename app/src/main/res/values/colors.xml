@@ -2,7 +2,8 @@
 <resources>
     <color name="colorPrimary">#4CAF50</color>
     <color name="colorPrimaryDark">#388E3C</color>
-    <color name="colorAccent">#FFC400</color>
+    <color name="colorAccent">#000000</color>
+    <color name="colorButton">#FFC400</color>
     <color name="colorPrimaryLight">#B2EBF2</color>
 
 <!--

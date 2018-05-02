@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="generalpersonactivities.ShowBMRActivity"
-    android:background="@drawable/green_bck_4">
+    android:background="@mipmap/green_bck_4">
 
     <TextView
         android:id="@+id/congrats_text"
@@ -59,6 +59,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="28dp"
         android:layout_marginEnd="29dp"
+        android:background="@color/colorButton"
         android:text="Next" />
     <LinearLayout
         android:id="@+id/layout_pic"

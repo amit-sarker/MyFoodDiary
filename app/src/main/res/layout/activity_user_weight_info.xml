@@ -20,7 +20,7 @@
             android:paddingTop="50dp"
             android:paddingLeft="24dp"
             android:paddingRight="24dp"
-            android:background="@drawable/green_bck_2">
+            android:background="@mipmap/green_bck_2">
 
             <TextView
                 android:id="@+id/weight_info_text"
@@ -117,7 +117,7 @@
                     android:text="@string/lbsvskg"
                     android:textOff="@string/lbs"
                     android:textOn="@string/kg"
-                    android:background="@color/colorAccent"/>
+                    android:background="@color/colorButton"/>
 
 
             </LinearLayout>

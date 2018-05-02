@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Locale;
 
 import activities.HomeTabActivity;
-import br.com.goncalves.pugnotification.notification.PugNotification;
+//import br.com.goncalves.pugnotification.notification.PugNotification;
 import categorydatabase.CategoryDBHandler;
 import categorydatabase.CategoryOperations;
 import categorydatabase.FoodCategory;
