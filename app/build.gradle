@@ -30,6 +30,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:12.0.1'
     implementation 'com.google.firebase:firebase-database:12.0.1'
     implementation 'com.google.firebase:firebase-storage:12.0.1'
+    implementation 'com.google.firebase:firebase-messaging:12.0.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
@@ -52,8 +53,9 @@ dependencies {
     implementation 'com.numetriclabz.numandroidcharts:numandroidcharts:1.0.3'
     implementation 'com.txusballesteros:bubbles:1.2.1'
     implementation 'com.nex3z:notification-badge:1.0.0'
-    implementation 'com.github.medyo:fancybuttons:1.8.4'
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
+    implementation 'com.github.medyo:fancybuttons:1.8.4'
+    implementation 'com.github.halysongoncalves:pugnotification:1.8.1'
 
 
 }

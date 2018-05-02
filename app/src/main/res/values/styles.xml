@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -87,6 +87,8 @@
     <style name="TransitionTheme" parent="android:Theme.Translucent">
         <item name="android:windowAnimationStyle">@style/YourAnimation.Activity</item>
     </style>
+
+
 
 
 

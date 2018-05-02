@@ -1,10 +1,15 @@
 package com.example.moumita.caloriecountergeb;
 
+import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.facebook.stetho.Stetho;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
@@ -14,11 +19,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import activities.HomeTabActivity;
+import br.com.goncalves.pugnotification.notification.PugNotification;
 import categorydatabase.CategoryDBHandler;
 import categorydatabase.CategoryOperations;
 import categorydatabase.FoodCategory;
@@ -43,6 +50,7 @@ import userinfo.UserWeightInfoActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static String alarmType;
     private FoodOperations foodData;
     private CategoryOperations categoryData;
     private ServingOperations servingData;
@@ -60,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor())
                 .build();
+
 
 
         FoodDBHandler foodDBHandler = new FoodDBHandler(this);
@@ -161,6 +170,60 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+
+
+        //Push Notification
+        Intent breakfastIntent = new Intent(this, AlarmReceiver.class);
+        Intent lunchIntent = new Intent(this, AlarmReceiver.class);
+        Intent dinnerIntent = new Intent(this, AlarmReceiver.class);
+        breakfastIntent.putExtra("alarm_time", "breakfast");
+        lunchIntent.putExtra("alarm_time", "lunch");
+        dinnerIntent.putExtra("alarm_time", "dinner");
+
+        PendingIntent breakfastBroadcast = PendingIntent.getBroadcast(this, 100, breakfastIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent lunchBroadcast = PendingIntent.getBroadcast(this, 101, lunchIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent dinnerBroadcast = PendingIntent.getBroadcast(this, 102, dinnerIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        AlarmManager alarmManager2 = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        AlarmManager alarmManager3 = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        //notificationIntent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
+        //alarmManager.cancel(broadcast);
+
+        Calendar alarmStartTime = Calendar.getInstance();
+        Calendar now = Calendar.getInstance();
+        alarmStartTime.set(Calendar.HOUR_OF_DAY, 8);
+        alarmStartTime.set(Calendar.MINUTE, 0);
+        alarmStartTime.set(Calendar.SECOND, 0);
+        if (now.after(alarmStartTime)) {
+            Log.d("Hey","Added a day");
+            alarmStartTime.add(Calendar.DATE, 1);
+        }
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, breakfastBroadcast);
+        Log.d("Alarm","Alarms set for everyday 8 am.");
+
+        Calendar lunchTime = Calendar.getInstance();
+        lunchTime.set(Calendar.HOUR_OF_DAY, 13);
+        lunchTime.set(Calendar.MINUTE, 5);
+        lunchTime.set(Calendar.SECOND, 0);
+        if (now.after(lunchTime)) {
+            Log.d("Hey","Added a day");
+            lunchTime.add(Calendar.DATE, 1);
+        }
+        alarmManager2.setRepeating(AlarmManager.RTC_WAKEUP, lunchTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, lunchBroadcast);
+
+
+        Calendar dinnerTime = Calendar.getInstance();
+        dinnerTime.set(Calendar.HOUR_OF_DAY, 21);
+        dinnerTime.set(Calendar.MINUTE, 0);
+        dinnerTime.set(Calendar.SECOND, 0);
+        if (now.after(dinnerTime)) {
+            Log.d("Hey","Added a day");
+            dinnerTime.add(Calendar.DATE, 1);
+        }
+        alarmManager3.setRepeating(AlarmManager.RTC_WAKEUP, dinnerTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, dinnerBroadcast);
+
+        System.err.println("Timeeeeeeeeeeeeeeeeee " + lunchTime + " " + dinnerTime + " " + now);
+
     }
 
 

@@ -52,7 +52,15 @@
         <activity android:name=".ShowGoalActivity" />
         <activity android:name=".UserProfileActivity" />
         <activity android:name=".CurrentWeightUpdateGoal" />
-        <activity android:name=".NavigationDrawerActivity"></activity>
+        <activity android:name=".NavigationDrawerActivity" />
+        <activity android:name=".NotificationActivity" />
+
+        <receiver android:name=".AlarmReceiver" />
+
+        <service
+            android:name=".NotificationService1"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
