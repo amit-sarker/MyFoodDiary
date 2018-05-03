@@ -4,14 +4,15 @@ public class CalorieTracking {
     private long calorie_tracking_id;
     private String date;
     private double cal_needed, cal_consumed, cal_remaining, protein_needed, protein_consumed, protein_remaining,
-            fat_needed, fat_consumed, fat_remaining, carbs_needed, carbs_consumed, carbs_remaining;
+            fat_needed, fat_consumed, fat_remaining, carbs_needed, carbs_consumed, carbs_remaining, water_consumed;
+    private long goal_point, rank;
 
     public CalorieTracking() {}
 
     public CalorieTracking(long calorie_tracking_id, String date, double cal_needed, double cal_consumed,
                            double cal_remaining, double protein_needed, double protein_consumed, double protein_remaining,
                            double fat_needed, double fat_consumed, double fat_remaining, double carbs_needed, double carbs_consumed,
-                           double carbs_remaining) {
+                           double carbs_remaining, double water_consumed, long goal_point, long rank) {
 
         this.calorie_tracking_id = calorie_tracking_id;
         this.date = date;
@@ -27,6 +28,9 @@ public class CalorieTracking {
         this.carbs_needed = carbs_needed;
         this.carbs_consumed = carbs_consumed;
         this.carbs_remaining = carbs_remaining;
+        this.water_consumed = water_consumed;
+        this.goal_point = goal_point;
+        this.rank = rank;
     }
 
     public long getCalorie_tracking_id() {
@@ -141,6 +145,30 @@ public class CalorieTracking {
         this.carbs_remaining = carbs_remaining;
     }
 
+    public double getWater_consumed() {
+        return water_consumed;
+    }
+
+    public void setWater_consumed(double water_consumed) {
+        this.water_consumed = water_consumed;
+    }
+
+    public long getGoal_point() {
+        return goal_point;
+    }
+
+    public void setGoal_point(long goal_point) {
+        this.goal_point = goal_point;
+    }
+
+    public long getRank() {
+        return rank;
+    }
+
+    public void setRank(long rank) {
+        this.rank = rank;
+    }
+
     @Override
     public String toString() {
         return "CalorieTracking{" +
@@ -158,6 +186,9 @@ public class CalorieTracking {
                 ", carbs_needed=" + carbs_needed +
                 ", carbs_consumed=" + carbs_consumed +
                 ", carbs_remaining=" + carbs_remaining +
+                ", water_consumed=" + water_consumed +
+                ", goal_point=" + goal_point +
+                ", rank=" + rank +
                 '}';
     }
 }

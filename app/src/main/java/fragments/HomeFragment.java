@@ -26,9 +26,13 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import activities.HomeTabActivity;
 import addfood.AddFoodActivity;
 
 import generalpersonactivities.BMICalculation;
+import goaldatabase.Goal;
+import goaldatabase.GoalDBHandler;
+import goaldatabase.GoalOperations;
 import helper.InitialShowFood;
 import adapter.InitialShowFoodAdapter;
 
@@ -43,6 +47,7 @@ import com.txusballesteros.widgets.FitChartValue;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -96,6 +101,7 @@ public class HomeFragment extends Fragment {
     private Typeface mTfLight, mTfRegular, mtfBold;
     private ProgressBar carbsBar, proteinBar, fatBar;
     private Vibrator vibrator;
+    private GoalOperations goalData;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -108,6 +114,7 @@ public class HomeFragment extends Fragment {
         foodDiary = new DiaryOperations(getContext());
         foodData = new FoodOperations(getContext());
         trackingData = new TrackingOperations(getContext());
+        goalData = new GoalOperations(getContext());
         lastTrackingRow = new CalorieTracking();
         weightCard = view.findViewById(R.id.weight_card_view);
         calConsumedText = view.findViewById(R.id.cal_consumed_text);
@@ -139,6 +146,13 @@ public class HomeFragment extends Fragment {
         fatBarText = view.findViewById(R.id.fat_bar_text);
         fatRemainText = view.findViewById(R.id.fat_bar_remain_text);
 
+        waterAddBtn = view.findViewById(R.id.water_plus_btn);
+        waterMinusBtn = view.findViewById(R.id.water_minus_btn);
+        waterCountText = view.findViewById(R.id.water_count_text);
+        addBreakdfastBtn = view.findViewById(R.id.add_breakfast_btn);
+        addLunchBtn = view.findViewById(R.id.add_lunch_btn);
+        addDinnerBtn = view.findViewById(R.id.add_dinner_btn);
+
 
         mTfRegular = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Regular.ttf");
         mTfLight = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Light.ttf");
@@ -153,7 +167,10 @@ public class HomeFragment extends Fragment {
         calRemainText.setTypeface(mTfLight);
         calRemainNum.setTypeface(mTfRegular);
 
+
+
         vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+        CheckWaterGoal();
 
         carbsBarText.setTypeface(mTfRegular);
         carbsBarText.setText("CARBS");
@@ -193,6 +210,9 @@ public class HomeFragment extends Fragment {
         long totalRow = trackingData.getRowCount();
         lastTrackingRow = trackingData.getTracking(totalRow);
         trackingData.close();
+
+        waterCountText.setText((int)lastTrackingRow.getWater_consumed() + " glasses of water");
+        waterCountText.setTypeface(mTfRegular);
 
         calConsumed = lastTrackingRow.getCal_consumed();
         calRemain = lastTrackingRow.getCal_remaining();
@@ -358,19 +378,19 @@ public class HomeFragment extends Fragment {
         });
 
         glassOfWater = 0;
-        waterAddBtn = view.findViewById(R.id.water_plus_btn);
-        waterMinusBtn = view.findViewById(R.id.water_minus_btn);
-        waterCountText = view.findViewById(R.id.water_count_text);
-        addBreakdfastBtn = view.findViewById(R.id.add_breakfast_btn);
-        addLunchBtn = view.findViewById(R.id.add_lunch_btn);
-        addDinnerBtn = view.findViewById(R.id.add_dinner_btn);
-
 
         waterAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 vibrator.vibrate(25);
-                glassOfWater++;
+                trackingData.open();
+                CalorieTracking lastRowTracking = trackingData.getTracking(trackingData.getRowCount());
+                CalorieTracking newTrackingRow = lastRowTracking;
+                glassOfWater = (int) (lastRowTracking.getWater_consumed() + 1);
+                newTrackingRow.setWater_consumed(glassOfWater);
+                trackingData.updateTracking(newTrackingRow);
+                trackingData.close();
+
                 waterCountText.setText(glassOfWater + " glasses of water");
             }
         });
@@ -378,7 +398,18 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 vibrator.vibrate(25);
-                glassOfWater--;
+
+                trackingData.open();
+                CalorieTracking lastRowTracking = trackingData.getTracking(trackingData.getRowCount());
+                CalorieTracking newTrackingRow = lastRowTracking;
+
+                glassOfWater = (int) (lastRowTracking.getWater_consumed() - 1);
+                if(glassOfWater < 0) glassOfWater = 0;
+
+                newTrackingRow.setWater_consumed(glassOfWater);
+                trackingData.updateTracking(newTrackingRow);
+                trackingData.close();
+
                 waterCountText.setText(glassOfWater + " glasses of water");
             }
         });
@@ -611,6 +642,73 @@ public class HomeFragment extends Fragment {
         }
 
     }
+
+
+    public void CheckWaterGoal() {
+        trackingData.open();
+        goalData.open();
+
+        Goal goal = goalData.getGoal(2);
+
+        CalorieTracking calorieTracking = new CalorieTracking();
+        calorieTracking = trackingData.getTracking(trackingData.getRowCount());
+
+        double waterCount = calorieTracking.getWater_consumed();
+
+        long count = 0;
+        boolean check;
+        String current_date_str = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        for(int i = 0; i < 3; i++) {
+            check = checkStreakwater(current_date_str);
+            if(!check) break;
+            else {
+                count++;
+
+                Calendar calendar = Calendar.getInstance();
+                //cal.setTime(dateInstance);
+                calendar.add(Calendar.DATE, -1);
+                Date date = calendar.getTime();
+                SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");
+                current_date_str = formatter1.format(date);
+            }
+        }
+
+        Goal updatedGoal;
+
+        updatedGoal = goal;
+        updatedGoal.setMy_goal_streak(count);
+
+        if(count >= 3) {
+            updatedGoal.setGoal_completion("yes");
+        } else {
+            updatedGoal.setGoal_completion(goal.getGoal_completion());
+        }
+
+        goalData.updateGoal(updatedGoal);
+
+        CalorieTracking lastTrackingRow = trackingData.getTracking(trackingData.getRowCount());
+        //new CalorieTracking();
+        CalorieTracking newTrackingRow;
+
+        newTrackingRow = lastTrackingRow;
+        if(count >= 3) {
+            newTrackingRow.setGoal_point(newTrackingRow.getGoal_point() + goal.getGoal_point());
+        }
+
+        trackingData.updateTracking(newTrackingRow);
+
+        goalData.close();
+        trackingData.close();
+
+    }
+
+    public boolean checkStreakwater(String date) {
+        double waterCount = trackingData.getTrackingByDay(date);
+        if(waterCount >= 8) return true;
+        else return false;
+    }
+
+
     public int ImageID(String image_name) {
         int resID = this.getResources().getIdentifier(image_name, "drawable", getActivity().getPackageName());
         return resID;

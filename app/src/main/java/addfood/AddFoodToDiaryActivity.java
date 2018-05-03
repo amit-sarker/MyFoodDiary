@@ -285,8 +285,8 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
                 long last_row = trackingData.getRowCount();
                 trackingRow = trackingData.getTracking(last_row);
 
-
                 CalorieTracking newTrackingData = new CalorieTracking();
+
                 newTrackingData.setCalorie_tracking_id(trackingRow.getCalorie_tracking_id());
                 newTrackingData.setDate(trackingRow.getDate());
                 newTrackingData.setCal_needed(trackingRow.getCal_needed());
@@ -301,6 +301,10 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
                 newTrackingData.setCarbs_needed(trackingRow.getCarbs_needed());
                 newTrackingData.setCarbs_consumed(Math.round(trackingRow.getCarbs_consumed() + foodNeutrients[2]));
                 newTrackingData.setCarbs_remaining(Math.round(trackingRow.getCarbs_remaining() - foodNeutrients[2]));
+
+                newTrackingData.setWater_consumed(trackingRow.getWater_consumed());
+                newTrackingData.setGoal_point(trackingRow.getGoal_point());
+                newTrackingData.setRank(trackingRow.getRank());
 
                 trackingData.updateTracking(newTrackingData);
                 trackingData.close();

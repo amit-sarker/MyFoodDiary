@@ -130,7 +130,7 @@ public class ShowGoalActivity extends AppCompatActivity {
 
         personData.open();
         person = personData.getPerson(personData.getRowCount());
-        personData.deleteAllPersonData();
+
         personData.close();
         newPerson = new Person();
 
@@ -147,6 +147,9 @@ public class ShowGoalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String current_date_str = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+                personData.open();
+
+                personData.deleteAllPersonData();
 
                 newPerson.setAge(person.getAge());
                 newPerson.setGender(person.getGender());
@@ -158,9 +161,6 @@ public class ShowGoalActivity extends AppCompatActivity {
                 newPerson.setBMRWithActivity(String.valueOf(newBMRWithActivity));
                 newPerson.setWeightUpdateAmount("0");
                 newPerson.setWeightUpdateDate(current_date_str);
-
-
-                personData.open();
 
                 personData.addPerson(newPerson);
 

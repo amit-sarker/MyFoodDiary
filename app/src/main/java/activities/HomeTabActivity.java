@@ -25,7 +25,23 @@ import com.example.moumita.caloriecountergeb.UpdateGoalActivity;
 import com.example.moumita.caloriecountergeb.UserProfileActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Locale;
+
+import fooddiarydatabase.DiaryOperations;
+import fooddiarydatabase.FoodDiary;
 import fragments.TabFragment;
+import goaldatabase.Goal;
+import goaldatabase.GoalOperations;
+import trackingdatabase.CalorieTracking;
+import trackingdatabase.TrackingOperations;
 import userinfo.UserGenderInfoActivity;
 
 
@@ -37,6 +53,10 @@ public class HomeTabActivity extends AppCompatActivity {
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
     public static Activity homeTabActivity;
+    private TrackingOperations trackingData;
+    private GoalOperations goalData;
+    private DiaryOperations diaryData;
+    private List<String> dateList, distDayCount;
 
     SharedPreferences preferences;
     @Override
@@ -54,6 +74,30 @@ public class HomeTabActivity extends AppCompatActivity {
         }
 
         homeTabActivity = this;
+
+        trackingData = new TrackingOperations(this);
+        goalData = new GoalOperations(this);
+        diaryData = new DiaryOperations(this);
+        dateList = new ArrayList<>();
+        distDayCount = new ArrayList<>();
+
+        try {
+            CheckGoalBreakFast();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        //CheckWaterGoal();
+
+        try {
+            Check14KCalorieGoal();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
+
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mNavigationView = (NavigationView) findViewById(R.id.navigationView);
@@ -214,6 +258,237 @@ public class HomeTabActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
 
+    }
+
+    public void CheckGoalBreakFast() throws ParseException {
+
+        goalData.open();
+        diaryData.open();
+        trackingData.open();
+
+        Goal goal = goalData.getGoal(1);
+        long duration = goal.getGoal_duration();
+
+        Calendar cal = Calendar.getInstance();
+        //cal.setTime(dateInstance);
+        cal.add(Calendar.DATE, -3);
+        Date threeDaysAgo = cal.getTime();
+
+        //System.err.println("DATEEEEEEEEE     " + threeDaysAgo);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate = formatter.format(threeDaysAgo);
+        //System.err.println("Newwwwwwwwwwwwwwwwwww     " + strDate);
+
+        List<FoodDiary> foodDiaryList = diaryData.getFoodDiaryByDate(strDate);
+
+        for(int i = 0; i < foodDiaryList.size(); i++) {
+            dateList.add(foodDiaryList.get(i).getDate());
+        }
+
+        for(String s: dateList){
+            if(!distDayCount.contains(s)){
+                distDayCount.add(s);
+            }
+        }
+
+        long count = 0;
+        boolean check;
+
+        //System.err.println("Distinct Dateeeeeeeeeeeeeeeeeeee      " + distDayCount.size());
+        String current_date_str = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        for(int i = 0; i < 3; i++) {
+            check = checkStreak(current_date_str, foodDiaryList);
+            if(!check) break;
+            else {
+                count++;
+
+                Calendar calendar = Calendar.getInstance();
+                //cal.setTime(dateInstance);
+                calendar.add(Calendar.DATE, -1);
+                Date date = calendar.getTime();
+                SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");
+                current_date_str = formatter1.format(date);
+            }
+        }
+
+        System.err.println("Breakfastttttttttttttttttttttt     " + count);
+
+        Goal updatedGoal = new Goal();
+
+        updatedGoal.setGoal_id(goal.getGoal_id());
+        updatedGoal.setGoal_name(goal.getGoal_name());
+        updatedGoal.setGoal_description(goal.getGoal_description());
+        updatedGoal.setGoal_duration(goal.getGoal_duration());
+        updatedGoal.setMy_goal_streak(count);
+        updatedGoal.setGoal_status(goal.getGoal_status());
+        updatedGoal.setGoal_image(goal.getGoal_image());
+        if(count >= 3) {
+            updatedGoal.setGoal_completion("yes");
+        } else {
+            updatedGoal.setGoal_completion(goal.getGoal_completion());
+        }
+        updatedGoal.setGoal_point(goal.getGoal_point());
+
+        goalData.updateGoal(updatedGoal);
+
+        CalorieTracking lastTrackingRow = trackingData.getTracking(trackingData.getRowCount());
+        //new CalorieTracking();
+        CalorieTracking newTrackingRow;
+
+        newTrackingRow = lastTrackingRow;
+        if(count >= 3) {
+            newTrackingRow.setGoal_point(newTrackingRow.getGoal_point() + goal.getGoal_point());
+        }
+
+        trackingData.updateTracking(newTrackingRow);
+
+        goalData.close();
+        diaryData.close();
+        trackingData.close();
+
+    }
+
+    public boolean checkStreak(String date, List<FoodDiary> foodDiaryList) {
+        boolean check = false;
+        for(int i = 0; i < foodDiaryList.size(); i++) {
+            if(foodDiaryList.get(i).getDate().equals(date)) {
+                if(foodDiaryList.get(i).getMeal_type().equals("Breakfast")) {
+                    check = true;
+                    break;
+                }
+            }
+        }
+        return check;
+    }
+
+    public void CheckWaterGoal() {
+        trackingData.open();
+        goalData.open();
+
+        Goal goal = goalData.getGoal(2);
+
+        CalorieTracking calorieTracking = new CalorieTracking();
+        calorieTracking = trackingData.getTracking(trackingData.getRowCount());
+
+        double waterCount = calorieTracking.getWater_consumed();
+
+        long count = 0;
+        boolean check;
+        String current_date_str = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        for(int i = 0; i < 3; i++) {
+            check = checkStreakwater(current_date_str);
+            if(!check) break;
+            else {
+                count++;
+
+                Calendar calendar = Calendar.getInstance();
+                //cal.setTime(dateInstance);
+                calendar.add(Calendar.DATE, -1);
+                Date date = calendar.getTime();
+                SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");
+                current_date_str = formatter1.format(date);
+            }
+        }
+
+        Goal updatedGoal;
+
+        updatedGoal = goal;
+        updatedGoal.setMy_goal_streak(count);
+
+        if(count >= 3) {
+            updatedGoal.setGoal_completion("yes");
+        } else {
+            updatedGoal.setGoal_completion(goal.getGoal_completion());
+        }
+
+        goalData.updateGoal(updatedGoal);
+
+        CalorieTracking lastTrackingRow = trackingData.getTracking(trackingData.getRowCount());
+        //new CalorieTracking();
+        CalorieTracking newTrackingRow;
+
+        newTrackingRow = lastTrackingRow;
+        if(count >= 3) {
+            newTrackingRow.setGoal_point(newTrackingRow.getGoal_point() + goal.getGoal_point());
+        }
+
+        trackingData.updateTracking(newTrackingRow);
+
+        goalData.close();
+        trackingData.close();
+
+    }
+
+    public boolean checkStreakwater(String date) {
+        double waterCount = trackingData.getTrackingByDay(date);
+        if(waterCount >= 8) return true;
+        else return false;
+    }
+
+    public void Check14KCalorieGoal() throws ParseException {
+        goalData.open();
+        diaryData.open();
+        trackingData.open();
+
+        Goal goal = goalData.getGoal(3);
+
+        Calendar cal = Calendar.getInstance();
+        //cal.setTime(dateInstance);
+        cal.add(Calendar.DATE, -7);
+        Date sevenDaysAgo = cal.getTime();
+
+        //System.err.println("DATEEEEEEEEE     " + threeDaysAgo);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate = formatter.format(sevenDaysAgo);
+        //System.err.println("Newwwwwwwwwwwwwwwwwww     " + strDate);
+
+        List<Double> calorieConsumed = trackingData.getTrackingByCalorie(strDate);
+
+        Collections.reverse(calorieConsumed);
+
+        long count = 0;
+
+        boolean check;
+        for(int i = 0; i < calorieConsumed.size(); i++) {
+            if(calorieConsumed.get(i) >= 2500.0)
+                count++;
+            else break;
+        }
+
+        Goal updatedGoal = new Goal();
+
+        updatedGoal.setGoal_id(goal.getGoal_id());
+        updatedGoal.setGoal_name(goal.getGoal_name());
+        updatedGoal.setGoal_description(goal.getGoal_description());
+        updatedGoal.setGoal_duration(goal.getGoal_duration());
+        updatedGoal.setMy_goal_streak(count);
+        updatedGoal.setGoal_status(goal.getGoal_status());
+        updatedGoal.setGoal_image(goal.getGoal_image());
+        if(count >= 7) {
+            updatedGoal.setGoal_completion("yes");
+        } else {
+            updatedGoal.setGoal_completion(goal.getGoal_completion());
+        }
+        updatedGoal.setGoal_point(goal.getGoal_point());
+
+        goalData.updateGoal(updatedGoal);
+
+        CalorieTracking lastTrackingRow = trackingData.getTracking(trackingData.getRowCount());
+        //new CalorieTracking();
+        CalorieTracking newTrackingRow;
+
+        newTrackingRow = lastTrackingRow;
+        if(count >= 7) {
+            newTrackingRow.setGoal_point(newTrackingRow.getGoal_point() + goal.getGoal_point());
+        }
+
+        trackingData.updateTracking(newTrackingRow);
+
+        goalData.close();
+        diaryData.close();
+        trackingData.close();
     }
 
 }

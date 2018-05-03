@@ -52,6 +52,13 @@ public class ShowBMRActivity extends AppCompatActivity {
         fatWithActivity = Math.round(BMRWithActivity * 0.25);
         carbsWithActivity = Math.round(BMRWithActivity * 0.5);
 
+        trackingData.open();
+
+        CalorieTracking lastTrackingRow = new CalorieTracking();
+        if(trackingData.getRowCount() != 0) {
+            lastTrackingRow = trackingData.getTracking(trackingData.getRowCount());
+        }
+
         calorieTrackingData = new CalorieTracking();
         String current_date_str = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         calorieTrackingData.setDate(current_date_str);
@@ -72,7 +79,17 @@ public class ShowBMRActivity extends AppCompatActivity {
         calorieTrackingData.setCarbs_consumed(0.0);
         calorieTrackingData.setCarbs_remaining(Math.round(carbsWithActivity / 4.0));
 
-        trackingData.open();
+        if(trackingData.getRowCount() != 0) {
+            calorieTrackingData.setWater_consumed(lastTrackingRow.getWater_consumed());
+            calorieTrackingData.setGoal_point(lastTrackingRow.getGoal_point());
+            calorieTrackingData.setRank(lastTrackingRow.getRank());
+        } else {
+            calorieTrackingData.setWater_consumed(0.0);
+            calorieTrackingData.setGoal_point(0);
+            calorieTrackingData.setRank(0);
+        }
+
+
         trackingData.addTrackingData(calorieTrackingData);
         trackingData.close();
 

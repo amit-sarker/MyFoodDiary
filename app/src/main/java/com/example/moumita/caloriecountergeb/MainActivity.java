@@ -85,10 +85,10 @@ public class MainActivity extends AppCompatActivity {
         serv_database.execSQL("DROP TABLE IF EXISTS " + servingDBHandler.TABLE_SERVING);
         serv_database.execSQL(ServingDBHandler.TABLE_CREATE);
 
-        GoalDBHandler goalDBHandler = new GoalDBHandler(this);
+        /*GoalDBHandler goalDBHandler = new GoalDBHandler(this);
         SQLiteDatabase goal_database = goalDBHandler.getWritableDatabase();
         goal_database.execSQL("DROP TABLE IF EXISTS " + goalDBHandler.TABLE_GOAL);
-        goal_database.execSQL(GoalDBHandler.TABLE_CREATE);
+        goal_database.execSQL(GoalDBHandler.TABLE_CREATE);*/
 
 
 
@@ -133,10 +133,16 @@ public class MainActivity extends AppCompatActivity {
         goalData = new GoalOperations(this);
         goalData.open();
 
-        try {
-            readFromAssetsGoal(this, "goal.txt", goalData);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(goalData.getRowCount() == 0) {
+
+            try {
+                readFromAssetsGoal(this, "goal.txt", goalData);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("GOALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
+
         }
 
         goalData.close();
@@ -394,6 +400,8 @@ public class MainActivity extends AppCompatActivity {
         carbsWithActivity = Math.round(BMRWithActivity * 0.5);
         personData.close();
 
+        CalorieTracking lastTrackingRow = trackingData.getTracking(trackingData.getRowCount());
+
         if(current_date_str.equals(tracking_row_date)) {}
         else {
             CalorieTracking calorieTrackingData = new CalorieTracking();
@@ -414,6 +422,10 @@ public class MainActivity extends AppCompatActivity {
             calorieTrackingData.setCarbs_needed(Math.round(carbsWithActivity / 4.0));
             calorieTrackingData.setCarbs_consumed(0.0);
             calorieTrackingData.setCarbs_remaining(Math.round(carbsWithActivity / 4.0));
+
+            calorieTrackingData.setWater_consumed(0);
+            calorieTrackingData.setGoal_point(lastTrackingRow.getGoal_point());
+            calorieTrackingData.setRank(lastTrackingRow.getRank());
 
             trackingData.addTrackingData(calorieTrackingData);
         }

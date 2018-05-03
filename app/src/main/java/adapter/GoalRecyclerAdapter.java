@@ -1,5 +1,6 @@
 package adapter;
 
+import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
@@ -37,6 +38,7 @@ public class GoalRecyclerAdapter extends RecyclerView.Adapter<GoalRecyclerAdapte
         public TextView itemDetail;
         public ProgressBar itemGoalBar;
         public TextView itemDuration, itemStreak;
+        public TextView itemCompletion;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -46,6 +48,7 @@ public class GoalRecyclerAdapter extends RecyclerView.Adapter<GoalRecyclerAdapte
             itemGoalBar = itemView.findViewById(R.id.goal_progress_bar);
             itemDuration = itemView.findViewById(R.id.goal_duration);
             itemStreak = itemView.findViewById(R.id.goal_streak);
+            itemCompletion = itemView.findViewById(R.id.goal_completion);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
@@ -54,9 +57,6 @@ public class GoalRecyclerAdapter extends RecyclerView.Adapter<GoalRecyclerAdapte
                     Snackbar.make(v, "Click detected on item " + position,
                             Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-
-
-
                 }
             });
         }
@@ -71,6 +71,7 @@ public class GoalRecyclerAdapter extends RecyclerView.Adapter<GoalRecyclerAdapte
     }
 
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         viewHolder.itemName.setText(goalName.get(i));
@@ -80,6 +81,10 @@ public class GoalRecyclerAdapter extends RecyclerView.Adapter<GoalRecyclerAdapte
         viewHolder.itemGoalBar.setProgress((int) goalStreak.get(i));
         viewHolder.itemDuration.setText(goalDuration.get(i) + " " + goalStatus.get(i));
         viewHolder.itemStreak.setText(goalStreak.get(i) + " " + goalStatus.get(i));
+        if(goalStreak.get(i) >= goalDuration.get(i)) {
+            viewHolder.itemCompletion.setText("Completed");
+            viewHolder.itemCompletion.setTextColor(R.color.colorPrimary);
+        }
 
     }
 

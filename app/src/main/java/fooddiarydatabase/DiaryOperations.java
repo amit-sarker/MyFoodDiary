@@ -7,7 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -59,6 +62,42 @@ public class DiaryOperations {
         long insertid = database.insert(TABLE_DIARY,null, values);
         foodDiary.setDiary_id(insertid);
         return foodDiary;
+    }
+
+    public List<FoodDiary> getFoodDiaryByDate(String targetDate) throws ParseException {
+        Cursor cursor = database.query(TABLE_DIARY, allColumns,null,null,null, null, null);
+        List<FoodDiary> foodDiaryList = new ArrayList<>();
+
+        if(cursor.getCount() > 0) {
+            while(cursor.moveToNext()) {
+
+                String dbDate = cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_DATE));
+
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+
+                String str1 = targetDate;
+                Date target = formatter.parse(str1);
+
+                String str2 = dbDate;
+                Date presentInDb = formatter.parse(str2);
+
+                if(presentInDb.compareTo(target) >= 0) {
+                    FoodDiary foodDiary = new FoodDiary();
+                    foodDiary.setDiary_id(cursor.getLong(cursor.getColumnIndex(DiaryDBHandler.COLUMN_DIARY_ID)));
+                    foodDiary.setDate(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_DATE)));
+                    foodDiary.setFood_name(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_FOOD_NAME)));
+                    foodDiary.setFood_serving_measurement(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_FOOD_SERVING_MEASUREMENT)));
+                    foodDiary.setFood_serving_amount(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_FOOD_SERVING_AMOUNT)));
+                    foodDiary.setMeal_type(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_MEAL_TYPE)));
+                    foodDiary.setTotal_cal_selected_food(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_TOTAL_CAL_SELECTED_FOOD)));
+
+                    foodDiaryList.add(foodDiary);
+                }
+            }
+        }
+        System.err.println("Size in dateeeeeeeeeeeee    " + foodDiaryList.size());
+        return foodDiaryList;
     }
 
     public FoodDiary getFoodDiary(long id) {

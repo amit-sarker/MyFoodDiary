@@ -24,6 +24,9 @@ public class TrackingDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_CARBS_NEEDED = "carbsNeeded";
     public static final String COLUMN_CARBS_CONSUMED = "carbsConsumed";
     public static final String COLUMN_CARBS_REMAINING = "carbsRemaining";
+    public static final String COLUMN_WATER_CONSUMED = "waterConsumed";
+    public static final String COLUMN_GOAL_POINT = "goalPoint";
+    public static final String COLUMN_RANK = "rank";
 
 
     public static final String TABLE_CREATE =
@@ -41,7 +44,10 @@ public class TrackingDBHandler extends SQLiteOpenHelper {
                     COLUMN_FAT_REMAINING + " DOUBLE, " +
                     COLUMN_CARBS_NEEDED + " DOUBLE, " +
                     COLUMN_CARBS_CONSUMED + " DOUBLE, " +
-                    COLUMN_CARBS_REMAINING + " DOUBLE " +
+                    COLUMN_CARBS_REMAINING + " DOUBLE, " +
+                    COLUMN_WATER_CONSUMED + " DOUBLE, " +
+                    COLUMN_GOAL_POINT + " INTEGER, " +
+                    COLUMN_RANK + " INTEGER " +
                     ")";
 
     public TrackingDBHandler(Context context) {

@@ -8,13 +8,17 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import categorydatabase.CategoryDBHandler;
 import categorydatabase.FoodCategory;
 import fooddatabase.Food;
 import fooddatabase.FoodDBHandler;
+import fooddiarydatabase.DiaryDBHandler;
 
 import static trackingdatabase.TrackingDBHandler.TABLE_TRACKING;
 
@@ -38,19 +42,22 @@ public class TrackingOperations {
             TrackingDBHandler.COLUMN_FAT_REMAINING,
             TrackingDBHandler.COLUMN_CARBS_NEEDED,
             TrackingDBHandler.COLUMN_CARBS_CONSUMED,
-            TrackingDBHandler.COLUMN_CARBS_REMAINING
+            TrackingDBHandler.COLUMN_CARBS_REMAINING,
+            TrackingDBHandler.COLUMN_WATER_CONSUMED,
+            TrackingDBHandler.COLUMN_GOAL_POINT,
+            TrackingDBHandler.COLUMN_RANK
     };
 
-    public TrackingOperations(Context context){
+    public TrackingOperations(Context context) {
         dbhandler = new TrackingDBHandler(context);
     }
 
-    public void open(){
-        Log.i(LOGTAG,"Database Opened");
+    public void open() {
+        Log.i(LOGTAG, "Database Opened");
         database = dbhandler.getWritableDatabase();
     }
 
-    public void close(){
+    public void close() {
         Log.i(LOGTAG, "Database Closed");
         dbhandler.close();
     }
@@ -62,12 +69,12 @@ public class TrackingOperations {
     }
 
     public List<CalorieTracking> getTrackingData(long day) {
-        Cursor cursor = database.query(TrackingDBHandler.TABLE_TRACKING, allColumns,null,null,null, null, null);
+        Cursor cursor = database.query(TrackingDBHandler.TABLE_TRACKING, allColumns, null, null, null, null, null);
         List<CalorieTracking> trackingList = new ArrayList<>();
 
-        if(cursor.getCount() > 0) {
-            while(cursor.moveToNext()){
-                if(cursor.getLong(cursor.getColumnIndex(TrackingDBHandler.COLUMN_TRACKING_ID)) > day) {
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                if (cursor.getLong(cursor.getColumnIndex(TrackingDBHandler.COLUMN_TRACKING_ID)) > day) {
                     CalorieTracking calorieTracking = new CalorieTracking();
                     calorieTracking.setCalorie_tracking_id(cursor.getLong(cursor.getColumnIndex(TrackingDBHandler.COLUMN_TRACKING_ID)));
                     calorieTracking.setDate(cursor.getString(cursor.getColumnIndex(TrackingDBHandler.COLUMN_TRACKING_DATE)));
@@ -87,6 +94,10 @@ public class TrackingOperations {
                     calorieTracking.setCarbs_consumed(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_CARBS_CONSUMED)));
                     calorieTracking.setCarbs_remaining(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_CARBS_REMAINING)));
 
+                    calorieTracking.setWater_consumed(cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_WATER_CONSUMED)));
+                    calorieTracking.setGoal_point(cursor.getLong(cursor.getColumnIndex(TrackingDBHandler.COLUMN_GOAL_POINT)));
+                    calorieTracking.setRank(cursor.getLong(cursor.getColumnIndex(TrackingDBHandler.COLUMN_RANK)));
+
                     trackingList.add(calorieTracking);
                 }
             }
@@ -95,8 +106,8 @@ public class TrackingOperations {
     }
 
 
-    public CalorieTracking addTrackingData(CalorieTracking trackingData){
-        ContentValues values  = new ContentValues();
+    public CalorieTracking addTrackingData(CalorieTracking trackingData) {
+        ContentValues values = new ContentValues();
 
         values.put(TrackingDBHandler.COLUMN_TRACKING_DATE, trackingData.getDate());
         values.put(TrackingDBHandler.COLUMN_CAL_NEEDED, trackingData.getCal_needed());
@@ -115,13 +126,17 @@ public class TrackingOperations {
         values.put(TrackingDBHandler.COLUMN_CARBS_CONSUMED, trackingData.getCarbs_consumed());
         values.put(TrackingDBHandler.COLUMN_CARBS_REMAINING, trackingData.getCarbs_remaining());
 
-        long insertid = database.insert(TABLE_TRACKING,null, values);
+        values.put(TrackingDBHandler.COLUMN_WATER_CONSUMED, trackingData.getWater_consumed());
+        values.put(TrackingDBHandler.COLUMN_GOAL_POINT, trackingData.getGoal_point());
+        values.put(TrackingDBHandler.COLUMN_RANK, trackingData.getRank());
+
+        long insertid = database.insert(TABLE_TRACKING, null, values);
         trackingData.setCalorie_tracking_id(insertid);
         return trackingData;
     }
 
     public CalorieTracking getTracking(long id) {
-        Cursor cursor = database.query(TrackingDBHandler.TABLE_TRACKING, allColumns,TrackingDBHandler.COLUMN_TRACKING_ID + "=?", new String[]{String.valueOf(id)},null,null, null, null);
+        Cursor cursor = database.query(TrackingDBHandler.TABLE_TRACKING, allColumns, TrackingDBHandler.COLUMN_TRACKING_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
@@ -129,10 +144,53 @@ public class TrackingOperations {
                 Double.parseDouble(cursor.getString(3)), Double.parseDouble(cursor.getString(4)), Double.parseDouble(cursor.getString(5)),
                 Double.parseDouble(cursor.getString(6)), Double.parseDouble(cursor.getString(7)), Double.parseDouble(cursor.getString(8)),
                 Double.parseDouble(cursor.getString(9)), Double.parseDouble(cursor.getString(10)), Double.parseDouble(cursor.getString(11)),
-                Double.parseDouble(cursor.getString(12)), Double.parseDouble(cursor.getString(13)));
+                Double.parseDouble(cursor.getString(12)), Double.parseDouble(cursor.getString(13)), Double.parseDouble(cursor.getString(14)),
+                Long.parseLong(cursor.getString(15)), Long.parseLong(cursor.getString(16)));
 
         return e;
     }
+
+    public double getTrackingByDay(String date) {
+        Cursor cursor = database.query(TrackingDBHandler.TABLE_TRACKING, allColumns, null, null, null, null, null);
+
+        double waterCount = 0.0;
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                if (cursor.getString(cursor.getColumnIndex(TrackingDBHandler.COLUMN_TRACKING_DATE)).equals(date)) {
+                    waterCount = cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_WATER_CONSUMED));
+                }
+            }
+        }
+        return waterCount;
+    }
+
+    public List<Double> getTrackingByCalorie(String date) throws ParseException {
+        Cursor cursor = database.query(TrackingDBHandler.TABLE_TRACKING, allColumns, null, null, null, null, null);
+
+        List<Double> trackingCalorie = new ArrayList<>();
+
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                String dbDate = cursor.getString(cursor.getColumnIndex(TrackingDBHandler.COLUMN_TRACKING_DATE));
+
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+
+                String str1 = date;
+                Date target = formatter.parse(str1);
+
+                String str2 = dbDate;
+                Date presentInDb = formatter.parse(str2);
+
+                if (presentInDb.compareTo(target) >= 0) {
+                    Double calorieConsumed = cursor.getDouble(cursor.getColumnIndex(TrackingDBHandler.COLUMN_CAL_CONSUMED));
+                    trackingCalorie.add(calorieConsumed);
+                }
+            }
+        }
+        return trackingCalorie;
+    }
+
 
 
     public int updateTracking(CalorieTracking newTrackingData) {
@@ -154,6 +212,10 @@ public class TrackingOperations {
         values.put(TrackingDBHandler.COLUMN_CARBS_NEEDED, newTrackingData.getCarbs_needed());
         values.put(TrackingDBHandler.COLUMN_CARBS_CONSUMED, newTrackingData.getCarbs_consumed());
         values.put(TrackingDBHandler.COLUMN_CARBS_REMAINING, newTrackingData.getCarbs_remaining());
+
+        values.put(TrackingDBHandler.COLUMN_WATER_CONSUMED, newTrackingData.getWater_consumed());
+        values.put(TrackingDBHandler.COLUMN_GOAL_POINT, newTrackingData.getGoal_point());
+        values.put(TrackingDBHandler.COLUMN_RANK, newTrackingData.getRank());
 
         // updating row
         return database.update(TABLE_TRACKING, values,
