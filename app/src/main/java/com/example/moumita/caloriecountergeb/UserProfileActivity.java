@@ -218,7 +218,7 @@ public class UserProfileActivity extends AppCompatActivity {
         }
 
 
-        lineChart.animateX(2500);
+        lineChart.animateX(2000);
 
         // get the legend (only possible after setting data)
         Legend l = lineChart.getLegend();

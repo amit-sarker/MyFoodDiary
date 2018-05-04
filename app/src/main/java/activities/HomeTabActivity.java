@@ -38,6 +38,8 @@ import java.util.Locale;
 import fooddiarydatabase.DiaryOperations;
 import fooddiarydatabase.FoodDiary;
 import fragments.TabFragment;
+import generalpersondatabase.Person;
+import generalpersondatabase.PersonOperations;
 import goaldatabase.Goal;
 import goaldatabase.GoalOperations;
 import trackingdatabase.CalorieTracking;
@@ -56,6 +58,7 @@ public class HomeTabActivity extends AppCompatActivity {
     private TrackingOperations trackingData;
     private GoalOperations goalData;
     private DiaryOperations diaryData;
+    private PersonOperations personData;
     private List<String> dateList, distDayCount;
 
     SharedPreferences preferences;
@@ -78,8 +81,14 @@ public class HomeTabActivity extends AppCompatActivity {
         trackingData = new TrackingOperations(this);
         goalData = new GoalOperations(this);
         diaryData = new DiaryOperations(this);
+        personData = new PersonOperations(this);
         dateList = new ArrayList<>();
         distDayCount = new ArrayList<>();
+
+        personData.open();
+
+        final Person person = personData.getPerson(personData.getRowCount());
+        personData.close();
 
         try {
             CheckGoalBreakFast();
@@ -95,17 +104,9 @@ public class HomeTabActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-        System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
-
-
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mNavigationView = (NavigationView) findViewById(R.id.navigationView);
 
-        /*int width = getResources().getDisplayMetrics().widthPixels/2;
-        DrawerLayout.LayoutParams params = (android.support.v4.widget.DrawerLayout.LayoutParams) mNavigationView.getLayoutParams();
-        params.width = width;
-        mNavigationView.setLayoutParams(params);*/
 
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
@@ -123,6 +124,7 @@ public class HomeTabActivity extends AppCompatActivity {
                     case R.id.signout:
                         //FirebaseAuth.getInstance().signOut();
                         Intent intent = new Intent(HomeTabActivity.this, UserGenderInfoActivity.class);
+
                         startActivity(intent);
                         finish();
                         break;
@@ -134,6 +136,7 @@ public class HomeTabActivity extends AppCompatActivity {
                         break;
                     case R.id.item_edit:
                         Intent intent2 = new Intent(HomeTabActivity.this, UpdateGoalActivity.class);
+                        intent2.putExtra("currentweight", person.getWeight());
                         startActivity(intent2);
                         break;
                     case R.id.charts:

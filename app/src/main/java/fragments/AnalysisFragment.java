@@ -40,6 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import adapter.SpinnerAdapter;
+import piechart.DayAxisValueFormatter;
 import trackingdatabase.CalorieTracking;
 import trackingdatabase.TrackingOperations;
 
@@ -65,9 +66,6 @@ public class AnalysisFragment extends Fragment {
         // Required empty public constructor
     }
 
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -83,6 +81,10 @@ public class AnalysisFragment extends Fragment {
         chartDataAvailabilityText = view.findViewById(R.id.chart_data_availability_text);
         mTfRegular = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Regular.ttf");
         mTfLight = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Light.ttf");
+        Typeface mTfBold = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Bold.ttf");
+
+        chartCategoryText.setTypeface(mTfBold);
+        chartTypeText.setTypeface(mTfBold);
 
 
         chartCategoryList = new ArrayList<>();
@@ -308,6 +310,8 @@ public class AnalysisFragment extends Fragment {
             xVals.add(temp.get(i));
         }
 
+        System.err.println("Sizeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee      " + xVals.size());
+
         /*xVals.add(temp.get(0));
         xVals.add(temp.get(1));
         xVals.add(temp.get(2));
@@ -397,7 +401,7 @@ public class AnalysisFragment extends Fragment {
             lineChart.setData(data);
         }
 
-        lineChart.animateX(2500);
+        lineChart.animateX(2000);
 
         // get the legend (only possible after setting data)
         Legend l = lineChart.getLegend();
@@ -416,10 +420,13 @@ public class AnalysisFragment extends Fragment {
         XAxis xAxis = lineChart.getXAxis();
         xAxis.setTypeface(mTfLight);
         xAxis.setTextSize(11f);
+        xAxis.setGranularity(1f);
+        xAxis.setCenterAxisLabels(true);
         xAxis.setTextColor(Color.BLACK);
-        xAxis.setDrawGridLines(false);
-        xAxis.setDrawAxisLine(false);
+        //xAxis.setDrawGridLines(false);
+        //xAxis.setDrawAxisLine(false);
         xAxis.setAxisMinimum(0);
+        xAxis.setPosition(XAxis.XAxisPosition.TOP);
         xAxis.setValueFormatter(new IndexAxisValueFormatter(xVals));
 
         try {

@@ -1,6 +1,7 @@
 package userinfo;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.moumita.caloriecountergeb.R;
@@ -28,6 +30,8 @@ public class UserAgeInfoActivity extends AppCompatActivity {
     //private DatePicker simpleDatePicker;
     private Button submit;
     private NumberPicker mMonthPicker, mDayPicker, mYearPicker;
+    private Typeface mTfRegular, mtfBold;
+    private TextView ageInfoText;
 
 
     public UserAgeInfoActivity() throws ParseException {
@@ -57,9 +61,16 @@ public class UserAgeInfoActivity extends AppCompatActivity {
             yearValues[i] = String.valueOf(i+1920);
         }
 
+        mTfRegular = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
+        mtfBold = Typeface.createFromAsset(getAssets(), "OpenSans-Bold.ttf");
+
         mDayPicker = findViewById(R.id.num_picker_date);
         mMonthPicker = findViewById(R.id.num_picker_month);
         mYearPicker = findViewById(R.id.num_picker_year);
+
+        ageInfoText = findViewById(R.id.age_info_text);
+
+        ageInfoText.setTypeface(mTfRegular);
 
         mDayPicker.setMinValue(1);
         mDayPicker.setMaxValue(31);
@@ -75,6 +86,8 @@ public class UserAgeInfoActivity extends AppCompatActivity {
 
         //simpleDatePicker = (DatePicker) findViewById(R.id.simpleDatePicker);
         submit = (Button) findViewById(R.id.submitButton);
+
+        submit.setTypeface(mTfRegular);
 
         mMonthPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
 

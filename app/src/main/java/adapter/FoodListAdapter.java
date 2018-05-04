@@ -1,6 +1,7 @@
 package adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,8 +54,12 @@ public class FoodListAdapter extends BaseAdapter {
         } else {
             v = convertView;
         }
+
+        Typeface mTfRegular = Typeface.createFromAsset(v.getContext().getAssets(),"OpenSans-Regular.ttf");
+
         ImageView foodImageView = v.findViewById(R.id.spinnerImages);
         TextView foodNameText = v.findViewById(R.id.spinnerTextView);
+        foodNameText.setTypeface(mTfRegular);
 
 
         foodImageView.setImageResource(foodList.getImage());

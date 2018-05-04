@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView appName;
     private ImageView appLogo;
     private Animation fromBottom, fromTop;
+    private Typeface mTfRegular;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +71,13 @@ public class MainActivity extends AppCompatActivity {
                 .addNetworkInterceptor(new StethoInterceptor())
                 .build();
 
+        mTfRegular = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
+
         appName = findViewById(R.id.app_name_text);
         appLogo = findViewById(R.id.app_logo);
 
-        fromBottom = AnimationUtils.loadAnimation(this,R.anim.from_top);
+        appName.setTypeface(mTfRegular);
+        fromBottom = AnimationUtils.loadAnimation(this, R.anim.from_top);
         fromTop = AnimationUtils.loadAnimation(this, R.anim.from_bottom);
         appName.setAnimation(fromBottom);
         appLogo.setAnimation(fromTop);
@@ -84,34 +89,24 @@ public class MainActivity extends AppCompatActivity {
 
         CategoryDBHandler categoryDBHandler = new CategoryDBHandler(this);
         SQLiteDatabase cat_database = categoryDBHandler.getWritableDatabase();
-        cat_database.execSQL("DROP TABLE IF EXISTS " + categoryDBHandler.TABLE_CATEGORY);
+        cat_database.execSQL("DROP TABLE IF EXISTS " + CategoryDBHandler.TABLE_CATEGORY);
         cat_database.execSQL(CategoryDBHandler.TABLE_CREATE);
 
         ServingDBHandler servingDBHandler = new ServingDBHandler(this);
         SQLiteDatabase serv_database = servingDBHandler.getWritableDatabase();
-        serv_database.execSQL("DROP TABLE IF EXISTS " + servingDBHandler.TABLE_SERVING);
+        serv_database.execSQL("DROP TABLE IF EXISTS " + ServingDBHandler.TABLE_SERVING);
         serv_database.execSQL(ServingDBHandler.TABLE_CREATE);
-
-        /*GoalDBHandler goalDBHandler = new GoalDBHandler(this);
-        SQLiteDatabase goal_database = goalDBHandler.getWritableDatabase();
-        goal_database.execSQL("DROP TABLE IF EXISTS " + goalDBHandler.TABLE_GOAL);
-        goal_database.execSQL(GoalDBHandler.TABLE_CREATE);*/
-
-
 
         foodData = new FoodOperations(this);
         foodData.open();
 
-
         try {
-            readFromAssetsFood(this,"foodlist.txt", foodData);
+            readFromAssetsFood(this, "foodlist.txt", foodData);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         foodData.close();
-
-
 
         categoryData = new CategoryOperations(this);
         categoryData.open();
@@ -124,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
 
         categoryData.close();
 
-
         servingData = new ServingOperations(this);
         servingData.open();
 
@@ -136,20 +130,16 @@ public class MainActivity extends AppCompatActivity {
 
         servingData.close();
 
-
         goalData = new GoalOperations(this);
         goalData.open();
 
-        if(goalData.getRowCount() == 0) {
+        if (goalData.getRowCount() == 0) {
 
             try {
                 readFromAssetsGoal(this, "goal.txt", goalData);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            System.out.println("GOALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
-
         }
 
         goalData.close();
@@ -159,22 +149,16 @@ public class MainActivity extends AppCompatActivity {
         trackingData = new TrackingOperations(this);
 
         trackingData.open();
-        if(trackingData.getRowCount() != 0) {
+        if (trackingData.getRowCount() != 0) {
             TrackDataCondition(trackingData, personData);
-        } else {}
+        } else {
+        }
 
         trackingData.close();
 
         personData.open();
         final long personRowCount = personData.getRowCount();
         personData.close();
-
-        /*Intent intent = new Intent(MainActivity.this, UserProfileActivity.class);
-        startActivity(intent);
-        finish();*/
-
-
-
 
 
         //Push Notification
@@ -191,8 +175,6 @@ public class MainActivity extends AppCompatActivity {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         AlarmManager alarmManager2 = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         AlarmManager alarmManager3 = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        //notificationIntent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
-        //alarmManager.cancel(broadcast);
 
         Calendar alarmStartTime = Calendar.getInstance();
         Calendar now = Calendar.getInstance();
@@ -200,18 +182,18 @@ public class MainActivity extends AppCompatActivity {
         alarmStartTime.set(Calendar.MINUTE, 0);
         alarmStartTime.set(Calendar.SECOND, 0);
         if (now.after(alarmStartTime)) {
-            Log.d("Hey","Added a day");
+            Log.d("Hey", "Added a day");
             alarmStartTime.add(Calendar.DATE, 1);
         }
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, breakfastBroadcast);
-        Log.d("Alarm","Alarms set for everyday 8 am.");
+        Log.d("Alarm", "Alarms set for everyday 8 am.");
 
         Calendar lunchTime = Calendar.getInstance();
         lunchTime.set(Calendar.HOUR_OF_DAY, 13);
         lunchTime.set(Calendar.MINUTE, 5);
         lunchTime.set(Calendar.SECOND, 0);
         if (now.after(lunchTime)) {
-            Log.d("Hey","Added a day");
+            Log.d("Hey", "Added a day");
             lunchTime.add(Calendar.DATE, 1);
         }
         alarmManager2.setRepeating(AlarmManager.RTC_WAKEUP, lunchTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, lunchBroadcast);
@@ -222,39 +204,28 @@ public class MainActivity extends AppCompatActivity {
         dinnerTime.set(Calendar.MINUTE, 0);
         dinnerTime.set(Calendar.SECOND, 0);
         if (now.after(dinnerTime)) {
-            Log.d("Hey","Added a day");
+            Log.d("Hey", "Added a day");
             dinnerTime.add(Calendar.DATE, 1);
         }
         alarmManager3.setRepeating(AlarmManager.RTC_WAKEUP, dinnerTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, dinnerBroadcast);
 
-        System.err.println("Timeeeeeeeeeeeeeeeeee " + lunchTime + " " + dinnerTime + " " + now);
-
-
-
-
         new android.os.Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-
-
-                            if(personRowCount > 0) {
-            Intent intent = new Intent(MainActivity.this, HomeTabActivity.class);
-            startActivity(intent);
-            finish();
-        } else {
-            Intent intent = new Intent(MainActivity.this, UserGenderInfoActivity.class);
-            startActivity(intent);
-            finish();
-        }
-
-
-                            overridePendingTransition(R.anim.from_top, R.anim.from_bottom);
-                            finish();
-                        }
-                    }, WELCOME_TIMEOUT);
-
+            @Override
+            public void run() {
+                if (personRowCount > 0) {
+                    Intent intent = new Intent(MainActivity.this, HomeTabActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Intent intent = new Intent(MainActivity.this, UserGenderInfoActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                overridePendingTransition(R.anim.from_top, R.anim.from_bottom);
+                finish();
+            }
+        }, WELCOME_TIMEOUT);
     }
-
 
     public static String readFromAssetsCategory(Context context, String filename, CategoryOperations categoryData) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open(filename)));
@@ -265,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
         while (mLine != null) {
             sb.append(mLine);
             mLine = reader.readLine();
-            if(mLine != null) {
+            if (mLine != null) {
                 categoryToDatabase(mLine, categoryData);
             }
         }
@@ -274,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void categoryToDatabase(String lineFromFile, CategoryOperations categoryData) {
-        String categoryAttributes[]= lineFromFile.split(",");
+        String categoryAttributes[] = lineFromFile.split(",");
 
         FoodCategory foodCategory = new FoodCategory();
         foodCategory.setCategoryID(Long.parseLong(categoryAttributes[0]));
@@ -284,8 +255,8 @@ public class MainActivity extends AppCompatActivity {
         foodCategory.setFoodImage(categoryAttributes[4]);
         foodCategory.setCategoryImage(categoryAttributes[5]);
 
-        for (String eachAttribute: categoryAttributes){
-            if(eachAttribute.equals("\0"))
+        for (String eachAttribute : categoryAttributes) {
+            if (eachAttribute.equals("\0"))
                 eachAttribute = "null";
         }
         categoryData.addCategory(foodCategory);
@@ -300,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
         while (mLine != null) {
             sb.append(mLine);
             mLine = reader.readLine();
-            if(mLine != null) {
+            if (mLine != null) {
                 foodToDatabase(mLine, foodData);
             }
         }
@@ -310,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static void foodToDatabase(String lineFromFile, FoodOperations foodData) {
         System.err.println(lineFromFile);
-        String foodAttributes[]= lineFromFile.split(",");
+        String foodAttributes[] = lineFromFile.split(",");
 
         Food food = new Food();
         food.setFood_name(foodAttributes[0]);
@@ -329,8 +300,8 @@ public class MainActivity extends AppCompatActivity {
         food.setFood_image(foodAttributes[13]);
         food.setFood_notes(foodAttributes[14]);
 
-        for (String eachAttribute: foodAttributes){
-            if(eachAttribute.equals("\0"))
+        for (String eachAttribute : foodAttributes) {
+            if (eachAttribute.equals("\0"))
                 eachAttribute = "null";
         }
         foodData.addFood(food);
@@ -345,7 +316,7 @@ public class MainActivity extends AppCompatActivity {
         while (mLine != null) {
             sb.append(mLine);
             mLine = reader.readLine();
-            if(mLine != null) {
+            if (mLine != null) {
                 servingToDatabase(mLine, servingData);
             }
         }
@@ -354,7 +325,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void servingToDatabase(String lineFromFile, ServingOperations servingData) {
-        String servingAttributes[]= lineFromFile.split(",");
+        String servingAttributes[] = lineFromFile.split(",");
 
         FoodServing foodServing = new FoodServing();
         foodServing.setServing_id(Long.parseLong(servingAttributes[0]));
@@ -363,8 +334,8 @@ public class MainActivity extends AppCompatActivity {
         foodServing.setServing_size_to_grams(servingAttributes[3]);
         foodServing.setServing_image_id(servingAttributes[4]);
 
-        for (String eachAttribute: servingAttributes){
-            if(eachAttribute.equals("\0"))
+        for (String eachAttribute : servingAttributes) {
+            if (eachAttribute.equals("\0"))
                 eachAttribute = "null";
         }
         servingData.addServing(foodServing);
@@ -379,7 +350,7 @@ public class MainActivity extends AppCompatActivity {
         while (mLine != null) {
             sb.append(mLine);
             mLine = reader.readLine();
-            if(mLine != null) {
+            if (mLine != null) {
                 goalToDatabase(mLine, goalData);
             }
         }
@@ -388,7 +359,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void goalToDatabase(String lineFromFile, GoalOperations goalData) {
-        String goalAttributes[]= lineFromFile.split(",");
+        String goalAttributes[] = lineFromFile.split(",");
 
         Goal goal = new Goal();
         goal.setGoal_name(goalAttributes[0]);
@@ -400,8 +371,8 @@ public class MainActivity extends AppCompatActivity {
         goal.setGoal_completion(goalAttributes[6]);
         goal.setGoal_point(Long.parseLong(goalAttributes[7]));
 
-        for (String eachAttribute: goalAttributes){
-            if(eachAttribute.equals("\0"))
+        for (String eachAttribute : goalAttributes) {
+            if (eachAttribute.equals("\0"))
                 eachAttribute = "null";
         }
         goalData.addGoal(goal);
@@ -426,8 +397,8 @@ public class MainActivity extends AppCompatActivity {
 
         CalorieTracking lastTrackingRow = trackingData.getTracking(trackingData.getRowCount());
 
-        if(current_date_str.equals(tracking_row_date)) {}
-        else {
+        if (current_date_str.equals(tracking_row_date)) {
+        } else {
             CalorieTracking calorieTrackingData = new CalorieTracking();
             calorieTrackingData.setDate(current_date_str);
 

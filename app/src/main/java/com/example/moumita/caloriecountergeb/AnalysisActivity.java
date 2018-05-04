@@ -292,6 +292,8 @@ public class AnalysisActivity extends AppCompatActivity {
             xVals.add(temp.get(i));
         }
 
+
+
         /*xVals.add(temp.get(0));
         xVals.add(temp.get(1));
         xVals.add(temp.get(2));

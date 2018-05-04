@@ -1,12 +1,14 @@
 package addfood;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 import adapter.FoodListAdapter;
@@ -24,12 +26,12 @@ public class FoodListActivity extends AppCompatActivity {
     private String categoryName;
     private CategoryOperations categoryData;
     private ListView mListView;
-    //private List<String> categoryList = new_gif ArrayList<>();
     private String mealType;
-
+    private TextView foodHeaderText;
     private ListView categoryListView;
     private FoodListAdapter foodListAdapter;
     private List<FoodListHelper> categoryList = new ArrayList<>();
+    private Typeface mTfRegular, mTfLight, mtfBold;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,13 @@ public class FoodListActivity extends AppCompatActivity {
         categoryName = bundle.getString("categoryname");
 
         categoryListView = findViewById(R.id.food_list_view);
+        foodHeaderText = findViewById(R.id.food_header);
+
+        mTfRegular = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
+        mTfLight = Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf");
+        mtfBold = Typeface.createFromAsset(getAssets(), "OpenSans-Bold.ttf");
+
+        foodHeaderText.setTypeface(mtfBold);
 
         categoryData.open();
 

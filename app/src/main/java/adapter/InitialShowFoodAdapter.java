@@ -1,6 +1,7 @@
 package adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,12 +54,16 @@ public class InitialShowFoodAdapter extends BaseAdapter {
         } else {
             v = convertView;
         }
+
+        Typeface mTfBold = Typeface.createFromAsset(v.getContext().getAssets(),"OpenSans-Bold.ttf");
+
         ImageView foodImageView = v.findViewById(R.id.food_speech_image);
         TextView foodNameText = v.findViewById(R.id.food_speech_text);
 
 
         foodImageView.setImageResource(initialShowFood.getFoodImage());
         foodNameText.setText(initialShowFood.getMotivationalSpeech());
+        foodNameText.setTypeface(mTfBold);
 
         foodImageView.setVisibility(View.VISIBLE);
         foodNameText.setVisibility(View.VISIBLE);

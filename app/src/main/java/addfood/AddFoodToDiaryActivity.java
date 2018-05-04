@@ -68,6 +68,7 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
     private TextView foodNameText;
     private CircleImageView foodImage;
     private String foodImageId;
+    private Typeface mTfRegular, mtfBold, mTfBoldItalic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +116,14 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
         addTrackButton = findViewById(R.id.fab_add_tracking_btn);
         foodNameText = findViewById(R.id.food_name_text);
         foodImage = findViewById(R.id.food_circleimage);
+
+        mTfRegular = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
+        mtfBold = Typeface.createFromAsset(getAssets(), "OpenSans-Bold.ttf");
+        mTfBoldItalic = Typeface.createFromAsset(getAssets(), "OpenSans-BoldItalic.ttf");
+
+        for(int i =0; i < 9; i++) {
+            foodNeutrientsText[i].setTypeface(mTfRegular);
+        }
 
 
         servingData.open();

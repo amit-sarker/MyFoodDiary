@@ -1,6 +1,7 @@
 package userinfo;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +19,7 @@ public class UserHeightInfoActivity extends AppCompatActivity {
 
     private boolean isFemale, isfeet = true;
     private double height;
+    private Typeface mTfRegular, mtfBold;
 
     private String[] feetValues = new String[10];
     private String[] inchValues = new String[100];
@@ -46,6 +48,9 @@ public class UserHeightInfoActivity extends AppCompatActivity {
             inchValues[i] = String.valueOf(i);
         }
 
+        mTfRegular = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
+        mtfBold = Typeface.createFromAsset(getAssets(), "OpenSans-Bold.ttf");
+
         mHeightText = findViewById(R.id.height_info_text);
         mFeetText = findViewById(R.id.feet_text);
         mInchText = findViewById(R.id.inch_text);
@@ -63,6 +68,12 @@ public class UserHeightInfoActivity extends AppCompatActivity {
         mInchPicker.setDisplayedValues(inchValues);
 
         mFeetvsInch = findViewById(R.id.feet_vs_inch);
+
+        mHeightText.setTypeface(mTfRegular);
+        mFeetText.setTypeface(mTfRegular);
+        mInchText.setTypeface(mTfRegular);
+        mNextPageBtn.setTypeface(mTfRegular);
+        mFeetvsInch.setTypeface(mTfRegular);
 
         mFeetvsInch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

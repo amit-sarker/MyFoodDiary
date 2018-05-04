@@ -1,5 +1,5 @@
 1,Rice,1,Rice Cooked,rice,food2
-2,Egg,2,Egg Chicken,egg,food3
-3,Fruits,3,Apple,apple,food4
-4,Meat,4,Chicken Breast,chicken,food5
-5,Fish,6,Ilish,fish,food2
+2,Egg,2,Egg Chicken,egg,egg_cat
+3,Fruits,3,Apple,apple,fruits_cat
+4,Meat,4,Chicken Breast,chicken,meat_cat
+5,Fish,6,Ilish,fish,fish_cat

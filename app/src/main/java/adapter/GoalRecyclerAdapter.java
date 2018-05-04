@@ -1,6 +1,7 @@
 package adapter;
 
 import android.annotation.SuppressLint;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
@@ -42,13 +43,17 @@ public class GoalRecyclerAdapter extends RecyclerView.Adapter<GoalRecyclerAdapte
 
         public ViewHolder(View itemView) {
             super(itemView);
-            itemImage = (ImageView)itemView.findViewById(R.id.goal_image);
-            itemName = (TextView)itemView.findViewById(R.id.goal_name);
-            itemDetail = (TextView)itemView.findViewById(R.id.goal_details);
+            itemImage = itemView.findViewById(R.id.goal_image);
+            itemName = itemView.findViewById(R.id.goal_name);
+            itemDetail = itemView.findViewById(R.id.goal_details);
             itemGoalBar = itemView.findViewById(R.id.goal_progress_bar);
             itemDuration = itemView.findViewById(R.id.goal_duration);
             itemStreak = itemView.findViewById(R.id.goal_streak);
             itemCompletion = itemView.findViewById(R.id.goal_completion);
+
+            Typeface mTfRegular = Typeface.createFromAsset(itemView.getContext().getAssets(),"OpenSans-Regular.ttf");
+            itemName.setTypeface(mTfRegular);
+            itemDetail.setTypeface(mTfRegular);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {

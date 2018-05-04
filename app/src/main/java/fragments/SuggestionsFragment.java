@@ -1,6 +1,7 @@
 package fragments;
 
 
+import android.graphics.Typeface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.moumita.caloriecountergeb.Features;
 import com.example.moumita.caloriecountergeb.GeneticAlgoKnapsack;
@@ -42,8 +44,9 @@ public class SuggestionsFragment extends Fragment {
     private double calRemain, carbsRemain, proteinRemain, fatRemain;
     private ArrayList<Features> value_of_items;
     private ArrayList<ShowFood> breakfastFoodSuggestions, lunchFoodSuggestions, dinnerFoodSuggetions;
-
+    private TextView breakfastText, lunchText, dinnerText;
     private List<Food> foodList = new ArrayList<>();
+    private Typeface mTfRegular, mtfBold;
 
     public SuggestionsFragment() {
         // Required empty public constructor
@@ -61,6 +64,16 @@ public class SuggestionsFragment extends Fragment {
         lunchListView=view.findViewById(R.id.show_lunch_list);
         dinnerListView=view.findViewById(R.id.show_dinner_list);
         refreshBtn = view.findViewById(R.id.refresh_btn);
+        breakfastText = view.findViewById(R.id.breakfast_text);
+        lunchText = view.findViewById(R.id.lunch_text);
+        dinnerText = view.findViewById(R.id.dinner_text);
+
+        mTfRegular = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Regular.ttf");
+        mtfBold = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Bold.ttf");
+
+        breakfastText.setTypeface(mTfRegular);
+        lunchText.setTypeface(mTfRegular);
+        dinnerText.setTypeface(mTfRegular);
 
         value_of_items = new ArrayList<>();
         breakfastFoodSuggestions = new ArrayList<>();

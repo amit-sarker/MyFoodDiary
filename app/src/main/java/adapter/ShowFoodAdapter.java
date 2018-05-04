@@ -1,6 +1,7 @@
 package adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,11 +55,19 @@ public class ShowFoodAdapter extends BaseAdapter {
         } else {
             v = convertView;
         }
-        ImageView foodImageView = v.findViewById(R.id.food_image);
-        TextView foodNameText = (TextView) v.findViewById(R.id.food_name_text);
-        TextView foodCalorieText = (TextView) v.findViewById(R.id.food_calorie_text);
-        TextView foodServingText = (TextView) v.findViewById(R.id.food_serving_text);
 
+        Typeface mTfRegular = Typeface.createFromAsset(v.getContext().getAssets(),"OpenSans-Regular.ttf");
+        Typeface mTfBold = Typeface.createFromAsset(v.getContext().getAssets(),"OpenSans-Bold.ttf");
+        Typeface mTfLight = Typeface.createFromAsset(v.getContext().getAssets(),"OpenSans-Light.ttf");
+
+        ImageView foodImageView = v.findViewById(R.id.food_image);
+        TextView foodNameText = v.findViewById(R.id.food_name_text);
+        TextView foodCalorieText = v.findViewById(R.id.food_calorie_text);
+        TextView foodServingText = v.findViewById(R.id.food_serving_text);
+
+        foodNameText.setTypeface(mTfBold);
+        foodCalorieText.setTypeface(mTfRegular);
+        foodServingText.setTypeface(mTfRegular);
 
 
         foodImageView.setImageResource(showFood.getFoodImage());

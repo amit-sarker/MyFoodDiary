@@ -1,5 +1,6 @@
 package adapter;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,7 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
 
         TextView textView = (TextView) row.findViewById(R.id.spinnerTextView);
         textView.setText(contentList.get(position));
+
 
         ImageView imageView = (ImageView)row.findViewById(R.id.spinnerImages);
         imageView.setImageResource(imageList.get(position));

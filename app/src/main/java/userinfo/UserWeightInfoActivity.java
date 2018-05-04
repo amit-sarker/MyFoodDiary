@@ -1,6 +1,7 @@
 package userinfo;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -40,6 +41,8 @@ public class UserWeightInfoActivity extends AppCompatActivity {
     ImageView mWeightImg;
     Button mNextPageBtn;
     ToggleButton mlbsvsKg;
+    private Typeface mTfRegular, mtfBold;
+    private TextView activityLevelText, unitText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,14 +64,28 @@ public class UserWeightInfoActivity extends AppCompatActivity {
         mWeightInputText = findViewById(R.id.weight_editText_id);
         mTargetWeightText = findViewById(R.id.weight_editText_id2);
         mWeightText = findViewById(R.id.weight_info_text);
+        activityLevelText = findViewById(R.id.activity_level_text);
+        unitText = findViewById(R.id.kg_vs_lbs_text);
         /*mKgText = findViewById(R.id.kg_text);
         mKgText2 = findViewById(R.id.kg_text2);*/
         mNextPageBtn = findViewById(R.id.next_page_btn);
+
+        mTfRegular = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
+        mtfBold = Typeface.createFromAsset(getAssets(), "OpenSans-Bold.ttf");
+
+        mWeightText.setTypeface(mTfRegular);
+        activityLevelText.setTypeface(mTfRegular);
+        unitText.setTypeface(mTfRegular);
+
+
         newPerson = new Person();
         personData = new PersonOperations(this);
         personData.open();
 
         mlbsvsKg = findViewById(R.id.lbs_vs_kg);
+
+        mNextPageBtn.setTypeface(mTfRegular);
+        mlbsvsKg.setTypeface(mTfRegular);
 
         mlbsvsKg.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -99,8 +116,23 @@ public class UserWeightInfoActivity extends AppCompatActivity {
                 intActivityLevel = spinnerActivityLevel.getSelectedItemPosition();
 
                 final String weightstr = mWeightInputText.getText().toString();
-                weight = Double.parseDouble(weightstr);
                 final String targetweightstr = mTargetWeightText.getText().toString();
+
+                if (weightstr.isEmpty()) {
+                    mWeightInputText.setError("enter current weight");
+                    return;
+                } else {
+                    mWeightInputText.setError(null);
+                }
+
+                if(targetweightstr.isEmpty()) {
+                    mTargetWeightText.setError("enter target weight");
+                    return;
+                } else {
+                    mTargetWeightText.setError(null);
+                }
+
+                weight = Double.parseDouble(weightstr);
                 targetweight = Double.parseDouble(targetweightstr);
 
                 if (iskg) {

@@ -27,6 +27,7 @@
         android:layout_height="200dp"
         android:layout_below="@id/height_info_text"
         android:layout_centerHorizontal="true"
+        android:paddingTop="20dp"
         android:src="@drawable/height" />
 
     <LinearLayout
@@ -92,7 +93,6 @@
             android:layout_centerHorizontal="true"/>
 
 
-
     <Button
         android:id="@+id/next_page_btn"
         style="@android:style/Widget.Button"
@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:background="@color/colorButton"
+        android:background="@drawable/button_style"
         android:text="Next" />
 
 </RelativeLayout>

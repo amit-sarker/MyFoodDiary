@@ -2,6 +2,7 @@ package generalpersonactivities;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,20 +22,34 @@ import trackingdatabase.TrackingOperations;
 public class ShowBMRActivity extends AppCompatActivity {
 
     private  double BMRWithoutActivity, BMRWithActivity, proteinsWithActivity, fatWithActivity, carbsWithActivity;
-    private TextView bmrHeaderView, bmrDataview;
+    private TextView bmrHeaderView, bmrDataview, congratsText, welcomeText, welcome2Text;
     private String bmrText;
     private Button nextButton;
     private CalorieTracking calorieTrackingData;
     private TrackingOperations trackingData;
+    private Typeface mTfRegular, mtfBold;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_bmr);
 
+        congratsText = findViewById(R.id.congrats_text);
+        welcomeText = findViewById(R.id.welcome_text);
         bmrHeaderView = findViewById(R.id.bmr_text);
         bmrDataview = findViewById(R.id.bmr_text_data);
         nextButton = findViewById(R.id.next_button);
+        welcome2Text = findViewById(R.id.welcome_text2);
+
+        mTfRegular = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
+        mtfBold = Typeface.createFromAsset(getAssets(), "OpenSans-Bold.ttf");
+
+        congratsText.setTypeface(mTfRegular);
+        welcomeText.setTypeface(mTfRegular);
+        bmrHeaderView.setTypeface(mTfRegular);
+        bmrDataview.setTypeface(mTfRegular);
+        welcome2Text.setTypeface(mTfRegular);
+        nextButton.setTypeface(mTfRegular);
 
         trackingData = new TrackingOperations(this);
 

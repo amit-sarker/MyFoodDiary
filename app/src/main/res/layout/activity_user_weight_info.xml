@@ -11,6 +11,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:fitsSystemWindows="true"
+        android:background="@mipmap/green_bck_2"
         >
 
         <LinearLayout
@@ -19,12 +20,10 @@
             android:layout_height="wrap_content"
             android:paddingTop="50dp"
             android:paddingLeft="24dp"
-            android:paddingRight="24dp"
-            android:background="@mipmap/green_bck_2">
+            android:paddingRight="24dp">
 
             <TextView
                 android:id="@+id/weight_info_text"
-
                 android:text="@string/weight_info"
                 style="@style/UserInfoText"
                 android:textAlignment="center"
@@ -117,7 +116,7 @@
                     android:text="@string/lbsvskg"
                     android:textOff="@string/lbs"
                     android:textOn="@string/kg"
-                    android:background="@color/colorButton"/>
+                    android:background="@drawable/button_style"/>
 
 
             </LinearLayout>

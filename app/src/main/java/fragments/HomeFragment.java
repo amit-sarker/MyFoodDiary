@@ -45,9 +45,6 @@ import com.example.moumita.caloriecountergeb.R;
 import helper.ShowFood;
 import adapter.ShowFoodAdapter;
 
-import com.getkeepsafe.taptargetview.TapTarget;
-import com.getkeepsafe.taptargetview.TapTargetSequence;
-import com.getkeepsafe.taptargetview.TapTargetView;
 import com.txusballesteros.widgets.FitChart;
 import com.txusballesteros.widgets.FitChartValue;
 
@@ -99,7 +96,8 @@ public class HomeFragment extends Fragment {
     private double calConsumed, calRemain, calNeed, carbsConsumed, carbsRemain, carbsNeed, proteinConsumed, proteinRemain,
             proteinNeed, fatConsumed, fatRemain, fatNeed;
     private TextView calConsumedText, calRemainText, calBurnText, calConsumeNum, calBurnNum, calRemainNum,
-            carbsBarText, carbsRemainText, proteinBarText, proteinRemainText, fatBarText, fatRemainText;
+            carbsBarText, carbsRemainText, proteinBarText, proteinRemainText, fatBarText, fatRemainText, waterText,
+            breakfastText, dinnerText, lunchText;
     private TextView goalWeightText, gainedWeightText, goalWeightNumText, currentWeightNumText, weightMotivationText;
     private FancyButton updateWeightButton;
     private ProgressBar weightProgressBar;
@@ -194,10 +192,21 @@ public class HomeFragment extends Fragment {
         addLunchBtn = view.findViewById(R.id.add_lunch_btn);
         addDinnerBtn = view.findViewById(R.id.add_dinner_btn);
 
+        waterText = view.findViewById(R.id.water_text);
+        breakfastText = view.findViewById(R.id.breakfast_text);
+        dinnerText = view.findViewById(R.id.dinner_text);
+        lunchText = view.findViewById(R.id.lunch_text);
+
 
         mTfRegular = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Regular.ttf");
         mTfLight = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Light.ttf");
         mtfBold = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Bold.ttf");
+
+        waterText.setTypeface(mTfRegular);
+        breakfastText.setTypeface(mTfRegular);
+        dinnerText.setTypeface(mTfRegular);
+        lunchText.setTypeface(mTfRegular);
+
 
         infoText.setTypeface(mTfRegular);
         infoText.setTextSize(25);
@@ -239,7 +248,7 @@ public class HomeFragment extends Fragment {
 
         personData.close();
         String cal_needed = personLastRow.getBMRWithActivity();
-        String current_weight = personLastRow.getWeight();
+        String current_weight = String.valueOf(BMICalculation.Round(Double.parseDouble(personLastRow.getWeight()), 1));
         String target_weight = personLastRow.getTargetWeight();
 
         System.err.println("Currentttttttttttttttttttttttttttt:   " + current_weight);
@@ -271,6 +280,10 @@ public class HomeFragment extends Fragment {
         fatRemain = lastTrackingRow.getFat_remaining();
         fatNeed = lastTrackingRow.getFat_needed();
 
+        if(carbsRemain < 0.0) carbsRemain = 0.0;
+        if(proteinRemain < 0.0) proteinRemain = 0.0;
+        if(fatRemain < 0.0) fatRemain = 0.0;
+
         carbsRemainText.setText(Math.round(carbsRemain) + "g left");
         proteinRemainText.setText(Math.round(proteinRemain) + "g left");
         fatRemainText.setText(Math.round(fatRemain) + "g left");
@@ -295,6 +308,8 @@ public class HomeFragment extends Fragment {
         fatBar.setMax((int) fatNeed);
         fatBar.setProgress((int) fatConsumed);
 
+        if(calConsumed < 0.0) calConsumed = 0.0;
+        if(calRemain < 0.0) calRemain = 0.0;
 
         calConsumeNum.setText(String.valueOf(Math.round(calConsumed)));
         calBurnNum.setText("0");
@@ -303,11 +318,11 @@ public class HomeFragment extends Fragment {
         calBurnNum.setTextSize(25);
         calRemainNum.setTextSize(35);
 
-        calConsumedText.setText("KCAL EATEN");
+        calConsumedText.setText("CAL EATEN");
         calConsumedText.setTextSize(10);
-        calRemainText.setText("KCAL LEFT");
+        calRemainText.setText("CAL LEFT");
         calRemainText.setTextSize(15);
-        calBurnText.setText("KCAL BURNED");
+        calBurnText.setText("CAL BURNED");
         calBurnText.setTextSize(10);
 
         personData.open();
@@ -339,7 +354,7 @@ public class HomeFragment extends Fragment {
 
         currentWeightNumText.setTypeface(mTfRegular);
 
-        currentWeightNumText.setText(initial_weight + " kg");
+        currentWeightNumText.setText(BMICalculation.Round(initial_weight, 1) + " kg");
         currentWeightNumText.setTextSize(10);
 
         goalWeightNumText.setTypeface(mTfRegular);
@@ -550,7 +565,7 @@ public class HomeFragment extends Fragment {
         initialShowBreakfastModels.add(new InitialShowFood(R.drawable.breakfast,"Eat breakfast, Start Healthy Life"));
         if(showBreakfastModels.isEmpty()==true)
         {
-            initialShowFoodAdapter= new InitialShowFoodAdapter(initialShowBreakfastModels,getContext());
+            initialShowFoodAdapter = new InitialShowFoodAdapter(initialShowBreakfastModels,getContext());
 
             breakfastListView.setAdapter(initialShowFoodAdapter);
             breakfastListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
