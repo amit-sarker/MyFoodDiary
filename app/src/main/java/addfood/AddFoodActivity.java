@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
+import com.example.moumita.caloriecountergeb.AddSimpleCalorieActivity;
 import com.example.moumita.caloriecountergeb.R;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
     private AutoCompleteTextView text;
     private FoodOperations foodData;
     private List<String> foodList = new ArrayList<>();
-    private CardView CategoriesCard, RecentCard, FrequentCard, SimpleCaloriesCard;
+    private CardView CategoriesCard, RecentCard, SimpleCaloriesCard;
     String mealType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
         mealType = bundle.getString("meal_type");
 
         CategoriesCard = findViewById(R.id.categories_card);
-        FrequentCard = findViewById(R.id.frequent_card);
+
         RecentCard = findViewById(R.id.recent_card);
         SimpleCaloriesCard = findViewById(R.id.simple_calories_card);
 
@@ -84,7 +85,7 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
 
         CategoriesCard.setOnClickListener(this);
         RecentCard.setOnClickListener(this);
-        FrequentCard.setOnClickListener(this);
+
         SimpleCaloriesCard.setOnClickListener(this);
 
     }
@@ -106,13 +107,9 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
                 intent.putExtra("meal_type", mealType);
                 startActivity(intent);
                 break;
-            case R.id.frequent_card:
-                intent = new Intent(this, FrequentListActivity.class);
-                intent.putExtra("meal_type", mealType);
-                startActivity(intent);
-                break;
+
             case R.id.simple_calories_card:
-                intent = new Intent(this, PieChartActivity.class);
+                intent = new Intent(this, AddSimpleCalorieActivity.class);
                 intent.putExtra("meal_type", mealType);
                 startActivity(intent);
                 break;
