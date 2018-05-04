@@ -62,8 +62,6 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
         barSpace = 0f;
         groupSpace = 0.4f;
 
-//        mChart.setDrawBorders(true);
-
         // scaling can now only be done on x- and y-axis separately
         mChart.setPinchZoom(false);
 
@@ -92,7 +90,7 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
         leftAxis.setValueFormatter(new LargeValueFormatter());
         leftAxis.setDrawGridLines(false);
         leftAxis.setSpaceTop(35f);
-        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+        leftAxis.setAxisMinimum(0f);
 
         mChart.getAxisRight().setEnabled(false);
 
@@ -111,7 +109,7 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
         ArrayList xVals = new ArrayList();
         ArrayList temp = new ArrayList();
 
-        for(int i = 0; i < lastSevenDayList.size(); i++) {
+        for (int i = 0; i < lastSevenDayList.size(); i++) {
             String date = lastSevenDayList.get(i).getDate();
             String[] p = date.split("-");
             temp.add(p[2] + getMonth(p[1]));
@@ -150,7 +148,6 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
         set2.setColor(Color.BLUE);
         BarData data = new BarData(set1, set2);
         data.setValueFormatter(new DefaultValueFormatter(0));
-        //data.setValueFormatter(new_gif LargeValueFormatter());
         mChart.setData(data);
         mChart.getBarData().setBarWidth(barWidth);
         mChart.getXAxis().setAxisMinimum(0);
@@ -161,22 +158,14 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
 
         //X-axis
         XAxis xAxis = mChart.getXAxis();
-        //xAxis.setGranularity(1f);
-        //xAxis.setGranularityEnabled(true);
-        //xAxis.setCenterAxisLabels(true);
-        //xAxis.setDrawGridLines(false);
         xAxis.setAxisMaximum(7);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setValueFormatter(new IndexAxisValueFormatter(xVals));
-//Y-axis
         mChart.getAxisRight().setEnabled(false);
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.setValueFormatter(new LargeValueFormatter());
-        //leftAxis.setDrawGridLines(true);
-        //leftAxis.setSpaceTop(25f);
         leftAxis.setAxisMinimum(0f);
         mChart.animateY(700);
-
     }
 
 
@@ -186,14 +175,10 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
     }
 
     @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-    }
+    public void onStartTrackingTouch(SeekBar seekBar) {}
 
     @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-    }
+    public void onStopTrackingTouch(SeekBar seekBar) {}
 
     @Override
     public void onValueSelected(Entry e, Highlight h) {
@@ -206,17 +191,17 @@ public class BarChartActivityMultiDataset extends DemoBase implements OnSeekBarC
     }
 
     public String getMonth(String month) {
-        if(month.equals("01")) return " Jan";
-        else if(month.equals("02")) return " Feb";
-        else if(month.equals("03")) return " Mar";
-        else if(month.equals("04")) return " Apr";
-        else if(month.equals("05")) return " May";
-        else if(month.equals("06")) return " Jun";
-        else if(month.equals("07")) return " Jul";
-        else if(month.equals("08")) return " Aug";
-        else if(month.equals("09")) return " Sep";
-        else if(month.equals("10")) return " Oct";
-        else if(month.equals("11")) return " Nov";
+        if (month.equals("01")) return " Jan";
+        else if (month.equals("02")) return " Feb";
+        else if (month.equals("03")) return " Mar";
+        else if (month.equals("04")) return " Apr";
+        else if (month.equals("05")) return " May";
+        else if (month.equals("06")) return " Jun";
+        else if (month.equals("07")) return " Jul";
+        else if (month.equals("08")) return " Aug";
+        else if (month.equals("09")) return " Sep";
+        else if (month.equals("10")) return " Oct";
+        else if (month.equals("11")) return " Nov";
         else return " Dec";
     }
 }

@@ -65,7 +65,6 @@ public class ListViewBarChartActivity extends DemoBase {
         list.add(generateDataFat(1, lastSevenDayList));
 
 
-
         ChartDataAdapter cda = new ChartDataAdapter(getApplicationContext(), list);
         lv.setAdapter(cda);
     }
@@ -122,9 +121,6 @@ public class ListViewBarChartActivity extends DemoBase {
             // set data
             holder.chart.setData(data);
             holder.chart.setFitBars(true);
-
-            // do not forget to refresh the chart
-//            holder.chart.invalidate();
             holder.chart.animateY(700);
 
             return convertView;
@@ -145,7 +141,7 @@ public class ListViewBarChartActivity extends DemoBase {
 
         ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
 
-        for (int i = 0; i < min(7,lastSevenDayList.size()); i++) {
+        for (int i = 0; i < min(7, lastSevenDayList.size()); i++) {
             entries.add(new BarEntry(i, (float) (lastSevenDayList.get(i).getCal_consumed())));
         }
 

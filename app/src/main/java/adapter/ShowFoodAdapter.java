@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.moumita.caloriecountergeb.R;
+
 import helper.ShowFood;
 
 import java.util.ArrayList;
@@ -18,9 +19,7 @@ public class ShowFoodAdapter extends BaseAdapter {
     public ArrayList<ShowFood> mShowFood;
     Context context;
 
-    public ShowFoodAdapter(ArrayList<ShowFood> mShowFood, Context
-
-            context) {
+    public ShowFoodAdapter(ArrayList<ShowFood> mShowFood, Context context) {
         this.context = context;
         this.mShowFood = mShowFood;
     }
@@ -49,16 +48,14 @@ public class ShowFoodAdapter extends BaseAdapter {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater)
                     context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.homepage_list_row, parent,
-
-                    false);
+            v = inflater.inflate(R.layout.homepage_list_row, parent, false);
         } else {
             v = convertView;
         }
 
-        Typeface mTfRegular = Typeface.createFromAsset(v.getContext().getAssets(),"OpenSans-Regular.ttf");
-        Typeface mTfBold = Typeface.createFromAsset(v.getContext().getAssets(),"OpenSans-Bold.ttf");
-        Typeface mTfLight = Typeface.createFromAsset(v.getContext().getAssets(),"OpenSans-Light.ttf");
+        Typeface mTfRegular = Typeface.createFromAsset(v.getContext().getAssets(), "OpenSans-Regular.ttf");
+        Typeface mTfBold = Typeface.createFromAsset(v.getContext().getAssets(), "OpenSans-Bold.ttf");
+        Typeface mTfLight = Typeface.createFromAsset(v.getContext().getAssets(), "OpenSans-Light.ttf");
 
         ImageView foodImageView = v.findViewById(R.id.food_image);
         TextView foodNameText = v.findViewById(R.id.food_name_text);

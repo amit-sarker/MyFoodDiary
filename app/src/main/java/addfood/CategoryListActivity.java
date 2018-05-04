@@ -12,10 +12,12 @@ import android.widget.TextView;
 
 import adapter.FoodListAdapter;
 import helper.FoodListHelper;
+
 import com.example.moumita.caloriecountergeb.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import categorydatabase.CategoryOperations;
 import categorydatabase.FoodCategory;
 
@@ -55,15 +57,15 @@ public class CategoryListActivity extends AppCompatActivity {
 
         final List<FoodCategory> foodCategoryList = categoryData.getDistinctFoodCategory();
 
-        for(FoodCategory a: foodCategoryList) {
+        for (FoodCategory a : foodCategoryList) {
             String categoryName = a.getCategoryName();
             String categoryImage = a.getCategoryImage();
-            categoryList.add(new FoodListHelper(categoryName,ImageID(categoryImage)));
+            categoryList.add(new FoodListHelper(categoryName, ImageID(categoryImage)));
         }
 
         categoryData.close();
 
-        foodListAdapter= new FoodListAdapter(categoryList,this);
+        foodListAdapter = new FoodListAdapter(categoryList, this);
 
         categoryListView.setAdapter(foodListAdapter);
         categoryListView.setClickable(true);

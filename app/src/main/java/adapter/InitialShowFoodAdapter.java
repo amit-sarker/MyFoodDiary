@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import helper.InitialShowFood;
+
 import com.example.moumita.caloriecountergeb.R;
 
 import java.util.ArrayList;
@@ -18,11 +19,9 @@ public class InitialShowFoodAdapter extends BaseAdapter {
     public ArrayList<InitialShowFood> mInitialShowFood;
     Context context;
 
-    public InitialShowFoodAdapter(ArrayList<InitialShowFood> mInitialShowFood, Context
-
-            context) {
+    public InitialShowFoodAdapter(ArrayList<InitialShowFood> mInitialShowFood, Context context) {
         this.context = context;
-        this.mInitialShowFood = mInitialShowFood ;
+        this.mInitialShowFood = mInitialShowFood;
     }
 
     @Override
@@ -46,16 +45,13 @@ public class InitialShowFoodAdapter extends BaseAdapter {
         View v = null;
         InitialShowFood initialShowFood = mInitialShowFood.get(position);
         if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater)
-                    context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.homepage_initial__list_row, parent,
-
-                    false);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            v = inflater.inflate(R.layout.homepage_initial__list_row, parent, false);
         } else {
             v = convertView;
         }
 
-        Typeface mTfBold = Typeface.createFromAsset(v.getContext().getAssets(),"OpenSans-Bold.ttf");
+        Typeface mTfBold = Typeface.createFromAsset(v.getContext().getAssets(), "OpenSans-Bold.ttf");
 
         ImageView foodImageView = v.findViewById(R.id.food_speech_image);
         TextView foodNameText = v.findViewById(R.id.food_speech_text);
@@ -68,9 +64,7 @@ public class InitialShowFoodAdapter extends BaseAdapter {
         foodImageView.setVisibility(View.VISIBLE);
         foodNameText.setVisibility(View.VISIBLE);
 
-
         return v;
-
     }
 
 }

@@ -29,6 +29,7 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
     private CardView CategoriesCard;
     private CardView RecentCard;
     String mealType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +51,7 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
         foodData.open();
 
         List<Food> getfoodList = foodData.getAllFood();
-        for(Food food: getfoodList) {
+        for (Food food : getfoodList) {
             foodList.add(food.getFood_name());
         }
 
@@ -65,7 +66,7 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
         text.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(),adapter.getItem(position).toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), adapter.getItem(position).toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -84,8 +85,6 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
 
         CategoriesCard.setOnClickListener(this);
         RecentCard.setOnClickListener(this);
-
-
     }
 
 
@@ -93,8 +92,7 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
 
         Intent intent;
-        switch (v.getId())
-        {
+        switch (v.getId()) {
             case R.id.categories_card:
                 intent = new Intent(this, CategoryListActivity.class);
                 intent.putExtra("meal_type", mealType);
@@ -106,8 +104,8 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
                 break;
 
-            default:break;
-
+            default:
+                break;
         }
     }
 }

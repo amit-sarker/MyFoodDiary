@@ -34,23 +34,6 @@ public class GeneticAlgoKnapsack {
     private double calorie_factor = 10;
     private double calorie_range_ideal = 500;
 
-    /**
-     * Default constructor
-     */
-   /* public GeneticAlgoKnapsack(List<Food> foodList, Features knapsack_capacity) {
-
-        this.knapsack_capacity = knapsack_capacity;
-        // Get user input
-        this.getInput(foodList);
-
-        // Make first generation
-        this.buildKnapsackProblem();
-
-        // Output summary
-        this.showOptimalList();
-
-    }
-    */
 
     public GeneticAlgoKnapsack(ArrayList<Features> values_of_items,Features knapsack_capacity, int population_size, int maximum_generations, double prob_crossover, double prob_mutation) {
         this.value_of_items = values_of_items;
@@ -63,9 +46,6 @@ public class GeneticAlgoKnapsack {
 
         // Make first generation
         this.buildKnapsackProblem();
-
-        // Output summary
-        //this.showOptimalList();
     }
 
 
@@ -75,27 +55,10 @@ public class GeneticAlgoKnapsack {
 
     public void buildKnapsackProblem() {
 
-        // Generate initial random population (first generation)
         this.makePopulation();
-
-        // Start printing out summary
-        //System.out.println("\nInitial Generation:");
-        //System.out.println("===================");
-       /* System.out.println("Population:");
-        for(int i = 0; i < this.population_size; i++) {
-            System.out.println((i + 1) + " - " + this.population.get(i));
-        }
-        */
 
         // Evaluate fitness of initial population members
         this.evalPopulation();
-
-        // Output fitness summary
-       /* System.out.println("\nFitness:");
-        for(int i = 0; i < this.population_size; i++) {
-            System.out.println((i + 1) + " - " + this.fitness.get(i));
-        }
-        */
 
         // Find best solution of generation
         this.best_solution_of_generation.add(this.population.get(this.getBestSolution()));
@@ -107,20 +70,14 @@ public class GeneticAlgoKnapsack {
         this.mean_fitness_of_generation.add(this.getMeanFitness());
 
         // Output mean solution of generation
-       // System.out.println("Mean fitness of initial generation: " + this.mean_fitness_of_generation.get(0));
 
         // Compute fitness of best solution of generation
         this.best_fitness_of_generation.add(this.evalGene(this.population.get(this.getBestSolution())));
 
-        // Output best fitness of generation
-        //System.out.println("Fitness score of best solution of initial generation: " + this.best_fitness_of_generation.get(0));
 
-        // If maximum_generations > 1, breed further generations
         if(this.maximum_generations > 1) {
             makeFurtherGenerations();
         }
-
-
     }
 
 

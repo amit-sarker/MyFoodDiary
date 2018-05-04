@@ -32,7 +32,6 @@
         <activity android:name="generalpersonactivities.ShowBMRActivity" />
         <activity android:name="addfood.AddFoodActivity" />
         <activity android:name="addfood.RecentListActivity" />
-        <activity android:name="addfood.FrequentListActivity" />
         <activity android:name="piechart.PieChartActivity" />
         <activity android:name="addfood.AddFoodToDiaryActivity" />
         <activity android:name="piechart.ChartTestActivity" />

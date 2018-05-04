@@ -18,7 +18,9 @@ import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
 import com.example.moumita.caloriecountergeb.R;
+
 import adapter.SpinnerAdapter;
+
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
@@ -30,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.moumita.caloriecountergeb.HomeTabActivity;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import fooddatabase.Food;
 import fooddatabase.FoodOperations;
@@ -121,7 +124,7 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
         mtfBold = Typeface.createFromAsset(getAssets(), "OpenSans-Bold.ttf");
         mTfBoldItalic = Typeface.createFromAsset(getAssets(), "OpenSans-BoldItalic.ttf");
 
-        for(int i =0; i < 9; i++) {
+        for (int i = 0; i < 9; i++) {
             foodNeutrientsText[i].setTypeface(mTfRegular);
         }
 
@@ -386,7 +389,6 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
         PieData data = new PieData(dataSet);
         data.setValueTextSize(10f);
         data.setValueTextColor(Color.BLACK);
-
 
         pieChart.setData(data);
 

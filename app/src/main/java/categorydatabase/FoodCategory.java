@@ -5,7 +5,9 @@ public class FoodCategory {
     private String categoryName;
     private long foodID;
     private String foodName, foodImage, categoryImage;
-    public FoodCategory() {}
+
+    public FoodCategory() {
+    }
 
     public FoodCategory(long categoryID, String categoryName, long foodID, String foodName, String foodImage, String categoryImage) {
         this.categoryID = categoryID;

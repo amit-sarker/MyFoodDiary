@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import com.example.moumita.caloriecountergeb.R;
+
 import helper.ShowWater;
 
 import java.util.List;
@@ -20,9 +21,9 @@ public class ShowWaterAdapter extends ArrayAdapter<ShowWater> {
     public int mTextResId;
     Context context;
 
-    public ShowWaterAdapter( Context context, int resourceId, int textViewResourceId, List<ShowWater> objects ) {
-        super( context, resourceId, textViewResourceId, objects );
-        mInflater = LayoutInflater.from( context );
+    public ShowWaterAdapter(Context context, int resourceId, int textViewResourceId, List<ShowWater> objects) {
+        super(context, resourceId, textViewResourceId, objects);
+        mInflater = LayoutInflater.from(context);
         mResource = resourceId;
         mTextResId = textViewResourceId;
         mItems = objects;
@@ -34,37 +35,36 @@ public class ShowWaterAdapter extends ArrayAdapter<ShowWater> {
     }
 
     @Override
-    public long getItemId( int position ) {
-        return getItem( position ).hashCode();
+    public long getItemId(int position) {
+        return getItem(position).hashCode();
     }
+
     @Override
     public int getViewTypeCount() {
         return 3;
     }
 
     @Override
-    public int getItemViewType( int position ) {
-        return position%3;
+    public int getItemViewType(int position) {
+        return position % 3;
     }
 
     @Override
-    public View getView( int position, View convertView, ViewGroup parent ) {
+    public View getView(int position, View convertView, ViewGroup parent) {
 
         View v = null;
         ShowWater showWater = mItems.get(position);
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater)
                     context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.homepage_water_list_row, parent,
-
-                    false);
+            v = inflater.inflate(R.layout.homepage_water_list_row, parent, false);
         } else {
             v = convertView;
         }
 
 
-        Button button =  convertView.findViewById( R.id.water_full );
-        button.setText( position+1 );
+        Button button = convertView.findViewById(R.id.water_full);
+        button.setText(position + 1);
         button.setVisibility(View.VISIBLE);
 
         return v;

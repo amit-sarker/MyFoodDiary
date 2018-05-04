@@ -47,24 +47,19 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
         mChart = (LineChart) findViewById(R.id.line_chart);
         mChart.setOnChartValueSelectedListener(this);
 
-        // no description text
         mChart.getDescription().setEnabled(false);
 
-        // enable touch gestures
         mChart.setTouchEnabled(true);
 
         mChart.setDragDecelerationFrictionCoef(0.9f);
 
-        // enable scaling and dragging
         mChart.setDragEnabled(true);
         mChart.setScaleEnabled(true);
         mChart.setDrawGridBackground(false);
         mChart.setHighlightPerDragEnabled(true);
 
-        // if disabled, scaling can be done on x- and y-axis separately
         mChart.setPinchZoom(true);
 
-        // set an alternative background color
         mChart.setBackgroundColor(Color.LTGRAY);
 
         // add data
@@ -84,7 +79,6 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(false);
-//        l.setYOffset(11f);
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setTypeface(mTfLight);
@@ -131,13 +125,10 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
 
         ArrayList<Entry> yVals2 = new ArrayList<Entry>();
 
-        for (int i = 0; i < count-1; i++) {
+        for (int i = 0; i < count - 1; i++) {
             float mult = range;
             float val = (float) (Math.random() * mult) + 450;
             yVals2.add(new Entry(i, val));
-//            if(i == 10) {
-//                yVals2.add(new_gif Entry(i, val + 50));
-//            }
         }
 
         ArrayList<Entry> yVals3 = new ArrayList<Entry>();
@@ -173,10 +164,6 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
             set1.setFillColor(ColorTemplate.getHoloBlue());
             set1.setHighLightColor(Color.rgb(244, 117, 117));
             set1.setDrawCircleHole(false);
-            //set1.setFillFormatter(new_gif MyFillFormatter(0f));
-            //set1.setDrawHorizontalHighlightIndicator(false);
-            //set1.setVisible(false);
-            //set1.setCircleHoleColor(Color.WHITE);
 
             // create a dataset and give it a type
             set2 = new LineDataSet(yVals2, "DataSet 2");
@@ -189,8 +176,6 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
             set2.setFillColor(Color.RED);
             set2.setDrawCircleHole(false);
             set2.setHighLightColor(Color.rgb(244, 117, 117));
-            //set2.setFillFormatter(new_gif MyFillFormatter(900f));
-
             set3 = new LineDataSet(yVals3, "DataSet 3");
             set3.setAxisDependency(AxisDependency.RIGHT);
             set3.setColor(Color.YELLOW);
@@ -218,10 +203,6 @@ public class LineChartActivity2 extends DemoBase implements OnSeekBarChangeListe
 
         mChart.centerViewToAnimated(e.getX(), e.getY(), mChart.getData().getDataSetByIndex(h.getDataSetIndex())
                 .getAxisDependency(), 500);
-        //mChart.zoomAndCenterAnimated(2.5f, 2.5f, e.getX(), e.getY(), mChart.getData().getDataSetByIndex(dataSetIndex)
-        // .getAxisDependency(), 1000);
-        //mChart.zoomAndCenterAnimated(1.8f, 1.8f, e.getX(), e.getY(), mChart.getData().getDataSetByIndex(dataSetIndex)
-        // .getAxisDependency(), 1000);
     }
 
     @Override

@@ -70,8 +70,5 @@ public class FoodListAdapter extends BaseAdapter {
 
 
         return v;
-
     }
-
-
 }

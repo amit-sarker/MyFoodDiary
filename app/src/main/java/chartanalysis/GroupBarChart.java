@@ -40,7 +40,7 @@ public class GroupBarChart extends AppCompatActivity {
         barSpace = 0f;
         groupSpace = 0.4f;
 
-        chartCalorie = (BarChart)findViewById(R.id.barChart);
+        chartCalorie = (BarChart) findViewById(R.id.barChart);
         chartProtein = findViewById(R.id.barChart2);
         chartCarbs = findViewById(R.id.barChart3);
         chartFat = findViewById(R.id.barChart4);
@@ -72,7 +72,7 @@ public class GroupBarChart extends AppCompatActivity {
         ArrayList xVals = new ArrayList();
         ArrayList temp = new ArrayList();
 
-        for(int i = 0; i < lastSevenDayList.size(); i++) {
+        for (int i = 0; i < lastSevenDayList.size(); i++) {
             String date = lastSevenDayList.get(i).getDate();
             String[] p = date.split("-");
             temp.add(p[2] + getMonth(p[1]));
@@ -111,7 +111,6 @@ public class GroupBarChart extends AppCompatActivity {
         set2.setColor(Color.BLUE);
         BarData data = new BarData(set1, set2);
         data.setValueFormatter(new DefaultValueFormatter(0));
-        //data.setValueFormatter(new_gif LargeValueFormatter());
         chartCalorie.setData(data);
         chartCalorie.getBarData().setBarWidth(barWidth);
         chartCalorie.getXAxis().setAxisMinimum(0);
@@ -139,7 +138,7 @@ public class GroupBarChart extends AppCompatActivity {
         xAxis.setAxisMaximum(7);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setValueFormatter(new IndexAxisValueFormatter(xVals));
-//Y-axis
+        //Y-axis
         chartCalorie.getAxisRight().setEnabled(false);
         YAxis leftAxis = chartCalorie.getAxisLeft();
         leftAxis.setValueFormatter(new LargeValueFormatter());
@@ -161,7 +160,7 @@ public class GroupBarChart extends AppCompatActivity {
         ArrayList xVals = new ArrayList();
         ArrayList temp = new ArrayList();
 
-        for(int i = 0; i < lastSevenDayList.size(); i++) {
+        for (int i = 0; i < lastSevenDayList.size(); i++) {
             String date = lastSevenDayList.get(i).getDate();
             String[] p = date.split("-");
             temp.add(p[2] + getMonth(p[1]));
@@ -200,7 +199,6 @@ public class GroupBarChart extends AppCompatActivity {
         set2.setColor(Color.BLUE);
         BarData data = new BarData(set1, set2);
         data.setValueFormatter(new DefaultValueFormatter(0));
-        //data.setValueFormatter(new_gif LargeValueFormatter());
         chartCalorie.setData(data);
         chartCalorie.getBarData().setBarWidth(barWidth);
         chartCalorie.getXAxis().setAxisMinimum(0);
@@ -228,7 +226,7 @@ public class GroupBarChart extends AppCompatActivity {
         xAxis.setAxisMaximum(7);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setValueFormatter(new IndexAxisValueFormatter(xVals));
-//Y-axis
+        //Y-axis
         chartCalorie.getAxisRight().setEnabled(false);
         YAxis leftAxis = chartCalorie.getAxisLeft();
         leftAxis.setValueFormatter(new LargeValueFormatter());
@@ -251,7 +249,7 @@ public class GroupBarChart extends AppCompatActivity {
         ArrayList xVals = new ArrayList();
         ArrayList temp = new ArrayList();
 
-        for(int i = 0; i < lastSevenDayList.size(); i++) {
+        for (int i = 0; i < lastSevenDayList.size(); i++) {
             String date = lastSevenDayList.get(i).getDate();
             String[] p = date.split("-");
             temp.add(p[2] + getMonth(p[1]));
@@ -290,7 +288,6 @@ public class GroupBarChart extends AppCompatActivity {
         set2.setColor(Color.BLUE);
         BarData data = new BarData(set1, set2);
         data.setValueFormatter(new DefaultValueFormatter(0));
-        //data.setValueFormatter(new_gif LargeValueFormatter());
         chartCalorie.setData(data);
         chartCalorie.getBarData().setBarWidth(barWidth);
         chartCalorie.getXAxis().setAxisMinimum(0);
@@ -318,7 +315,7 @@ public class GroupBarChart extends AppCompatActivity {
         xAxis.setAxisMaximum(7);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setValueFormatter(new IndexAxisValueFormatter(xVals));
-//Y-axis
+        //Y-axis
         chartCalorie.getAxisRight().setEnabled(false);
         YAxis leftAxis = chartCalorie.getAxisLeft();
         leftAxis.setValueFormatter(new LargeValueFormatter());
@@ -341,7 +338,7 @@ public class GroupBarChart extends AppCompatActivity {
         ArrayList xVals = new ArrayList();
         ArrayList temp = new ArrayList();
 
-        for(int i = 0; i < lastSevenDayList.size(); i++) {
+        for (int i = 0; i < lastSevenDayList.size(); i++) {
             String date = lastSevenDayList.get(i).getDate();
             String[] p = date.split("-");
             temp.add(p[2] + getMonth(p[1]));
@@ -380,7 +377,6 @@ public class GroupBarChart extends AppCompatActivity {
         set2.setColor(Color.BLUE);
         BarData data = new BarData(set1, set2);
         data.setValueFormatter(new DefaultValueFormatter(0));
-        //data.setValueFormatter(new_gif LargeValueFormatter());
         chartCalorie.setData(data);
         chartCalorie.getBarData().setBarWidth(barWidth);
         chartCalorie.getXAxis().setAxisMinimum(0);
@@ -419,17 +415,17 @@ public class GroupBarChart extends AppCompatActivity {
     }
 
     public String getMonth(String month) {
-        if(month.equals("01")) return " Jan";
-        else if(month.equals("02")) return " Feb";
-        else if(month.equals("03")) return " Mar";
-        else if(month.equals("04")) return " Apr";
-        else if(month.equals("05")) return " May";
-        else if(month.equals("06")) return " Jun";
-        else if(month.equals("07")) return " Jul";
-        else if(month.equals("08")) return " Aug";
-        else if(month.equals("09")) return " Sep";
-        else if(month.equals("10")) return " Oct";
-        else if(month.equals("11")) return " Nov";
+        if (month.equals("01")) return " Jan";
+        else if (month.equals("02")) return " Feb";
+        else if (month.equals("03")) return " Mar";
+        else if (month.equals("04")) return " Apr";
+        else if (month.equals("05")) return " May";
+        else if (month.equals("06")) return " Jun";
+        else if (month.equals("07")) return " Jul";
+        else if (month.equals("08")) return " Aug";
+        else if (month.equals("09")) return " Sep";
+        else if (month.equals("10")) return " Oct";
+        else if (month.equals("11")) return " Nov";
         else return " Dec";
     }
 
