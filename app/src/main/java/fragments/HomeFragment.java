@@ -508,7 +508,10 @@ public class HomeFragment extends Fragment {
             foodData.open();
             Food food = foodData.getFoodByName(foodName);
             int imgId = ImageID(food.getFood_image());
+            if(a.getFood_serving_amount().equals("") || a.getFood_serving_measurement().equals("")) {
+                showBreakfastModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), "not available" + ", " +"not available" ));
 
+            }
             showBreakfastModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), a.getFood_serving_amount() + ", " + a.getFood_serving_measurement()));
             foodData.close();
         }
@@ -519,6 +522,10 @@ public class HomeFragment extends Fragment {
             foodData.open();
             Food food = foodData.getFoodByName(foodName);
             int imgId = ImageID(food.getFood_image());
+            if(a.getFood_serving_amount().equals("") || a.getFood_serving_measurement().equals("")) {
+                showLunchModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), "not available" + ", " +"not available" ));
+
+            }
             showLunchModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), a.getFood_serving_amount() + ", " + a.getFood_serving_measurement()));
             foodData.close();
         }
@@ -530,6 +537,10 @@ public class HomeFragment extends Fragment {
             Food food = foodData.getFoodByName(foodName);
             int imgId = ImageID(food.getFood_image());
 
+            if(a.getFood_serving_amount().equals("") && a.getFood_serving_measurement().equals("")) {
+                showDinnerModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), "not available" + ", " +"not available" ));
+
+            }
             showDinnerModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), a.getFood_serving_amount() + ", " + a.getFood_serving_measurement()));
             foodData.close();
         }
