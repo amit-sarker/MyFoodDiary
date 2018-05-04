@@ -62,10 +62,6 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity
-            android:name=".AddSimpleCalorieActivity"
-            android:excludeFromRecents="true"
-            android:theme="@style/Theme.AppCompat.Dialog" />
     </application>
 
 </manifest>

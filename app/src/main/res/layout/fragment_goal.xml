@@ -15,36 +15,42 @@
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="120dp"
                 android:layout_margin="@dimen/card_margin"
 
+                android:id="@+id/weight_card_view"
                 android:clickable="true"
+                android:focusable="true"
                 android:foreground="?selectableItemBackground"
                 card_view:cardCornerRadius="12dp"
                 card_view:cardElevation="3dp"
                 card_view:contentPadding="4dp"
-                android:background="@mipmap/green_bck_2">
+                android:background="@color/colorButton">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/green_bck_2"
+                    >
                     <TextView
-                        android:id="@+id/breakfast_text"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
+                        android:text="@string/goal_motivation"
+                        style="@style/NormalText"
+                        android:textColor="@color/light_primary_text"
+                        android:textStyle="bold|italic"
+                        android:textAlignment="center"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="33dp"
-                        android:gravity="center"
-                        android:text="@string/count_goals"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:textColor="@color/white" />
+                        android:layout_centerVertical="true"
+                        android:textSize="18sp"
 
-
-
+                        />
 
                 </RelativeLayout>
+
+
+
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/goal_recycler_view"

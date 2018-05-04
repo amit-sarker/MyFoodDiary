@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
-import com.example.moumita.caloriecountergeb.AddSimpleCalorieActivity;
 import com.example.moumita.caloriecountergeb.R;
 
 import java.util.ArrayList;
@@ -19,7 +18,6 @@ import java.util.List;
 
 import fooddatabase.Food;
 import fooddatabase.FoodOperations;
-import piechart.PieChartActivity;
 
 public class AddFoodActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,7 +26,8 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
     private AutoCompleteTextView text;
     private FoodOperations foodData;
     private List<String> foodList = new ArrayList<>();
-    private CardView CategoriesCard, RecentCard, SimpleCaloriesCard;
+    private CardView CategoriesCard;
+    private CardView RecentCard;
     String mealType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +42,8 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
         mealType = bundle.getString("meal_type");
 
         CategoriesCard = findViewById(R.id.categories_card);
-
         RecentCard = findViewById(R.id.recent_card);
-        SimpleCaloriesCard = findViewById(R.id.simple_calories_card);
+
 
         foodData = new FoodOperations(this);
 
@@ -86,7 +84,6 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
         CategoriesCard.setOnClickListener(this);
         RecentCard.setOnClickListener(this);
 
-        SimpleCaloriesCard.setOnClickListener(this);
 
     }
 
@@ -108,11 +105,6 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
                 break;
 
-            case R.id.simple_calories_card:
-                intent = new Intent(this, AddSimpleCalorieActivity.class);
-                intent.putExtra("meal_type", mealType);
-                startActivity(intent);
-                break;
             default:break;
 
         }

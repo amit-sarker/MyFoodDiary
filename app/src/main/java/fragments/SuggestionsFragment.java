@@ -1,6 +1,7 @@
 package fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -19,10 +20,13 @@ import com.example.moumita.caloriecountergeb.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import activities.HomeTabActivity;
 import adapter.ShowFoodAdapter;
+import addfood.AddFoodToDiaryActivity;
 import fooddatabase.Food;
 import fooddatabase.FoodOperations;
 import helper.ShowFood;
+import notifications.TestActivity;
 import trackingdatabase.CalorieTracking;
 import trackingdatabase.TrackingOperations;
 
@@ -102,6 +106,10 @@ public class SuggestionsFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ShowFood showFoodModel = breakfastFoodSuggestions.get(position);
+                Intent intent = new Intent(getContext(), AddFoodToDiaryActivity.class);
+                intent.putExtra("meal_type", "Breakfast");
+                intent.putExtra("foodname", showFoodModel.getFoodName());
+                startActivity(intent);
 
             }
         });
@@ -118,6 +126,10 @@ public class SuggestionsFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ShowFood showFoodModel = lunchFoodSuggestions.get(position);
+                Intent intent = new Intent(getContext(), AddFoodToDiaryActivity.class);
+                intent.putExtra("meal_type", "Lunch");
+                intent.putExtra("foodname", showFoodModel.getFoodName());
+                startActivity(intent);
 
             }
         });
@@ -133,6 +145,10 @@ public class SuggestionsFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ShowFood showFoodModel= dinnerFoodSuggetions.get(position);
+                Intent intent = new Intent(getContext(), AddFoodToDiaryActivity.class);
+                intent.putExtra("foodname", showFoodModel.getFoodName());
+                intent.putExtra("meal_type", "Dinner");
+                startActivity(intent);
 
             }
         });
@@ -158,6 +174,10 @@ public class SuggestionsFragment extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         ShowFood showFoodModel = breakfastFoodSuggestions.get(position);
+                        Intent intent = new Intent(getContext(), AddFoodToDiaryActivity.class);
+                        intent.putExtra("meal_type", "Breakfast");
+                        intent.putExtra("foodname", showFoodModel.getFoodName());
+                        startActivity(intent);
 
                     }
                 });
@@ -174,6 +194,10 @@ public class SuggestionsFragment extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         ShowFood showFoodModel = lunchFoodSuggestions.get(position);
+                        Intent intent = new Intent(getContext(), AddFoodToDiaryActivity.class);
+                        intent.putExtra("meal_type", "Lunch");
+                        intent.putExtra("foodname", showFoodModel.getFoodName());
+                        startActivity(intent);
 
                     }
                 });
@@ -189,6 +213,10 @@ public class SuggestionsFragment extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         ShowFood showFoodModel= dinnerFoodSuggetions.get(position);
+                        Intent intent = new Intent(getContext(), AddFoodToDiaryActivity.class);
+                        intent.putExtra("meal_type", "Dinner");
+                        intent.putExtra("foodname", showFoodModel.getFoodName());
+                        startActivity(intent);
 
                     }
                 });
