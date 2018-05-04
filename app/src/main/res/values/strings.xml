@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CalorieCounterGEB</string>
+    <string name="app_name">My Food Diary</string>
     <string name="female_male_option">Please enter your gender. It is important for Calorie Budget</string>
     <string name="height_info">Calorie Budget and neutrient recommendations depend on body height. You can enter the estimated height.</string>
     <string name="age_info">Calorie Budget and neutrient recommendations depend on your age. Please Enter your birthdate</string>

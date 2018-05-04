@@ -76,8 +76,6 @@
         </RelativeLayout>
     </ScrollView>
 
-
-
     <!--<com.github.mikephil.charting.charts.BarChart
         android:id="@+id/chart1"
         android:layout_width="match_parent"

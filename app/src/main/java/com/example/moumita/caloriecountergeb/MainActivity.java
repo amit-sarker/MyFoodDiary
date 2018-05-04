@@ -1,15 +1,17 @@
 package com.example.moumita.caloriecountergeb;
 
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.facebook.stetho.Stetho;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
@@ -18,10 +20,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import activities.HomeTabActivity;
@@ -35,9 +35,7 @@ import fooddatabase.FoodOperations;
 import generalpersondatabase.Person;
 import generalpersondatabase.PersonOperations;
 import goaldatabase.Goal;
-import goaldatabase.GoalDBHandler;
 import goaldatabase.GoalOperations;
-import notifications.TestActivity;
 import okhttp3.OkHttpClient;
 import servingdatabase.FoodServing;
 import servingdatabase.ServingDBHandler;
@@ -45,7 +43,6 @@ import servingdatabase.ServingOperations;
 import trackingdatabase.CalorieTracking;
 import trackingdatabase.TrackingOperations;
 import userinfo.UserGenderInfoActivity;
-import userinfo.UserWeightInfoActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -56,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
     private TrackingOperations trackingData;
     private PersonOperations personData;
     private GoalOperations goalData;
+    private int WELCOME_TIMEOUT = 4000;
+    private TextView appName;
+    private ImageView appLogo;
+    private Animation fromBottom, fromTop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,13 @@ public class MainActivity extends AppCompatActivity {
                 .addNetworkInterceptor(new StethoInterceptor())
                 .build();
 
+        appName = findViewById(R.id.app_name_text);
+        appLogo = findViewById(R.id.app_logo);
 
+        fromBottom = AnimationUtils.loadAnimation(this,R.anim.from_top);
+        fromTop = AnimationUtils.loadAnimation(this, R.anim.from_bottom);
+        appName.setAnimation(fromBottom);
+        appLogo.setAnimation(fromTop);
 
         FoodDBHandler foodDBHandler = new FoodDBHandler(this);
         SQLiteDatabase food_database = foodDBHandler.getWritableDatabase();
@@ -159,22 +166,15 @@ public class MainActivity extends AppCompatActivity {
         trackingData.close();
 
         personData.open();
-        long personRowCount = personData.getRowCount();
+        final long personRowCount = personData.getRowCount();
         personData.close();
 
         /*Intent intent = new Intent(MainActivity.this, UserProfileActivity.class);
         startActivity(intent);
         finish();*/
 
-        if(personRowCount > 0) {
-            Intent intent = new Intent(MainActivity.this, HomeTabActivity.class);
-            startActivity(intent);
-            finish();
-        } else {
-            Intent intent = new Intent(MainActivity.this, UserGenderInfoActivity.class);
-            startActivity(intent);
-            finish();
-        }
+
+
 
 
         //Push Notification
@@ -228,6 +228,30 @@ public class MainActivity extends AppCompatActivity {
         alarmManager3.setRepeating(AlarmManager.RTC_WAKEUP, dinnerTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, dinnerBroadcast);
 
         System.err.println("Timeeeeeeeeeeeeeeeeee " + lunchTime + " " + dinnerTime + " " + now);
+
+
+
+
+        new android.os.Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+
+                            if(personRowCount > 0) {
+            Intent intent = new Intent(MainActivity.this, HomeTabActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Intent intent = new Intent(MainActivity.this, UserGenderInfoActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+
+                            overridePendingTransition(R.anim.from_top, R.anim.from_bottom);
+                            finish();
+                        }
+                    }, WELCOME_TIMEOUT);
 
     }
 

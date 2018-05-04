@@ -69,7 +69,7 @@ public class UserHeightInfoActivity extends AppCompatActivity {
                 if (isChecked) {
                     mFeetText.setText("Feet");
                     mInchText.setText("Inches");
-                    mFeetPicker.setMinValue(0);
+                    mFeetPicker.setMinValue(1);
                     mFeetPicker.setMaxValue(7);
                     mInchPicker.setMinValue(0);
                     mInchPicker.setMaxValue(11);
@@ -77,8 +77,8 @@ public class UserHeightInfoActivity extends AppCompatActivity {
                 } else {
                     mFeetText.setText("Meter");
                     mInchText.setText("Cm");
-                    mFeetPicker.setMinValue(0);
-                    mFeetPicker.setMaxValue(7);
+                    mFeetPicker.setMinValue(1);
+                    mFeetPicker.setMaxValue(3);
                     mInchPicker.setMinValue(0);
                     mInchPicker.setMaxValue(99);
 
