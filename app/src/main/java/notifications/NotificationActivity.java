@@ -1,7 +1,9 @@
-package com.example.moumita.caloriecountergeb;
+package notifications;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.moumita.caloriecountergeb.R;
 
 public class NotificationActivity extends AppCompatActivity {
 

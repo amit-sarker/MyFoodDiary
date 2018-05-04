@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package helper;
 
 public class Features
 {

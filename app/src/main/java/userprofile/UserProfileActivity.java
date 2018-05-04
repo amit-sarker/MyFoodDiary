@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package userprofile;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.moumita.caloriecountergeb.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -158,8 +159,12 @@ public class UserProfileActivity extends AppCompatActivity {
         ArrayList yVals2 = new ArrayList();
 
         for(int i = 0; i < currentWeightList.size(); i++) {
-            yVals1.add(new Entry(i, (float) Math.round(targetWeightList.get(i))));
-            yVals2.add(new Entry(i, (float) Math.round(currentWeightList.get(i))));
+            String temp1 = String.valueOf(targetWeightList.get(i));
+            String temp2 = String.valueOf(currentWeightList.get(i));
+            float temp3 = Float.parseFloat(temp1);
+            float temp4 = Float.parseFloat(temp2);
+            yVals1.add(new Entry(i, temp3));
+            yVals2.add(new Entry(i, temp4));
         }
 
         if(yVals1.size() == 0 || yVals2.size() == 0) {
@@ -238,10 +243,11 @@ public class UserProfileActivity extends AppCompatActivity {
         xAxis.setTypeface(mTfLight);
         xAxis.setTextSize(11f);
         xAxis.setTextColor(Color.BLACK);
-        xAxis.setDrawGridLines(false);
-        xAxis.setDrawAxisLine(false);
+        //xAxis.setDrawGridLines(false);
+        //xAxis.setDrawAxisLine(false);
+        xAxis.setPosition(XAxis.XAxisPosition.TOP);
         xAxis.setAxisMinimum(0);
-        //xAxis.setValueFormatter(new IndexAxisValueFormatter(xVals));
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(xVals));
 
         try {
 
@@ -376,7 +382,9 @@ public class UserProfileActivity extends AppCompatActivity {
         ArrayList yVals1 = new ArrayList();
 
         for(int i = 0; i < currentWeightList.size(); i++) {
-            yVals1.add(new BarEntry(i, (float) Math.round(currentWeightList.get(i))));
+            String temp2 = String.valueOf(currentWeightList.get(i));
+            float temp3 = Float.parseFloat(temp2);
+            yVals1.add(new BarEntry(i, temp3));
         }
 
         if(yVals1.size() == 0) {

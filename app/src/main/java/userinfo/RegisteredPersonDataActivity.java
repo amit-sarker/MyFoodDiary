@@ -16,7 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
-import activities.HomeTabActivity;
+import com.example.moumita.caloriecountergeb.HomeTabActivity;
 import generalpersondatabase.Person;
 import generalpersondatabase.PersonOperations;
 

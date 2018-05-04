@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package chartanalysis;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.moumita.caloriecountergeb.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.XAxis.XAxisPosition;

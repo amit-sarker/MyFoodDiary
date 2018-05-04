@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package chartanalysis;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
+import com.example.moumita.caloriecountergeb.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;

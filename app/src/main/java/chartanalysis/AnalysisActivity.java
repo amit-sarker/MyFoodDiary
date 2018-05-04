@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package chartanalysis;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.moumita.caloriecountergeb.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;

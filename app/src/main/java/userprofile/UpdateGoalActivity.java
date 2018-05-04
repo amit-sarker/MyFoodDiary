@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package userprofile;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.moumita.caloriecountergeb.R;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 

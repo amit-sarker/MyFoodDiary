@@ -3,6 +3,7 @@ package com.example.moumita.caloriecountergeb;
 import java.util.ArrayList;
 import java.util.Random;
 
+import helper.Features;
 import helper.ShowFood;
 
 public class GeneticAlgoKnapsack {

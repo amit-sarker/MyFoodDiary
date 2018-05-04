@@ -29,7 +29,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
-import activities.HomeTabActivity;
+import com.example.moumita.caloriecountergeb.HomeTabActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
 import fooddatabase.Food;
 import fooddatabase.FoodOperations;

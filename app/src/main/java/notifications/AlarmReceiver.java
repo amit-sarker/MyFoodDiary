@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package notifications;
 
 
 import android.app.Notification;
@@ -17,8 +17,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
-import activities.HomeTabActivity;
-import notifications.TestActivity;
+import com.example.moumita.caloriecountergeb.R;
+
+import com.example.moumita.caloriecountergeb.HomeTabActivity;
 
 import static android.app.NotificationManager.IMPORTANCE_DEFAULT;
 

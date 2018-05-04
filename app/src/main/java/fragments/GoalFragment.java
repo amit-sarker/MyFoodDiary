@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.moumita.caloriecountergeb.R;
 
 import java.util.ArrayList;
 import java.util.List;

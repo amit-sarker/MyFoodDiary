@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package userprofile;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,11 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.moumita.caloriecountergeb.R;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.charts.PieChart;
 
 import java.text.SimpleDateFormat;
@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import activities.HomeTabActivity;
 import generalpersonactivities.BMICalculation;
 import generalpersonactivities.ShowBMRActivity;
 import generalpersondatabase.Person;

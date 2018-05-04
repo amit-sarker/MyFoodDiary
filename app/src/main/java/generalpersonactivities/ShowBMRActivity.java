@@ -1,7 +1,6 @@
 package generalpersonactivities;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import activities.HomeTabActivity;
+import com.example.moumita.caloriecountergeb.HomeTabActivity;
 import trackingdatabase.CalorieTracking;
 import trackingdatabase.TrackingOperations;
 

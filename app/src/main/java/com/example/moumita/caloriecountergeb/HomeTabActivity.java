@@ -1,4 +1,4 @@
-package activities;
+package com.example.moumita.caloriecountergeb;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,14 +16,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.example.moumita.caloriecountergeb.AnalysisActivity;
-import com.example.moumita.caloriecountergeb.NavigationDrawerActivity;
-import com.example.moumita.caloriecountergeb.R;
-import com.example.moumita.caloriecountergeb.UpdateGoalActivity;
-import com.example.moumita.caloriecountergeb.UserProfileActivity;
-import com.google.firebase.auth.FirebaseAuth;
+import chartanalysis.AnalysisActivity;
+import userprofile.UpdateGoalActivity;
+import userprofile.UserProfileActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,7 +27,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 

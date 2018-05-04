@@ -5,7 +5,6 @@ import android.graphics.Typeface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,20 +14,18 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.moumita.caloriecountergeb.Features;
+import helper.Features;
 import com.example.moumita.caloriecountergeb.GeneticAlgoKnapsack;
 import com.example.moumita.caloriecountergeb.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import activities.HomeTabActivity;
 import adapter.ShowFoodAdapter;
 import addfood.AddFoodToDiaryActivity;
 import fooddatabase.Food;
 import fooddatabase.FoodOperations;
 import helper.ShowFood;
-import notifications.TestActivity;
 import trackingdatabase.CalorieTracking;
 import trackingdatabase.TrackingOperations;
 

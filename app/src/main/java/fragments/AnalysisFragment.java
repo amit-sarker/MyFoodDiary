@@ -1,7 +1,6 @@
 package fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -17,8 +16,6 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.moumita.caloriecountergeb.AnalysisActivity;
-import com.example.moumita.caloriecountergeb.GroupBarChart;
 import com.example.moumita.caloriecountergeb.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -40,7 +37,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import adapter.SpinnerAdapter;
-import piechart.DayAxisValueFormatter;
 import trackingdatabase.CalorieTracking;
 import trackingdatabase.TrackingOperations;
 
@@ -421,7 +417,7 @@ public class AnalysisFragment extends Fragment {
         xAxis.setTypeface(mTfLight);
         xAxis.setTextSize(11f);
         xAxis.setGranularity(1f);
-        xAxis.setCenterAxisLabels(true);
+        //xAxis.setCenterAxisLabels(true);
         xAxis.setTextColor(Color.BLACK);
         //xAxis.setDrawGridLines(false);
         //xAxis.setDrawAxisLine(false);

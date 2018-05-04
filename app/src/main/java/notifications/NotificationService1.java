@@ -1,10 +1,9 @@
-package com.example.moumita.caloriecountergeb;
+package notifications;
 
 import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -12,11 +11,12 @@ import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import activities.HomeTabActivity;
+import com.example.moumita.caloriecountergeb.R;
+
+import com.example.moumita.caloriecountergeb.HomeTabActivity;
 
 public class NotificationService1 extends IntentService {
 

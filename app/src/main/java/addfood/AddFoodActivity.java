@@ -78,6 +78,7 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
                 intent.putExtra("foodname", foodName);
                 intent.putExtra("meal_type", mealType);
                 startActivity(intent);
+                finish();
             }
         });
 

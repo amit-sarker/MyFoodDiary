@@ -25,7 +25,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import activities.HomeTabActivity;
 //import br.com.goncalves.pugnotification.notification.PugNotification;
 import categorydatabase.CategoryDBHandler;
 import categorydatabase.CategoryOperations;
@@ -37,6 +36,7 @@ import generalpersondatabase.Person;
 import generalpersondatabase.PersonOperations;
 import goaldatabase.Goal;
 import goaldatabase.GoalOperations;
+import notifications.AlarmReceiver;
 import okhttp3.OkHttpClient;
 import servingdatabase.FoodServing;
 import servingdatabase.ServingDBHandler;

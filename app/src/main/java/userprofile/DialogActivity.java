@@ -1,4 +1,4 @@
-package com.example.moumita.caloriecountergeb;
+package userprofile;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -16,20 +16,17 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
 
+import com.example.moumita.caloriecountergeb.R;
+
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
-import activities.HomeTabActivity;
-import fragments.HomeFragment;
+import com.example.moumita.caloriecountergeb.HomeTabActivity;
 import generalpersonactivities.BMICalculation;
 import generalpersondatabase.Person;
 import generalpersondatabase.PersonOperations;
 import mehdi.sakout.fancybuttons.FancyButton;
-import userinfo.UserGenderInfoActivity;
-import userinfo.UserHeightInfoActivity;
 
 public class DialogActivity extends AppCompatActivity {
 

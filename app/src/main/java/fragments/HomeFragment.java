@@ -6,7 +6,6 @@ package fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.support.annotation.RequiresApi;
 import android.support.design.internal.NavigationMenu;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,20 +25,17 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import activities.HomeTabActivity;
 import addfood.AddFoodActivity;
 
 import generalpersonactivities.BMICalculation;
 import goaldatabase.Goal;
-import goaldatabase.GoalDBHandler;
 import goaldatabase.GoalOperations;
 import helper.InitialShowFood;
 import adapter.InitialShowFoodAdapter;
 
-import com.example.moumita.caloriecountergeb.CurrentWeightUpdateGoal;
-import com.example.moumita.caloriecountergeb.DialogActivity;
+import userprofile.CurrentWeightUpdateGoal;
+import userprofile.DialogActivity;
 import com.example.moumita.caloriecountergeb.R;
 import helper.ShowFood;
 import adapter.ShowFoodAdapter;

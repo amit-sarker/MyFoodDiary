@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="activities.HomeTabActivity" />
+        <activity android:name=".HomeTabActivity" />
         <activity android:name="userinfo.UserGenderInfoActivity" />
         <activity android:name="generalpersonactivities.BMICalculationActivity" />
         <activity android:name="userinfo.UserHeightInfoActivity" />
@@ -37,28 +37,28 @@
         <activity android:name="addfood.AddFoodToDiaryActivity" />
         <activity android:name="piechart.ChartTestActivity" />
         <activity android:name="piechart.PiePolylineChartActivity" />
-        <activity android:name=".ListViewBarChartActivity" />
-        <activity android:name=".GroupBarChart" />
+        <activity android:name="chartanalysis.ListViewBarChartActivity" />
+        <activity android:name="chartanalysis.GroupBarChart" />
         <activity android:name="notifications.TestActivity" />
         <activity android:name="notifications.ChatActivity" />
-        <activity android:name=".BarChartActivityMultiDataset" />
-        <activity android:name=".AnalysisActivity" />
-        <activity android:name=".LineChartActivity2" />
+        <activity android:name="chartanalysis.BarChartActivityMultiDataset" />
+        <activity android:name="chartanalysis.AnalysisActivity" />
+        <activity android:name="chartanalysis.LineChartActivity2" />
         <activity
-            android:name=".DialogActivity"
+            android:name="userprofile.DialogActivity"
             android:excludeFromRecents="true"
             android:theme="@style/Theme.AppCompat.Dialog" />
-        <activity android:name=".UpdateGoalActivity" />
-        <activity android:name=".ShowGoalActivity" />
-        <activity android:name=".UserProfileActivity" />
-        <activity android:name=".CurrentWeightUpdateGoal" />
+        <activity android:name="userprofile.UpdateGoalActivity" />
+        <activity android:name="userprofile.ShowGoalActivity" />
+        <activity android:name="userprofile.UserProfileActivity" />
+        <activity android:name="userprofile.CurrentWeightUpdateGoal" />
         <activity android:name=".NavigationDrawerActivity" />
-        <activity android:name=".NotificationActivity" />
+        <activity android:name="notifications.NotificationActivity" />
 
-        <receiver android:name=".AlarmReceiver" />
+        <receiver android:name="notifications.AlarmReceiver" />
 
         <service
-            android:name=".NotificationService1"
+            android:name="notifications.NotificationService1"
             android:enabled="true"
             android:exported="true" />
 
