@@ -30,10 +30,6 @@ public class UserGenderInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_gender_info);
 
-        /*Toolbar toolbar = findViewById(R.id.toolbar);
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-        }*/
         PersonHelper userHelper = new PersonHelper();
 
         mTfRegular = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
@@ -60,7 +56,7 @@ public class UserGenderInfoActivity extends AppCompatActivity {
                     Intent intent = new Intent(UserGenderInfoActivity.this, UserHeightInfoActivity.class);
                     intent.putExtra("isfemale", isFemale);
                     startActivity(intent);
-                    } else if (checkedId == R.id.male_btn) {
+                } else if (checkedId == R.id.male_btn) {
                     isFemale = false;
                     Intent intent = new Intent(UserGenderInfoActivity.this, UserHeightInfoActivity.class);
                     intent.putExtra("isfemale", isFemale);

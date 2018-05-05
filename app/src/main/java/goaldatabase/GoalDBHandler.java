@@ -33,8 +33,8 @@ public class GoalDBHandler extends SQLiteOpenHelper {
                     COLUMN_GOAL_POINT + " INTEGER " +
                     ")";
 
-    public GoalDBHandler(Context context){
-        super(context, DATABASE_NAME,null, DATABASE_VERSION);
+    public GoalDBHandler(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override

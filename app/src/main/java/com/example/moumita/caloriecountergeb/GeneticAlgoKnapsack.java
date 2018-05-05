@@ -63,13 +63,8 @@ public class GeneticAlgoKnapsack {
         // Find best solution of generation
         this.best_solution_of_generation.add(this.population.get(this.getBestSolution()));
 
-        // Output best solution of generation
-        //System.out.println("\nBest solution of initial generation: " + this.best_solution_of_generation.get(0));
-
         // Find mean solution of generation
         this.mean_fitness_of_generation.add(this.getMeanFitness());
-
-        // Output mean solution of generation
 
         // Compute fitness of best solution of generation
         this.best_fitness_of_generation.add(this.evalGene(this.population.get(this.getBestSolution())));
@@ -99,7 +94,6 @@ public class GeneticAlgoKnapsack {
 
                 // If all are 3 equal, stop
                 if(a == b && b == c) {
-                    //System.out.println("\nStop criterion met");
                     maximum_generations = i;
                     break;
                 }
@@ -126,60 +120,17 @@ public class GeneticAlgoKnapsack {
                 this.population.set(k, this.breed_population.get(k));
             }
 
-            // Output population
-            /*System.out.println("\nGeneration " + (i + 1) + ":");
-            if((i + 1) < 10) {
-                System.out.println("=============");
-            }
-            if((i + 1) >= 10) {
-                System.out.println("==============");
-            }
-            if((i + 1) >= 100) {
-                System.out.println("===============");
-            }
-            /*System.out.println("Population:");
-            for(int l = 0; l < this.population_size; l++) {
-                System.out.println((l + 1) + " - " + this.population.get(l));
-            }
-
-            // Output fitness summary
-            System.out.println("\nFitness:");
-            for(int m = 0; m < this.population_size; m++) {
-                System.out.println((m + 1) + " - " + this.fitness.get(m));
-            }
-            */
-
             // Clear breed_population
             this.breed_population.clear();
 
             // Find best solution of generation
             this.best_solution_of_generation.add(this.population.get(this.getBestSolution()));
 
-            // Output best solution of generation
-            //System.out.println("\nBest solution of generation " + (i + 1) + ": " + this.best_solution_of_generation.get(i));
-
             // Find mean solution of generation
             this.mean_fitness_of_generation.add(this.getMeanFitness());
 
-            // Output mean solution of generation
-            //System.out.println("Mean fitness of generation: " + this.mean_fitness_of_generation.get(i));
-
             // Compute fitness of best solution of generation
             this.best_fitness_of_generation.add(this.evalGene(this.population.get(this.getBestSolution())));
-
-            // Output best fitness of generation
-            //System.out.println("Fitness score of best solution of generation " + (i + 1) + ": " + this.best_fitness_of_generation.get(i));
-
-            // Output crossover/cloning summary
-            /*System.out.println("Crossover occurred " + this.crossover_count + " times");
-            System.out.println("Cloning occurred " + this.clone_count + " times");
-            if(this.mutation == false) {
-                System.out.println("Mutation did not occur");
-            }
-            if(this.mutation == true) {
-                System.out.println("Mutation did occur");
-            }
-            */
         }
     }
 
@@ -190,7 +141,6 @@ public class GeneticAlgoKnapsack {
 
         ArrayList<ShowFood> foodSuggestions = new ArrayList<>();
         // Output optimal list of items
-        //System.out.println("\nOptimal list of items to include in knapsack: ");
 
         double best_fitness = Double.MAX_VALUE;
         int best_gen = 0;
@@ -202,11 +152,9 @@ public class GeneticAlgoKnapsack {
                 best_gen = z;
             }
         }
-        //System.out.println("Best Generation : " + best_gen);
 
         // Then, go through that's generation's best solution and output items
         String optimal_list = this.best_solution_of_generation.get(best_gen);
-        // System.out.println("Best people in this generation : " + optimal_list);
         for(int y = 0; y < this.number_of_items; y++) {
             if(optimal_list.substring(y, y + 1).equals("1")) {
                 foodSuggestions.add(new ShowFood(value_of_items.get(y).getFoodImage(), value_of_items.get(y).getFoodName(), String.valueOf(value_of_items.get(y).getCalorie()), String.valueOf(value_of_items.get(y).getFoodServingSize())));
@@ -324,7 +272,6 @@ public class GeneticAlgoKnapsack {
 
         // Decide if crossover is to be used
         double rand_crossover = Math.random() * 100;
-        //System.out.println("Random Crossover : " + rand_crossover + " " + prob_crossover);
         if(rand_crossover <= prob_crossover) {
             // Perform crossover
             crossover_count = crossover_count + 1;
@@ -335,7 +282,6 @@ public class GeneticAlgoKnapsack {
             new_gene_1 = population.get(gene_1).substring(0, cross_point) + population.get(gene_2).substring(cross_point);
             new_gene_2 = population.get(gene_2).substring(0, cross_point) + population.get(gene_1).substring(cross_point);
 
-            //System.out.println("Crossover Genes : " + new_gene_1 + " " + new_gene_2 + " " + population.get(gene_1) + " " + population.get(gene_2));
             // Add new genes to breed_population
             double fitness_new_gene_1 = evalGene(new_gene_1);
             double fitness_new_gene_2 = evalGene(new_gene_2);
@@ -379,10 +325,6 @@ public class GeneticAlgoKnapsack {
             else if(best_fitness.get(1).second==4){
                 breed_population.add(population.get(gene_2));
             }
-
-            //System.out.println("Crossover compare : " + fitness_new_gene_1 + " " + fitness_new_gene_2+ " " + fitness_old_gene_1 + " " + fitness_old_gene_2);
-            //System.out.println("Genes taken " + best_fitness.get(0).second + " " + best_fitness.get(1).second);
-
 
         }
         else {
@@ -433,8 +375,6 @@ public class GeneticAlgoKnapsack {
         return minimumList;
 
     }
-
-
 
 
     /**
@@ -523,9 +463,6 @@ public class GeneticAlgoKnapsack {
                 fat_sum += value_of_items.get(j).getFat();
                 carb_sum += value_of_items.get(j).getCarb();
                 calorie_sum += value_of_items.get(j).getCalorie();
-
-                //total_weight = total_weight + weight_of_items.get(j);
-                //total_value = total_value + value_of_items.get(j);
             }
         }
 
@@ -534,10 +471,6 @@ public class GeneticAlgoKnapsack {
                 + ( knapsack_capacity.getFat() - fat_sum)
                 + ( knapsack_capacity.getCarb() - carb_sum));
 
-        // Check if gene's total weight is less than knapsack capacity
-        //difference = knapsack_capacity - total_weight;
-
-        //double calorie_range_actual = Math.abs(knapsack_capacity.getCalorie() - calorie_sum);
         if(taken>=numOfSelectedFood ) {
             // This is acceptable; calculate a fitness_value
             // Otherwise, fitness_value remains 0 (default), since knapsack
@@ -589,16 +522,6 @@ public class GeneticAlgoKnapsack {
             // Append chromosome to gene
             gene.append(c);
         }
-        // Stringbuilder object to string; return
         return gene.toString();
     }
-
-
-    /**
-     * Collects user input to be used as parameters for knapsack problem
-     */
-
-
-
-
-} // KnapsackProblem
+}

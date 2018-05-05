@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.moumita.caloriecountergeb.R;
+
 import userinfo.UserSignInActivity;
 
 import generalpersondatabase.Person;
@@ -44,7 +45,7 @@ public class BMICalculationActivity extends AppCompatActivity {
 
         BMICalculation bmi = new BMICalculation();
         calculatedBMI = bmi.BMI(currentPerson.getHeight(), currentPerson.getWeight());
-        neededWeight =  bmi.WeightState(currentPerson.getHeight(), currentPerson.getWeight());
+        neededWeight = bmi.WeightState(currentPerson.getHeight(), currentPerson.getWeight());
 
         String personWeight = currentPerson.getWeight();
         Double currentPersonWeight = Double.parseDouble(personWeight);
@@ -55,18 +56,21 @@ public class BMICalculationActivity extends AppCompatActivity {
         mCalculatedBMI.setText(Double.toString(calculatedBMI));
         mCalculatedBMI.setTextColor(Color.parseColor("#795548"));
 
-        if(personBMIState.equals("underweight")) {
+        if (personBMIState.equals("underweight")) {
             mBMIState.setText("You are Underweight, you need to gain atleast " + abs(neededWeight) + "kg weight to become healthy");
             mBMIState.setTextColor(Color.parseColor("#F44336"));
-        } else if(personBMIState.equals("healthy")) {
-            if(neededWeight < 0.0) mBMIState.setText("You are Healthy, you can lose " + abs(neededWeight) + "kg weight to maintain standard weight");
-            else if(neededWeight > 0.0) mBMIState.setText("You are Healthy, you can gain " + abs(neededWeight) + "kg weight to maintain standard weight");
-            else mBMIState.setText("You are Healthy, your weight is standard & you need to maintain this weight");
+        } else if (personBMIState.equals("healthy")) {
+            if (neededWeight < 0.0)
+                mBMIState.setText("You are Healthy, you can lose " + abs(neededWeight) + "kg weight to maintain standard weight");
+            else if (neededWeight > 0.0)
+                mBMIState.setText("You are Healthy, you can gain " + abs(neededWeight) + "kg weight to maintain standard weight");
+            else
+                mBMIState.setText("You are Healthy, your weight is standard & you need to maintain this weight");
             mBMIState.setTextColor(Color.parseColor("#388E3C"));
-        } else if(personBMIState.equals("overweight")) {
+        } else if (personBMIState.equals("overweight")) {
             mBMIState.setText("You are Overweight, you need to lose atleast " + abs(neededWeight) + "kg weight to become healthy");
             mBMIState.setTextColor(Color.parseColor("#E53935"));
-        } else if(personBMIState.equals("obese")) {
+        } else if (personBMIState.equals("obese")) {
             mBMIState.setText("You are Obese, you have to lose " + abs(neededWeight) + "kg immediately");
             mBMIState.setTextColor(Color.parseColor("#D50000"));
         }
@@ -79,7 +83,5 @@ public class BMICalculationActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
 }

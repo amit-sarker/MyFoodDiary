@@ -38,7 +38,6 @@ public class UserWeightInfoActivity extends AppCompatActivity {
 
     EditText mWeightInputText, mTargetWeightText;
     TextView mWeightText, mKgText, mKgText2;
-    ImageView mWeightImg;
     Button mNextPageBtn;
     ToggleButton mlbsvsKg;
     private Typeface mTfRegular, mtfBold;
@@ -90,13 +89,11 @@ public class UserWeightInfoActivity extends AppCompatActivity {
         mlbsvsKg.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    /*mKgText.setText("Kg");
-                    mKgText2.setText("Kg");*/
+
                     iskg = true;
 
                 } else {
-                    /*mKgText.setText("lbs");
-                    mKgText2.setText("lbs");*/
+
                     iskg = false;
 
                 }
@@ -125,7 +122,7 @@ public class UserWeightInfoActivity extends AppCompatActivity {
                     mWeightInputText.setError(null);
                 }
 
-                if(targetweightstr.isEmpty()) {
+                if (targetweightstr.isEmpty()) {
                     mTargetWeightText.setError("enter target weight");
                     return;
                 } else {
@@ -154,7 +151,7 @@ public class UserWeightInfoActivity extends AppCompatActivity {
                 else BMRGender += "male";
                 BMRWithoutActivity = BMICalculation.BMRWithoutActivity(BMRHeight, BMRWeight, BMRAge, BMRGender);
                 BMRWithActivity = BMICalculation.BMRWithActivity(BMRHeight, BMRWeight, BMRAge, BMRGender, intActivityLevel);
-                Toast t = Toast.makeText(UserWeightInfoActivity.this, "Without Activity " + BMRWithoutActivity + "   With Activity"+ " " + BMRWithActivity, Toast.LENGTH_LONG);
+                Toast t = Toast.makeText(UserWeightInfoActivity.this, "Without Activity " + BMRWithoutActivity + "   With Activity" + " " + BMRWithActivity, Toast.LENGTH_LONG);
                 t.show();
 
                 String current_date_str = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());

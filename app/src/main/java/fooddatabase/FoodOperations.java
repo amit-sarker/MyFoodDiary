@@ -36,16 +36,16 @@ public class FoodOperations {
     };
 
 
-    public FoodOperations(Context context){
+    public FoodOperations(Context context) {
         dbhandler = new FoodDBHandler(context);
     }
 
-    public void open(){
-        Log.i(LOGTAG,"Database Opened");
+    public void open() {
+        Log.i(LOGTAG, "Database Opened");
         database = dbhandler.getWritableDatabase();
     }
 
-    public void close(){
+    public void close() {
         Log.i(LOGTAG, "Database Closed");
         dbhandler.close();
     }
@@ -68,7 +68,7 @@ public class FoodOperations {
         values.put(FoodDBHandler.COLUMN_FOOD_IMAGE, food.getFood_image());
         values.put(FoodDBHandler.COLUMN_FOOD_NOTES, food.getFood_notes());
 
-        long insertid = database.insert(FoodDBHandler.TABLE_FOOD,null, values);
+        long insertid = database.insert(FoodDBHandler.TABLE_FOOD, null, values);
         food.setFood_id(insertid);
         return food;
     }
@@ -76,7 +76,7 @@ public class FoodOperations {
 
     public Food getFood(long id) {
 
-        Cursor cursor = database.query(FoodDBHandler.TABLE_FOOD, allColumns,FoodDBHandler.COLUMN_FOOD_ID + "=?", new String[]{String.valueOf(id)},null,null, null, null);
+        Cursor cursor = database.query(FoodDBHandler.TABLE_FOOD, allColumns, FoodDBHandler.COLUMN_FOOD_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
@@ -90,7 +90,7 @@ public class FoodOperations {
     }
 
     public Food getFoodByName(String foodName) {
-        Cursor cursor = database.query(FoodDBHandler.TABLE_FOOD, allColumns,"food_name=?", new String[]{foodName},null,null, null, null);
+        Cursor cursor = database.query(FoodDBHandler.TABLE_FOOD, allColumns, "food_name=?", new String[]{foodName}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
@@ -103,11 +103,11 @@ public class FoodOperations {
     }
 
     public List<Food> getAllFood() {
-        Cursor cursor = database.query(FoodDBHandler.TABLE_FOOD, allColumns,null,null,null, null, null);
+        Cursor cursor = database.query(FoodDBHandler.TABLE_FOOD, allColumns, null, null, null, null, null);
         List<Food> foodList = new ArrayList<>();
 
-        if(cursor.getCount() > 0) {
-            while(cursor.moveToNext()) {
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
                 Food food = new Food();
                 food.setFood_id(cursor.getLong(cursor.getColumnIndex(FoodDBHandler.COLUMN_FOOD_ID)));
                 food.setFood_name(cursor.getString(cursor.getColumnIndex(FoodDBHandler.COLUMN_FOOD_NAME)));
@@ -152,12 +152,12 @@ public class FoodOperations {
         values.put(FoodDBHandler.COLUMN_FOOD_NOTES, food.getFood_notes());
 
         return database.update(FoodDBHandler.TABLE_FOOD, values,
-                FoodDBHandler.COLUMN_FOOD_ID + "=?", new String[] { String.valueOf(food.getFood_id())});
+                FoodDBHandler.COLUMN_FOOD_ID + "=?", new String[]{String.valueOf(food.getFood_id())});
     }
 
     public void removeFood(Food food) {
-        database.delete(FoodDBHandler.TABLE_FOOD,FoodDBHandler.COLUMN_FOOD_ID + "=" + food.getFood_id(),null);
+        database.delete(FoodDBHandler.TABLE_FOOD, FoodDBHandler.COLUMN_FOOD_ID + "=" + food.getFood_id(), null);
 
     }
-    
+
 }

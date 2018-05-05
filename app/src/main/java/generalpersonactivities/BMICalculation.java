@@ -1,7 +1,8 @@
 package generalpersonactivities;
 
 public class BMICalculation {
-    public BMICalculation() {}
+    public BMICalculation() {
+    }
 
     public double BMI(String height, String weight) {
         double currentHeight, currentWeight;
@@ -13,9 +14,9 @@ public class BMICalculation {
     }
 
     public String BMIState(double bmi) {
-        if(bmi < 18.5) return "underweight";
-        else if(bmi >= 18.5 && bmi <= 24.9) return "healthy";
-        else if(bmi >= 25.0 && bmi <= 29.9) return "overweight";
+        if (bmi < 18.5) return "underweight";
+        else if (bmi >= 18.5 && bmi <= 24.9) return "healthy";
+        else if (bmi >= 25.0 && bmi <= 29.9) return "overweight";
         else return "obese";
     }
 
@@ -37,7 +38,7 @@ public class BMICalculation {
         doubleHeightCM = Double.parseDouble(height);
         doubleTargetWeight = Double.parseDouble(targetWeight);
         doubleAge = Double.parseDouble(age);
-        if(gender.startsWith("m")) {
+        if (gender.startsWith("m")) {
             BMR = 66.5 + (13.75 * doubleTargetWeight) + (5.003 * doubleHeightCM) - (6.755 * doubleAge);
         } else {
             BMR = 655.1 + (9.563 * doubleTargetWeight) + (1.850 * doubleHeightCM) - (4.676 * doubleAge);
@@ -48,13 +49,12 @@ public class BMICalculation {
     }
 
     public static double BMRWithActivity(String height, String targetWeight, String age, String gender, long activityLevel) {
-        System.out.println("AAAAAAAAAAAAA     " + height + "    " + targetWeight + "    " + age + "    " + gender + "   " + activityLevel);
         double BMR = 0.0;
         double doubleHeightCM, doubleTargetWeight, doubleAge;
         doubleHeightCM = Double.parseDouble(height);
         doubleTargetWeight = Double.parseDouble(targetWeight);
         doubleAge = Double.parseDouble(age);
-        if(gender.startsWith("m")) {
+        if (gender.startsWith("m")) {
             BMR = 66.5 + (13.75 * doubleTargetWeight) + (5.003 * doubleHeightCM) - (6.755 * doubleAge);
         } else {
             BMR = 655.1 + (9.563 * doubleTargetWeight) + (1.850 * doubleHeightCM) - (4.676 * doubleAge);
@@ -62,11 +62,15 @@ public class BMICalculation {
 
         BMR = Math.round(BMR);
 
-        if(activityLevel == 0) BMR *= 1.2; //Sedentary, Little or no Exercise/ desk job
-        else if(activityLevel == 1) BMR *= 1.375; //Lightly active, Light exercise/ sports 1 – 3 days/ week
-        else if(activityLevel == 2) BMR *= 1.55; //Moderately active, Moderate Exercise, sports 3 – 5 days/ week
-        else if(activityLevel == 3) BMR *= 1.725; //Very active. Heavy Exercise/ sports 6 – 7 days/ week
-        else if(activityLevel == 4) BMR *= 1.9; //Extremely active, Very heavy exercise/ physical job/ training 2 x/ day
+        if (activityLevel == 0) BMR *= 1.2; //Sedentary, Little or no Exercise/ desk job
+        else if (activityLevel == 1)
+            BMR *= 1.375; //Lightly active, Light exercise/ sports 1 – 3 days/ week
+        else if (activityLevel == 2)
+            BMR *= 1.55; //Moderately active, Moderate Exercise, sports 3 – 5 days/ week
+        else if (activityLevel == 3)
+            BMR *= 1.725; //Very active. Heavy Exercise/ sports 6 – 7 days/ week
+        else if (activityLevel == 4)
+            BMR *= 1.9; //Extremely active, Very heavy exercise/ physical job/ training 2 x/ day
 
         BMR = Math.round(BMR);
 

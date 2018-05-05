@@ -5,7 +5,8 @@ public class FoodServing {
     String food_name, food_serving_measurement, serving_size_to_grams;
     String serving_image_id;
 
-    public FoodServing() {}
+    public FoodServing() {
+    }
 
     public FoodServing(long serving_id, String food_name, String food_serving_measurement, String serving_size_to_grams, String serving_image_id) {
         this.serving_id = serving_id;

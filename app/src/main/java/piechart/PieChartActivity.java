@@ -23,6 +23,7 @@ public class PieChartActivity extends AppCompatActivity implements OnChartValueS
 
     PieChart pieChart;
     Typeface mTfLight, mTfRegular;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +79,7 @@ public class PieChartActivity extends AppCompatActivity implements OnChartValueS
 
     @Override
     public void onValueSelected(Entry e, Highlight h) {
-        
+
     }
 
     @Override

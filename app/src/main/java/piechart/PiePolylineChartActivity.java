@@ -101,7 +101,6 @@ public class PiePolylineChartActivity extends DemoBase implements OnSeekBarChang
     }
 
 
-
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 

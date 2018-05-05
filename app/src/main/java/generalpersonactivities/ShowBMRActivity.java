@@ -15,12 +15,13 @@ import java.util.Date;
 import java.util.Locale;
 
 import com.example.moumita.caloriecountergeb.HomeTabActivity;
+
 import trackingdatabase.CalorieTracking;
 import trackingdatabase.TrackingOperations;
 
 public class ShowBMRActivity extends AppCompatActivity {
 
-    private  double BMRWithoutActivity, BMRWithActivity, proteinsWithActivity, fatWithActivity, carbsWithActivity;
+    private double BMRWithoutActivity, BMRWithActivity, proteinsWithActivity, fatWithActivity, carbsWithActivity;
     private TextView bmrHeaderView, bmrDataview, congratsText, welcomeText, welcome2Text;
     private String bmrText;
     private Button nextButton;
@@ -69,7 +70,7 @@ public class ShowBMRActivity extends AppCompatActivity {
         trackingData.open();
 
         CalorieTracking lastTrackingRow = new CalorieTracking();
-        if(trackingData.getRowCount() != 0) {
+        if (trackingData.getRowCount() != 0) {
             lastTrackingRow = trackingData.getTracking(trackingData.getRowCount());
         }
 
@@ -93,7 +94,7 @@ public class ShowBMRActivity extends AppCompatActivity {
         calorieTrackingData.setCarbs_consumed(0.0);
         calorieTrackingData.setCarbs_remaining(Math.round(carbsWithActivity / 4.0));
 
-        if(trackingData.getRowCount() != 0) {
+        if (trackingData.getRowCount() != 0) {
             calorieTrackingData.setWater_consumed(lastTrackingRow.getWater_consumed());
             calorieTrackingData.setGoal_point(lastTrackingRow.getGoal_point());
             calorieTrackingData.setRank(lastTrackingRow.getRank());
@@ -106,7 +107,6 @@ public class ShowBMRActivity extends AppCompatActivity {
 
         trackingData.addTrackingData(calorieTrackingData);
         trackingData.close();
-
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override

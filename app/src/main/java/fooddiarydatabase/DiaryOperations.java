@@ -39,12 +39,12 @@ public class DiaryOperations {
         dbhandler = new DiaryDBHandler(context);
     }
 
-    public void open(){
-        Log.i(LOGTAG,"Database Opened");
+    public void open() {
+        Log.i(LOGTAG, "Database Opened");
         database = dbhandler.getWritableDatabase();
     }
 
-    public void close(){
+    public void close() {
         Log.i(LOGTAG, "Database Closed");
         dbhandler.close();
     }
@@ -59,22 +59,21 @@ public class DiaryOperations {
         values.put(DiaryDBHandler.COLUMN_MEAL_TYPE, foodDiary.getMeal_type());
         values.put(DiaryDBHandler.COLUMN_TOTAL_CAL_SELECTED_FOOD, foodDiary.getTotal_cal_selected_food());
 
-        long insertid = database.insert(TABLE_DIARY,null, values);
+        long insertid = database.insert(TABLE_DIARY, null, values);
         foodDiary.setDiary_id(insertid);
         return foodDiary;
     }
 
     public List<FoodDiary> getFoodDiaryByDate(String targetDate) throws ParseException {
-        Cursor cursor = database.query(TABLE_DIARY, allColumns,null,null,null, null, null);
+        Cursor cursor = database.query(TABLE_DIARY, allColumns, null, null, null, null, null);
         List<FoodDiary> foodDiaryList = new ArrayList<>();
 
-        if(cursor.getCount() > 0) {
-            while(cursor.moveToNext()) {
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
 
                 String dbDate = cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_DATE));
 
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-
 
                 String str1 = targetDate;
                 Date target = formatter.parse(str1);
@@ -82,7 +81,7 @@ public class DiaryOperations {
                 String str2 = dbDate;
                 Date presentInDb = formatter.parse(str2);
 
-                if(presentInDb.compareTo(target) >= 0) {
+                if (presentInDb.compareTo(target) >= 0) {
                     FoodDiary foodDiary = new FoodDiary();
                     foodDiary.setDiary_id(cursor.getLong(cursor.getColumnIndex(DiaryDBHandler.COLUMN_DIARY_ID)));
                     foodDiary.setDate(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_DATE)));
@@ -96,14 +95,13 @@ public class DiaryOperations {
                 }
             }
         }
-        System.err.println("Size in dateeeeeeeeeeeee    " + foodDiaryList.size());
         return foodDiaryList;
     }
 
     public FoodDiary getFoodDiary(long id) {
 
-        Cursor cursor = database.query(TABLE_DIARY, allColumns,DiaryDBHandler.COLUMN_DIARY_ID + "=?",
-                new String[]{String.valueOf(id)},null,null, null, null);
+        Cursor cursor = database.query(TABLE_DIARY, allColumns, DiaryDBHandler.COLUMN_DIARY_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
@@ -116,12 +114,13 @@ public class DiaryOperations {
     private static final String[] distColumns = {
             DiaryDBHandler.COLUMN_FOOD_NAME
     };
+
     public List<FoodDiary> getAllFoodDiary() {
         Cursor cursor = database.query(true, TABLE_DIARY, distColumns, null, null, null, null, null, null);
         List<FoodDiary> foodDiaryList = new ArrayList<>();
 
-        if(cursor.getCount() > 0) {
-            while(cursor.moveToNext()) {
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
                 FoodDiary foodDiary = new FoodDiary();
                 foodDiary.setFood_name(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_FOOD_NAME)));
                 foodDiaryList.add(foodDiary);
@@ -131,13 +130,12 @@ public class DiaryOperations {
     }
 
     public List<FoodDiary> getFoodListByMealType(String current_date, String meal_type) {
-        Cursor cursor = database.query(TABLE_DIARY, allColumns,null,null,null, null, null);
+        Cursor cursor = database.query(TABLE_DIARY, allColumns, null, null, null, null, null);
         List<FoodDiary> foodDiaryList = new ArrayList<>();
 
-        if(cursor.getCount() > 0) {
-            while(cursor.moveToNext()) {
-                if(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_MEAL_TYPE)).equals(meal_type) && cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_DATE)).equals(current_date))
-                {
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                if (cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_MEAL_TYPE)).equals(meal_type) && cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_DATE)).equals(current_date)) {
                     FoodDiary foodDiary = new FoodDiary();
                     foodDiary.setDiary_id(cursor.getLong(cursor.getColumnIndex(DiaryDBHandler.COLUMN_DIARY_ID)));
                     foodDiary.setDate(cursor.getString(cursor.getColumnIndex(DiaryDBHandler.COLUMN_DATE)));
@@ -167,10 +165,10 @@ public class DiaryOperations {
         values.put(DiaryDBHandler.COLUMN_TOTAL_CAL_SELECTED_FOOD, foodDiary.getTotal_cal_selected_food());
 
         return database.update(TABLE_DIARY, values,
-                DiaryDBHandler.COLUMN_DIARY_ID + "=?", new String[] { String.valueOf(foodDiary.getDiary_id())});
+                DiaryDBHandler.COLUMN_DIARY_ID + "=?", new String[]{String.valueOf(foodDiary.getDiary_id())});
     }
 
     public void removeFoodDiary(FoodDiary foodDiary) {
-        database.delete(TABLE_DIARY,DiaryDBHandler.COLUMN_DIARY_ID + "=" + foodDiary.getDiary_id(),null);
+        database.delete(TABLE_DIARY, DiaryDBHandler.COLUMN_DIARY_ID + "=" + foodDiary.getDiary_id(), null);
     }
 }

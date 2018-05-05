@@ -2,12 +2,14 @@ package generalpersondatabase;
 
 
 public class Person {
-    private  String age, gender, weight, height, targetWeight, BMRWithActivity, BMRWithoutActivity;
+    private String age, gender, weight, height, targetWeight, BMRWithActivity, BMRWithoutActivity;
     private long activityLevel;
     private long personID;
     private String weightUpdateAmount;
     private String weightUpdateDate;
-    public Person() {}
+
+    public Person() {
+    }
 
     public Person(long personID, String age, String gender, String height, String weight, long activityLevel, String targetWeight,
                   String BMRWithoutActivity, String BMRWithActivity, String weightUpdateAmount, String weightUpdateDate) {

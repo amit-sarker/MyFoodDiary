@@ -21,13 +21,12 @@ import java.util.Locale;
 
 public class UserAgeInfoActivity extends AppCompatActivity {
 
-    private boolean isFemale, isfeet=true;
+    private boolean isFemale, isfeet = true;
     private double height;
 
     private String[] dayValues = new String[32];
     private String[] monthValues = {"Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"};
     private String[] yearValues = new String[100];
-    //private DatePicker simpleDatePicker;
     private Button submit;
     private NumberPicker mMonthPicker, mDayPicker, mYearPicker;
     private Typeface mTfRegular, mtfBold;
@@ -43,7 +42,6 @@ public class UserAgeInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_age_info);
 
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
@@ -54,11 +52,11 @@ public class UserAgeInfoActivity extends AppCompatActivity {
         height = bundle.getDouble("height");
 
         for (int i = 0; i < 32; i++) {
-            dayValues[i] = String.valueOf(i+1);
+            dayValues[i] = String.valueOf(i + 1);
         }
 
         for (int i = 0; i < 100; i++) {
-            yearValues[i] = String.valueOf(i+1920);
+            yearValues[i] = String.valueOf(i + 1920);
         }
 
         mTfRegular = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
@@ -84,7 +82,6 @@ public class UserAgeInfoActivity extends AppCompatActivity {
         mYearPicker.setMaxValue(99);
         mYearPicker.setDisplayedValues(yearValues);
 
-        //simpleDatePicker = (DatePicker) findViewById(R.id.simpleDatePicker);
         submit = (Button) findViewById(R.id.submitButton);
 
         submit.setTypeface(mTfRegular);
@@ -93,24 +90,21 @@ public class UserAgeInfoActivity extends AppCompatActivity {
 
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                if(mMonthPicker.getValue()==2) {
-                    if((mYearPicker.getValue()%4==0 && mYearPicker.getValue()%100!=0) ||
-                            mYearPicker.getValue()%400==0 ) {
+                if (mMonthPicker.getValue() == 2) {
+                    if ((mYearPicker.getValue() % 4 == 0 && mYearPicker.getValue() % 100 != 0) ||
+                            mYearPicker.getValue() % 400 == 0) {
                         mDayPicker.setMinValue(1);
                         mDayPicker.setMaxValue(29);
-                    }
-                    else {
+                    } else {
                         mDayPicker.setMinValue(1);
                         mDayPicker.setMaxValue(28);
                     }
 
-                }
-                else if(mMonthPicker.getValue()==9 || mMonthPicker.getValue()==4 ||
-                        mMonthPicker.getValue()==6 || mMonthPicker.getValue()==11) {
+                } else if (mMonthPicker.getValue() == 9 || mMonthPicker.getValue() == 4 ||
+                        mMonthPicker.getValue() == 6 || mMonthPicker.getValue() == 11) {
                     mDayPicker.setMinValue(1);
                     mDayPicker.setMaxValue(30);
-                }
-                else {
+                } else {
                     mDayPicker.setMinValue(1);
                     mDayPicker.setMaxValue(31);
                 }
@@ -118,24 +112,21 @@ public class UserAgeInfoActivity extends AppCompatActivity {
                 mYearPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
                     @Override
                     public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                        if(mMonthPicker.getValue()==2) {
-                            if((mYearPicker.getValue()%4==0 && mYearPicker.getValue()%100!=0) ||
-                                    mYearPicker.getValue()%400==0 ) {
+                        if (mMonthPicker.getValue() == 2) {
+                            if ((mYearPicker.getValue() % 4 == 0 && mYearPicker.getValue() % 100 != 0) ||
+                                    mYearPicker.getValue() % 400 == 0) {
                                 mDayPicker.setMinValue(1);
                                 mDayPicker.setMaxValue(29);
-                            }
-                            else {
+                            } else {
                                 mDayPicker.setMinValue(1);
                                 mDayPicker.setMaxValue(28);
                             }
 
-                        }
-                        else if(mMonthPicker.getValue()==9 || mMonthPicker.getValue()==4 ||
-                                mMonthPicker.getValue()==6 || mMonthPicker.getValue()==11) {
+                        } else if (mMonthPicker.getValue() == 9 || mMonthPicker.getValue() == 4 ||
+                                mMonthPicker.getValue() == 6 || mMonthPicker.getValue() == 11) {
                             mDayPicker.setMinValue(1);
                             mDayPicker.setMaxValue(30);
-                        }
-                        else {
+                        } else {
                             mDayPicker.setMinValue(1);
                             mDayPicker.setMaxValue(31);
                         }
@@ -152,24 +143,21 @@ public class UserAgeInfoActivity extends AppCompatActivity {
                 mMonthPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
                     @Override
                     public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                        if(mMonthPicker.getValue()==2) {
-                            if((mYearPicker.getValue()%4==0 && mYearPicker.getValue()%100!=0) ||
-                                    mYearPicker.getValue()%400==0 ) {
+                        if (mMonthPicker.getValue() == 2) {
+                            if ((mYearPicker.getValue() % 4 == 0 && mYearPicker.getValue() % 100 != 0) ||
+                                    mYearPicker.getValue() % 400 == 0) {
                                 mDayPicker.setMinValue(1);
                                 mDayPicker.setMaxValue(29);
-                            }
-                            else {
+                            } else {
                                 mDayPicker.setMinValue(1);
                                 mDayPicker.setMaxValue(28);
                             }
 
-                        }
-                        else if(mMonthPicker.getValue()==9 || mMonthPicker.getValue()==4 ||
-                                mMonthPicker.getValue()==6 || mMonthPicker.getValue()==11) {
+                        } else if (mMonthPicker.getValue() == 9 || mMonthPicker.getValue() == 4 ||
+                                mMonthPicker.getValue() == 6 || mMonthPicker.getValue() == 11) {
                             mDayPicker.setMinValue(1);
                             mDayPicker.setMaxValue(30);
-                        }
-                        else {
+                        } else {
                             mDayPicker.setMinValue(1);
                             mDayPicker.setMaxValue(31);
                         }
@@ -186,16 +174,6 @@ public class UserAgeInfoActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                // get the values for day of month , month and year from a date picker
-               // String day = "Day = " + simpleDatePicker.getDayOfMonth();
-               // String month = "Month = " + (simpleDatePicker.getMonth() + 1);
-               // String year = "Year = " + (simpleDatePicker.getYear());
-
-                //final int dd = simpleDatePicker.getDayOfMonth();
-                //final int mm = simpleDatePicker.getMonth() + 1;
-                //final int yy = simpleDatePicker.getYear();
-
-
                 final int dd = mDayPicker.getValue();
                 final int mm = mMonthPicker.getValue();
                 final int yy = mYearPicker.getValue() + 1920;
@@ -205,8 +183,8 @@ public class UserAgeInfoActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), dd + "\n" + mm + "\n" + yy, Toast.LENGTH_SHORT).show();
 
                 String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-                final int age = getAge(yy,mm,dd,date);
-                Toast.makeText(getApplicationContext(),age + " hhh", Toast.LENGTH_SHORT).show();
+                final int age = getAge(yy, mm, dd, date);
+                Toast.makeText(getApplicationContext(), age + " hhh", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(UserAgeInfoActivity.this, UserWeightInfoActivity.class);
                 intent.putExtra("isfemale", isFemale);
@@ -218,33 +196,30 @@ public class UserAgeInfoActivity extends AppCompatActivity {
             }
         });
     }
+
     public int getAge(int DOByear, int DOBmonth, int DOBday, String todaydate) {
 
-        int todayDay=0, currentMonth=0, currentYear=0;
-        for(int i=0;i<4;i++)
-        {
-            if(i>0) currentYear *= 10;
+        int todayDay = 0, currentMonth = 0, currentYear = 0;
+        for (int i = 0; i < 4; i++) {
+            if (i > 0) currentYear *= 10;
             currentYear += todaydate.charAt(i) - '0';
         }
-        for(int i=5;i<7;i++)
-        {
-            if(i==6) currentMonth *= 10;
+        for (int i = 5; i < 7; i++) {
+            if (i == 6) currentMonth *= 10;
             currentMonth += todaydate.charAt(i) - '0';
         }
-        for(int i=8;i<10;i++)
-        {
-            if(i==9) todayDay *= 10;
+        for (int i = 8; i < 10; i++) {
+            if (i == 9) todayDay *= 10;
             todayDay += todaydate.charAt(i) - '0';
         }
 
         int age;
         age = currentYear - DOByear;
 
-        if(DOBmonth > currentMonth){
+        if (DOBmonth > currentMonth) {
             --age;
-        }
-        else if(DOBmonth == currentMonth){
-            if(DOBday > todayDay){
+        } else if (DOBmonth == currentMonth) {
+            if (DOBday > todayDay) {
                 --age;
             }
         }

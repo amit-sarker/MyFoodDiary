@@ -29,14 +29,12 @@ public class GoalFragment extends Fragment {
 
     private GoalOperations goalData;
     List<String> goalName, goalDes, goalStatus;
-    List<Integer> goalImages,goalDuration,goalStreak;
+    List<Integer> goalImages, goalDuration, goalStreak;
     private TextView goalHeaderText;
 
 
     public GoalFragment() {
-        // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,12 +57,12 @@ public class GoalFragment extends Fragment {
 
         final List<Goal> goalList = goalData.getAllGoals();
 
-        for(Goal a: goalList) {
+        for (Goal a : goalList) {
             goalName.add(a.getGoal_name());
             goalDes.add(a.getGoal_description());
             goalImages.add(ImageID(a.getGoal_image()));
             goalDuration.add((int) a.getGoal_duration());
-            goalStreak.add((int)a.getMy_goal_streak());
+            goalStreak.add((int) a.getMy_goal_streak());
             goalStatus.add(a.getGoal_status());
 
         }
@@ -96,6 +94,7 @@ public class GoalFragment extends Fragment {
 
         return super.onOptionsItemSelected(item);
     }
+
     public int ImageID(String image_name) {
         int resID = this.getResources().getIdentifier(image_name, "drawable", getActivity().getPackageName());
         return resID;

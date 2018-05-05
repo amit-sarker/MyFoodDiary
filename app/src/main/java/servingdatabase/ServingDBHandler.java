@@ -25,8 +25,8 @@ public class ServingDBHandler extends SQLiteOpenHelper {
                     COLUMN_SERVING_IMAGE_ID + " TEXT " +
                     ")";
 
-    public ServingDBHandler(Context context){
-        super(context, DATABASE_NAME,null, DATABASE_VERSION);
+    public ServingDBHandler(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override

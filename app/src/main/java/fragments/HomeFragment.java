@@ -36,7 +36,9 @@ import adapter.InitialShowFoodAdapter;
 
 import userprofile.CurrentWeightUpdateGoal;
 import userprofile.DialogActivity;
+
 import com.example.moumita.caloriecountergeb.R;
+
 import helper.ShowFood;
 import adapter.ShowFoodAdapter;
 
@@ -67,7 +69,6 @@ import trackingdatabase.TrackingOperations;
 public class HomeFragment extends Fragment {
 
     public HomeFragment() {
-        // Required empty public constructor
     }
 
     private DiaryOperations foodDiary;
@@ -108,41 +109,6 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
-
-/*
-        TapTargetView.showFor(getActivity(),                 // `this` is an Activity
-                TapTarget.forView(view.findViewById(R.id.fab_add_food), "Click here to add your first food", "Select from category - breakfast, lunch or dinner")
-                        // All options below are optional
-                        .outerCircleColor(R.color.red)      // Specify a color for the outer circle
-                        .outerCircleAlpha(0.96f)            // Specify the alpha amount for the outer circle
-                        .targetCircleColor(R.color.white)   // Specify a color for the target circle
-                        .titleTextSize(20)                  // Specify the size (in sp) of the title text
-                        .titleTextColor(R.color.white)      // Specify the color of the title text
-                        .descriptionTextSize(10)            // Specify the size (in sp) of the description text
-                        .descriptionTextColor(R.color.red)  // Specify the color of the description text
-                        .textColor(R.color.colorWhite)            // Specify a color for both the title and description text
-                        .textTypeface(Typeface.SANS_SERIF)  // Specify a typeface for the text
-                        .dimColor(R.color.colorPrimary)            // If set, will dim behind the view with 30% opacity of the given color
-                        .drawShadow(true)                   // Whether to draw a drop shadow or not
-                        .cancelable(false)                  // Whether tapping outside the outer circle dismisses the view
-                        .tintTarget(true)                   // Whether to tint the target view's color
-                        .transparentTarget(true)           // Specify whether the target is transparent (displays the content underneath)
-                        // Specify a custom drawable to draw as the target
-                        .targetRadius(60),                  // Specify the target radius (in dp)
-                new TapTargetView.Listener() {          // The listener can listen for regular clicks, long clicks or cancels
-                    @Override
-                    public void onTargetClick(TapTargetView view) {
-                        super.onTargetClick(view);      // This call is optional
-                        Toast.makeText(getContext(), " touched", Toast.LENGTH_SHORT).show();
-
-
-                    }
-                });
-*/
-
-
-
 
         personData = new PersonOperations(getContext());
         foodDiary = new DiaryOperations(getContext());
@@ -213,7 +179,6 @@ public class HomeFragment extends Fragment {
         calRemainNum.setTypeface(mTfRegular);
 
 
-
         vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
         CheckWaterGoal();
 
@@ -238,16 +203,12 @@ public class HomeFragment extends Fragment {
         personData.open();
 
         long last_row_person = personData.getRowCount();
-        System.err.println("LLLLLLLLLLLLLLLLLLLLLLLLLL         " + last_row_person);
         Person personLastRow = personData.getPerson(last_row_person);
 
         personData.close();
         String cal_needed = personLastRow.getBMRWithActivity();
         String current_weight = String.valueOf(BMICalculation.Round(Double.parseDouble(personLastRow.getWeight()), 1));
         String target_weight = personLastRow.getTargetWeight();
-
-        System.err.println("Currentttttttttttttttttttttttttttt:   " + current_weight);
-        System.err.println("Targetttttttttttttttttttttttttttt:    " + target_weight);
 
         fitChart = view.findViewById(R.id.fitChart);
 
@@ -256,7 +217,7 @@ public class HomeFragment extends Fragment {
         lastTrackingRow = trackingData.getTracking(totalRow);
         trackingData.close();
 
-        waterCountText.setText((int)lastTrackingRow.getWater_consumed() + " glasses of water");
+        waterCountText.setText((int) lastTrackingRow.getWater_consumed() + " glasses of water");
         waterCountText.setTypeface(mTfRegular);
 
         calConsumed = lastTrackingRow.getCal_consumed();
@@ -275,9 +236,9 @@ public class HomeFragment extends Fragment {
         fatRemain = lastTrackingRow.getFat_remaining();
         fatNeed = lastTrackingRow.getFat_needed();
 
-        if(carbsRemain < 0.0) carbsRemain = 0.0;
-        if(proteinRemain < 0.0) proteinRemain = 0.0;
-        if(fatRemain < 0.0) fatRemain = 0.0;
+        if (carbsRemain < 0.0) carbsRemain = 0.0;
+        if (proteinRemain < 0.0) proteinRemain = 0.0;
+        if (fatRemain < 0.0) fatRemain = 0.0;
 
         carbsRemainText.setText(Math.round(carbsRemain) + "g left");
         proteinRemainText.setText(Math.round(proteinRemain) + "g left");
@@ -303,8 +264,8 @@ public class HomeFragment extends Fragment {
         fatBar.setMax((int) fatNeed);
         fatBar.setProgress((int) fatConsumed);
 
-        if(calConsumed < 0.0) calConsumed = 0.0;
-        if(calRemain < 0.0) calRemain = 0.0;
+        if (calConsumed < 0.0) calConsumed = 0.0;
+        if (calRemain < 0.0) calRemain = 0.0;
 
         calConsumeNum.setText(String.valueOf(Math.round(calConsumed)));
         calBurnNum.setText("0");
@@ -325,7 +286,7 @@ public class HomeFragment extends Fragment {
         personData.close();
 
         double total_updated_weight = 0.0;
-        for(int i = 0; i < updatedWeightAll.size(); i++) {
+        for (int i = 0; i < updatedWeightAll.size(); i++) {
             total_updated_weight += updatedWeightAll.get(i);
         }
 
@@ -344,7 +305,6 @@ public class HomeFragment extends Fragment {
         weightProgressBar.setMax((int) (Double.parseDouble(target_weight) - initial_weight) * 1000);
         double progress_amount = total_updated_weight;
         weightProgressBar.setProgress((int) (progress_amount * 1000));
-        //weightProgressBar.setScaleY(3f);
 
 
         currentWeightNumText.setTypeface(mTfRegular);
@@ -361,7 +321,7 @@ public class HomeFragment extends Fragment {
         weightMotivationText.setTextSize(15);
 
 
-        if(Double.parseDouble(personLastRow.getWeight()) >= Double.parseDouble(personLastRow.getTargetWeight())) {
+        if (Double.parseDouble(personLastRow.getWeight()) >= Double.parseDouble(personLastRow.getTargetWeight())) {
             updateWeightButton.setText("Update Your Goal");
             weightMotivationText.setText(R.string.congrates_goal_complete);
             updateWeightButton.setOnClickListener(new View.OnClickListener() {
@@ -370,7 +330,6 @@ public class HomeFragment extends Fragment {
                     vibrator.vibrate(25);
                     Intent intent = new Intent(getContext(), CurrentWeightUpdateGoal.class);
                     startActivity(intent);
-                    //getActivity().finish();
                 }
             });
         } else {
@@ -380,7 +339,6 @@ public class HomeFragment extends Fragment {
                     vibrator.vibrate(25);
                     Intent intent = new Intent(getContext(), DialogActivity.class);
                     startActivity(intent);
-                    //getActivity().finish();
                 }
             });
         }
@@ -420,8 +378,6 @@ public class HomeFragment extends Fragment {
                         startActivity(intent);
                         break;
                     }
-
-
                 }
                 return false;
             }
@@ -455,7 +411,7 @@ public class HomeFragment extends Fragment {
                 CalorieTracking newTrackingRow = lastRowTracking;
 
                 glassOfWater = (int) (lastRowTracking.getWater_consumed() - 1);
-                if(glassOfWater < 0) glassOfWater = 0;
+                if (glassOfWater < 0) glassOfWater = 0;
 
                 newTrackingRow.setWater_consumed(glassOfWater);
                 trackingData.updateTracking(newTrackingRow);
@@ -496,12 +452,12 @@ public class HomeFragment extends Fragment {
         });
 
         //Adding Listview
-        breakfastListView=view.findViewById(R.id.show_breakfast_list);
-        lunchListView=view.findViewById(R.id.show_lunch_list);
-        dinnerListView=view.findViewById(R.id.show_dinner_list);
+        breakfastListView = view.findViewById(R.id.show_breakfast_list);
+        lunchListView = view.findViewById(R.id.show_lunch_list);
+        dinnerListView = view.findViewById(R.id.show_dinner_list);
 
 
-        showBreakfastModels= new ArrayList<>();
+        showBreakfastModels = new ArrayList<>();
         initialShowBreakfastModels = new ArrayList<>();
         showLunchModels = new ArrayList<>();
         initialShowLunchModels = new ArrayList<>();
@@ -512,43 +468,43 @@ public class HomeFragment extends Fragment {
         foodDiary.open();
         String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
-        foodDiaryList = foodDiary.getFoodListByMealType(currentDate,"Breakfast");
+        foodDiaryList = foodDiary.getFoodListByMealType(currentDate, "Breakfast");
         for (FoodDiary a : foodDiaryList) {
             String foodName = a.getFood_name();
             foodData.open();
             Food food = foodData.getFoodByName(foodName);
             int imgId = ImageID(food.getFood_image());
-            if(a.getFood_serving_amount().equals("") || a.getFood_serving_measurement().equals("")) {
-                showBreakfastModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), "not available" + ", " +"not available" ));
+            if (a.getFood_serving_amount().equals("") || a.getFood_serving_measurement().equals("")) {
+                showBreakfastModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), "not available" + ", " + "not available"));
 
             }
             showBreakfastModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), a.getFood_serving_amount() + ", " + a.getFood_serving_measurement()));
             foodData.close();
         }
 
-        foodDiaryList = foodDiary.getFoodListByMealType(currentDate,"Lunch");
+        foodDiaryList = foodDiary.getFoodListByMealType(currentDate, "Lunch");
         for (FoodDiary a : foodDiaryList) {
             String foodName = a.getFood_name();
             foodData.open();
             Food food = foodData.getFoodByName(foodName);
             int imgId = ImageID(food.getFood_image());
-            if(a.getFood_serving_amount().equals("") || a.getFood_serving_measurement().equals("")) {
-                showLunchModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), "not available" + ", " +"not available" ));
+            if (a.getFood_serving_amount().equals("") || a.getFood_serving_measurement().equals("")) {
+                showLunchModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), "not available" + ", " + "not available"));
 
             }
             showLunchModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), a.getFood_serving_amount() + ", " + a.getFood_serving_measurement()));
             foodData.close();
         }
 
-        foodDiaryList = foodDiary.getFoodListByMealType(currentDate,"Dinner");
+        foodDiaryList = foodDiary.getFoodListByMealType(currentDate, "Dinner");
         for (FoodDiary a : foodDiaryList) {
             String foodName = a.getFood_name();
             foodData.open();
             Food food = foodData.getFoodByName(foodName);
             int imgId = ImageID(food.getFood_image());
 
-            if(a.getFood_serving_amount().equals("") && a.getFood_serving_measurement().equals("")) {
-                showDinnerModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), "not available" + ", " +"not available" ));
+            if (a.getFood_serving_amount().equals("") && a.getFood_serving_measurement().equals("")) {
+                showDinnerModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), "not available" + ", " + "not available"));
 
             }
             showDinnerModels.add(new ShowFood(imgId, foodName, a.getTotal_cal_selected_food(), a.getFood_serving_amount() + ", " + a.getFood_serving_measurement()));
@@ -557,17 +513,16 @@ public class HomeFragment extends Fragment {
 
         foodDiary.close();
 
-        initialShowBreakfastModels.add(new InitialShowFood(R.drawable.breakfast,"Eat breakfast, Start Healthy Life"));
-        if(showBreakfastModels.isEmpty()==true)
-        {
-            initialShowFoodAdapter = new InitialShowFoodAdapter(initialShowBreakfastModels,getContext());
+        initialShowBreakfastModels.add(new InitialShowFood(R.drawable.breakfast, "Eat breakfast, Start Healthy Life"));
+        if (showBreakfastModels.isEmpty() == true) {
+            initialShowFoodAdapter = new InitialShowFoodAdapter(initialShowBreakfastModels, getContext());
 
             breakfastListView.setAdapter(initialShowFoodAdapter);
             breakfastListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     vibrator.vibrate(25);
-                    InitialShowFood initialShowFood= initialShowBreakfastModels.get(position);
+                    InitialShowFood initialShowFood = initialShowBreakfastModels.get(position);
                     Intent intent = new Intent(getContext(), AddFoodActivity.class);
                     intent.putExtra("meal_type", "Breakfast");
                     startActivity(intent);
@@ -575,70 +530,62 @@ public class HomeFragment extends Fragment {
                 }
             });
 
-        }
-        else
-        {
-            showFoodAdapter= new ShowFoodAdapter(showBreakfastModels,getContext());
+        } else {
+            showFoodAdapter = new ShowFoodAdapter(showBreakfastModels, getContext());
 
             breakfastListView.setAdapter(showFoodAdapter);
             breakfastListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     vibrator.vibrate(25);
-                    ShowFood showFoodModel= showBreakfastModels.get(position);
+                    ShowFood showFoodModel = showBreakfastModels.get(position);
 
                 }
             });
         }
 
 
-        initialShowLunchModels.add(new InitialShowFood(R.drawable.lunch,"Take a break, Take lunch"));
-        if(showLunchModels.isEmpty()==true)
-        {
-            initialShowFoodAdapter= new InitialShowFoodAdapter(initialShowLunchModels,getContext());
+        initialShowLunchModels.add(new InitialShowFood(R.drawable.lunch, "Take a break, Take lunch"));
+        if (showLunchModels.isEmpty() == true) {
+            initialShowFoodAdapter = new InitialShowFoodAdapter(initialShowLunchModels, getContext());
 
             lunchListView.setAdapter(initialShowFoodAdapter);
             lunchListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     vibrator.vibrate(25);
-                    InitialShowFood initialShowFood= initialShowLunchModels.get(position);
+                    InitialShowFood initialShowFood = initialShowLunchModels.get(position);
                     Intent intent = new Intent(getContext(), AddFoodActivity.class);
                     intent.putExtra("meal_type", "Lunch");
                     startActivity(intent);
-
-
                 }
             });
 
-        }
-        else
-        {
-            showFoodAdapter= new ShowFoodAdapter(showLunchModels,getContext());
+        } else {
+            showFoodAdapter = new ShowFoodAdapter(showLunchModels, getContext());
 
             lunchListView.setAdapter(showFoodAdapter);
             lunchListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     vibrator.vibrate(25);
-                    ShowFood showFoodModel= showLunchModels.get(position);
+                    ShowFood showFoodModel = showLunchModels.get(position);
 
                 }
             });
         }
 
 
-        initialShowDinnerModels.add(new InitialShowFood(R.drawable.dinner_demo,"End of the day? Gift yourself a wonderful dinner"));
-        if(showDinnerModels.isEmpty()==true)
-        {
-            initialShowFoodAdapter= new InitialShowFoodAdapter(initialShowDinnerModels,getContext());
+        initialShowDinnerModels.add(new InitialShowFood(R.drawable.dinner_demo, "End of the day? Gift yourself a wonderful dinner"));
+        if (showDinnerModels.isEmpty() == true) {
+            initialShowFoodAdapter = new InitialShowFoodAdapter(initialShowDinnerModels, getContext());
 
             dinnerListView.setAdapter(initialShowFoodAdapter);
             dinnerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     vibrator.vibrate(25);
-                    InitialShowFood initialShowFood= initialShowDinnerModels.get(position);
+                    InitialShowFood initialShowFood = initialShowDinnerModels.get(position);
                     Intent intent = new Intent(getContext(), AddFoodActivity.class);
                     intent.putExtra("meal_type", "Dinner");
                     startActivity(intent);
@@ -646,17 +593,15 @@ public class HomeFragment extends Fragment {
                 }
             });
 
-        }
-        else
-        {
-            showFoodAdapter= new ShowFoodAdapter(showDinnerModels,getContext());
+        } else {
+            showFoodAdapter = new ShowFoodAdapter(showDinnerModels, getContext());
 
             dinnerListView.setAdapter(showFoodAdapter);
             dinnerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     vibrator.vibrate(25);
-                    ShowFood showFoodModel= showDinnerModels.get(position);
+                    ShowFood showFoodModel = showDinnerModels.get(position);
 
                 }
             });
@@ -682,7 +627,7 @@ public class HomeFragment extends Fragment {
             for (int itemPos = 0; itemPos < numberOfItems; itemPos++) {
                 View item = listAdapter.getView(itemPos, null, listView);
                 float px = 500 * (listView.getResources().getDisplayMetrics().density);
-                item.measure(View.MeasureSpec.makeMeasureSpec((int)px, View.MeasureSpec.AT_MOST), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+                item.measure(View.MeasureSpec.makeMeasureSpec((int) px, View.MeasureSpec.AT_MOST), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
                 totalItemsHeight += item.getMeasuredHeight();
             }
 
@@ -720,14 +665,13 @@ public class HomeFragment extends Fragment {
         long count = 0;
         boolean check;
         String current_date_str = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        for(int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             check = checkStreakwater(current_date_str);
-            if(!check) break;
+            if (!check) break;
             else {
                 count++;
 
                 Calendar calendar = Calendar.getInstance();
-                //cal.setTime(dateInstance);
                 calendar.add(Calendar.DATE, -1);
                 Date date = calendar.getTime();
                 SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -740,7 +684,7 @@ public class HomeFragment extends Fragment {
         updatedGoal = goal;
         updatedGoal.setMy_goal_streak(count);
 
-        if(count >= 3) {
+        if (count >= 3) {
             updatedGoal.setGoal_completion("yes");
         } else {
             updatedGoal.setGoal_completion(goal.getGoal_completion());
@@ -749,11 +693,10 @@ public class HomeFragment extends Fragment {
         goalData.updateGoal(updatedGoal);
 
         CalorieTracking lastTrackingRow = trackingData.getTracking(trackingData.getRowCount());
-        //new CalorieTracking();
         CalorieTracking newTrackingRow;
 
         newTrackingRow = lastTrackingRow;
-        if(count >= 3) {
+        if (count >= 3) {
             newTrackingRow.setGoal_point(newTrackingRow.getGoal_point() + goal.getGoal_point());
         }
 
@@ -766,7 +709,7 @@ public class HomeFragment extends Fragment {
 
     public boolean checkStreakwater(String date) {
         double waterCount = trackingData.getTrackingByDay(date);
-        if(waterCount >= 8) return true;
+        if (waterCount >= 8) return true;
         else return false;
     }
 
@@ -774,9 +717,6 @@ public class HomeFragment extends Fragment {
     public int ImageID(String image_name) {
         int resID = this.getResources().getIdentifier(image_name, "drawable", getActivity().getPackageName());
         return resID;
-    }
-    public void addFood() {
-
     }
 }
 

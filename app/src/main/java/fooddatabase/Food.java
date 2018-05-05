@@ -5,8 +5,8 @@ public class Food {
     private String food_name;
     private double food_serving_size;
     private String food_serving_mesurment;
-    private double  food_energy, food_proteins, food_carbohydrates, food_fat, food_water, food_fiber,
-    food_vit_a, food_vit_c, food_vit_e;
+    private double food_energy, food_proteins, food_carbohydrates, food_fat, food_water, food_fiber,
+            food_vit_a, food_vit_c, food_vit_e;
     private long food_category_id;
     private String food_image, food_notes;
 

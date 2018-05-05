@@ -52,7 +52,7 @@ public class CurrentWeightUpdateGoal extends AppCompatActivity {
                 vibe.vibrate(25);
                 final String current_weight = inputCurrentWeight.getText().toString();
 
-                if(current_weight.isEmpty()) {
+                if (current_weight.isEmpty()) {
                     inputCurrentWeight.setError("enter you current weight");
                     return;
                 } else {

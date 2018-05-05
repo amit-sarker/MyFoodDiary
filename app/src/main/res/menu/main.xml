@@ -5,7 +5,7 @@
 
         <item
             android:id="@+id/drawer_share"
-            android:icon="@drawable/androidmkab_logo"
+            android:icon="@drawable/chick"
             android:title="@string/drawer_share"
             app:showAsAction="always"/>
     </group>

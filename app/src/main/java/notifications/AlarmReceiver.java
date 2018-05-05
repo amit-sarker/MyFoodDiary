@@ -26,12 +26,7 @@ import static android.app.NotificationManager.IMPORTANCE_DEFAULT;
 public class AlarmReceiver extends BroadcastReceiver{
 
     private String alarmType;
-    /*@Override
-    public void onReceive(Context context, Intent intent) {
-        Intent service1 = new Intent(context, NotificationService1.class);
-        service1.setData((Uri.parse("custom://" + System.currentTimeMillis())));
-        context.startService(service1);
-    }*/
+
     private static final String CHANNEL_ID = "com.singhajit.notificationDemo.channelId";
 
     @Override
@@ -39,7 +34,6 @@ public class AlarmReceiver extends BroadcastReceiver{
 
         Bundle bundle = intent.getExtras();
         alarmType = bundle.getString("alarm_time");
-        System.err.println("Typeeeeeeeeeeeeeeeeeee " + alarmType);
 
         Intent notificationIntent = new Intent(context, HomeTabActivity.class);
 

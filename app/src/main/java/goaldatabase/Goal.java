@@ -7,6 +7,7 @@ public class Goal {
     private String goal_status, goal_image;
     private String goal_completion;
     private long goal_point;
+
     public Goal(long goal_id, String goal_name, String goal_description, long goal_duration,
                 long my_goal_streak, String goal_status, String goal_image, String goal_completion, long goal_point) {
         this.goal_id = goal_id;
@@ -20,7 +21,8 @@ public class Goal {
         this.goal_point = goal_point;
     }
 
-    public Goal() {}
+    public Goal() {
+    }
 
     public long getGoal_id() {
         return goal_id;

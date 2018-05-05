@@ -26,7 +26,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class UserSignInActivity extends AppCompatActivity {
 
-    final int RC_SIGN_IN=2;
+    final int RC_SIGN_IN = 2;
 
     GoogleApiClient mGoogleApiClient;
     FirebaseAuth mAuth;
@@ -46,12 +46,12 @@ public class UserSignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_sign_in);
         setUpUI();
 
-        mAuth=FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
-        mAuthListener=new FirebaseAuth.AuthStateListener() {
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(firebaseAuth.getCurrentUser()!=null){
+                if (firebaseAuth.getCurrentUser() != null) {
                     startActivity(new Intent(UserSignInActivity.this, RegisteredPersonDataActivity.class));
                     finish();
                 }
@@ -66,7 +66,7 @@ public class UserSignInActivity extends AppCompatActivity {
                 .enableAutoManage(this /* FragmentActivity */, new GoogleApiClient.OnConnectionFailedListener() {
                     @Override
                     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-                        Toast.makeText(UserSignInActivity.this,"No Internet Connection",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UserSignInActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
@@ -90,10 +90,11 @@ public class UserSignInActivity extends AppCompatActivity {
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
             } else {
-                Toast.makeText(UserSignInActivity.this,"NO Internet Connection",Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserSignInActivity.this, "NO Internet Connection", Toast.LENGTH_SHORT).show();
             }
         }
     }
+
     private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
         mAuth.signInWithCredential(credential)
@@ -113,8 +114,8 @@ public class UserSignInActivity extends AppCompatActivity {
                 });
     }
 
-    void setUpUI(){
-        mSignInButton= findViewById(R.id.sign_in_layout_sign_in_button);
+    void setUpUI() {
+        mSignInButton = findViewById(R.id.sign_in_layout_sign_in_button);
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

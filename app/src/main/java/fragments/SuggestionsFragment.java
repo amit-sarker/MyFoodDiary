@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import helper.Features;
+
 import com.example.moumita.caloriecountergeb.GeneticAlgoKnapsack;
 import com.example.moumita.caloriecountergeb.R;
 
@@ -46,7 +47,6 @@ public class SuggestionsFragment extends Fragment {
     private Typeface mTfRegular, mtfBold;
 
     public SuggestionsFragment() {
-        // Required empty public constructor
     }
 
 
@@ -57,9 +57,9 @@ public class SuggestionsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_suggestions, container, false);
 
         //Adding Listview
-        breakfastListView=view.findViewById(R.id.show_breakfast_list);
-        lunchListView=view.findViewById(R.id.show_lunch_list);
-        dinnerListView=view.findViewById(R.id.show_dinner_list);
+        breakfastListView = view.findViewById(R.id.show_breakfast_list);
+        lunchListView = view.findViewById(R.id.show_lunch_list);
+        dinnerListView = view.findViewById(R.id.show_dinner_list);
         refreshBtn = view.findViewById(R.id.refresh_btn);
         breakfastText = view.findViewById(R.id.breakfast_text);
         lunchText = view.findViewById(R.id.lunch_text);
@@ -97,15 +97,15 @@ public class SuggestionsFragment extends Fragment {
         proteinRemain = lastTrackingRow.getProtein_remaining();
         fatRemain = lastTrackingRow.getFat_remaining();
         final Features features = new Features(calRemain, proteinRemain, fatRemain, calRemain, "foodname", 1.0, 23097898);
-        GeneticAlgoKnapsack knap1 = new GeneticAlgoKnapsack(value_of_items, features,100, 100, 80, 5);
+        GeneticAlgoKnapsack knap1 = new GeneticAlgoKnapsack(value_of_items, features, 100, 100, 80, 5);
         breakfastFoodSuggestions = knap1.showOptimalList();
-        GeneticAlgoKnapsack knap2 = new GeneticAlgoKnapsack(value_of_items, features,100, 100, 80, 5);
+        GeneticAlgoKnapsack knap2 = new GeneticAlgoKnapsack(value_of_items, features, 100, 100, 80, 5);
         lunchFoodSuggestions = knap2.showOptimalList();
-        GeneticAlgoKnapsack knap3 = new GeneticAlgoKnapsack(value_of_items, features,100, 100, 80, 5);
+        GeneticAlgoKnapsack knap3 = new GeneticAlgoKnapsack(value_of_items, features, 100, 100, 80, 5);
         dinnerFoodSuggetions = knap3.showOptimalList();
 
-        while (breakfastFoodSuggestions.isEmpty()==true) {
-            knap1 = new GeneticAlgoKnapsack(value_of_items, features,100, 100, 80, 5);
+        while (breakfastFoodSuggestions.isEmpty() == true) {
+            knap1 = new GeneticAlgoKnapsack(value_of_items, features, 100, 100, 80, 5);
             breakfastFoodSuggestions = knap1.showOptimalList();
 
         }
@@ -124,8 +124,8 @@ public class SuggestionsFragment extends Fragment {
             }
         });
 
-        while (lunchFoodSuggestions.isEmpty()==true) {
-            knap2 = new GeneticAlgoKnapsack(value_of_items, features,100, 100, 80, 5);
+        while (lunchFoodSuggestions.isEmpty() == true) {
+            knap2 = new GeneticAlgoKnapsack(value_of_items, features, 100, 100, 80, 5);
             lunchFoodSuggestions = knap2.showOptimalList();
 
         }
@@ -143,18 +143,18 @@ public class SuggestionsFragment extends Fragment {
 
             }
         });
-        while (dinnerFoodSuggetions.isEmpty()==true) {
-            knap3 = new GeneticAlgoKnapsack(value_of_items, features,100, 100, 80, 5);
+        while (dinnerFoodSuggetions.isEmpty() == true) {
+            knap3 = new GeneticAlgoKnapsack(value_of_items, features, 100, 100, 80, 5);
             dinnerFoodSuggetions = knap3.showOptimalList();
 
         }
-        showFoodAdapter= new ShowFoodAdapter(dinnerFoodSuggetions,getContext());
+        showFoodAdapter = new ShowFoodAdapter(dinnerFoodSuggetions, getContext());
 
         dinnerListView.setAdapter(showFoodAdapter);
         dinnerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ShowFood showFoodModel= dinnerFoodSuggetions.get(position);
+                ShowFood showFoodModel = dinnerFoodSuggetions.get(position);
                 Intent intent = new Intent(getContext(), AddFoodToDiaryActivity.class);
                 intent.putExtra("foodname", showFoodModel.getFoodName());
                 intent.putExtra("meal_type", "Dinner");
@@ -165,15 +165,15 @@ public class SuggestionsFragment extends Fragment {
         refreshBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GeneticAlgoKnapsack knap1 = new GeneticAlgoKnapsack(value_of_items, features,100, 100, 80, 5);
+                GeneticAlgoKnapsack knap1 = new GeneticAlgoKnapsack(value_of_items, features, 100, 100, 80, 5);
                 breakfastFoodSuggestions = knap1.showOptimalList();
-                GeneticAlgoKnapsack knap2 = new GeneticAlgoKnapsack(value_of_items, features,100, 100, 80, 5);
+                GeneticAlgoKnapsack knap2 = new GeneticAlgoKnapsack(value_of_items, features, 100, 100, 80, 5);
                 lunchFoodSuggestions = knap2.showOptimalList();
-                GeneticAlgoKnapsack knap3 = new GeneticAlgoKnapsack(value_of_items, features,100, 100, 80, 5);
+                GeneticAlgoKnapsack knap3 = new GeneticAlgoKnapsack(value_of_items, features, 100, 100, 80, 5);
                 dinnerFoodSuggetions = knap3.showOptimalList();
 
-                while (breakfastFoodSuggestions.isEmpty()==true) {
-                    knap1 = new GeneticAlgoKnapsack(value_of_items, features,100, 100, 80, 5);
+                while (breakfastFoodSuggestions.isEmpty() == true) {
+                    knap1 = new GeneticAlgoKnapsack(value_of_items, features, 100, 100, 80, 5);
                     breakfastFoodSuggestions = knap1.showOptimalList();
 
                 }
@@ -192,8 +192,8 @@ public class SuggestionsFragment extends Fragment {
                     }
                 });
 
-                while (lunchFoodSuggestions.isEmpty()==true) {
-                    knap2 = new GeneticAlgoKnapsack(value_of_items, features,100, 100, 80, 5);
+                while (lunchFoodSuggestions.isEmpty() == true) {
+                    knap2 = new GeneticAlgoKnapsack(value_of_items, features, 100, 100, 80, 5);
                     lunchFoodSuggestions = knap2.showOptimalList();
 
                 }
@@ -211,18 +211,18 @@ public class SuggestionsFragment extends Fragment {
 
                     }
                 });
-                while (dinnerFoodSuggetions.isEmpty()==true) {
-                    knap3 = new GeneticAlgoKnapsack(value_of_items, features,100, 100, 80, 5);
+                while (dinnerFoodSuggetions.isEmpty() == true) {
+                    knap3 = new GeneticAlgoKnapsack(value_of_items, features, 100, 100, 80, 5);
                     dinnerFoodSuggetions = knap3.showOptimalList();
 
                 }
-                showFoodAdapter= new ShowFoodAdapter(dinnerFoodSuggetions,getContext());
+                showFoodAdapter = new ShowFoodAdapter(dinnerFoodSuggetions, getContext());
 
                 dinnerListView.setAdapter(showFoodAdapter);
                 dinnerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        ShowFood showFoodModel= dinnerFoodSuggetions.get(position);
+                        ShowFood showFoodModel = dinnerFoodSuggetions.get(position);
                         Intent intent = new Intent(getContext(), AddFoodToDiaryActivity.class);
                         intent.putExtra("meal_type", "Dinner");
                         intent.putExtra("foodname", showFoodModel.getFoodName());
@@ -242,26 +242,18 @@ public class SuggestionsFragment extends Fragment {
         setListViewHeightBasedOnItems(lunchListView);
         setListViewHeightBasedOnItems(dinnerListView);
 
-        /*Log.e("optimal","Optimal Listttttttttttttttttt size: " + foodSuggestions.size());
-        System.err.println("Optimal Listttttttttttttttttt size: " + foodSuggestions.size());
-        for(int i=0;i<foodSuggestions.size();i++) {
-            Log.e("list","food Sugesssssssssssssssssssssss  : " + foodSuggestions.get(i).getFoodName());
-            System.err.println("food Sugesssssssssssssssssssssss  : " + foodSuggestions.get(i).getFoodName());
-        }
-        */
         return view;
-
     }
 
 
     private void getInput(List<Food> foodList) {
 
-        for(int i = 0; i < foodList.size(); i++) {
+        for (int i = 0; i < foodList.size(); i++) {
             double cal = foodList.get(i).getFood_energy();
             double pro = foodList.get(i).getFood_proteins();
             double fat = foodList.get(i).getFood_fat();
             double carb = foodList.get(i).getFood_carbohydrates();
-            value_of_items.add(new Features(cal,pro,fat,carb, foodList.get(i).getFood_name(), foodList.get(i).getFood_serving_size(),ImageID(foodList.get(i).getFood_image())));
+            value_of_items.add(new Features(cal, pro, fat, carb, foodList.get(i).getFood_name(), foodList.get(i).getFood_serving_size(), ImageID(foodList.get(i).getFood_image())));
         }
 
     }
@@ -278,7 +270,7 @@ public class SuggestionsFragment extends Fragment {
             for (int itemPos = 0; itemPos < numberOfItems; itemPos++) {
                 View item = listAdapter.getView(itemPos, null, listView);
                 float px = 500 * (listView.getResources().getDisplayMetrics().density);
-                item.measure(View.MeasureSpec.makeMeasureSpec((int)px, View.MeasureSpec.AT_MOST), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+                item.measure(View.MeasureSpec.makeMeasureSpec((int) px, View.MeasureSpec.AT_MOST), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
                 totalItemsHeight += item.getMeasuredHeight();
             }
 
@@ -300,10 +292,9 @@ public class SuggestionsFragment extends Fragment {
         }
 
     }
+
     public int ImageID(String image_name) {
         int resID = this.getResources().getIdentifier(image_name, "drawable", getActivity().getPackageName());
         return resID;
     }
-
-
 }

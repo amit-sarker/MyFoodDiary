@@ -33,16 +33,16 @@ public class GoalOperations {
             GoalDBHandler.COLUMN_GOAL_POINT
     };
 
-    public GoalOperations(Context context){
+    public GoalOperations(Context context) {
         dbhandler = new GoalDBHandler(context);
     }
 
-    public void open(){
-        Log.i(LOGTAG,"Database Opened");
+    public void open() {
+        Log.i(LOGTAG, "Database Opened");
         database = dbhandler.getWritableDatabase();
     }
 
-    public void close(){
+    public void close() {
         Log.i(LOGTAG, "Database Closed");
         dbhandler.close();
     }
@@ -53,8 +53,8 @@ public class GoalOperations {
         return count;
     }
 
-    public Goal addGoal(Goal goal){
-        ContentValues values  = new ContentValues();
+    public Goal addGoal(Goal goal) {
+        ContentValues values = new ContentValues();
         values.put(GoalDBHandler.COLUMN_GOAL_NAME, goal.getGoal_name());
         values.put(GoalDBHandler.COLUMN_GOAL_DESCRIPTION, goal.getGoal_description());
         values.put(GoalDBHandler.COLUMN_GOAL_DURATION, goal.getGoal_duration());
@@ -64,13 +64,13 @@ public class GoalOperations {
         values.put(GoalDBHandler.COLUMN_GOAL_COMPLETION, goal.getGoal_completion());
         values.put(GoalDBHandler.COLUMN_GOAL_POINT, goal.getGoal_point());
 
-        long insertid = database.insert(TABLE_GOAL,null, values);
+        long insertid = database.insert(TABLE_GOAL, null, values);
         goal.setGoal_id(insertid);
         return goal;
     }
 
     public Goal getGoal(long id) {
-        Cursor cursor = database.query(TABLE_GOAL, allColumns,GoalDBHandler.COLUMN_GOAL_ID + "=?", new String[]{String.valueOf(id)},null,null, null, null);
+        Cursor cursor = database.query(TABLE_GOAL, allColumns, GoalDBHandler.COLUMN_GOAL_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
@@ -82,11 +82,11 @@ public class GoalOperations {
 
     public List<Goal> getAllGoals() {
 
-        Cursor cursor = database.query(TABLE_GOAL, allColumns,null,null,null, null, null);
+        Cursor cursor = database.query(TABLE_GOAL, allColumns, null, null, null, null, null);
 
         List<Goal> goalList = new ArrayList<>();
-        if(cursor.getCount() > 0){
-            while(cursor.moveToNext()) {
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
                 Goal goal = new Goal();
                 goal.setGoal_id(cursor.getLong(cursor.getColumnIndex(GoalDBHandler.COLUMN_GOAL_ID)));
                 goal.setGoal_name(cursor.getString(cursor.getColumnIndex(GoalDBHandler.COLUMN_GOAL_NAME)));
@@ -106,7 +106,7 @@ public class GoalOperations {
 
     public int updateGoal(Goal goal) {
 
-        ContentValues values  = new ContentValues();
+        ContentValues values = new ContentValues();
         values.put(GoalDBHandler.COLUMN_GOAL_NAME, goal.getGoal_name());
         values.put(GoalDBHandler.COLUMN_GOAL_DESCRIPTION, goal.getGoal_description());
         values.put(GoalDBHandler.COLUMN_GOAL_DURATION, goal.getGoal_duration());
@@ -118,15 +118,15 @@ public class GoalOperations {
 
         // updating row
         return database.update(TABLE_GOAL, values,
-                GoalDBHandler.COLUMN_GOAL_ID + "=?", new String[] { String.valueOf(goal.getGoal_id())});
+                GoalDBHandler.COLUMN_GOAL_ID + "=?", new String[]{String.valueOf(goal.getGoal_id())});
     }
 
     public void deleteAllGoalData() {
-        database.execSQL("delete from "+ TABLE_GOAL);
-        database.execSQL("DELETE FROM sqlite_sequence WHERE name = '"+TABLE_GOAL+"' ");
+        database.execSQL("delete from " + TABLE_GOAL);
+        database.execSQL("DELETE FROM sqlite_sequence WHERE name = '" + TABLE_GOAL + "' ");
     }
 
     public void deleteSingleRow(long id) {
-        database.delete(TABLE_GOAL,GoalDBHandler.COLUMN_GOAL_ID + "=" + id,null);
+        database.delete(TABLE_GOAL, GoalDBHandler.COLUMN_GOAL_ID + "=" + id, null);
     }
 }

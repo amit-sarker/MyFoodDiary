@@ -34,16 +34,16 @@ public class PersonOperations {
             PersonDBHandler.COLUMN_WEIGHT_UPDATE_DATE
     };
 
-    public PersonOperations(Context context){
+    public PersonOperations(Context context) {
         dbhandler = new PersonDBHandler(context);
     }
 
-    public void open(){
-        Log.i(LOGTAG,"Database Opened");
+    public void open() {
+        Log.i(LOGTAG, "Database Opened");
         database = dbhandler.getWritableDatabase();
     }
 
-    public void close(){
+    public void close() {
         Log.i(LOGTAG, "Database Closed");
         dbhandler.close();
     }
@@ -54,8 +54,8 @@ public class PersonOperations {
         return count;
     }
 
-    public Person addPerson(Person person){
-        ContentValues values  = new ContentValues();
+    public Person addPerson(Person person) {
+        ContentValues values = new ContentValues();
         values.put(PersonDBHandler.COLUMN_AGE, person.getAge());
         values.put(PersonDBHandler.COLUMN_GENDER, person.getGender());
         values.put(PersonDBHandler.COLUMN_HEIGHT, person.getHeight());
@@ -67,30 +67,29 @@ public class PersonOperations {
         values.put(PersonDBHandler.COLUMN_WEIGHT_UPDATE_AMOUNT, person.getWeightUpdateAmount());
         values.put(PersonDBHandler.COLUMN_WEIGHT_UPDATE_DATE, person.getWeightUpdateDate());
 
-        long insertid = database.insert(TABLE_PERSON,null, values);
+        long insertid = database.insert(TABLE_PERSON, null, values);
         person.setPersonID(insertid);
         return person;
     }
 
     // Getting single Person
     public Person getPerson(long id) {
-        Cursor cursor = database.query(TABLE_PERSON, allColumns,PersonDBHandler.COLUMN_ID + "=?", new String[]{String.valueOf(id)},null,null, null, null);
+        Cursor cursor = database.query(TABLE_PERSON, allColumns, PersonDBHandler.COLUMN_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
         Person e = new Person(Long.parseLong(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
                 Long.parseLong(cursor.getString(5)), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10));
-        // return person
         return e;
     }
 
     public List<Person> getAllPersons() {
 
-        Cursor cursor = database.query(TABLE_PERSON, allColumns,null,null,null, null, null);
+        Cursor cursor = database.query(TABLE_PERSON, allColumns, null, null, null, null, null);
 
         List<Person> personList = new ArrayList<>();
-        if(cursor.getCount() > 0){
-            while(cursor.moveToNext()) {
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
                 Person person = new Person();
                 person.setPersonID(cursor.getLong(cursor.getColumnIndex(PersonDBHandler.COLUMN_ID)));
                 person.setAge(cursor.getString(cursor.getColumnIndex(PersonDBHandler.COLUMN_AGE)));
@@ -107,22 +106,20 @@ public class PersonOperations {
                 personList.add(person);
             }
         }
-        // return All Employees
         return personList;
     }
 
     public List<Double> getTotalUpdatedweight() {
-        Cursor cursor = database.query(TABLE_PERSON, new String[]{PersonDBHandler.COLUMN_WEIGHT_UPDATE_AMOUNT},null,null,null, null, null);
+        Cursor cursor = database.query(TABLE_PERSON, new String[]{PersonDBHandler.COLUMN_WEIGHT_UPDATE_AMOUNT}, null, null, null, null, null);
         List<Double> updatedWeightList = new ArrayList<>();
-        if(cursor.getCount() > 0) {
-            while(cursor.moveToNext()) {
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
                 updatedWeightList.add(Double.valueOf(cursor.getString(cursor.getColumnIndex(PersonDBHandler.COLUMN_WEIGHT_UPDATE_AMOUNT))));
             }
         }
         return updatedWeightList;
     }
 
-    // Updating Person
     public int updatePerson(Person person) {
 
         ContentValues values = new ContentValues();
@@ -139,19 +136,16 @@ public class PersonOperations {
 
         // updating row
         return database.update(TABLE_PERSON, values,
-                PersonDBHandler.COLUMN_ID + "=?", new String[] { String.valueOf(person.getPersonID())});
+                PersonDBHandler.COLUMN_ID + "=?", new String[]{String.valueOf(person.getPersonID())});
     }
 
     public void deleteAllPersonData() {
-        database.execSQL("delete from "+ TABLE_PERSON);
-        //database.delete(SQLITE_SEQUENCE, NAME, TABLE_PERSON);
-        database.execSQL("DELETE FROM sqlite_sequence WHERE name = '"+TABLE_PERSON+"' ");
-        /*delete from your_table;
-        delete from sqlite_sequence where name='your_table';*/
+        database.execSQL("delete from " + TABLE_PERSON);
+        database.execSQL("DELETE FROM sqlite_sequence WHERE name = '" + TABLE_PERSON + "' ");
     }
 
     // Deleting Person
     public void removePerson(long id) {
-        database.delete(TABLE_PERSON,PersonDBHandler.COLUMN_ID + "=" + id,null);
+        database.delete(TABLE_PERSON, PersonDBHandler.COLUMN_ID + "=" + id, null);
     }
 }

@@ -87,15 +87,8 @@ public class ShowGoalActivity extends AppCompatActivity {
         pieChart.setExtraOffsets(5, 10, 5, 5);
         pieChart.setDragDecelerationFrictionCoef(0.95f);
         pieChart.setDrawCenterText(false);
-        //pieChart.setCenterText("Nutrients");
-        //pieChart.setCenterTextSize(20);
-        //pieChart.setCenterTextTypeface(mTfLight);
         pieChart.setDrawHoleEnabled(false);
-        //pieChart.setHoleColor(Color.WHITE);
-        //pieChart.setHoleRadius(50f);
-        //pieChart.setTransparentCircleRadius(61f);
-        //pieChart.setTransparentCircleColor(Color.WHITE);
-        //pieChart.setTransparentCircleAlpha(110);
+
         pieChart.setRotationAngle(0);
         pieChart.setRotationEnabled(true);
         pieChart.setHighlightPerTapEnabled(true);

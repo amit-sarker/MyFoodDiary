@@ -39,7 +39,7 @@ public class NotificationService1 extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         Context context = this.getApplicationContext();
-        notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Intent mIntent = new Intent(this, HomeTabActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("test", "test");
@@ -64,9 +64,9 @@ public class NotificationService1 extends IntentService {
         notification.ledARGB = 0xFFFFA500;
         notification.ledOnMS = 800;
         notification.ledOffMS = 1000;
-        notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(NOTIFICATION_ID, notification);
-        Log.i("notif","Notifications sent.");
+        Log.i("notif", "Notifications sent.");
 
     }
 

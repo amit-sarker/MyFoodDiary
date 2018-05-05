@@ -38,8 +38,8 @@ public class PersonDBHandler extends SQLiteOpenHelper {
                     COLUMN_WEIGHT_UPDATE_DATE + " TEXT " +
                     ")";
 
-    public PersonDBHandler(Context context){
-        super(context, DATABASE_NAME,null, DATABASE_VERSION);
+    public PersonDBHandler(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override

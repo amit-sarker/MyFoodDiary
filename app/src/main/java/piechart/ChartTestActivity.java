@@ -119,7 +119,7 @@ public class ChartTestActivity extends DemoBase implements OnSeekBarChangeListen
 
         // NOTE: The order of the entries when being added to the entries array determines their position around the center of
         // the chart.
-        for (int i = 0; i < count ; i++) {
+        for (int i = 0; i < count; i++) {
             entries.add(new PieEntry((float) ((Math.random() * mult) + mult / 5),
                     mNutrients[i % mNutrients.length],
                     getResources().getDrawable(R.drawable.star)));
@@ -155,7 +155,6 @@ public class ChartTestActivity extends DemoBase implements OnSeekBarChangeListen
         colors.add(ColorTemplate.getHoloBlue());
 
         dataSet.setColors(colors);
-        //dataSet.setSelectionShift(0f);
 
         PieData data = new PieData(dataSet);
         data.setValueFormatter(new PercentFormatter());
@@ -199,13 +198,9 @@ public class ChartTestActivity extends DemoBase implements OnSeekBarChangeListen
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 }

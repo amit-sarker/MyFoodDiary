@@ -57,7 +57,7 @@ public class UpdateGoalActivity extends AppCompatActivity {
 
                 final String goal_weight = inputGoalWeight.getText().toString();
 
-                if(goal_weight.isEmpty()) {
+                if (goal_weight.isEmpty()) {
                     inputGoalWeight.setError("enter your goal weight");
                     return;
                 } else {

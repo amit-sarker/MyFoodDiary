@@ -30,8 +30,8 @@ public class DiaryDBHandler extends SQLiteOpenHelper {
                     COLUMN_TOTAL_CAL_SELECTED_FOOD + " TEXT " +
                     ")";
 
-    public DiaryDBHandler(Context context){
-        super(context, DATABASE_NAME,null, DATABASE_VERSION);
+    public DiaryDBHandler(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override

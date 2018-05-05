@@ -1,11 +1,11 @@
 package helper;
 
-public class Features
-{
+public class Features {
     private double calorie, protein, fat, carb;
     private String foodName;
     private double foodServingSize;
     private int foodImage;
+
     public Features(double calorie, double protein, double fat, double carb, String foodName, double foodServingSize, int foodImage) {
         this.calorie = calorie;
         this.protein = protein;

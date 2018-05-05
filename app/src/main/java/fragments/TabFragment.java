@@ -18,13 +18,13 @@ public class TabFragment extends Fragment {
 
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
-    public static int int_items = 4 ;
+    public static int int_items = 4;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View v =  inflater.inflate(R.layout.tab_layout, container, false);
+        View v = inflater.inflate(R.layout.tab_layout, container, false);
         tabLayout = (TabLayout) v.findViewById(R.id.tabs);
         viewPager = (ViewPager) v.findViewById(R.id.viewpager);
 
@@ -48,13 +48,16 @@ public class TabFragment extends Fragment {
         }
 
         @Override
-        public Fragment getItem(int position)
-        {
-            switch (position){
-                case 0 : return new HomeFragment();
-                case 1 : return new SuggestionsFragment();
-                case 2 : return new AnalysisFragment();
-                case 3: return new GoalFragment();
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return new HomeFragment();
+                case 1:
+                    return new SuggestionsFragment();
+                case 2:
+                    return new AnalysisFragment();
+                case 3:
+                    return new GoalFragment();
 
             }
             return null;
@@ -69,12 +72,12 @@ public class TabFragment extends Fragment {
         @Override
         public CharSequence getPageTitle(int position) {
 
-            switch (position){
-                case 0 :
+            switch (position) {
+                case 0:
                     return getResources().getString(R.string.tab1);
-                case 1 :
+                case 1:
                     return getResources().getString(R.string.tab2);
-                case 2 :
+                case 2:
                     return getResources().getString(R.string.tab3);
                 case 3:
                     return "Goal";
@@ -83,6 +86,5 @@ public class TabFragment extends Fragment {
             return null;
         }
     }
-
 }
 

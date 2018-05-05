@@ -7,7 +7,8 @@ public class FoodDiary {
     private String food_name, food_serving_measurement, food_serving_amount, meal_type, total_cal_selected_food;
     private String date;
 
-    public FoodDiary() {}
+    public FoodDiary() {
+    }
 
     public FoodDiary(long diary_id, String food_name, String food_serving_measurement, String food_serving_amount, String meal_type, String total_cal_selected_food, String date) {
         this.diary_id = diary_id;

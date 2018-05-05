@@ -42,7 +42,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
 
     private void setupToolbarMenu() {
         mToolbar = findViewById(R.id.toolbar);
-        mToolbar.setTitle("CalorieCounterGEB");
+        mToolbar.setTitle("My Food Diary");
     }
 
     private void setupNavigationDrawerMenu() {
@@ -116,7 +116,6 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
         else
             super.onBackPressed();
     }
-
 
 
     public void addContentView(int layoutId) {

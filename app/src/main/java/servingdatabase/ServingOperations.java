@@ -27,41 +27,41 @@ public class ServingOperations {
             ServingDBHandler.COLUMN_SERVING_IMAGE_ID
     };
 
-    public ServingOperations(Context context){
+    public ServingOperations(Context context) {
         dbhandler = new ServingDBHandler(context);
     }
 
-    public void open(){
-        Log.i(LOGTAG,"Database Opened");
+    public void open() {
+        Log.i(LOGTAG, "Database Opened");
         database = dbhandler.getWritableDatabase();
     }
 
-    public void close(){
+    public void close() {
         Log.i(LOGTAG, "Database Closed");
         dbhandler.close();
     }
 
-    public FoodServing addServing(FoodServing foodServing){
-        ContentValues values  = new ContentValues();
+    public FoodServing addServing(FoodServing foodServing) {
+        ContentValues values = new ContentValues();
         values.put(ServingDBHandler.COLUMN_SERVING_ID, foodServing.getServing_id());
         values.put(ServingDBHandler.COLUMN_FOOD_NAME, foodServing.getFood_name());
         values.put(ServingDBHandler.COLUMN_FOOD_SERVING_MEASUREMENT, foodServing.getFood_serving_measurement());
         values.put(ServingDBHandler.COLUMN_SERVING_SIZE_TO_GRAMS, foodServing.getServing_size_to_grams());
         values.put(ServingDBHandler.COLUMN_SERVING_IMAGE_ID, foodServing.getServing_image_id());
 
-        database.insert(TABLE_SERVING,null, values);
+        database.insert(TABLE_SERVING, null, values);
         return foodServing;
     }
 
     public List<FoodServing> getFoodServingByName(String foodName) {
 
-        Cursor cursor = database.query(TABLE_SERVING, allColumns,null,null,null, null, null);
+        Cursor cursor = database.query(TABLE_SERVING, allColumns, null, null, null, null, null);
 
         List<FoodServing> foodServingList = new ArrayList<>();
 
-        if(cursor.getCount() > 0){
-            while(cursor.moveToNext()){
-                if(cursor.getString(cursor.getColumnIndex(ServingDBHandler.COLUMN_FOOD_NAME)).equals(foodName)) {
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                if (cursor.getString(cursor.getColumnIndex(ServingDBHandler.COLUMN_FOOD_NAME)).equals(foodName)) {
                     FoodServing foodServing = new FoodServing();
                     foodServing.setServing_id(cursor.getLong(cursor.getColumnIndex(ServingDBHandler.COLUMN_SERVING_ID)));
                     foodServing.setFood_name(cursor.getString(cursor.getColumnIndex(ServingDBHandler.COLUMN_FOOD_NAME)));
@@ -78,13 +78,13 @@ public class ServingOperations {
 
     public List<FoodServing> getFoodServingByID(long id) {
 
-        Cursor cursor = database.query(TABLE_SERVING, allColumns,null,null,null, null, null);
+        Cursor cursor = database.query(TABLE_SERVING, allColumns, null, null, null, null, null);
 
         List<FoodServing> foodServingList = new ArrayList<>();
 
-        if(cursor.getCount() > 0){
-            while(cursor.moveToNext()){
-                if(cursor.getLong(cursor.getColumnIndex(ServingDBHandler.COLUMN_SERVING_ID)) == id) {
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                if (cursor.getLong(cursor.getColumnIndex(ServingDBHandler.COLUMN_SERVING_ID)) == id) {
                     FoodServing foodServing = new FoodServing();
                     foodServing.setServing_id(cursor.getLong(cursor.getColumnIndex(ServingDBHandler.COLUMN_SERVING_ID)));
                     foodServing.setFood_name(cursor.getString(cursor.getColumnIndex(ServingDBHandler.COLUMN_FOOD_NAME)));
@@ -115,10 +115,10 @@ public class ServingOperations {
 
         // updating row
         return database.update(ServingDBHandler.TABLE_SERVING, values,
-                ServingDBHandler.COLUMN_SERVING_ID + "=?", new String[] { String.valueOf(foodServing.getServing_id())});
+                ServingDBHandler.COLUMN_SERVING_ID + "=?", new String[]{String.valueOf(foodServing.getServing_id())});
     }
 
     public void removeServing(FoodServing foodServing) {
-        database.delete(TABLE_SERVING,ServingDBHandler.COLUMN_SERVING_ID + "=" + foodServing.getServing_id(),null);
+        database.delete(TABLE_SERVING, ServingDBHandler.COLUMN_SERVING_ID + "=" + foodServing.getServing_id(), null);
     }
 }

@@ -110,7 +110,7 @@ public class UserProfileActivity extends AppCompatActivity {
         personList = personData.getAllPersons();
         personData.close();
 
-        for(int i = 0; i < personList.size(); i++) {
+        for (int i = 0; i < personList.size(); i++) {
             currentWeightList.add(Double.valueOf(personList.get(i).getWeight()));
             targetWeightList.add(Double.valueOf(personList.get(i).getTargetWeight()));
         }
@@ -143,22 +143,21 @@ public class UserProfileActivity extends AppCompatActivity {
         ArrayList xVals = new ArrayList();
         ArrayList temp = new ArrayList();
 
-        for(int i = 0; i < personList.size(); i++) {
+        for (int i = 0; i < personList.size(); i++) {
             String date = personList.get(i).getWeightUpdateDate();
             String[] p = date.split("-");
             temp.add(p[2] + getMonth(p[1]));
         }
 
-        for(int i = 0; i < temp.size(); i++) {
+        for (int i = 0; i < temp.size(); i++) {
             xVals.add(temp.get(i));
         }
-
 
 
         ArrayList yVals1 = new ArrayList();
         ArrayList yVals2 = new ArrayList();
 
-        for(int i = 0; i < currentWeightList.size(); i++) {
+        for (int i = 0; i < currentWeightList.size(); i++) {
             String temp1 = String.valueOf(targetWeightList.get(i));
             String temp2 = String.valueOf(currentWeightList.get(i));
             float temp3 = Float.parseFloat(temp1);
@@ -167,7 +166,7 @@ public class UserProfileActivity extends AppCompatActivity {
             yVals2.add(new Entry(i, temp4));
         }
 
-        if(yVals1.size() == 0 || yVals2.size() == 0) {
+        if (yVals1.size() == 0 || yVals2.size() == 0) {
             yVals1.add(new Entry(0, (float) Math.round(0)));
             yVals2.add(new Entry(0, (float) Math.round(0)));
         }
@@ -184,7 +183,7 @@ public class UserProfileActivity extends AppCompatActivity {
             lineChart.notifyDataSetChanged();
         } else {
             // create a dataset and give it a type
-            set1 = new LineDataSet(yVals1,  "Target Weight");
+            set1 = new LineDataSet(yVals1, "Target Weight");
 
             set1.setAxisDependency(YAxis.AxisDependency.LEFT);
             set1.setColor(R.color.primary_dark);
@@ -195,10 +194,6 @@ public class UserProfileActivity extends AppCompatActivity {
             set1.setFillColor(ColorTemplate.getHoloBlue());
             set1.setHighLightColor(Color.rgb(244, 117, 117));
             set1.setDrawCircleHole(false);
-            //set1.setFillFormatter(new_gif MyFillFormatter(0f));
-            //set1.setDrawHorizontalHighlightIndicator(false);
-            //set1.setVisible(false);
-            //set1.setCircleHoleColor(Color.WHITE);
 
             // create a dataset and give it a type
             set2 = new LineDataSet(yVals2, "Current Weight");
@@ -237,14 +232,11 @@ public class UserProfileActivity extends AppCompatActivity {
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(false);
-//        l.setYOffset(11f);
 
         XAxis xAxis = lineChart.getXAxis();
         xAxis.setTypeface(mTfLight);
         xAxis.setTextSize(11f);
         xAxis.setTextColor(Color.BLACK);
-        //xAxis.setDrawGridLines(false);
-        //xAxis.setDrawAxisLine(false);
         xAxis.setPosition(XAxis.XAxisPosition.TOP);
         xAxis.setAxisMinimum(0);
         xAxis.setValueFormatter(new IndexAxisValueFormatter(xVals));
@@ -270,25 +262,19 @@ public class UserProfileActivity extends AppCompatActivity {
             YAxis rightAxis = lineChart.getAxisRight();
             rightAxis.setTypeface(mTfLight);
             rightAxis.setTextColor(ColorTemplate.getHoloBlue());
-            //rightAxis.setAxisMaximum(900);
             rightAxis.setAxisMinimum(rightMin);
             rightAxis.setAxisMaximum(rightMax);
             rightAxis.setDrawGridLines(false);
             rightAxis.setDrawZeroLine(false);
             rightAxis.setGranularityEnabled(false);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
 
     }
 
     public void DailyProgressBarChart(List<Double> currentWeightList, List<Person> personList) {
         BarDataSet set1 = null, set2 = null;
         mChart.getDescription().setEnabled(false);
-
-        /*barWidth = 0.3f;
-        barSpace = 0f;
-        groupSpace = 0.4f;*/
-
-//        mChart.setDrawBorders(true);
 
         // scaling can now only be done on x- and y-axis separately
         mChart.setPinchZoom(false);
@@ -297,34 +283,6 @@ public class UserProfileActivity extends AppCompatActivity {
 
         mChart.setDrawGridBackground(false);
 
-        /*Legend l = mChart.getLegend();
-        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
-        l.setOrientation(Legend.LegendOrientation.VERTICAL);
-        l.setDrawInside(true);
-        l.setTypeface(mTfLight);
-        l.setYOffset(0f);
-        l.setXOffset(10f);
-        l.setYEntrySpace(0f);
-        l.setTextSize(8f);
-
-        XAxis xAxis = mChart.getXAxis();
-        xAxis.setTypeface(mTfLight);
-        xAxis.setGranularity(1f);
-        xAxis.setCenterAxisLabels(true);
-
-        YAxis leftAxis = mChart.getAxisLeft();
-        leftAxis.setTypeface(mTfLight);
-        leftAxis.setValueFormatter(new LargeValueFormatter());
-        leftAxis.setDrawGridLines(false);
-        leftAxis.setSpaceTop(35f);
-        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
-
-        mChart.getAxisRight().setEnabled(false);*/
-
-
-
-        //IAxisValueFormatter xAxisFormatter = new DayAxisValueFormatter(mChart);
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -332,7 +290,6 @@ public class UserProfileActivity extends AppCompatActivity {
         xAxis.setDrawGridLines(false);
         xAxis.setGranularity(1f); // only intervals of 1 day
         xAxis.setLabelCount(7);
-        //xAxis.setValueFormatter(xAxisFormatter);
 
         IAxisValueFormatter custom = new MyAxisValueFormatter();
 
@@ -364,43 +321,31 @@ public class UserProfileActivity extends AppCompatActivity {
         l.setXEntrySpace(4f);
 
 
-
         ArrayList xVals = new ArrayList();
         ArrayList temp = new ArrayList();
 
-        for(int i = 0; i < personList.size(); i++) {
+        for (int i = 0; i < personList.size(); i++) {
             String date = personList.get(i).getWeightUpdateDate();
             String[] p = date.split("-");
             temp.add(p[2] + getMonth(p[1]));
         }
 
-        for(int i = 0; i < temp.size(); i++) {
+        for (int i = 0; i < temp.size(); i++) {
             xVals.add(temp.get(i));
         }
 
 
         ArrayList yVals1 = new ArrayList();
 
-        for(int i = 0; i < currentWeightList.size(); i++) {
+        for (int i = 0; i < currentWeightList.size(); i++) {
             String temp2 = String.valueOf(currentWeightList.get(i));
             float temp3 = Float.parseFloat(temp2);
             yVals1.add(new BarEntry(i, temp3));
         }
 
-        if(yVals1.size() == 0) {
+        if (yVals1.size() == 0) {
             yVals1.add(new BarEntry(1, (float) Math.round(0)));
         }
-
-        //set1 = new BarDataSet(yVals1, "Current Weight");
-        /*set1 = (BarDataSet) mChart.getData().getDataSetByIndex(0);
-        set1.setValues(yVals1);
-
-
-        set1.setColor(R.color.primary_dark);
-
-        BarData data = new BarData(set1);*/
-
-
 
         BarData data = new BarData();
 
@@ -430,35 +375,14 @@ public class UserProfileActivity extends AppCompatActivity {
         }
 
 
-
-        //data.setValueFormatter(new DefaultValueFormatter(0));
-        //data.setValueFormatter(new_gif LargeValueFormatter());
-        //mChart.setData(data);
-        //mChart.getBarData().setBarWidth(barWidth);
         mChart.getXAxis().setAxisMinimum(0);
-        //mChart.getXAxis().setAxisMaximum(0 + mChart.getBarData().getGroupWidth(groupSpace, barSpace) * groupCount); ////////////////////////////////////
-        //mChart.groupBars(0, groupSpace, barSpace);
-
-        //mChart.getData().setHighlightEnabled(false);
         mChart.invalidate();
 
-        //IAxisValueFormatter xAxisFormatter = new DayAxisValueFormatter(mChart);
-        //X-axis
-        //XAxis xAxis = mChart.getXAxis();
-        //xAxis.setGranularity(1f);
-        //xAxis.setGranularityEnabled(true);
-        //xAxis.setCenterAxisLabels(true);
-        //xAxis.setDrawGridLines(false);
         xAxis.setAxisMaximum(currentWeightList.size());
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        //xAxis.setValueFormatter(xAxisFormatter);
         xAxis.setValueFormatter(new IndexAxisValueFormatter(xVals));
-//Y-axis
+        //Y-axis
         mChart.getAxisRight().setEnabled(false);
-        //YAxis leftAxis = mChart.getAxisLeft();
-        //leftAxis.setValueFormatter(new LargeValueFormatter());
-        //leftAxis.setDrawGridLines(true);
-        //leftAxis.setSpaceTop(25f);
         leftAxis.setAxisMinimum(0f);
         mChart.animateY(1400);
     }
@@ -470,25 +394,25 @@ public class UserProfileActivity extends AppCompatActivity {
         // 3: Heavy exercise (6–7 days per week)
         // 4: Very heavy exercise (twice per day, extra heavy workouts)
 
-        if(activityLevel == 0) return "Little to no exercise";
-        else if(activityLevel == 1) return "Light exercise (1–3 days per week)";
-        else if(activityLevel == 2) return "Moderate exercise (3–5 days per week)";
-        else if(activityLevel == 3) return "Heavy exercise (6–7 days per week)";
+        if (activityLevel == 0) return "Little to no exercise";
+        else if (activityLevel == 1) return "Light exercise (1–3 days per week)";
+        else if (activityLevel == 2) return "Moderate exercise (3–5 days per week)";
+        else if (activityLevel == 3) return "Heavy exercise (6–7 days per week)";
         else return "Very heavy exercise (twice per day)";
     }
 
     public String getMonth(String month) {
-        if(month.equals("01")) return " Jan";
-        else if(month.equals("02")) return " Feb";
-        else if(month.equals("03")) return " Mar";
-        else if(month.equals("04")) return " Apr";
-        else if(month.equals("05")) return " May";
-        else if(month.equals("06")) return " Jun";
-        else if(month.equals("07")) return " Jul";
-        else if(month.equals("08")) return " Aug";
-        else if(month.equals("09")) return " Sep";
-        else if(month.equals("10")) return " Oct";
-        else if(month.equals("11")) return " Nov";
+        if (month.equals("01")) return " Jan";
+        else if (month.equals("02")) return " Feb";
+        else if (month.equals("03")) return " Mar";
+        else if (month.equals("04")) return " Apr";
+        else if (month.equals("05")) return " May";
+        else if (month.equals("06")) return " Jun";
+        else if (month.equals("07")) return " Jul";
+        else if (month.equals("08")) return " Aug";
+        else if (month.equals("09")) return " Sep";
+        else if (month.equals("10")) return " Oct";
+        else if (month.equals("11")) return " Nov";
         else return " Dec";
     }
 }

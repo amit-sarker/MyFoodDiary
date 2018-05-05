@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import com.example.moumita.caloriecountergeb.HomeTabActivity;
+
 import generalpersonactivities.BMICalculation;
 import generalpersondatabase.Person;
 import generalpersondatabase.PersonOperations;
@@ -112,16 +113,16 @@ public class DialogActivity extends AppCompatActivity {
                 weightTwo = weightText2.getText().toString();
                 String tempWeight;
                 tempWeight = String.valueOf(weightTwo.charAt(1));
-                if(Integer.parseInt(tempWeight) + 1 > 9) {
+                if (Integer.parseInt(tempWeight) + 1 > 9) {
                     weightOne = weightText1.getText().toString();
-                    if(Integer.parseInt(weightOne) + 1 <= 300)
+                    if (Integer.parseInt(weightOne) + 1 <= 300)
                         weightText1.setText(String.valueOf(Integer.parseInt(weightOne) + 1));
                     else weightText1.setText("300");
                 } else {
                     weightText2.setText("." + String.valueOf(Integer.parseInt(tempWeight) + 1));
                 }
 
-                if(Integer.parseInt(tempWeight) + 1 > 9) weightText2.setText(".0");
+                if (Integer.parseInt(tempWeight) + 1 > 9) weightText2.setText(".0");
 
             }
         });
@@ -138,16 +139,16 @@ public class DialogActivity extends AppCompatActivity {
                 weightTwo = weightText2.getText().toString();
                 String tempWeight;
                 tempWeight = String.valueOf(weightTwo.charAt(1));
-                if(Integer.parseInt(tempWeight) - 1 < 0) {
+                if (Integer.parseInt(tempWeight) - 1 < 0) {
                     weightOne = weightText1.getText().toString();
-                    if(Integer.parseInt(weightOne) - 1 >= 30)
+                    if (Integer.parseInt(weightOne) - 1 >= 30)
                         weightText1.setText(String.valueOf(Integer.parseInt(weightOne) - 1));
                     else weightText1.setText("30");
                 } else {
                     weightText2.setText("." + String.valueOf(Integer.parseInt(tempWeight) - 1));
                 }
 
-                if(Integer.parseInt(tempWeight) - 1 < 0) weightText2.setText(".9");
+                if (Integer.parseInt(tempWeight) - 1 < 0) weightText2.setText(".9");
             }
         });
 
@@ -165,7 +166,7 @@ public class DialogActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         vibe.vibrate(25);
                         weightOne = weightText1.getText().toString();
-                        if(Integer.parseInt(weightOne) + 1 <= 300)
+                        if (Integer.parseInt(weightOne) + 1 <= 300)
                             weightText1.setText(String.valueOf(Integer.parseInt(weightOne) + 1));
                         else weightText1.setText("300");
                     }
@@ -176,7 +177,7 @@ public class DialogActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         vibe.vibrate(25);
                         weightOne = weightText1.getText().toString();
-                        if(Integer.parseInt(weightOne) - 1 >= 30)
+                        if (Integer.parseInt(weightOne) - 1 >= 30)
                             weightText1.setText(String.valueOf(Integer.parseInt(weightOne) - 1));
                         else weightText1.setText("30");
                     }
@@ -199,16 +200,16 @@ public class DialogActivity extends AppCompatActivity {
                         weightTwo = weightText2.getText().toString();
                         String tempWeight;
                         tempWeight = String.valueOf(weightTwo.charAt(1));
-                        if(Integer.parseInt(tempWeight) + 1 > 9) {
+                        if (Integer.parseInt(tempWeight) + 1 > 9) {
                             weightOne = weightText1.getText().toString();
-                            if(Integer.parseInt(weightOne) + 1 <= 300)
+                            if (Integer.parseInt(weightOne) + 1 <= 300)
                                 weightText1.setText(String.valueOf(Integer.parseInt(weightOne) + 1));
                             else weightText1.setText("300");
                         } else {
                             weightText2.setText("." + String.valueOf(Integer.parseInt(tempWeight) + 1));
                         }
 
-                        if(Integer.parseInt(tempWeight) + 1 > 9) weightText2.setText(".0");
+                        if (Integer.parseInt(tempWeight) + 1 > 9) weightText2.setText(".0");
 
                     }
                 });
@@ -220,16 +221,16 @@ public class DialogActivity extends AppCompatActivity {
                         weightTwo = weightText2.getText().toString();
                         String tempWeight;
                         tempWeight = String.valueOf(weightTwo.charAt(1));
-                        if(Integer.parseInt(tempWeight) - 1 < 0) {
+                        if (Integer.parseInt(tempWeight) - 1 < 0) {
                             weightOne = weightText1.getText().toString();
-                            if(Integer.parseInt(weightOne) - 1 >= 30)
+                            if (Integer.parseInt(weightOne) - 1 >= 30)
                                 weightText1.setText(String.valueOf(Integer.parseInt(weightOne) - 1));
                             else weightText1.setText("30");
                         } else {
                             weightText2.setText("." + String.valueOf(Integer.parseInt(tempWeight) - 1));
                         }
 
-                        if(Integer.parseInt(tempWeight) - 1 < 0) weightText2.setText(".9");
+                        if (Integer.parseInt(tempWeight) - 1 < 0) weightText2.setText(".9");
                     }
                 });
             }
@@ -246,7 +247,7 @@ public class DialogActivity extends AppCompatActivity {
 
                 String unit = unitBtn.getText().toString();
 
-                if(unit.equals("LBS")) {
+                if (unit.equals("LBS")) {
                     updatedWeightDouble *= 0.453592;
                     updatedWeightDouble = BMICalculation.Round(updatedWeightDouble, 1);
                 }
@@ -259,7 +260,8 @@ public class DialogActivity extends AppCompatActivity {
                 Double weightUpdate = 0.0;
                 try {
                     weightUpdate = BMICalculation.Round(updatedWeightDouble - Double.parseDouble(thisPerson.getWeight()), 1);
-                } catch (Exception e) {}
+                } catch (Exception e) {
+                }
 
                 double initial_weight_update = 0.0;
                 Person updatedPerson = new Person();
@@ -291,11 +293,8 @@ public class DialogActivity extends AppCompatActivity {
             public void onClick(View v) {
                 vibe.vibrate(25);
                 String unit = unitBtn.getText().toString();
-                /*finalWeight1 = weightText1.getText().toString();
-                finalWeight2 = weightText2.getText().toString();
-                updatedWeightKgStr = finalWeight1 + finalWeight2;*/
 
-                if(unit.equals("KG")) {
+                if (unit.equals("KG")) {
                     unitBtn.setText("LBS");
 
                     finalWeight1 = weightText1.getText().toString();

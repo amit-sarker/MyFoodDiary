@@ -7,7 +7,8 @@ public class CalorieTracking {
             fat_needed, fat_consumed, fat_remaining, carbs_needed, carbs_consumed, carbs_remaining, water_consumed;
     private long goal_point, rank;
 
-    public CalorieTracking() {}
+    public CalorieTracking() {
+    }
 
     public CalorieTracking(long calorie_tracking_id, String date, double cal_needed, double cal_consumed,
                            double cal_remaining, double protein_needed, double protein_consumed, double protein_remaining,

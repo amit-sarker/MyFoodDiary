@@ -57,6 +57,7 @@ public class HomeTabActivity extends AppCompatActivity {
     private List<String> dateList, distDayCount;
 
     SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,8 +91,6 @@ public class HomeTabActivity extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        //CheckWaterGoal();
 
         try {
             Check14KCalorieGoal();
@@ -147,56 +146,6 @@ public class HomeTabActivity extends AppCompatActivity {
 
                 return true;
 
-
-
-                /*menuItem.setChecked(true);
-                mDrawerLayout.closeDrawers();
-
-                if (menuItem.getItemId() == R.id.drawer_home) {
-                    FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.frame_container, new TabFragment()).commit();
-                }
-
-                if (menuItem.getItemId() == R.id.drawer_facebook){
-                    Toast.makeText(HomeTabActivity.this,
-                            "Replace with your own function", Toast.LENGTH_LONG).show();
-                }
-
-                if (menuItem.getItemId() == R.id.drawer_gPlus){
-                    Toast.makeText(HomeTabActivity.this,
-                            "Replace with your own function", Toast.LENGTH_LONG).show();
-                }
-
-                if (menuItem.getItemId() == R.id.drawer_rate) {
-                    Toast.makeText(HomeTabActivity.this,
-                            "Replace with your own function", Toast.LENGTH_LONG).show();
-                }
-
-                if (menuItem.getItemId() == R.id.drawer_more) {
-                    Toast.makeText(HomeTabActivity.this,
-                            "Replace with your own function", Toast.LENGTH_LONG).show();
-                }
-
-                if (menuItem.getItemId() == R.id.drawer_profile) {
-                    Toast.makeText(HomeTabActivity.this,
-                            "Replace with your own function", Toast.LENGTH_LONG).show();
-                }
-
-                if (menuItem.getItemId() == R.id.drawer_share) {
-                    Toast.makeText(HomeTabActivity.this,
-                            "Replace with your own function", Toast.LENGTH_LONG).show();
-                }
-                if (menuItem.getItemId() == R.id.drawer_youtube) {
-                    Toast.makeText(HomeTabActivity.this,
-                            "Replace with your own function", Toast.LENGTH_LONG).show();
-                }
-
-                if (menuItem.getItemId() == R.id.drawer_exit) {
-                    Toast.makeText(HomeTabActivity.this,
-                            "Replace with your own function", Toast.LENGTH_LONG).show();
-                }
-
-                return false;*/
             }
 
         });
@@ -208,9 +157,6 @@ public class HomeTabActivity extends AppCompatActivity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
         mDrawerToggle.syncState();
-
-
-
     }
 
     private void closeDrawer() {
@@ -234,6 +180,7 @@ public class HomeTabActivity extends AppCompatActivity {
                 onBackPressed();
                 return true;
 
+
             default:
                 return super.onOptionsItemSelected(menuItem);
         }
@@ -244,8 +191,7 @@ public class HomeTabActivity extends AppCompatActivity {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }
-        else {
+        } else {
             super.onBackPressed();
 
         }
@@ -268,24 +214,20 @@ public class HomeTabActivity extends AppCompatActivity {
         long duration = goal.getGoal_duration();
 
         Calendar cal = Calendar.getInstance();
-        //cal.setTime(dateInstance);
         cal.add(Calendar.DATE, -3);
         Date threeDaysAgo = cal.getTime();
 
-        //System.err.println("DATEEEEEEEEE     " + threeDaysAgo);
-
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String strDate = formatter.format(threeDaysAgo);
-        //System.err.println("Newwwwwwwwwwwwwwwwwww     " + strDate);
 
         List<FoodDiary> foodDiaryList = diaryData.getFoodDiaryByDate(strDate);
 
-        for(int i = 0; i < foodDiaryList.size(); i++) {
+        for (int i = 0; i < foodDiaryList.size(); i++) {
             dateList.add(foodDiaryList.get(i).getDate());
         }
 
-        for(String s: dateList){
-            if(!distDayCount.contains(s)){
+        for (String s : dateList) {
+            if (!distDayCount.contains(s)) {
                 distDayCount.add(s);
             }
         }
@@ -293,24 +235,20 @@ public class HomeTabActivity extends AppCompatActivity {
         long count = 0;
         boolean check;
 
-        //System.err.println("Distinct Dateeeeeeeeeeeeeeeeeeee      " + distDayCount.size());
         String current_date_str = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        for(int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             check = checkStreak(current_date_str, foodDiaryList);
-            if(!check) break;
+            if (!check) break;
             else {
                 count++;
 
                 Calendar calendar = Calendar.getInstance();
-                //cal.setTime(dateInstance);
                 calendar.add(Calendar.DATE, -1);
                 Date date = calendar.getTime();
                 SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");
                 current_date_str = formatter1.format(date);
             }
         }
-
-        System.err.println("Breakfastttttttttttttttttttttt     " + count);
 
         Goal updatedGoal = new Goal();
 
@@ -321,7 +259,7 @@ public class HomeTabActivity extends AppCompatActivity {
         updatedGoal.setMy_goal_streak(count);
         updatedGoal.setGoal_status(goal.getGoal_status());
         updatedGoal.setGoal_image(goal.getGoal_image());
-        if(count >= 3) {
+        if (count >= 3) {
             updatedGoal.setGoal_completion("yes");
         } else {
             updatedGoal.setGoal_completion(goal.getGoal_completion());
@@ -331,11 +269,10 @@ public class HomeTabActivity extends AppCompatActivity {
         goalData.updateGoal(updatedGoal);
 
         CalorieTracking lastTrackingRow = trackingData.getTracking(trackingData.getRowCount());
-        //new CalorieTracking();
         CalorieTracking newTrackingRow;
 
         newTrackingRow = lastTrackingRow;
-        if(count >= 3) {
+        if (count >= 3) {
             newTrackingRow.setGoal_point(newTrackingRow.getGoal_point() + goal.getGoal_point());
         }
 
@@ -349,79 +286,15 @@ public class HomeTabActivity extends AppCompatActivity {
 
     public boolean checkStreak(String date, List<FoodDiary> foodDiaryList) {
         boolean check = false;
-        for(int i = 0; i < foodDiaryList.size(); i++) {
-            if(foodDiaryList.get(i).getDate().equals(date)) {
-                if(foodDiaryList.get(i).getMeal_type().equals("Breakfast")) {
+        for (int i = 0; i < foodDiaryList.size(); i++) {
+            if (foodDiaryList.get(i).getDate().equals(date)) {
+                if (foodDiaryList.get(i).getMeal_type().equals("Breakfast")) {
                     check = true;
                     break;
                 }
             }
         }
         return check;
-    }
-
-    public void CheckWaterGoal() {
-        trackingData.open();
-        goalData.open();
-
-        Goal goal = goalData.getGoal(2);
-
-        CalorieTracking calorieTracking = new CalorieTracking();
-        calorieTracking = trackingData.getTracking(trackingData.getRowCount());
-
-        double waterCount = calorieTracking.getWater_consumed();
-
-        long count = 0;
-        boolean check;
-        String current_date_str = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        for(int i = 0; i < 3; i++) {
-            check = checkStreakwater(current_date_str);
-            if(!check) break;
-            else {
-                count++;
-
-                Calendar calendar = Calendar.getInstance();
-                //cal.setTime(dateInstance);
-                calendar.add(Calendar.DATE, -1);
-                Date date = calendar.getTime();
-                SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");
-                current_date_str = formatter1.format(date);
-            }
-        }
-
-        Goal updatedGoal;
-
-        updatedGoal = goal;
-        updatedGoal.setMy_goal_streak(count);
-
-        if(count >= 3) {
-            updatedGoal.setGoal_completion("yes");
-        } else {
-            updatedGoal.setGoal_completion(goal.getGoal_completion());
-        }
-
-        goalData.updateGoal(updatedGoal);
-
-        CalorieTracking lastTrackingRow = trackingData.getTracking(trackingData.getRowCount());
-        //new CalorieTracking();
-        CalorieTracking newTrackingRow;
-
-        newTrackingRow = lastTrackingRow;
-        if(count >= 3) {
-            newTrackingRow.setGoal_point(newTrackingRow.getGoal_point() + goal.getGoal_point());
-        }
-
-        trackingData.updateTracking(newTrackingRow);
-
-        goalData.close();
-        trackingData.close();
-
-    }
-
-    public boolean checkStreakwater(String date) {
-        double waterCount = trackingData.getTrackingByDay(date);
-        if(waterCount >= 8) return true;
-        else return false;
     }
 
     public void Check14KCalorieGoal() throws ParseException {
@@ -432,15 +305,11 @@ public class HomeTabActivity extends AppCompatActivity {
         Goal goal = goalData.getGoal(3);
 
         Calendar cal = Calendar.getInstance();
-        //cal.setTime(dateInstance);
         cal.add(Calendar.DATE, -7);
         Date sevenDaysAgo = cal.getTime();
 
-        //System.err.println("DATEEEEEEEEE     " + threeDaysAgo);
-
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String strDate = formatter.format(sevenDaysAgo);
-        //System.err.println("Newwwwwwwwwwwwwwwwwww     " + strDate);
 
         List<Double> calorieConsumed = trackingData.getTrackingByCalorie(strDate);
 
@@ -449,8 +318,8 @@ public class HomeTabActivity extends AppCompatActivity {
         long count = 0;
 
         boolean check;
-        for(int i = 0; i < calorieConsumed.size(); i++) {
-            if(calorieConsumed.get(i) >= 2500.0)
+        for (int i = 0; i < calorieConsumed.size(); i++) {
+            if (calorieConsumed.get(i) >= 2500.0)
                 count++;
             else break;
         }
@@ -464,7 +333,7 @@ public class HomeTabActivity extends AppCompatActivity {
         updatedGoal.setMy_goal_streak(count);
         updatedGoal.setGoal_status(goal.getGoal_status());
         updatedGoal.setGoal_image(goal.getGoal_image());
-        if(count >= 7) {
+        if (count >= 7) {
             updatedGoal.setGoal_completion("yes");
         } else {
             updatedGoal.setGoal_completion(goal.getGoal_completion());
@@ -474,11 +343,10 @@ public class HomeTabActivity extends AppCompatActivity {
         goalData.updateGoal(updatedGoal);
 
         CalorieTracking lastTrackingRow = trackingData.getTracking(trackingData.getRowCount());
-        //new CalorieTracking();
         CalorieTracking newTrackingRow;
 
         newTrackingRow = lastTrackingRow;
-        if(count >= 7) {
+        if (count >= 7) {
             newTrackingRow.setGoal_point(newTrackingRow.getGoal_point() + goal.getGoal_point());
         }
 

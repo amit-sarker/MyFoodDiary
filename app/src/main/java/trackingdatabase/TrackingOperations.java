@@ -192,7 +192,6 @@ public class TrackingOperations {
     }
 
 
-
     public int updateTracking(CalorieTracking newTrackingData) {
 
         ContentValues values = new ContentValues();
@@ -219,10 +218,10 @@ public class TrackingOperations {
 
         // updating row
         return database.update(TABLE_TRACKING, values,
-                TrackingDBHandler.COLUMN_TRACKING_ID + "=?", new String[] { String.valueOf(newTrackingData.getCalorie_tracking_id())});
+                TrackingDBHandler.COLUMN_TRACKING_ID + "=?", new String[]{String.valueOf(newTrackingData.getCalorie_tracking_id())});
     }
 
     public void removeTracking(CalorieTracking trackingData) {
-        database.delete(TABLE_TRACKING,TrackingDBHandler.COLUMN_TRACKING_ID + "=" + trackingData.getCalorie_tracking_id(),null);
+        database.delete(TABLE_TRACKING, TrackingDBHandler.COLUMN_TRACKING_ID + "=" + trackingData.getCalorie_tracking_id(), null);
     }
 }
