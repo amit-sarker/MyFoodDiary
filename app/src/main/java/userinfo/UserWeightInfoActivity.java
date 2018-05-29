@@ -151,8 +151,6 @@ public class UserWeightInfoActivity extends AppCompatActivity {
                 else BMRGender += "male";
                 BMRWithoutActivity = BMICalculation.BMRWithoutActivity(BMRHeight, BMRWeight, BMRAge, BMRGender);
                 BMRWithActivity = BMICalculation.BMRWithActivity(BMRHeight, BMRWeight, BMRAge, BMRGender, intActivityLevel);
-                Toast t = Toast.makeText(UserWeightInfoActivity.this, "Without Activity " + BMRWithoutActivity + "   With Activity" + " " + BMRWithActivity, Toast.LENGTH_LONG);
-                t.show();
 
                 String current_date_str = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 

@@ -54,8 +54,8 @@ public class AlarmReceiver extends BroadcastReceiver{
           notification  = builder.setContentTitle("Breakfast Reminder")
                     .setContentText("Start your day with a great breakfast")
                     .setTicker("New Message Alert!")
-                    .setSmallIcon(R.drawable.food2)
-                    .setLargeIcon(BitmapFactory.decodeResource(res, R.drawable.food3))
+                    .setSmallIcon(R.drawable.chick)
+                    .setLargeIcon(BitmapFactory.decodeResource(res, R.drawable.chick))
                     .setAutoCancel(true)
                     .setContentIntent(pendingIntent).build();
         }
@@ -63,8 +63,8 @@ public class AlarmReceiver extends BroadcastReceiver{
             notification  = builder.setContentTitle("Lunch Reminder")
                     .setContentText("Take a break, Take lunch")
                     .setTicker("New Message Alert!")
-                    .setSmallIcon(R.drawable.food2)
-                    .setLargeIcon(BitmapFactory.decodeResource(res, R.drawable.food3))
+                    .setSmallIcon(R.drawable.chick)
+                    .setLargeIcon(BitmapFactory.decodeResource(res, R.drawable.chick))
                     .setAutoCancel(true)
                     .setContentIntent(pendingIntent).build();
         }
@@ -73,8 +73,8 @@ public class AlarmReceiver extends BroadcastReceiver{
             notification  = builder.setContentTitle("Dinner Reminder")
                     .setContentText("Tired? Recharge yourself with a great dinner")
                     .setTicker("New Message Alert!")
-                    .setSmallIcon(R.drawable.food2)
-                    .setLargeIcon(BitmapFactory.decodeResource(res, R.drawable.food3))
+                    .setSmallIcon(R.drawable.chick)
+                    .setLargeIcon(BitmapFactory.decodeResource(res, R.drawable.chick))
                     .setAutoCancel(true)
                     .setContentIntent(pendingIntent).build();
         }

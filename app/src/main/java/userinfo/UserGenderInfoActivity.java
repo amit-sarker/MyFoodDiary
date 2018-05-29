@@ -56,6 +56,7 @@ public class UserGenderInfoActivity extends AppCompatActivity {
                     Intent intent = new Intent(UserGenderInfoActivity.this, UserHeightInfoActivity.class);
                     intent.putExtra("isfemale", isFemale);
                     startActivity(intent);
+                    finish();
                 } else if (checkedId == R.id.male_btn) {
                     isFemale = false;
                     Intent intent = new Intent(UserGenderInfoActivity.this, UserHeightInfoActivity.class);

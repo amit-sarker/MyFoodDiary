@@ -42,7 +42,7 @@ public class UserHeightInfoActivity extends AppCompatActivity {
 
 
         for (int i = 0; i < 10; i++) {
-            feetValues[i] = String.valueOf(i);
+            feetValues[i] = String.valueOf(i+1);
         }
         for (int i = 0; i < 100; i++) {
             inchValues[i] = String.valueOf(i);
@@ -58,9 +58,10 @@ public class UserHeightInfoActivity extends AppCompatActivity {
         mNextPageBtn = findViewById(R.id.next_page_btn);
 
         mFeetPicker = findViewById(R.id.num_picker_feet);
-        mFeetPicker.setMinValue(0);
-        mFeetPicker.setMaxValue(7);
+        mFeetPicker.setMinValue(2);
+        mFeetPicker.setMaxValue(8);
         mFeetPicker.setDisplayedValues(feetValues);
+        mFeetPicker.setValue(4);
 
         mInchPicker = findViewById(R.id.num_picker_inch);
         mInchPicker.setMinValue(0);
@@ -80,16 +81,16 @@ public class UserHeightInfoActivity extends AppCompatActivity {
                 if (isChecked) {
                     mFeetText.setText("Feet");
                     mInchText.setText("Inches");
-                    mFeetPicker.setMinValue(1);
-                    mFeetPicker.setMaxValue(7);
+                    mFeetPicker.setMinValue(2);
+                    mFeetPicker.setMaxValue(8);
                     mInchPicker.setMinValue(0);
                     mInchPicker.setMaxValue(11);
                     isfeet = true;
                 } else {
                     mFeetText.setText("Meter");
                     mInchText.setText("Cm");
-                    mFeetPicker.setMinValue(1);
-                    mFeetPicker.setMaxValue(3);
+                    mFeetPicker.setMinValue(2);
+                    mFeetPicker.setMaxValue(5);
                     mInchPicker.setMinValue(0);
                     mInchPicker.setMaxValue(99);
 

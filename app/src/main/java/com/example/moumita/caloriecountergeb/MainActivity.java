@@ -189,14 +189,14 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Alarm", "Alarms set for everyday 8 am.");
 
         Calendar lunchTime = Calendar.getInstance();
-        lunchTime.set(Calendar.HOUR_OF_DAY, 13);
-        lunchTime.set(Calendar.MINUTE, 5);
+        lunchTime.set(Calendar.HOUR_OF_DAY, 12);
+        lunchTime.set(Calendar.MINUTE, 3);
         lunchTime.set(Calendar.SECOND, 0);
         if (now.after(lunchTime)) {
             Log.d("Hey", "Added a day");
             lunchTime.add(Calendar.DATE, 1);
         }
-        alarmManager2.setRepeating(AlarmManager.RTC_WAKEUP, lunchTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, lunchBroadcast);
+        alarmManager2.setRepeating(AlarmManager.RTC_WAKEUP, lunchTime.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, lunchBroadcast);
 
 
         Calendar dinnerTime = Calendar.getInstance();

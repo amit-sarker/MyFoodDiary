@@ -56,7 +56,7 @@ public class UserAgeInfoActivity extends AppCompatActivity {
         }
 
         for (int i = 0; i < 100; i++) {
-            yearValues[i] = String.valueOf(i + 1920);
+            yearValues[i] = String.valueOf(i + 1918);
         }
 
         mTfRegular = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
@@ -81,6 +81,7 @@ public class UserAgeInfoActivity extends AppCompatActivity {
         mYearPicker.setMinValue(0);
         mYearPicker.setMaxValue(99);
         mYearPicker.setDisplayedValues(yearValues);
+        mYearPicker.setValue(70);
 
         submit = (Button) findViewById(R.id.submitButton);
 

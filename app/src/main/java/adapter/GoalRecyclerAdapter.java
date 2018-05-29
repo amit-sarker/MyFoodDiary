@@ -59,9 +59,9 @@ public class GoalRecyclerAdapter extends RecyclerView.Adapter<GoalRecyclerAdapte
                 @Override public void onClick(View v) {
                     int position = getAdapterPosition();
 
-                    Snackbar.make(v, "Click detected on item " + position,
+                    /*Snackbar.make(v, "Click detected on item " + position,
                             Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                            .setAction("Action", null).show();*/
                 }
             });
         }
