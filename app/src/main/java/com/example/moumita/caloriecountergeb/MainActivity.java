@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //testing
+
         Stetho.initializeWithDefaults(this);
 
         new OkHttpClient.Builder()
