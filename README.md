@@ -4,7 +4,7 @@ Many health related issues like obesity and overweight might be prevented by ado
 
 
 By
-Amit Sarker, student, CSE, DU
+Amit Sarker, student, CSE, DU and
 Moumita Choudhury, student, CSE, DU 
 
 Video Link: https://www.youtube.com/watch?v=w_jX8y96qbo&t=140s
